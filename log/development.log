@@ -4060,3 +4060,4768 @@ Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 14:49:45 
 
 
 Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 14:49:45 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 15:10:44 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.1ms)
+  Rendered guide/_top_bar.html.erb (0.4ms)
+Completed 200 OK in 711ms (Views: 709.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 15:10:45 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.1ms)
+  Rendered guide/_top_bar.html.erb (0.0ms)
+Completed 200 OK in 7ms (Views: 6.9ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 15:10:45 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 15:10:45 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 15:10:45 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 15:10:45 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 15:10:45 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 15:10:45 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 15:10:45 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 15:10:45 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 15:10:45 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 15:10:45 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 15:10:46 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.1ms)
+  Rendered guide/_top_bar.html.erb (0.0ms)
+Completed 200 OK in 7ms (Views: 6.2ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 15:10:46 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 15:10:46 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 15:10:46 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 15:10:46 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 15:10:46 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 15:10:46 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 15:10:46 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 15:10:46 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 15:10:50 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.0ms)
+  Rendered guide/_top_bar.html.erb (0.0ms)
+Completed 200 OK in 6ms (Views: 5.8ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 15:10:50 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 15:10:50 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 15:10:50 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 15:10:50 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 15:10:50 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 15:10:50 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 15:10:50 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 15:10:50 -0500
+
+
+Started GET "/terms" for 127.0.0.1 at 2014-01-22 15:10:51 -0500
+
+ActionController::RoutingError (No route matches [GET] "/terms"):
+  actionpack (4.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.2) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.2) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.2) lib/rails/engine.rb:511:in `call'
+  railties (4.0.2) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb (0.6ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.0ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (23.2ms)
+
+
+Started GET "/terms" for 127.0.0.1 at 2014-01-22 15:11:04 -0500
+
+ActionController::RoutingError (No route matches [GET] "/terms"):
+  actionpack (4.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.2) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.2) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.2) lib/rails/engine.rb:511:in `call'
+  railties (4.0.2) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb (0.6ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.0ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (15.4ms)
+
+
+Started GET "/term" for 127.0.0.1 at 2014-01-22 15:11:04 -0500
+
+ActionController::RoutingError (No route matches [GET] "/term"):
+  actionpack (4.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.2) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.2) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.2) lib/rails/engine.rb:511:in `call'
+  railties (4.0.2) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb (0.6ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.0ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (16.3ms)
+
+
+Started GET "/terms" for 127.0.0.1 at 2014-01-22 15:11:07 -0500
+
+ActionController::RoutingError (No route matches [GET] "/terms"):
+  actionpack (4.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.2) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.2) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.2) lib/rails/engine.rb:511:in `call'
+  railties (4.0.2) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb (0.6ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.0ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (15.4ms)
+
+
+Started GET "/term" for 127.0.0.1 at 2014-01-22 15:11:10 -0500
+
+ActionController::RoutingError (No route matches [GET] "/term"):
+  actionpack (4.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.2) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.2) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.2) lib/rails/engine.rb:511:in `call'
+  railties (4.0.2) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb (0.7ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.0ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (16.6ms)
+
+
+Started GET "/terms" for 127.0.0.1 at 2014-01-22 15:11:10 -0500
+
+ActionController::RoutingError (No route matches [GET] "/terms"):
+  actionpack (4.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.2) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.2) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.2) lib/rails/engine.rb:511:in `call'
+  railties (4.0.2) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb (0.7ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.0ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (16.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 15:11:11 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.1ms)
+  Rendered guide/_top_bar.html.erb (0.0ms)
+Completed 200 OK in 7ms (Views: 6.6ms)
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 15:11:11 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 15:11:11 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 15:11:11 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 15:11:11 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 15:11:11 -0500
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 15:11:11 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 15:11:11 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 15:11:11 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 15:11:11 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 15:11:11 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 15:11:22 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.0ms)
+  Rendered guide/_top_bar.html.erb (0.4ms)
+Completed 200 OK in 7ms (Views: 6.9ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 15:11:23 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 15:11:23 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 15:11:23 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 15:11:23 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 15:11:23 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 15:16:43 -0500
+
+ArgumentError (missing :controller):
+  config/routes.rb:4:in `block in <top (required)>'
+  config/routes.rb:1:in `<top (required)>'
+
+
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.6ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.9ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (18.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 15:17:14 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.1ms)
+  Rendered guide/_top_bar.html.erb (0.1ms)
+Completed 200 OK in 8ms (Views: 7.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 15:17:18 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.0ms)
+  Rendered guide/_top_bar.html.erb (0.0ms)
+Completed 200 OK in 6ms (Views: 5.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 15:17:18 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.0ms)
+  Rendered guide/_top_bar.html.erb (0.0ms)
+Completed 200 OK in 6ms (Views: 5.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 15:17:32 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.0ms)
+  Rendered guide/_top_bar.html.erb (0.1ms)
+Completed 200 OK in 7ms (Views: 6.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 15:17:33 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.1ms)
+  Rendered guide/_top_bar.html.erb (0.0ms)
+Completed 200 OK in 6ms (Views: 5.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 15:17:33 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.0ms)
+  Rendered guide/_top_bar.html.erb (0.0ms)
+Completed 200 OK in 6ms (Views: 5.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 15:18:34 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.0ms)
+  Rendered guide/_top_bar.html.erb (0.0ms)
+Completed 200 OK in 6ms (Views: 5.9ms)
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 15:18:34 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 15:18:34 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 15:18:34 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 15:18:34 -0500
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 15:18:34 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 15:18:34 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 15:18:34 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 15:18:34 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 15:18:34 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 15:18:34 -0500
+
+
+Started GET "/guide/index" for 127.0.0.1 at 2014-01-22 15:18:34 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.0ms)
+  Rendered guide/_top_bar.html.erb (0.0ms)
+Completed 200 OK in 6ms (Views: 5.9ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 15:18:34 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 15:18:34 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 15:18:34 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 15:18:34 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 15:18:34 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 15:18:34 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 15:18:34 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 15:18:34 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 15:18:34 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 15:18:34 -0500
+
+
+Started GET "/terms/index" for 127.0.0.1 at 2014-01-22 15:18:47 -0500
+
+ActionController::RoutingError (No route matches [GET] "/terms/index"):
+  actionpack (4.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.2) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.2) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.2) lib/rails/engine.rb:511:in `call'
+  railties (4.0.2) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb (0.6ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (0.9ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (16.5ms)
+
+
+Started GET "/terms/index" for 127.0.0.1 at 2014-01-22 15:19:07 -0500
+Processing by TermsController#index as HTML
+  Rendered terms/index.html.erb within layouts/application (0.3ms)
+Completed 500 Internal Server Error in 7ms
+
+ActionView::Template::Error (Missing partial terms/top_bar, application/top_bar with {:locale=>[:en], :formats=>[:html], :handlers=>[:erb, :builder, :raw, :ruby, :jbuilder, :coffee]}. Searched in:
+  * "/Users/cfreder2/Code/huginn/app/views"
+  * "/Users/cfreder2/.rvm/gems/ruby-1.9.3-p484/gems/foundation-rails-5.0.3.1/app/views"
+):
+    49:           </div>
+    50:         </div>
+    51:       </div><!-- .titlebar -->
+    52:       <%= render "top_bar" %>
+    53:     </header>
+    54:     
+    55:     <main id="content" class="site-content" role="main">
+  app/views/layouts/application.html.erb:52:in `_app_views_layouts_application_html_erb___1360020799902842192_70130423487360'
+
+
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.7ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (10.9ms)
+
+
+Started GET "/terms/index" for 127.0.0.1 at 2014-01-22 15:22:18 -0500
+Processing by TermsController#index as HTML
+  Rendered terms/index.html.erb within layouts/application (0.0ms)
+Completed 500 Internal Server Error in 7ms
+
+ActionView::Template::Error (Missing partial terms/top_bar, application/top_bar with {:locale=>[:en], :formats=>[:html], :handlers=>[:erb, :builder, :raw, :ruby, :jbuilder, :coffee]}. Searched in:
+  * "/Users/cfreder2/Code/huginn/app/views"
+  * "/Users/cfreder2/.rvm/gems/ruby-1.9.3-p484/gems/foundation-rails-5.0.3.1/app/views"
+):
+    49:           </div>
+    50:         </div>
+    51:       </div><!-- .titlebar -->
+    52:       <!--<%= render "top_bar" %> -->
+    53: 
+    54:       <div class="top-bar-wrap">
+    55:         <nav class="top-bar row" data-topbar>
+  app/views/layouts/application.html.erb:52:in `_app_views_layouts_application_html_erb___1360020799902842192_70130433432220'
+
+
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.9ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (10.9ms)
+
+
+Started GET "/terms" for 127.0.0.1 at 2014-01-22 15:22:19 -0500
+
+ActionController::RoutingError (No route matches [GET] "/terms"):
+  actionpack (4.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.2) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.2) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.2) lib/rails/engine.rb:511:in `call'
+  railties (4.0.2) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb (0.6ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (0.8ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (15.2ms)
+
+
+Started GET "/term" for 127.0.0.1 at 2014-01-22 15:22:19 -0500
+
+ActionController::RoutingError (No route matches [GET] "/term"):
+  actionpack (4.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.2) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.2) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.2) lib/rails/engine.rb:511:in `call'
+  railties (4.0.2) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb (0.6ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (0.9ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (15.5ms)
+
+
+Started GET "/terms" for 127.0.0.1 at 2014-01-22 15:22:20 -0500
+
+ActionController::RoutingError (No route matches [GET] "/terms"):
+  actionpack (4.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.2) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.2) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.2) lib/rails/engine.rb:511:in `call'
+  railties (4.0.2) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb (0.6ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.4ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (16.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 15:22:20 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.0ms)
+  Rendered guide/_top_bar.html.erb (0.0ms)
+Completed 200 OK in 7ms (Views: 6.2ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 15:22:20 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 15:22:20 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 15:22:20 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 15:22:20 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 15:22:20 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 15:22:20 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 15:22:20 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 15:22:20 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 15:22:20 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 15:22:20 -0500
+
+
+Started GET "/guide/index" for 127.0.0.1 at 2014-01-22 15:22:21 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.0ms)
+  Rendered guide/_top_bar.html.erb (0.0ms)
+Completed 200 OK in 26ms (Views: 26.1ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 15:22:21 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 15:22:21 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 15:22:21 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 15:22:21 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 15:22:21 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 15:22:21 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 15:22:21 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 15:22:21 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 15:22:21 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 15:22:21 -0500
+
+
+Started GET "/guide/index" for 127.0.0.1 at 2014-01-22 15:22:49 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 8ms (Views: 7.9ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 15:22:49 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 15:22:49 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 15:22:49 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 15:22:49 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 15:22:49 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 15:22:49 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 15:22:49 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 15:22:49 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 15:22:49 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 15:22:49 -0500
+
+
+Started GET "/terms" for 127.0.0.1 at 2014-01-22 15:22:59 -0500
+
+ActionController::RoutingError (No route matches [GET] "/terms"):
+  actionpack (4.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.2) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.2) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.2) lib/rails/engine.rb:511:in `call'
+  railties (4.0.2) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb (0.7ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (0.9ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (16.0ms)
+
+
+Started GET "/term" for 127.0.0.1 at 2014-01-22 15:23:00 -0500
+
+ActionController::RoutingError (No route matches [GET] "/term"):
+  actionpack (4.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.2) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.2) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.2) lib/rails/engine.rb:511:in `call'
+  railties (4.0.2) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb (0.7ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (0.9ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (15.7ms)
+
+
+Started GET "/terms" for 127.0.0.1 at 2014-01-22 15:23:00 -0500
+
+ActionController::RoutingError (No route matches [GET] "/terms"):
+  actionpack (4.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.2) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.2) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.2) lib/rails/engine.rb:511:in `call'
+  railties (4.0.2) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb (0.7ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (0.8ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (15.7ms)
+
+
+Started GET "/terms/index" for 127.0.0.1 at 2014-01-22 15:23:02 -0500
+Processing by TermsController#index as HTML
+  Rendered terms/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 5ms (Views: 5.0ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 15:23:02 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 15:23:02 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 15:23:02 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 15:23:02 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 15:23:02 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 15:23:02 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 15:23:02 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 15:23:02 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 15:23:02 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 15:23:02 -0500
+
+
+Started GET "/terms/index" for 127.0.0.1 at 2014-01-22 15:23:52 -0500
+Processing by TermsController#index as HTML
+  Rendered terms/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 6ms (Views: 5.5ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 15:23:52 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 15:23:52 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 15:23:52 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 15:23:52 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 15:23:52 -0500
+
+
+Started GET "/terms/index" for 127.0.0.1 at 2014-01-22 15:23:53 -0500
+Processing by TermsController#index as HTML
+  Rendered terms/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 6ms (Views: 5.3ms)
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 15:23:53 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 15:23:53 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 15:23:53 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 15:23:53 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 15:23:53 -0500
+
+
+Started GET "/terms/index" for 127.0.0.1 at 2014-01-22 15:23:53 -0500
+Processing by TermsController#index as HTML
+  Rendered terms/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 5ms (Views: 5.0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 15:23:53 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 15:23:53 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 15:23:53 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 15:23:53 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 15:23:53 -0500
+
+
+Started GET "/terms/index" for 127.0.0.1 at 2014-01-22 15:23:53 -0500
+Processing by TermsController#index as HTML
+  Rendered terms/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 5ms (Views: 5.1ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 15:23:54 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 15:23:54 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 15:23:54 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 15:23:54 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 15:23:54 -0500
+
+
+Started GET "/terms/index" for 127.0.0.1 at 2014-01-22 15:28:02 -0500
+Processing by TermsController#index as HTML
+  Rendered terms/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 6ms (Views: 5.3ms)
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 15:28:02 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 15:28:02 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 15:28:02 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 15:28:02 -0500
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 15:28:02 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 15:28:02 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 15:28:02 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 15:28:02 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 15:28:02 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 15:28:02 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 15:28:02 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 6ms (Views: 5.2ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 15:28:02 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 15:28:02 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 15:28:02 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 15:28:02 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 15:28:02 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 15:28:02 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 15:28:02 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 15:28:02 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 15:28:02 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 15:28:02 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 15:28:02 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 5ms (Views: 5.0ms)
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 15:28:02 -0500
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 15:28:02 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 15:28:02 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 15:28:02 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 15:28:02 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 15:28:02 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 15:28:02 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 15:28:02 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 15:28:02 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 15:28:02 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 15:28:06 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 6ms (Views: 5.2ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 15:28:06 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 15:28:06 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 15:28:06 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 15:28:06 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 15:28:06 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 15:28:06 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 5ms (Views: 5.1ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 15:28:06 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 15:28:06 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 15:28:06 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 15:28:06 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 15:28:06 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 15:28:10 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 6ms (Views: 5.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 15:28:14 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 5ms (Views: 5.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 15:28:14 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 6ms (Views: 5.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 15:28:20 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 5ms (Views: 4.8ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 15:28:20 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 15:28:20 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 15:28:20 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 15:28:20 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 15:28:20 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 15:28:20 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 15:28:20 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 15:28:20 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 15:28:20 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 15:28:20 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 15:28:57 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 7ms (Views: 6.4ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 15:28:57 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 15:28:57 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 15:28:57 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 15:28:57 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 15:28:57 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 15:28:57 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 15:28:57 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 15:28:57 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 15:28:57 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 15:28:57 -0500
+
+
+Started GET "/terms/index" for 127.0.0.1 at 2014-01-22 15:29:13 -0500
+Processing by TermsController#index as HTML
+  Rendered terms/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 6ms (Views: 5.4ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 15:29:13 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 15:29:13 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 15:29:13 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 15:29:13 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 15:29:13 -0500
+
+
+Started GET "/terms/index" for 127.0.0.1 at 2014-01-22 15:29:19 -0500
+Processing by TermsController#index as HTML
+  Rendered terms/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 5ms (Views: 5.0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 15:29:20 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 15:29:20 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 15:29:20 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 15:29:20 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 15:29:20 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 15:29:20 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 6ms (Views: 5.4ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 15:29:20 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 15:29:20 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 15:29:20 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 15:29:20 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 15:29:20 -0500
+
+
+Started GET "/terms/index" for 127.0.0.1 at 2014-01-22 15:29:22 -0500
+Processing by TermsController#index as HTML
+  Rendered terms/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 6ms (Views: 5.3ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 15:29:22 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 15:29:22 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 15:29:22 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 15:29:22 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 15:29:22 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 15:29:23 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 7ms (Views: 6.9ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 15:29:23 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 15:29:23 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 15:29:23 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 15:29:23 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 15:29:23 -0500
+
+
+Started GET "/terms/index" for 127.0.0.1 at 2014-01-22 15:29:25 -0500
+Processing by TermsController#index as HTML
+  Rendered terms/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 7ms (Views: 6.4ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 15:29:25 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 15:29:25 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 15:29:25 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 15:29:25 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 15:29:25 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 15:29:28 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 6ms (Views: 5.2ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 15:29:28 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 15:29:28 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 15:29:28 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 15:29:28 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 15:29:28 -0500
+
+
+Started GET "/terms/index" for 127.0.0.1 at 2014-01-22 15:29:32 -0500
+Processing by TermsController#index as HTML
+  Rendered terms/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 5ms (Views: 5.0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 15:29:32 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 15:29:32 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 15:29:32 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 15:29:32 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 15:29:32 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 15:29:33 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 6ms (Views: 5.4ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 15:29:33 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 15:29:33 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 15:29:33 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 15:29:33 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 15:29:33 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 15:29:35 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 6ms (Views: 5.3ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 15:29:35 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 15:29:35 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 15:29:35 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 15:29:35 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 15:29:35 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 15:29:35 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 15:29:35 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 15:29:35 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 15:29:35 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 15:29:35 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 15:30:04 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 6ms (Views: 5.8ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 15:30:04 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 15:30:04 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 15:30:04 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 15:30:04 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 15:30:04 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 15:30:04 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 15:30:04 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 15:30:04 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 15:30:04 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 15:30:04 -0500
+
+
+Started GET "/terms/index" for 127.0.0.1 at 2014-01-22 15:32:28 -0500
+Processing by TermsController#index as HTML
+  Rendered terms/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 6ms (Views: 5.7ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 15:32:28 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 15:32:28 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 15:32:28 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 15:32:28 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 15:32:28 -0500
+
+
+Started GET "/terms/index" for 127.0.0.1 at 2014-01-22 15:34:43 -0500
+Processing by TermsController#index as HTML
+  Rendered terms/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 6ms (Views: 5.2ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 15:34:43 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 15:34:43 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 15:34:43 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 15:34:43 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 15:34:43 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 15:34:43 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 15:34:43 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 15:34:43 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 15:34:43 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 15:34:43 -0500
+
+
+Started GET "/terms/id" for 127.0.0.1 at 2014-01-22 15:34:45 -0500
+
+ActionController::RoutingError (No route matches [GET] "/terms/id"):
+  actionpack (4.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.2) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.2) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.2) lib/rails/engine.rb:511:in `call'
+  railties (4.0.2) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb (0.7ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.0ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (16.8ms)
+
+
+Started GET "/terms/index" for 127.0.0.1 at 2014-01-22 15:34:49 -0500
+Processing by TermsController#index as HTML
+  Rendered terms/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 6ms (Views: 5.1ms)
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 15:34:49 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 15:34:49 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 15:34:49 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 15:34:49 -0500
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 15:34:49 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 15:34:49 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 15:34:49 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 15:34:49 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 15:34:49 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 15:34:49 -0500
+
+
+Started GET "/terms/index" for 127.0.0.1 at 2014-01-22 15:35:15 -0500
+Processing by TermsController#index as HTML
+  Rendered terms/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 5ms (Views: 4.8ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 15:35:15 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 15:35:15 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 15:35:15 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 15:35:15 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 15:35:15 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 15:35:15 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 15:35:15 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 15:35:15 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 15:35:15 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 15:35:15 -0500
+
+
+Started GET "/terms/ActiveStudent" for 127.0.0.1 at 2014-01-22 15:35:18 -0500
+
+ActionController::RoutingError (No route matches [GET] "/terms/ActiveStudent"):
+  actionpack (4.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.2) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.2) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.2) lib/rails/engine.rb:511:in `call'
+  railties (4.0.2) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb (0.7ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (0.9ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (16.7ms)
+
+
+Started GET "/terms/ActiveStudent" for 127.0.0.1 at 2014-01-22 15:39:06 -0500
+
+ActionController::RoutingError (No route matches [GET] "/terms/ActiveStudent"):
+  actionpack (4.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.2) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.2) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.2) lib/rails/engine.rb:511:in `call'
+  railties (4.0.2) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb (0.6ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (0.8ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (15.3ms)
+
+
+Started GET "/terms/index" for 127.0.0.1 at 2014-01-22 15:39:06 -0500
+Processing by TermsController#index as HTML
+  Rendered terms/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 6ms (Views: 5.1ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 15:39:06 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 15:39:06 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 15:39:06 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 15:39:06 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 15:39:06 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 15:39:06 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 15:39:06 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 15:39:06 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 15:39:06 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 15:39:06 -0500
+
+
+Started GET "/terms" for 127.0.0.1 at 2014-01-22 15:39:06 -0500
+
+ActionController::RoutingError (No route matches [GET] "/terms"):
+  actionpack (4.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.2) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.2) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.2) lib/rails/engine.rb:511:in `call'
+  railties (4.0.2) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb (0.6ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (0.8ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (15.3ms)
+
+
+Started GET "/term" for 127.0.0.1 at 2014-01-22 15:39:07 -0500
+
+ActionController::RoutingError (No route matches [GET] "/term"):
+  actionpack (4.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.2) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.2) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.2) lib/rails/engine.rb:511:in `call'
+  railties (4.0.2) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb (0.6ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (0.8ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (15.4ms)
+
+
+Started GET "/terms/index" for 127.0.0.1 at 2014-01-22 15:39:07 -0500
+Processing by TermsController#index as HTML
+  Rendered terms/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 6ms (Views: 5.2ms)
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 15:39:07 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 15:39:07 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 15:39:07 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 15:39:07 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 15:39:07 -0500
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 15:39:07 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 15:39:07 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 15:39:07 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 15:39:07 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 15:39:07 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 15:39:07 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 6ms (Views: 5.3ms)
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 15:39:07 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 15:39:07 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 15:39:07 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 15:39:07 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 15:39:07 -0500
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 15:39:07 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 15:39:07 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 15:39:07 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 15:39:07 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 15:39:07 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 15:39:08 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 6ms (Views: 5.2ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 15:39:08 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 15:39:08 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 15:39:08 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 15:39:08 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 15:39:08 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 15:39:08 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 15:39:08 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 15:39:08 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 15:39:08 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 15:39:08 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 15:44:24 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 6ms (Views: 5.8ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 15:44:24 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 15:44:24 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 15:44:24 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 15:44:24 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 15:44:24 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 15:44:24 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 15:44:24 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 15:44:24 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 15:44:24 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 15:44:24 -0500
+
+
+Started GET "/assets/images/noise3.png" for 127.0.0.1 at 2014-01-22 15:44:24 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 15:45:49 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 8ms (Views: 7.2ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 15:45:49 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 15:45:49 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 15:45:49 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 15:45:49 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 15:45:49 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 15:45:49 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 15:45:49 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 15:45:49 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 15:45:49 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 15:45:49 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 15:45:55 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 6ms (Views: 5.7ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 15:45:55 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 15:45:55 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 15:45:55 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 15:45:55 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 15:45:55 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 15:45:55 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 15:45:55 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 15:45:55 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 15:45:55 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 15:45:55 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 15:46:10 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 6ms (Views: 5.7ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 15:46:10 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 15:46:10 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 15:46:10 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 15:46:10 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 15:46:10 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 15:46:10 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 15:46:10 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 15:46:10 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 15:46:10 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 15:46:10 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 15:47:14 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 6ms (Views: 5.8ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 15:47:14 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 15:47:14 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 15:47:14 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 15:47:14 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 15:47:14 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 15:47:14 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 15:47:14 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 15:47:14 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 15:47:14 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 15:47:15 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 15:47:29 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 6ms (Views: 5.9ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 15:47:29 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 15:47:29 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 15:47:29 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 15:47:29 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 15:47:29 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 15:47:29 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 15:47:29 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 15:47:29 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 15:47:29 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 15:47:29 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 15:48:00 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 7ms (Views: 6.6ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 15:48:00 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 15:48:00 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 15:48:00 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 15:48:00 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 15:48:00 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 15:48:00 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 15:48:00 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 15:48:00 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 15:48:00 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 15:48:00 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 15:48:12 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (14.0ms)
+Completed 200 OK in 22ms (Views: 20.9ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 15:48:12 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 15:48:12 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 15:48:12 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 15:48:12 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 15:48:12 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 15:48:12 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 15:48:12 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 15:48:12 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 15:48:12 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 15:48:12 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 15:48:24 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 8ms (Views: 7.0ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 15:48:24 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 15:48:24 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 15:48:24 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 15:48:24 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 15:48:24 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 15:48:24 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 15:48:24 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 15:48:24 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 15:48:24 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 15:48:24 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 15:49:11 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 6ms (Views: 5.8ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 15:49:11 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 15:49:11 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 15:49:11 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 15:49:11 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 15:49:11 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 15:49:11 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 15:49:11 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 15:49:11 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 15:49:11 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 15:49:11 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 15:49:52 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 6ms (Views: 5.8ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 15:49:53 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 15:49:53 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 15:49:53 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 15:49:53 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 15:49:53 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 15:49:53 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 15:49:53 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 15:49:53 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 15:49:53 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 15:49:53 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 15:50:03 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 6ms (Views: 6.0ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 15:50:04 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 15:50:04 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 15:50:04 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 15:50:04 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 15:50:04 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 15:50:04 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 15:50:04 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 15:50:04 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 15:50:04 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 15:50:04 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 15:50:09 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 7ms (Views: 6.3ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 15:50:09 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 15:50:09 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 15:50:09 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 15:50:09 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 15:50:09 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 15:50:09 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 15:50:09 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 15:50:09 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 15:50:09 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 15:50:09 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 15:51:01 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 6ms (Views: 5.7ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 15:51:01 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 15:51:01 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 15:51:01 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 15:51:01 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 15:51:01 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 15:51:01 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 15:51:01 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 15:51:01 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 15:51:01 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 15:51:01 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 15:51:56 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 7ms (Views: 6.0ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 15:51:56 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 15:51:56 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 15:51:56 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 15:51:56 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 15:51:57 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 15:51:57 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 15:51:57 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 15:51:57 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 15:51:57 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 15:51:57 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 15:52:12 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 7ms (Views: 6.1ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 15:52:12 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 15:52:12 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 15:52:12 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 15:52:12 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 15:52:12 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 15:52:12 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 15:52:12 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 15:52:12 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 15:52:12 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 15:52:12 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 15:53:12 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 6ms (Views: 5.6ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 15:53:12 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 15:53:12 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 15:53:12 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 15:53:12 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 15:53:12 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 15:53:12 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 15:53:12 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 15:53:12 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 15:53:12 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 15:53:12 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 15:56:32 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 7ms (Views: 6.7ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 15:56:32 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 15:56:32 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 15:56:32 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 15:56:32 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 15:56:32 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 15:56:32 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 15:56:32 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 15:56:32 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 15:56:32 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 15:56:32 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 15:57:18 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 6ms (Views: 6.0ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 15:57:18 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 15:57:18 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 15:57:18 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 15:57:18 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 15:57:18 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 15:57:18 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 15:57:18 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 15:57:18 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 15:57:18 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 15:57:18 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 15:58:06 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 7ms (Views: 6.9ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 15:58:06 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 15:58:06 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 15:58:06 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 15:58:06 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 15:58:06 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 15:58:06 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 15:58:06 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 15:58:06 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 15:58:06 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 15:58:06 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 15:59:07 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 7ms (Views: 6.1ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 15:59:07 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 15:59:07 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 15:59:07 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 15:59:07 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 15:59:07 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 15:59:07 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 15:59:07 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 15:59:07 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 15:59:07 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 15:59:07 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 15:59:32 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 8ms (Views: 7.6ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 15:59:32 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 15:59:32 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 15:59:32 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 15:59:32 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 15:59:32 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 15:59:32 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 15:59:32 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 15:59:32 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 15:59:32 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 15:59:32 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 16:01:39 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 7ms (Views: 6.0ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 16:01:39 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 16:01:39 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 16:01:39 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 16:01:39 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 16:01:39 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 16:01:39 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 16:01:39 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 16:01:39 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 16:01:39 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 16:01:39 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 16:02:15 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 6ms (Views: 5.8ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 16:02:15 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 16:02:15 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 16:02:15 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 16:02:15 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 16:02:15 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 16:02:15 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 16:02:15 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 16:02:15 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 16:02:15 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 16:02:15 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 16:02:43 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 6ms (Views: 5.7ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 16:02:43 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 16:02:43 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 16:02:43 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 16:02:43 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 16:02:43 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 16:02:43 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 16:02:43 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 16:02:43 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 16:02:43 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 16:02:43 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 16:03:37 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 7ms (Views: 6.4ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 16:03:37 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 16:03:37 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 16:03:37 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 16:03:37 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 16:03:37 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 16:03:37 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 16:03:37 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 16:03:37 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 16:03:37 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 16:03:37 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 16:04:17 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 7ms (Views: 6.3ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 16:04:17 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 16:04:17 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 16:04:17 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 16:04:17 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 16:04:17 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 16:04:17 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 16:04:17 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 16:04:17 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 16:04:17 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 16:04:17 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 16:05:41 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 6ms (Views: 5.5ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 16:05:41 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 16:05:41 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 16:05:41 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 16:05:41 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 16:05:41 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 16:05:41 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 16:05:41 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 16:05:41 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 16:05:41 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 16:05:41 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 16:06:21 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 6ms (Views: 5.6ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 16:06:21 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 16:06:21 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 16:06:21 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 16:06:21 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 16:06:21 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 16:06:21 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 16:06:21 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 16:06:21 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 16:06:21 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 16:06:21 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 16:06:29 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 8ms (Views: 7.7ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 16:06:29 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 16:06:29 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 16:06:29 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 16:06:29 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 16:06:29 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 16:06:29 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 16:06:29 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 16:06:29 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 16:06:29 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 16:06:29 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 16:07:13 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 6ms (Views: 5.6ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 16:07:14 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 16:07:14 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 16:07:14 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 16:07:14 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 16:07:14 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 16:07:14 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 16:07:14 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 16:07:14 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 16:07:14 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 16:07:14 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 16:10:36 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 6ms (Views: 5.7ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 16:10:36 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 16:10:36 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 16:10:36 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 16:10:36 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 16:10:36 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 16:10:36 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 16:10:36 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 16:10:36 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 16:10:36 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 16:10:36 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 16:11:06 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 7ms (Views: 6.4ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 16:11:06 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 16:11:06 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 16:11:06 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 16:11:06 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 16:11:06 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 16:11:06 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 16:11:06 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 16:11:06 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 16:11:06 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 16:11:06 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 16:16:07 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 6ms (Views: 5.8ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 16:16:07 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 16:16:07 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 16:16:07 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 16:16:07 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 16:16:07 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 16:16:07 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 16:16:07 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 16:16:07 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 16:16:07 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 16:16:07 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 16:24:12 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 6ms (Views: 5.7ms)
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 16:24:12 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 16:24:12 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 16:24:12 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 16:24:12 -0500
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 16:24:12 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 16:24:12 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 16:24:12 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 16:24:12 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 16:24:12 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 16:24:12 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 16:32:02 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 7ms (Views: 6.4ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 16:32:02 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 16:32:02 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 16:32:02 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 16:32:02 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 16:32:02 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 16:32:02 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 16:32:02 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 16:32:02 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 16:32:02 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 16:32:02 -0500
+
+
+Started GET "/terms/index" for 127.0.0.1 at 2014-01-22 21:21:09 -0500
+Processing by TermsController#index as HTML
+  Rendered terms/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 6ms (Views: 5.7ms)
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 21:21:09 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 21:21:09 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 21:21:09 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 21:21:09 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 21:21:09 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 21:21:15 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 6ms (Views: 5.8ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 21:21:15 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 21:21:15 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 21:21:15 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 21:21:15 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 21:21:15 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 21:40:31 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.1ms)
+  Rendered shared/_top_bar.html.erb (0.3ms)
+Completed 200 OK in 23ms (Views: 22.9ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 21:40:31 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 21:40:31 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 21:40:31 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 21:40:31 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 21:40:31 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 21:40:31 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 21:40:31 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 21:40:31 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 21:40:31 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 21:40:31 -0500
+
+
+Started GET "/terms/index" for 127.0.0.1 at 2014-01-22 21:40:34 -0500
+Processing by TermsController#index as HTML
+  Rendered terms/index.html.erb within layouts/application (0.1ms)
+  Rendered shared/_top_bar.html.erb (0.4ms)
+Completed 200 OK in 7ms (Views: 7.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 21:40:38 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.0ms)
+  Rendered shared/_top_bar.html.erb (0.0ms)
+Completed 200 OK in 7ms (Views: 6.1ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 21:40:39 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 21:40:39 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 21:40:39 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 21:40:39 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 21:40:39 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 21:40:40 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.0ms)
+  Rendered shared/_top_bar.html.erb (0.0ms)
+Completed 200 OK in 7ms (Views: 6.1ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 21:40:40 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 21:40:40 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 21:40:40 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 21:40:40 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 21:40:40 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 21:40:40 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 21:40:40 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 21:40:40 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 21:40:40 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 21:40:40 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 21:40:41 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.0ms)
+  Rendered shared/_top_bar.html.erb (0.0ms)
+Completed 200 OK in 7ms (Views: 6.1ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 21:40:41 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 21:40:41 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 21:40:41 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 21:40:41 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 21:40:41 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 21:40:41 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 21:40:41 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 21:40:41 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 21:40:41 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 21:40:41 -0500
+
+
+Started GET "/terms/index" for 127.0.0.1 at 2014-01-22 21:40:44 -0500
+Processing by TermsController#index as HTML
+  Rendered terms/index.html.erb within layouts/application (0.0ms)
+  Rendered shared/_top_bar.html.erb (0.0ms)
+Completed 200 OK in 6ms (Views: 6.1ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 21:40:44 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 21:40:44 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 21:40:44 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 21:40:44 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 21:40:44 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 21:42:48 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (2.4ms)
+  Rendered shared/_top_bar.html.erb (0.4ms)
+Completed 200 OK in 336ms (Views: 305.7ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 21:42:48 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 21:42:48 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 21:42:48 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 21:42:48 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 21:42:48 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 21:42:48 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 21:42:48 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 21:42:48 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 21:42:48 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 21:42:48 -0500
+
+
+Started GET "/terms/index" for 127.0.0.1 at 2014-01-22 21:43:21 -0500
+Processing by TermsController#index as HTML
+  Rendered terms/index.html.erb within layouts/application (0.3ms)
+  Rendered shared/_top_bar.html.erb (0.3ms)
+Completed 200 OK in 8ms (Views: 6.9ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 21:43:21 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 21:43:21 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 21:43:21 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 21:43:21 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 21:43:21 -0500
+
+
+Started GET "/terms/index" for 127.0.0.1 at 2014-01-22 21:44:48 -0500
+Processing by TermsController#index as HTML
+  Rendered terms/index.html.erb within layouts/application (0.3ms)
+  Rendered shared/_top_bar.html.erb (0.0ms)
+Completed 200 OK in 6ms (Views: 6.0ms)
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 21:44:48 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 21:44:48 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 21:44:48 -0500
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 21:44:48 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 21:44:48 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 21:44:48 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 21:44:48 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 21:44:48 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 21:44:48 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 21:44:48 -0500
+
+
+Started GET "/terms/" for 127.0.0.1 at 2014-01-22 21:44:49 -0500
+
+ActionController::RoutingError (No route matches [GET] "/terms"):
+  actionpack (4.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.2) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.2) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.2) lib/rails/engine.rb:511:in `call'
+  railties (4.0.2) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.7ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.0ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (54.7ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (109.5ms)
+
+
+Started GET "/terms/" for 127.0.0.1 at 2014-01-22 21:46:08 -0500
+Processing by TermsController#index as HTML
+  Rendered terms/index.html.erb within layouts/application (0.0ms)
+  Rendered shared/_top_bar.html.erb (0.0ms)
+Completed 200 OK in 7ms (Views: 6.2ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 21:46:08 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 21:46:08 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 21:46:08 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 21:46:08 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 21:46:08 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 21:46:08 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 21:46:08 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 21:46:08 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 21:46:08 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 21:46:08 -0500
+
+
+Started GET "/terms" for 127.0.0.1 at 2014-01-22 21:46:13 -0500
+Processing by TermsController#index as HTML
+  Rendered terms/index.html.erb within layouts/application (0.0ms)
+  Rendered shared/_top_bar.html.erb (0.0ms)
+Completed 200 OK in 6ms (Views: 5.7ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 21:46:13 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 21:46:13 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 21:46:13 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 21:46:13 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 21:46:13 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 21:46:13 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 21:46:13 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 21:46:13 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 21:46:13 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 21:46:13 -0500
+
+
+Started GET "/term" for 127.0.0.1 at 2014-01-22 21:46:13 -0500
+
+ActionController::RoutingError (No route matches [GET] "/term"):
+  actionpack (4.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.2) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.2) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.2) lib/rails/engine.rb:511:in `call'
+  railties (4.0.2) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.8ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb (0.6ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (0.8ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (15.4ms)
+
+
+Started GET "/terms/index" for 127.0.0.1 at 2014-01-22 21:46:13 -0500
+
+ActionController::RoutingError (No route matches [GET] "/terms/index"):
+  actionpack (4.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.2) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.2) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.2) lib/rails/engine.rb:511:in `call'
+  railties (4.0.2) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb (0.7ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.0ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (15.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 21:46:14 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.0ms)
+  Rendered shared/_top_bar.html.erb (0.0ms)
+Completed 200 OK in 7ms (Views: 6.2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 21:46:14 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 21:46:14 -0500
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 21:46:14 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 21:46:14 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 21:46:14 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 21:46:14 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 21:46:14 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 21:46:14 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 21:46:14 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 21:46:14 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 21:46:14 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.0ms)
+  Rendered shared/_top_bar.html.erb (0.0ms)
+Completed 200 OK in 7ms (Views: 6.3ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 21:46:14 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 21:46:14 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 21:46:14 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 21:46:14 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 21:46:14 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 21:46:14 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 21:46:14 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 21:46:14 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 21:46:14 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 21:46:14 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 21:46:23 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.4ms)
+  Rendered shared/_top_bar.html.erb (0.0ms)
+Completed 200 OK in 8ms (Views: 7.0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 21:46:23 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 21:46:23 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 21:46:23 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 21:46:23 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 21:46:23 -0500
+
+
+Started GET "/terms/index" for 127.0.0.1 at 2014-01-22 21:46:28 -0500
+
+ActionController::RoutingError (No route matches [GET] "/terms/index"):
+  actionpack (4.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.2) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.2) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.2) lib/rails/engine.rb:511:in `call'
+  railties (4.0.2) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb (0.8ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.8ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (19.2ms)
+
+
+Started GET "/terms/index" for 127.0.0.1 at 2014-01-22 21:46:28 -0500
+
+ActionController::RoutingError (No route matches [GET] "/terms/index"):
+  actionpack (4.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.2) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.2) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.2) lib/rails/engine.rb:511:in `call'
+  railties (4.0.2) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /Users/cfreder2/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.1ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.4ms)
+  Rendered /Users/cfreder2/.rvm/gems/ruby-1.9.3-p484@global/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (17.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 21:46:51 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.0ms)
+  Rendered shared/_top_bar.html.erb (0.3ms)
+Completed 200 OK in 7ms (Views: 6.4ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 21:46:51 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 21:46:51 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 21:46:51 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 21:46:51 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 21:46:51 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 21:46:51 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 21:46:51 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 21:46:51 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 21:46:51 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 21:46:51 -0500
+
+
+Started GET "/terms" for 127.0.0.1 at 2014-01-22 21:46:53 -0500
+Processing by TermsController#index as HTML
+  Rendered terms/index.html.erb within layouts/application (0.0ms)
+  Rendered shared/_top_bar.html.erb (0.3ms)
+Completed 200 OK in 7ms (Views: 6.5ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 21:46:53 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 21:46:53 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 21:46:53 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 21:46:53 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 21:46:53 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 21:47:13 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.0ms)
+  Rendered shared/_top_bar.html.erb (0.0ms)
+Completed 200 OK in 7ms (Views: 6.6ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 21:47:13 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 21:47:13 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 21:47:13 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 21:47:13 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 21:47:13 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 21:47:43 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.0ms)
+  Rendered shared/_top_bar.html.erb (0.0ms)
+Completed 200 OK in 7ms (Views: 6.7ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 21:47:43 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 21:47:43 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 21:47:43 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 21:47:43 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 21:47:43 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 21:47:43 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 21:47:43 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 21:47:43 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 21:47:43 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 21:47:43 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 21:49:55 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.1ms)
+  Rendered shared/_top_bar.html.erb (0.1ms)
+Completed 200 OK in 11ms (Views: 10.2ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 21:49:55 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 21:49:55 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 21:49:55 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 21:49:55 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 21:49:55 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 21:49:55 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 21:49:55 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 21:49:55 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 21:49:55 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 21:49:55 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 21:50:24 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.0ms)
+  Rendered shared/_top_bar.html.erb (0.0ms)
+Completed 200 OK in 7ms (Views: 6.9ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 21:50:24 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 21:50:24 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 21:50:24 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 21:50:24 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 21:50:24 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 21:50:24 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 21:50:24 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 21:50:24 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 21:50:24 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 21:50:24 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 21:51:42 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.4ms)
+  Rendered shared/_top_bar.html.erb (0.1ms)
+Completed 200 OK in 8ms (Views: 7.5ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 21:51:42 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 21:51:42 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 21:51:42 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 21:51:42 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 21:51:42 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 21:51:42 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 21:51:42 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 21:51:42 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 21:51:42 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 21:51:42 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 21:52:41 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.5ms)
+  Rendered shared/_top_bar.html.erb (0.0ms)
+Completed 200 OK in 8ms (Views: 7.7ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 21:52:41 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 21:52:41 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 21:52:41 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 21:52:41 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 21:52:41 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 21:52:41 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 21:52:41 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 21:52:41 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 21:52:41 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 21:52:41 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 21:54:10 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.4ms)
+  Rendered shared/_top_bar.html.erb (0.0ms)
+Completed 200 OK in 8ms (Views: 7.6ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 21:54:10 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 21:54:10 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 21:54:10 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 21:54:10 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 21:54:10 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 21:54:10 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 21:54:10 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 21:54:10 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 21:54:10 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 21:54:10 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 21:54:19 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.5ms)
+  Rendered shared/_top_bar.html.erb (0.0ms)
+Completed 200 OK in 8ms (Views: 7.2ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 21:54:19 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 21:54:19 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 21:54:19 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 21:54:19 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 21:54:19 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 21:54:19 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 21:54:19 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 21:54:19 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 21:54:19 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 21:54:19 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 21:54:43 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.6ms)
+  Rendered shared/_top_bar.html.erb (0.1ms)
+Completed 200 OK in 11ms (Views: 10.3ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 21:54:43 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 21:54:43 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 21:54:43 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 21:54:43 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 21:54:43 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 21:54:43 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 21:54:43 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 21:54:43 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 21:54:43 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 21:54:43 -0500
+
+
+Started GET "/terms" for 127.0.0.1 at 2014-01-22 22:00:10 -0500
+Processing by TermsController#index as HTML
+  Rendered terms/index.html.erb within layouts/application (0.1ms)
+  Rendered shared/_top_bar.html.erb (0.0ms)
+Completed 200 OK in 8ms (Views: 7.0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 22:00:10 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 22:00:10 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 22:00:10 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 22:00:10 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 22:00:10 -0500
+
+
+Started GET "/terms" for 127.0.0.1 at 2014-01-22 22:00:16 -0500
+Processing by TermsController#index as HTML
+  Rendered terms/index.html.erb within layouts/application (0.0ms)
+  Rendered shared/_top_bar.html.erb (0.0ms)
+Completed 200 OK in 6ms (Views: 5.8ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 22:00:16 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 22:00:16 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 22:00:16 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 22:00:16 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 22:00:16 -0500
+
+
+Started GET "/terms" for 127.0.0.1 at 2014-01-22 22:00:19 -0500
+Processing by TermsController#index as HTML
+  Rendered terms/index.html.erb within layouts/application (0.0ms)
+  Rendered shared/_top_bar.html.erb (0.0ms)
+Completed 200 OK in 7ms (Views: 6.2ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 22:00:19 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 22:00:20 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 22:00:20 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 22:00:20 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 22:00:20 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 22:00:53 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (10.7ms)
+  Rendered shared/_top_bar.html.erb (0.0ms)
+Completed 200 OK in 18ms (Views: 17.9ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 22:00:53 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 22:00:53 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 22:00:53 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 22:00:53 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 22:00:53 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 22:01:13 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.0ms)
+  Rendered shared/_top_bar.html.erb (0.0ms)
+Completed 200 OK in 7ms (Views: 6.5ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 22:01:13 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 22:01:13 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 22:01:13 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 22:01:13 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 22:01:13 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 22:01:14 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.0ms)
+  Rendered shared/_top_bar.html.erb (0.0ms)
+Completed 200 OK in 7ms (Views: 6.2ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 22:01:14 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 22:01:14 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 22:01:14 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 22:01:14 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 22:01:14 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 22:01:14 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.0ms)
+  Rendered shared/_top_bar.html.erb (0.0ms)
+Completed 200 OK in 7ms (Views: 6.2ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 22:01:14 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 22:01:14 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 22:01:14 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 22:01:14 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 22:01:14 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 22:01:14 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.1ms)
+  Rendered shared/_top_bar.html.erb (0.0ms)
+Completed 200 OK in 8ms (Views: 7.2ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 22:01:14 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 22:01:14 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 22:01:14 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 22:01:14 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 22:01:14 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 22:01:14 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.0ms)
+  Rendered shared/_top_bar.html.erb (0.0ms)
+Completed 200 OK in 6ms (Views: 6.1ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 22:01:14 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 22:01:14 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 22:01:14 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 22:01:14 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 22:01:14 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 22:02:42 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.0ms)
+  Rendered shared/_top_bar.html.erb (0.1ms)
+Completed 200 OK in 7ms (Views: 6.2ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 22:02:42 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 22:02:42 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 22:02:42 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 22:02:42 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 22:02:42 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 22:07:36 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.1ms)
+  Rendered shared/_top_bar.html.erb (0.0ms)
+Completed 200 OK in 9ms (Views: 9.0ms)
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 22:07:37 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 22:07:37 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 22:07:37 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 22:07:37 -0500
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 22:07:37 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 22:07:37 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 22:07:39 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 22:07:39 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 22:07:39 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 22:07:39 -0500
+
+
+Started GET "/assets/images/noise3.png" for 127.0.0.1 at 2014-01-22 22:07:40 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-01-22 22:07:45 -0500
+Processing by GuideController#index as HTML
+  Rendered guide/index.html.erb within layouts/application (0.1ms)
+  Rendered shared/_top_bar.html.erb (0.0ms)
+Completed 200 OK in 18ms (Views: 6.5ms)
+
+
+Started GET "/terms" for 127.0.0.1 at 2014-01-22 22:23:24 -0500
+Processing by TermsController#index as HTML
+  Rendered terms/index.html.erb within layouts/application (0.0ms)
+  Rendered shared/_top_bar.html.erb (0.0ms)
+Completed 200 OK in 7ms (Views: 6.3ms)
+
+
+Started GET "/terms" for 127.0.0.1 at 2014-01-22 22:23:28 -0500
+Processing by TermsController#index as HTML
+  Rendered terms/index.html.erb within layouts/application (0.0ms)
+  Rendered shared/_top_bar.html.erb (0.0ms)
+Completed 200 OK in 6ms (Views: 6.0ms)
+
+
+Started GET "/terms" for 127.0.0.1 at 2014-01-22 22:28:48 -0500
+Processing by TermsController#index as HTML
+  Rendered terms/index.html.erb within layouts/application (0.0ms)
+  Rendered shared/_top_bar.html.erb (0.6ms)
+Completed 200 OK in 775ms (Views: 774.1ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 22:28:49 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 22:28:49 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 22:28:49 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 22:28:49 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 22:28:49 -0500
+
+
+Started GET "/assets/reports.css?body=1" for 127.0.0.1 at 2014-01-22 22:28:49 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 22:28:49 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 22:28:49 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 22:28:49 -0500
+
+
+Started GET "/assets/reports.js?body=1" for 127.0.0.1 at 2014-01-22 22:28:49 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 22:28:49 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 22:28:49 -0500
+
+
+Started GET "/reports" for 127.0.0.1 at 2014-01-22 22:28:53 -0500
+Processing by ReportsController#index as HTML
+  Rendered reports/index.html.erb within layouts/application (0.5ms)
+  Rendered shared/_top_bar.html.erb (0.4ms)
+Completed 200 OK in 11ms (Views: 9.8ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 22:28:53 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 22:28:53 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 22:28:53 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 22:28:53 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 22:28:53 -0500
+
+
+Started GET "/reports" for 127.0.0.1 at 2014-01-22 22:30:58 -0500
+Processing by ReportsController#index as HTML
+  Rendered reports/index.html.erb within layouts/application (0.5ms)
+  Rendered shared/_top_bar.html.erb (0.0ms)
+Completed 200 OK in 47ms (Views: 46.8ms)
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 22:30:58 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 22:30:58 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 22:30:58 -0500
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 22:30:58 -0500
+
+
+Started GET "/assets/reports.css?body=1" for 127.0.0.1 at 2014-01-22 22:30:58 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 22:30:58 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 22:30:58 -0500
+
+
+Started GET "/assets/reports.js?body=1" for 127.0.0.1 at 2014-01-22 22:30:58 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 22:30:58 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 22:30:58 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 22:31:03 -0500
+
+
+Started GET "/assets/images/noise3.png" for 127.0.0.1 at 2014-01-22 22:31:03 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 22:31:03 -0500
+
+
+Started GET "/reports" for 127.0.0.1 at 2014-01-22 22:31:04 -0500
+Processing by ReportsController#index as HTML
+  Rendered reports/index.html.erb within layouts/application (0.1ms)
+  Rendered shared/_top_bar.html.erb (0.0ms)
+Completed 200 OK in 8ms (Views: 7.3ms)
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 22:31:04 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 22:31:04 -0500
+
+
+Started GET "/reports" for 127.0.0.1 at 2014-01-22 22:33:54 -0500
+Processing by ReportsController#index as HTML
+  Rendered reports/index.html.erb within layouts/application (0.5ms)
+  Rendered shared/_top_bar.html.erb (0.0ms)
+Completed 200 OK in 8ms (Views: 7.5ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 22:33:54 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 22:33:54 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 22:33:54 -0500
+
+
+Started GET "/assets/reports.css?body=1" for 127.0.0.1 at 2014-01-22 22:33:54 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 22:33:54 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 22:33:54 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 22:33:54 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 22:33:54 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 22:33:54 -0500
+
+
+Started GET "/assets/reports.js?body=1" for 127.0.0.1 at 2014-01-22 22:33:54 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 22:33:54 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 22:33:54 -0500
+
+
+Started GET "/reports" for 127.0.0.1 at 2014-01-22 22:39:51 -0500
+Processing by ReportsController#index as HTML
+  Rendered reports/index.html.erb within layouts/application (0.0ms)
+  Rendered shared/_top_bar.html.erb (0.0ms)
+Completed 200 OK in 8ms (Views: 7.2ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-01-22 22:39:51 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-01-22 22:39:51 -0500
+
+
+Started GET "/assets/reports.css?body=1" for 127.0.0.1 at 2014-01-22 22:39:51 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-01-22 22:39:51 -0500
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-01-22 22:39:51 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-01-22 22:39:51 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-01-22 22:39:51 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-01-22 22:39:51 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-01-22 22:39:51 -0500
+
+
+Started GET "/assets/reports.js?body=1" for 127.0.0.1 at 2014-01-22 22:39:51 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-01-22 22:39:51 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-01-22 22:39:51 -0500
