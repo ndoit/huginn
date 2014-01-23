@@ -1,4 +1,9 @@
 # README
+Huginn
+---------
+The front end for the BI Portal
+
+This project uses Zurb Foundation 5.
 
 The purpose of this project is to provide Notre Dame branded styles for [Zurb Foundation](http://foundation.zurb.com/). To get started, check out [http://foundation.zurb.com/docs](http://foundation.zurb.com/docs).
 
@@ -33,3 +38,4 @@ Foundation include a navigation/utility bar called the [Top Bar](http://foundati
 ## Copyright
 
 These theme files are copyrighted, provided, and maintained by [Marketing Communications: Web](http://marcomm.nd.edu/web/) and the [University of Notre Dame](http://www.nd.edu/). Foundation copyright by [ZURB, inc](http://zurb.com/).
+
