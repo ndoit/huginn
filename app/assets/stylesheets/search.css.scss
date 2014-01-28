@@ -1,0 +1,27 @@
+// Place all the styles related to the search controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.onebox-shadow {
+-moz-box-shadow: 0 0 3px #888;
+-webkit-box-shadow: 0 0 3px #888;
+box-shadow: 0 0 3px #888;
+}
+
+.result-stats {
+	color: #999;
+	font-size: .813EM;
+}
+
+.definition-title {
+	font-size: 1.5EM;
+	font-style: bold;
+	font-family:Georgia, "Times New Roman", Times, serif; color:#000;
+}
+
+.definition-body {
+	font-size: .813EM;
+	font-family:Georgia, "Times New Roman", Times, serif; color:#555;
+}
+

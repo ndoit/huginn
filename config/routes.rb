@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get "guide/index"
   get "terms" => 'terms#index'
   get "reports" => 'reports#index'
+  get "search" => 'search#index'
   root 'guide#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
