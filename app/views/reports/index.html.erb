@@ -1,16 +1,125 @@
 <div class="row">
   <div class="large-12 columns">
-    <h1 class="page-title">Report Catalog</h1>
+    <h1 class="page-title">Report Gallery</h1>
   </div>
 </div>
 
-<div class="row">
-  <div class="large-12 columns">
-    <script type='text/javascript' src='http://public.tableausoftware.com/javascripts/api/viz_v1.js'></script><div class='tableauPlaceholder' style='width: 670px; height: 969px;'><noscript><a href='http:&#47;&#47;irp.dpb.cornell.edu&#47;'><img alt='Cornell Univ Fall Enrollmt ' src='http:&#47;&#47;public.tableausoftware.com&#47;static&#47;images&#47;DQ&#47;DQ9XNSXJX&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz' width='670' height='969' style='display:none;'><param name='host_url' value='http%3A%2F%2Fpublic.tableausoftware.com%2F' /> <param name='path' value='shared&#47;DQ9XNSXJX' / > <param name='toolbar' value='yes' /><param name='static_image' value='http:&#47;&#47;public.tableausoftware.com&#47;static&#47;images&#47;DQ&#47;DQ9XNSXJX&#47;1.png' / > <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /></object></div><div style='width:670px;height:22px;padding:0px 10px 0px 0px;color:black;font:normal 8pt verdana,helvetica,arial,sans-serif;'><div style='float:right; padding-right:8px;'><a href='http://www.tableausoftware.com/public/about-tableau-products?ref=http://public.tableausoftware.com/shared/DQ9XNSXJX' target='_blank'>Learn About Tableau</a></div></div>
+  <div class="row">
+
+ <!-- Main Feed -->
+    <!-- This has been source ordered to come first in the markup (and on small devices) but to be to the right of the nav on larger screens -->
+
+    <div class="large-9 columns">
+ 
+      <!-- Feed Entry -->
+      <div class="row">
+        <div class="large-3 columns small-3">
+          <a class="th" href="http://localhost:3000/reports/powerview" target="_blank">
+            <%=image_tag("report_gallery/active_student.png", alt: "Power View Report")%>
+          </a>
+        </div>
+        <div class="large-9 columns">
+          <a href="http://localhost:3000/reports/powerview" target="_blank"><strong>Active Student</strong></a>
+          <p><small>Created By: D. Author</small>
+          <br/>
+          This report counts <a href="active_student.html">active students</a> based on whether the student is degree seeking and <a href="student_level.html">student level</a>. You can explore this report by semester dating back to 2004.</p>
+          <ul class="inline-list">
+            <li><strong>Access Level:</strong></li>
+            <li><a href="">Provost Analyst</a></li>
+            <li><a href="">Student Analyst</a></li>
+          </ul>
+        </div>
+      </div> 
+      <hr/>
+
+      <div class="row">
+        <div class="large-3 columns small-3">
+          <a class="th" href="http://localhost:3000/reports/business_objects" target="_blank">
+            <%=image_tag("report_gallery/mendoza_enrollment.png", alt: "Business Objects Report")%>
+          </a>
+        </div>
+        <div class="large-9 columns">
+          <a href="http://localhost:3000/reports/business_objects" target="_blank"><strong>Mendoza College Enrollment</strong></a>
+          <p><small>Created By: J. Author</small>
+          <br/>
+          This report counts the number of <a href="active_student.html">active students</a> enrolled by Mendoza <a href="college.html">College</a> of Business. You can explore this report by academic term dating back to 2008.</p>
+          <ul class="inline-list">
+            <li><strong>Access Level:</strong></li>
+            <li><a href="">Student Analyst</a></li>
+          </ul>
+        </div>
+      </div> 
+      <hr/>
+
+      <div class="row">
+        <div class="large-3 columns small-3">
+          <a class="th" href="http://localhost:3000/reports/tableau" target="_blank">
+            <%=image_tag("report_gallery/undergrad_enrollment.png", alt: "Tableau Report")%>
+          </a>
+        </div>
+        <div class="large-9 columns">
+          <a href="http://localhost:3000/reports/tableau" target="_blank"><strong>Undergraduate Enrollment</strong></a>
+          <p><small>Created By: C. Author</small>
+          <br/>
+          This report counts <a href="active_student.html">active student</a> enrollment for the university over time. You can explore this report by academic year, <a href="student_level.html">student level</a>, <a href="college.html">college</a>, and <a href="gender.html">gender</a>.</p>
+          <ul class="inline-list">
+            <li><strong>Access Level:</strong></li>
+            <li><a href="">Financial Ad Analyst</a></li>
+            <li><a href="">Provost Analyst</a></li>
+            <li><a href="">Student Analyst</a></li>
+            <li><a href="">Student Accounts Analyst</a></li>
+          </ul>
+        </div>
+      </div> 
+      <hr/>
+
+      <div class="row">
+        <div class="large-3 columns small-3">
+          <a class="th" href="http://localhost:3000/reports/access_denied" target="_blank">
+            <%=image_tag("catalog/student_profile.png", alt: "Security Report")%>
+          </a>
+        </div>
+        <div class="large-9 columns">
+          <a href="http://localhost:3000/reports/access_denied" target="_blank"><strong>University Security</strong></a>
+          <p><small>Created By: J. Author</small>
+          <br/>
+          This report summarizes the level of security access of available to all departments across the university.</a>.</p>
+          <ul class="inline-list">
+            <li><strong>Access Level:</strong></li>
+            <li><a href="">Security Admin Analyst</a></li>
+          </ul>
+        </div>
+      </div> 
+    </div>
+    <!-- Right Sidebar -->
+    <!-- On small devices this column is hidden -->
+    <aside class="large-3 columns hide-for-small">
+      <form>
+      <div class="row">
+        <div class="large-12 columns">
+          <div class="panel">
+            <div class="row">
+              <div class="large-12 columns">
+                <label>Search Repository:</label>
+                <input type="text" placeholder="Enter Key Words" />
+              </div>
+            </div>
+            <div class="row">
+              <div class="large-12 columns">
+                <label>Check all that apply: </label>
+                <input id="checkbox1" type="checkbox"><label for="checkbox1">All</label><br/>
+                <input id="checkbox2" type="checkbox"><label for="checkbox2">Business Objects</label><br/>
+                <input id="checkbox3" type="checkbox"><label for="checkbox3">Power View</label><br/>
+                <input id="checkbox4" type="checkbox"><label for="checkbox4">Reporting Services</label><br/>
+                <input id="checkbox5" type="checkbox"><label for="checkbox5">Tableau</label><br/>
+              </div>
+            </div>
+            <div class="center">
+              <a href="#" class="button tiny">Search All Reports</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      </form>
+    </aside>
   </div>
-</div>
-
-		<iframe src="https://sp.nd.edu/c/provost/registrar/BI_reports/_layouts/15/ReportServer/AdHocReportDesigner.aspx?RelativeReportUrl=%2fc%2fprovost%2fregistrar%2fBI_reports%2fBI%2fActiveStudent_GB.rdlx&ViewMode=Presentation&ReportSection=ReportSection2&Fit=True&PreviewBar=False">
-		</iframe>
-
-

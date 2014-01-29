@@ -2,6 +2,11 @@ Rails.application.routes.draw do
   get "guide/index"
   get "terms" => 'terms#index'
   get "reports" => 'reports#index'
+  get "/reports/business_objects" => 'reports#business_objects'
+  get "/reports/powerview" => 'reports#powerview'
+  get "/reports/tableau" => 'reports#tableau'
+  get "/reports/ssrs" => 'reports#ssrs'
+  get "/reports/access_denied" =>'reports#access_denied'
   get "search" => 'search#index'
   root 'guide#index'
 
