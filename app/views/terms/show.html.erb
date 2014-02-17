@@ -1,0 +1,16 @@
+<% if @term["Success"] %>
+
+<h1>Term Detail</h1>
+
+Name: <%= @term["Term"]["Name"] %><br />
+Definition: <%= @term["Term"]["Definition"] %><br />
+Stakeholders: <br />
+<ul><% @term["Stakeholders"].each do |stakeholder| %>
+	<li><%= stakeholder["Name"] %>: <%= stakeholder["Stake"] %></li>
+<% end %></ul>
+
+<% else %>
+
+Error: <%= @term["Message"] %>
+
+<% end %>
