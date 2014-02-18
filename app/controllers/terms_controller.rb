@@ -29,8 +29,13 @@ class TermsController < ApplicationController
   	#logger.debug "*** ACTUAL TICKET ***: " + ticket.to_s
     http = Net::HTTP.new(muninn_host, muninn_port)
     http.use_ssl = Huginn::Application::CONFIG["muninn_uses_ssl"]
-    http.verify_mode = OpenSSL::SSL::VERIFY_NONE #we are using a self-signed cert at the moment
-  	muninn_response = http.get("https://#{muninn_host}:#{muninn_port}/#{uri_string}")
+    if !Huginn::Application::CONFIG["validate_muninn_certificate"]
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE #for when Muninn is using a self-signed cert
+    end
+  	muninn_response = http.get("https://#{muninn_host}/#{uri_string}")
+    logger.debug(muninn_response.to_s)
+    logger.debug(muninn_response.body.to_s)
+    #@term = {}
   	@term = JSON.parse(muninn_response.body)
   end
 end

@@ -11,7 +11,7 @@ module Rails
             config = YAML.load_file("config/huginn_config.yml")
 
             super.merge({
-                :Port => 3030,
+                :Port => config["rails_port"],
                 :environment => (ENV['RAILS_ENV'] || "development").dup,
                 :daemonize => false,
                 :debugger => false,
