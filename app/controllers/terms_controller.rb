@@ -32,10 +32,7 @@ class TermsController < ApplicationController
     if !Huginn::Application::CONFIG["validate_muninn_certificate"]
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE #for when Muninn is using a self-signed cert
     end
-  	muninn_response = http.get("https://#{muninn_host}/#{uri_string}")
-    logger.debug(muninn_response.to_s)
-    logger.debug(muninn_response.body.to_s)
-    #@term = {}
+  	muninn_response = http.get("https://#{muninn_host}:#{muninn_port}/#{uri_string}")
   	@term = JSON.parse(muninn_response.body)
   end
 end

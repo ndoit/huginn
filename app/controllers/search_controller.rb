@@ -16,8 +16,10 @@ class SearchController < ApplicationController
   	#logger.debug "*** ACTUAL TICKET ***: " + ticket.to_s
     http = Net::HTTP.new(muninn_host, muninn_port)
     http.use_ssl = Huginn::Application::CONFIG["muninn_uses_ssl"]
-    http.verify_mode = OpenSSL::SSL::VERIFY_NONE #we are using a self-signed cert at the moment
+    if !Huginn::Application::CONFIG["validate_muninn_certificate"]
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE #for when Muninn is using a self-signed cert
+    end
     muninn_response = http.get("https://#{muninn_host}:#{muninn_port}/#{uri_string}")
-    @term = JSON.parse(muninn_response.body)
+    @results = JSON.parse(muninn_response.body)
   end
 end
