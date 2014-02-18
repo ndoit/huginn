@@ -3,12 +3,13 @@
     <h1 class="page-title">Undergraduate Enrollment</h1>
   </div>
 </div>
-
 <div class="row">
-	<div class="large-2 columns">
-		<br />
+	<div class="large-11 large-centered columns">
+		<p>Trending for undergraduate <a href="#" data-reveal-id="myModal" data-reveal>active student</a> over time. You can view this report by <a href="#">academic year</a>, <a href="student_level.html">student level</a>, <a href="college.html">college</a>, or <a href="gender.html">gender</a>.</p>
 	</div>
-  <div class="large-8 columns">
+</div>
+<div class="row">
+  <div class="large-11 large-centered columns">
     <script type='text/javascript' src='http://public.tableausoftware.com/javascripts/api/viz_v1.js'></script>
     <div class='tableauPlaceholder' style='width: 670px; height: 969px;'>
     	<noscript><a href='http:&#47;&#47;irp.dpb.cornell.edu&#47;'>
@@ -30,7 +31,7 @@
 	<div class="large-12 columns">
 		<div class="panel">
 			<div align="center">
-				<h2>Users Who Viewed This Report Also Viewed</h2>
+				<h5>Users Who Viewed This Report Also Viewed</h5>
 				<br/>
 			</div>
 			<div class="row">
@@ -39,15 +40,15 @@
 						<a class="th" href="http://localhost:3000/reports/business_objects" target="_blank"><%=image_tag("rec_reports/bo_preview.png", alt: "Business Objects Report")%>
 						</a>
 						<br/>
-						<h5 align="center"><b>Mendoza Enrollment Count</b></h5>
+						<h5 align="center">Mendoza Enrollment Count</h5>
 					</div>
 				</div>
 				<div class="large-4 columns">
 					<div class="center">
-						<a class="th" href="http://localhost:3000/reports/powerview" target="_blank"><%=image_tag("rec_reports/powerview_preview.jpg", alt: "Powrview Report")%>
+						<a class="th" href="http://localhost:3000/reports/ssrs" target="_blank"><%=image_tag("rec_reports/ssrs_preview.png", alt: "SSRS Report")%>
 						</a>
 						<br/>
-						<h5 align="center"><b>Active Students</b></h5>
+						<h5 align="center">Departmental Exams</h5>
 					</div>
 				</div>
 				<div class="large-4 columns">
@@ -55,7 +56,7 @@
 						<a class="th" href="http://localhost:3000/reports/tableau" target="_blank"><%=image_tag("rec_reports/tableau_preview.png", alt: "Tableau Report")%>
 						</a>
 						<br/>
-						<h5 align="center"><b>Undergraduate Enrollment</b></h5>
+						<h5 align="center">Undergraduate Enrollment</h5>
 					</div>
 				</div>
 			</div>
@@ -68,36 +69,24 @@
 		<h2>Report Details</h2>
 		<table>
 			<tr>
-				<td>Description:</td>
-				<td>This report counts <a href="active_student.html">active student</a> enrollment for the university over time. You can explore this report by academic year, <a href="student_level.html">student level</a>, <a href="college.html">college</a>, and <a href="gender.html">gender</a>.
-				</td>
-			</tr>
-			<td>Created By:</td>
+				<td>Created By:</td>
 				<td>C. Author </td>
 			</tr>
 			<tr>	
-				<td>Created Date:</td>
+				<td>Last Refreshed Date:</td>
 				<td>1/26/2014</td>
 			</tr>
 			<tr>
 				<td>Data Sources:</td>
-				<td>Student Model</td>
+				<td><a href="#">Student Model</a>  Need more? Write an <a href="https://sp.nd.edu/c/provost/registrar/BI_reports/BIWIPDEV/Registrar_Course_Model.rsds">ad-hoc</a> query</td>
 			</tr>
 			<tr>	
 				<td>Report Type:</td>
 				<td>Tableau</td>
 			</tr>
 			<tr>
-				<td>Security Level:</td> 
-				<td>Medium - <a href="request_access.html">Request Access</a></td>	
-			</tr>
-			<tr>
-				<td>Security Access Groups:</td> 
-				<td>
-					<a href="#" class="button tiny">Student Analyst</a>
-					<a href="#" class="button tiny">Financial Aid Analyst</a>
-					<a href="#" class="button tiny">Provost Analyst</a>
-				</td>	
+				<td>Security Roles:</td> 
+				<td><span class="success round radius label">Public</span></td>	
 			</tr>
 			<tr>	
 				<td>Stakeholders:</td>
@@ -106,3 +95,48 @@
 		</table>	
 	</div>
 </div>	
+<div class="row">
+	<div class="large-12 columns">
+		<h2>Terms used in Report</h2>
+		<table>
+			<tr>
+			<td><a href="https://docs.google.com/document/d/19K39UbQMxDJf2eM-z_saiTfSgDGrLfyr2TrxgNN4yQg/pub">Academic Year</a></td>
+				<td>
+			      The annual cycle of teaching and study. It is divided into academic terms.  The cycle begins with the summer term, continues during the fall term and concludes with the spring term.  It also includes the full year term associated with those three terms.
+				</td>
+			</tr>
+			<tr>
+			<td><a href="https://docs.google.com/document/d/1bYrCz56hUOb0TIKuNxB5SowZbR4H7l354uSnrPeKPAM/pub?embedded=true">Active Student</a></td>
+				<td>
+	      An individual who has been confirmed by an admitting office (or other admitting authority), as recorded by the University Registrar, is considered an active student until he or she:
+	      <a href="#" data-reveal-id="myModal" data-reveal>..more</a>
+				</td>
+			</tr>
+			<tr>
+				<td><a href="https://docs.google.com/document/d/1mRCtjlizEjWpHobh0fKjtZ_8XXLJ2d68vbFEvGmKYBo/pub">College</a></td>
+				<td>One of the major academic components of the University, normally headed by a Dean
+				</td>
+			</tr>
+			<tr>
+				<td><a href="https://docs.google.com/document/d/1yGMFdhR52JFSfoUEw_XXmfq4K9eHr2w1Mj6QucblqH0/pub">Gender</a></td>
+				<td>Indicates an individual’s self-reported biological sex
+				</td>
+			</tr>
+
+			
+		</table>	
+	</div>
+</div>
+
+<div id="myModal" class="reveal-modal" data-reveal>
+	<h4 class="definition-title">Active Student</h4>
+	  	<span class="definition-body">
+	      An individual who has been confirmed by an admitting office (or other admitting authority), as recorded by the University Registrar, is considered an active student until he or she:</span>
+  <ul class="definition-body">
+			    <li>Graduates (if degree-seeking)</li>
+			    <li>Completes the <span data-tooltip class="has-tip" title="One of the major periods of instruction during the academic year.">academic term</span> (if non degree-seeking)</li>
+			    <li>Withdraws or is dismissed by the University</li>
+			    <li>Fails to enroll for a spring or fall <span data-tooltip class="has-tip" title="One of the major periods of instruction during the academic year.">academic term</span> (unless granted a leave of absence by a Dean)</li>
+		    </ul>
+  <a class="close-reveal-modal">&#215;</a>
+</div>
