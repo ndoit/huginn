@@ -1,3 +1,30 @@
+require 'rails/commands/server'
+require 'rack'
+require 'webrick'
+require 'webrick/https'
+
+module Rails
+    class Server < ::Rack::Server
+        def default_options
+            super.merge({
+                :Port => 3030,
+                :environment => (ENV['RAILS_ENV'] || "development").dup,
+                :daemonize => false,
+                :debugger => false,
+                :pid => File.expand_path("tmp/pids/server.pid"),
+                :config => File.expand_path("config.ru"),
+                :SSLEnable => true,
+                :SSLVerifyClient => OpenSSL::SSL::VERIFY_NONE,
+                :SSLPrivateKey => OpenSSL::PKey::RSA.new(
+                       File.open("C:/RubyProjects/certs/myssl.key").read),
+                :SSLCertificate => OpenSSL::X509::Certificate.new(
+                       File.open("C:/RubyProjects/certs/myssl.crt").read),
+                :SSLCertName => [["CN", WEBrick::Utils::getservername]]
+            })
+        end
+    end
+end 
+
 #!/usr/bin/env ruby
 APP_PATH = File.expand_path('../../config/application',  __FILE__)
 require_relative '../config/boot'
