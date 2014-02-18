@@ -3,6 +3,8 @@ require 'rack'
 require 'webrick'
 require 'webrick/https'
 
+require_relative '../config/boot'
+
 module Rails
     class Server < ::Rack::Server
         def default_options
@@ -16,9 +18,9 @@ module Rails
                 :SSLEnable => true,
                 :SSLVerifyClient => OpenSSL::SSL::VERIFY_NONE,
                 :SSLPrivateKey => OpenSSL::PKey::RSA.new(
-                       File.open("C:/RubyProjects/certs/myssl.key").read),
+                       File.open("../certs/myssl.key").read),
                 :SSLCertificate => OpenSSL::X509::Certificate.new(
-                       File.open("C:/RubyProjects/certs/myssl.crt").read),
+                       File.open("../certs/myssl.crt").read),
                 :SSLCertName => [["CN", WEBrick::Utils::getservername]]
             })
         end

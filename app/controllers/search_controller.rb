@@ -3,8 +3,8 @@
 class SearchController < ApplicationController
 
   def show
-    muninn_host = "localhost"
-    muninn_port = 3000
+    muninn_host = "https://bidata-db1-test.dc.nd.edu"
+    muninn_port = 443
     
     logger.debug("Querying Muninn...")
   	uri_string = "/search/" + URI::encode(params[:search_for])
