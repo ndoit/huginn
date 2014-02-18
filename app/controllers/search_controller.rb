@@ -3,8 +3,8 @@
 class SearchController < ApplicationController
 
   def show
-    muninn_host = "bitdata-db1-test.dc.nd.edu"
-    muninn_port = 443
+    muninn_host = Huginn::Application::CONFIG["muninn_host"]
+    muninn_port = Huginn::Application::CONFIG["muninn_port"]
     
     logger.debug("Querying Muninn...")
   	uri_string = "/search/" + URI::encode(params[:search_for])
@@ -15,9 +15,9 @@ class SearchController < ApplicationController
     #ticket = CASClient::Frameworks::Rails::Filter.client.request_proxy_ticket(service_uri, proxy_granting_ticket).ticket
   	#logger.debug "*** ACTUAL TICKET ***: " + ticket.to_s
     http = Net::HTTP.new(muninn_host, muninn_port)
-    http.use_ssl = true
+    http.use_ssl = Huginn::Application::CONFIG["muninn_uses_ssl"]
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE #we are using a self-signed cert at the moment
     muninn_response = http.get("https://#{muninn_host}:#{muninn_port}/#{uri_string}")
-  	@results = JSON.parse(muninn_response.body)
+    @term = JSON.parse(muninn_response.body)
   end
 end

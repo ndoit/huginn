@@ -1,0 +1,5 @@
+muninn_host: **.**.nd.edu
+muninn_port: 443
+muninn_uses_ssl: true
+ssl_certificate: ../certs/myssl.crt
+ssl_key: ../certs/myssl.key
