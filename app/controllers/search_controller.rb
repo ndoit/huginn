@@ -3,8 +3,8 @@
 class SearchController < ApplicationController
 
   def show
-    muninn_host = "localhost"
-    muninn_port = 3000
+    muninn_host = "bitdata-db1-test.dc.nd.edu"
+    muninn_port = 443
     
     logger.debug("Querying Muninn...")
   	uri_string = "/search/" + URI::encode(params[:search_for])
@@ -14,9 +14,10 @@ class SearchController < ApplicationController
   	#logger.debug "*** PROXY GRANTING TICKET ***: " + proxy_granting_ticket
     #ticket = CASClient::Frameworks::Rails::Filter.client.request_proxy_ticket(service_uri, proxy_granting_ticket).ticket
   	#logger.debug "*** ACTUAL TICKET ***: " + ticket.to_s
-  	muninn_response = Net::HTTP.start(muninn_host, muninn_port) do |http|
-  	  http.get(uri_string)
-    end
+    http = Net::HTTP.new(muninn_host, muninn_port)
+    http.use_ssl = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE #we are using a self-signed cert at the moment
+    muninn_response = http.get("https://#{muninn_host}:#{muninn_port}/#{uri_string}")
   	@results = JSON.parse(muninn_response.body)
   end
 end

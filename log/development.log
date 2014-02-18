@@ -19599,3 +19599,171 @@ Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-02-17 16:54:34
 
 
 Started GET "/assets/images/noise3.png" for 127.0.0.1 at 2014-02-17 16:54:34 -0500
+
+
+Started GET "/terms/Active%20Student" for 127.0.0.1 at 2014-02-18 10:33:35 -0500
+Processing by TermsController#show as HTML
+  Parameters: {"id"=>"Active Student"}
+Querying Muninn...
+Completed 500 Internal Server Error in 34ms
+
+SocketError (getaddrinfo: No such host is known. ):
+  app/controllers/terms_controller.rb:30:in `show'
+
+
+  Rendered C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (67.0ms)
+
+
+Started GET "/terms/Active%20Student" for 127.0.0.1 at 2014-02-18 10:34:04 -0500
+Processing by TermsController#show as HTML
+  Parameters: {"id"=>"Active Student"}
+Querying Muninn...
+Completed 500 Internal Server Error in 2ms
+
+SocketError (getaddrinfo: No such host is known. ):
+  app/controllers/terms_controller.rb:30:in `show'
+
+
+  Rendered C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.0ms)
+  Rendered C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (34.0ms)
+
+
+Started GET "/terms/Active%20Student" for 127.0.0.1 at 2014-02-18 10:34:37 -0500
+Processing by TermsController#show as HTML
+  Parameters: {"id"=>"Active Student"}
+Querying Muninn...
+  Rendered terms/show.html.erb within layouts/application (1.0ms)
+  Rendered shared/_top_bar.html.erb (0.0ms)
+Completed 200 OK in 3170ms (Views: 1073.1ms)
+
+
+Started GET "/assets/foundation_and_overrides.css?body=1" for 127.0.0.1 at 2014-02-18 10:34:41 -0500
+
+
+Started GET "/javascripts/vendor/foundation.js" for 127.0.0.1 at 2014-02-18 10:34:41 -0500
+
+ActionController::RoutingError (No route matches [GET] "/javascripts/vendor/foundation.js"):
+  actionpack (4.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.2) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.2) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.2) lib/rails/engine.rb:511:in `call'
+  railties (4.0.2) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  C:/Ruby200-x64/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  C:/Ruby200-x64/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  C:/Ruby200-x64/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.0ms)
+  Rendered C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.0ms)
+  Rendered C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (44.0ms)
+  Rendered C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (102.0ms)
+
+
+Started GET "/assets/vendor/modernizr.js?body=1" for 127.0.0.1 at 2014-02-18 10:34:41 -0500
+
+
+Started GET "/assets/guide.css?body=1" for 127.0.0.1 at 2014-02-18 10:34:42 -0500
+
+
+Started GET "/assets/search.css?body=1" for 127.0.0.1 at 2014-02-18 10:34:42 -0500
+
+
+Started GET "/assets/reports.css?body=1" for 127.0.0.1 at 2014-02-18 10:34:42 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-02-18 10:34:42 -0500
+
+
+Started GET "/assets/terms.css?body=1" for 127.0.0.1 at 2014-02-18 10:34:42 -0500
+
+
+Started GET "/assets/foundation/foundation.accordion.js?body=1" for 127.0.0.1 at 2014-02-18 10:34:42 -0500
+
+
+Started GET "/assets/foundation/foundation.alert.js?body=1" for 127.0.0.1 at 2014-02-18 10:34:42 -0500
+
+
+Started GET "/assets/foundation/foundation.js?body=1" for 127.0.0.1 at 2014-02-18 10:34:42 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-02-18 10:34:42 -0500
+
+
+Started GET "/assets/foundation/foundation.abide.js?body=1" for 127.0.0.1 at 2014-02-18 10:34:42 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-02-18 10:34:42 -0500
+
+
+Started GET "/assets/foundation/foundation.clearing.js?body=1" for 127.0.0.1 at 2014-02-18 10:34:42 -0500
+
+
+Started GET "/assets/foundation/foundation.dropdown.js?body=1" for 127.0.0.1 at 2014-02-18 10:34:42 -0500
+
+
+Started GET "/assets/foundation/foundation.interchange.js?body=1" for 127.0.0.1 at 2014-02-18 10:34:42 -0500
+
+
+Started GET "/assets/foundation/foundation.joyride.js?body=1" for 127.0.0.1 at 2014-02-18 10:34:42 -0500
+
+
+Started GET "/assets/foundation/foundation.magellan.js?body=1" for 127.0.0.1 at 2014-02-18 10:34:42 -0500
+
+
+Started GET "/assets/foundation/foundation.offcanvas.js?body=1" for 127.0.0.1 at 2014-02-18 10:34:42 -0500
+
+
+Started GET "/assets/foundation/foundation.orbit.js?body=1" for 127.0.0.1 at 2014-02-18 10:34:42 -0500
+
+
+Started GET "/assets/foundation/foundation.reveal.js?body=1" for 127.0.0.1 at 2014-02-18 10:34:42 -0500
+
+
+Started GET "/assets/foundation/foundation.tab.js?body=1" for 127.0.0.1 at 2014-02-18 10:34:42 -0500
+
+
+Started GET "/assets/foundation/foundation.tooltip.js?body=1" for 127.0.0.1 at 2014-02-18 10:34:42 -0500
+
+
+Started GET "/assets/foundation/foundation.topbar.js?body=1" for 127.0.0.1 at 2014-02-18 10:34:42 -0500
+
+
+Started GET "/assets/foundation.js?body=1" for 127.0.0.1 at 2014-02-18 10:34:42 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-02-18 10:34:42 -0500
+
+
+Started GET "/assets/reports.js?body=1" for 127.0.0.1 at 2014-02-18 10:34:42 -0500
+
+
+Started GET "/assets/search.js?body=1" for 127.0.0.1 at 2014-02-18 10:34:42 -0500
+
+
+Started GET "/assets/terms.js?body=1" for 127.0.0.1 at 2014-02-18 10:34:42 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-02-18 10:34:42 -0500
+
+
+Started GET "/assets/images/noise3.png" for 127.0.0.1 at 2014-02-18 10:34:42 -0500
