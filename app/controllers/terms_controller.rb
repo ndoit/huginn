@@ -3,7 +3,7 @@ require "json"
 require "open-uri"
 
 class TermsController < ApplicationController
-  #before_filter :authenticate!
+  before_filter :authenticate!, :only => :authenticated_show
 
   def authenticate!
     CASClient::Frameworks::Rails::Filter.client.proxy_callback_url =
@@ -21,7 +21,8 @@ class TermsController < ApplicationController
     
     logger.debug("Querying Muninn...")
     uri_string = "/terms/" + URI::encode(params[:id])
-    #service_uri = "localhost:3000" + uri_string
+
+    #service_uri = muninn_host + uri_string
     #logger.debug "*** SESSION KEYS ***: " + session.keys.to_s
     #proxy_granting_ticket = session[:cas_pgt]
     #logger.debug "*** PROXY GRANTING TICKET ***: " + proxy_granting_ticket

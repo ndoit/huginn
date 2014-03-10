@@ -1,16 +1,14 @@
-<% if @term["Success"] %>
+<% if @term["success"] %>
 
-<h1>Term Detail</h1>
-
-Name: <%= @term["Term"]["Name"] %><br />
-Definition: <%= @term["Term"]["Definition"] %><br />
-Stakeholders: <br />
-<ul><% @term["Stakeholders"].each do |stakeholder| %>
-	<li><%= stakeholder["Name"] %>: <%= stakeholder["Stake"] %></li>
+<h1><%= @term["term"]["name"] %></h1>
+<b>Definition:</b><br /><br /> <%= @term["term"]["definition"] %><br /><br />
+<b>Stakeholders:</b> <br />
+<ul><% @term["stakeholders"].each do |stakeholder| %>
+	<li><a href="../offices/<%= stakeholder["name"] %>"><%= stakeholder["name"] %></a>: <%= stakeholder["stake"] %></li>
 <% end %></ul>
 
 <% else %>
 
-Error: <%= @term["Message"] %>
+Error: <%= @term["message"] %>
 
 <% end %>
