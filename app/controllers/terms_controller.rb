@@ -8,9 +8,10 @@ class TermsController < ApplicationController
   def authenticate!
     if session[:cas_pgt]
       logger.debug ":cas_pgt: " + session[:cas_pgt].to_s
-    elsif session[:cas_user]
+    end
+    if session[:cas_user]
       logger.debug ":cas_user: " + session[:cas_user].to_s
-    else
+    end
     CASClient::Frameworks::Rails::Filter.client.proxy_callback_url =
       "https://data-test.cc.nd.edu:8443/cas_proxy_callback/receive_pgt"
     CASClient::Frameworks::Rails::Filter.filter(self)

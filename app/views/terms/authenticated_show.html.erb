@@ -6,8 +6,8 @@
 <ul><% @term["stakeholders"].each do |stakeholder| %>
 	<li><a href="../offices/<%= stakeholder["name"] %>"><%= stakeholder["name"] %></a>: <%= stakeholder["stake"] %></li>
 <% end %></ul>
-<b>Logged Into Huginn As:</b> <% @cas_user %>
-<b>Logged Into Muninn As:</b> <% @term["cas_user"] %>
+<b>Logged Into Huginn As:</b> <% @cas_user %><br />
+<b>Logged Into Muninn As:</b> <% @term["cas_user"] %><br />
 <% else %>
 
 Error: <%= @term["message"] %>
