@@ -6,13 +6,13 @@ class TermsController < ApplicationController
   before_filter :authenticate!, :only => :authenticated_show
 
   def authenticate!
+    if session[:cas_pgt]
+      logger.debug ":cas_pgt: " + session[:cas_pgt].to_s
+    else
     CASClient::Frameworks::Rails::Filter.client.proxy_callback_url =
       "https://data-test.cc.nd.edu:8443/cas_proxy_callback/receive_pgt"
     CASClient::Frameworks::Rails::Filter.filter(self)
-
-    if session[:cas_pgt]
-      logger.debug ":cas_pgt: " + session[:cas_pgt].to_s
-    end
+  end
   end
 
   def authenticated_show
