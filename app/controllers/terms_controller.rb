@@ -15,7 +15,6 @@ class TermsController < ApplicationController
     CASClient::Frameworks::Rails::Filter.client.proxy_callback_url =
       "https://data-test.cc.nd.edu:8443/cas_proxy_callback/receive_pgt"
     CASClient::Frameworks::Rails::Filter.filter(self)
-    end
     if session[:cas_pgt]
       logger.debug ":cas_pgt: " + session[:cas_pgt].to_s
     end
