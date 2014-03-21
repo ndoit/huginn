@@ -8,15 +8,18 @@ class TermsController < ApplicationController
   def authenticate!
     if session[:cas_pgt]
       logger.debug ":cas_pgt: " + session[:cas_pgt].to_s
+      @cas_pgt = session[:cas_pgt]
     end
     if session[:cas_user]
       logger.debug ":cas_user: " + session[:cas_user].to_s
+      @cas_user = session[:cas_user]
     end
     CASClient::Frameworks::Rails::Filter.client.proxy_callback_url =
       "https://data-test.cc.nd.edu:8443/cas_proxy_callback/receive_pgt"
     CASClient::Frameworks::Rails::Filter.filter(self)
     if session[:cas_pgt]
       logger.debug ":cas_pgt: " + session[:cas_pgt].to_s
+      @cas_pgt = session[:cas_pgt]
     end
   end
 
@@ -44,8 +47,6 @@ class TermsController < ApplicationController
       muninn_response = http.get("http://#{muninn_host}:#{muninn_port}/#{uri_string}")
     end
     @term = JSON.parse(muninn_response.body)
-    @cas_user = session[:cas_user]
-    @cas_pgt = session[:cas_pgt]
   end
 
   def show
