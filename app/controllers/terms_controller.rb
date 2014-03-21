@@ -44,6 +44,7 @@ class TermsController < ApplicationController
       muninn_response = http.get("http://#{muninn_host}:#{muninn_port}/#{uri_string}")
     end
     @term = JSON.parse(muninn_response.body)
+    @cas_user = session[:cas_user]
   end
 
   def show
