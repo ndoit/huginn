@@ -45,6 +45,7 @@ class TermsController < ApplicationController
     end
     @term = JSON.parse(muninn_response.body)
     @cas_user = session[:cas_user]
+    @cas_pgt = session[:cas_pgt]
   end
 
   def show
