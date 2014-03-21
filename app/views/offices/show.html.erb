@@ -1,0 +1,13 @@
+<% if @office["success"] %>
+
+<h1><%= @office["office"]["name"] %></h1>
+<b>Stakeholder For:</b> <br />
+<ul><% @office["stakes"].each do |stakeholder| %>
+	<li><a href="../terms/<%= stakeholder["name"] %>"><%= stakeholder["name"] %></a>: <%= stakeholder["stake"] %></li>
+<% end %></ul>
+
+<% else %>
+
+Error: <%= @office["message"] %>
+
+<% end %>
