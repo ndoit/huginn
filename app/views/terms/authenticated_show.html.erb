@@ -6,7 +6,7 @@
 <ul><% @term["stakeholders"].each do |stakeholder| %>
 	<li><a href="../offices/<%= stakeholder["name"] %>"><%= stakeholder["name"] %></a>: <%= stakeholder["stake"] %></li>
 <% end %></ul>
-
+<b>Logged In As:</b> <% @term["cas_user"] %>
 <% else %>
 
 Error: <%= @term["message"] %>
