@@ -23,10 +23,14 @@ class TermsController < ApplicationController
     end
   end
 
+  def logout
+    CASClient::Frameworks::Rails::Filter.logout(self)
+  end
+
   def authenticated_show
     muninn_host = Huginn::Application::CONFIG["muninn_host"]
     muninn_port = Huginn::Application::CONFIG["muninn_port"]
-    
+
     logger.debug("Querying Muninn...")
     uri_string = "/terms/" + URI::encode(params[:id])
 

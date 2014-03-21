@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get "guide/index"
   get "terms" => 'terms#index'
   get "terms/:id" => 'terms#show'
+  get "terms/auth/log/out" => 'term#logout'
   get "terms/auth/:id" => 'terms#authenticated_show'
   get "offices/:id" => 'offices#show'
   get "search/:search_for" => 'search#show'
@@ -12,6 +13,7 @@ Rails.application.routes.draw do
   get "/reports/ssrs" => 'reports#ssrs'
   get "/reports/access_denied" =>'reports#access_denied'
   get "search" => 'search#index'
+
   root 'guide#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
