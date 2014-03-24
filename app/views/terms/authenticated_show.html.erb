@@ -7,8 +7,8 @@
 	<li><a href="../offices/<%= stakeholder["name"] %>"><%= stakeholder["name"] %></a>: <%= stakeholder["stake"] %></li>
 <% end %></ul>
 <b>Logged Into Huginn As:</b> <% @cas_user %><br />
-<b>Logged Into Muninn As:</b> <% @term["cas_user"] %><br />
-<b>Ticket:</b> <% @term["ticket"].to_s %><br />
+<b>Logged Into Muninn As:</b> <% @term[:cas_user] %><br />
+<b>Ticket:</b> <% @term[:ticket].to_s %><br />
 <% else %>
 
 Error: <%= @term["message"] %>
