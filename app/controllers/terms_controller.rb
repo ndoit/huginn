@@ -31,12 +31,11 @@ class TermsController < ApplicationController
     logger.debug "Session at start of authenticated_show method:"
     session_barf
 
-    if session.has_key?(:cas_pgt)
-      logger.debug "cas_pgt symbol found."
-    end
-    if session.has_key?("cas_pgt")
-      logger.debug "cas_pgt text string found."
-    end
+    cas_service_uri = muninn_host.to_s + ":" + muninn_port.to_s
+    proxy_granting_ticket = session[:cas_pgt]
+    ticket = CASClient::Frameworks::Rails::Filter.client.request_proxy_ticket(cas_service_uri, proxy_granting_ticket).ticket
+
+    logger.debug ticket.to_s
 
     logger.debug("Querying Muninn...")
     uri_string = "/terms/" + URI::encode(params[:id])
