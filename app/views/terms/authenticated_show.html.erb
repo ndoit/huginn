@@ -6,10 +6,7 @@
 <ul><% @term["stakeholders"].each do |stakeholder| %>
 	<li><a href="../offices/<%= stakeholder["name"] %>"><%= stakeholder["name"] %></a>: <%= stakeholder["stake"] %></li>
 <% end %></ul>
-<b>Logged Into Huginn As:</b> <%= @cas_user %><br />
-<b>Logged Into Muninn As:</b> <%= @term[:cas_user] %><br />
-<b>Ticket:</b> <%= @term[:ticket].to_s %><br />
-<b>All Of Everything:</b> <%= @term.to_s %>
+<b>Muninn Thinks You Are:</b> <%= @term["validated_user"] %><br />
 <% else %>
 
 Error: <%= @term["message"] %>
