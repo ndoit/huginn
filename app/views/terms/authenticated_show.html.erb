@@ -9,6 +9,7 @@
 <b>Logged Into Huginn As:</b> <% @cas_user %><br />
 <b>Logged Into Muninn As:</b> <% @term[:cas_user] %><br />
 <b>Ticket:</b> <% @term[:ticket].to_s %><br />
+<b>All Of Everything:</b> <% @term.to_s %>
 <% else %>
 
 Error: <%= @term["message"] %>
