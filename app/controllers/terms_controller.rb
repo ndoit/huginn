@@ -33,6 +33,7 @@ class TermsController < ApplicationController
 
     cas_service_uri = "http://" + muninn_host.to_s
     proxy_granting_ticket = session[:cas_pgt]
+    logger.debug proxy_granting_ticket.to_s
     ticket_output = CASClient::Frameworks::Rails::Filter.client.request_proxy_ticket(cas_service_uri, proxy_granting_ticket)
 
     logger.debug ticket_output.to_s
