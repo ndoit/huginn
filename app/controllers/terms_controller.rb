@@ -68,11 +68,11 @@ class TermsController < ApplicationController
     end
     if Huginn::Application::CONFIG["muninn_uses_ssl"]
       muninn_response = http.get(
-        "https://#{muninn_host}:#{muninn_port}/#{uri_string}?service=#{URI::encode(ticket.service)}&ticket=#{ticket.proxy_ticket}"
+        "https://#{muninn_host}:#{muninn_port}/#{uri_string}?service=#{URI::encode(ticket.service)}&ticket=#{ticket.ticket}"
         )
     else
       muninn_response = http.get(
-        "http://#{muninn_host}:#{muninn_port}/#{uri_string}?service=#{URI::encode(ticket.service)}&ticket=#{ticket.proxy_ticket}"
+        "http://#{muninn_host}:#{muninn_port}/#{uri_string}?service=#{URI::encode(ticket.service)}&ticket=#{ticket.ticket}"
         )
     end
     @term = JSON.parse(muninn_response.body)
