@@ -5,22 +5,20 @@ require "open-uri"
 class TermsController < ApplicationController
   before_filter :authenticate!, :only => :authenticated_show
 
+  def session_barf
+    session.keys.each do |key|
+      logger.debug "Session key #{key.to_s} => #{session[key].to_s}"
+    end
+  end
+
+
   def authenticate!
-    if session[:cas_pgt]
-      logger.debug ":cas_pgt: " + session[:cas_pgt].to_s
-      @cas_pgt = session[:cas_pgt]
-    end
-    if session[:cas_user]
-      logger.debug ":cas_user: " + session[:cas_user].to_s
-      @cas_user = session[:cas_user]
-    end
+    logger.debug "Authenticating..."
     CASClient::Frameworks::Rails::Filter.client.proxy_callback_url =
       "https://data-test.cc.nd.edu/cas_proxy_callback/receive_pgt"
     CASClient::Frameworks::Rails::Filter.filter(self)
-    if session[:cas_pgt]
-      logger.debug ":cas_pgt: " + session[:cas_pgt].to_s
-      @cas_pgt = session[:cas_pgt]
-    end
+    logger.debug "Authentication complete. Session at end of authenticate! method:"
+    session_barf
   end
 
   def logout
@@ -30,6 +28,9 @@ class TermsController < ApplicationController
   def authenticated_show
     muninn_host = Huginn::Application::CONFIG["muninn_host"]
     muninn_port = Huginn::Application::CONFIG["muninn_port"]
+
+    logger.debug "Session at start of authenticated_show method:"
+    session_barf
 
     logger.debug("Querying Muninn...")
     uri_string = "/terms/" + URI::encode(params[:id])
