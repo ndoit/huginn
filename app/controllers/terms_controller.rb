@@ -36,7 +36,7 @@ class TermsController < ApplicationController
     logger.debug "Session at start of authenticated_show method:"
     session_barf
 
-    cas_service_uri = muninn_host.to_s
+    cas_service_uri = "https://" + muninn_host.to_s
     proxy_granting_ticket = session[:cas_pgt]
 
     ticket_output = CASClient::Frameworks::Rails::Filter.client.request_proxy_ticket(proxy_granting_ticket, cas_service_uri)
