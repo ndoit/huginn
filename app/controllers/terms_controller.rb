@@ -39,17 +39,17 @@ class TermsController < ApplicationController
     cas_service_uri = "https://" + muninn_host.to_s + "/"
     proxy_granting_ticket = session[:cas_pgt]
 
-    ticket_output = CASClient::Frameworks::Rails::Filter.client.request_proxy_ticket(proxy_granting_ticket, cas_service_uri)
+    ticket = CASClient::Frameworks::Rails::Filter.client.request_proxy_ticket(proxy_granting_ticket, cas_service_uri)
 
-    logger.debug ticket_output.to_s
-    if ticket_output.success != nil
-      logger.debug ticket_output.success.to_s
+    logger.debug ticket.to_s
+    if ticket.success != nil
+      logger.debug ticket.success.to_s
     end
-    if ticket_output.failure_code != nil
-      logger.debug ticket_output.failure_code.to_s
+    if ticket.failure_code != nil
+      logger.debug ticket.failure_code.to_s
     end
-    if ticket_output.failure_message != nil
-      logger.debug ticket_output.failure_message.to_s
+    if ticket.failure_message != nil
+      logger.debug ticket.failure_message.to_s
     end
 
     logger.debug("Querying Muninn...")
@@ -67,9 +67,9 @@ class TermsController < ApplicationController
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE #for when Muninn is using a self-signed cert
     end
     if Huginn::Application::CONFIG["muninn_uses_ssl"]
-      muninn_response = http.get("https://#{muninn_host}:#{muninn_port}/#{uri_string}")
+      muninn_response = http.get("https://#{muninn_host}:#{muninn_port}/#{uri_string}?service=#{CGI.encode(ticket.target_service)}&ticket=#{ticket.proxy_ticket}")
     else
-      muninn_response = http.get("http://#{muninn_host}:#{muninn_port}/#{uri_string}")
+      muninn_response = http.get("http://#{muninn_host}:#{muninn_port}/#{uri_string}?service=#{CGI.encode(ticket.target_service)}&ticket=#{ticket.proxy_ticket}")
     end
     @term = JSON.parse(muninn_response.body)
   end
