@@ -8,7 +8,7 @@
 <% end %></ul>
 <b>Logged Into Huginn As:</b> <% @cas_user %><br />
 <b>Logged Into Muninn As:</b> <% @term["cas_user"] %><br />
-<b>Ticket:</b> <% @term["ticket"] %><br />
+<b>Ticket:</b> <% @term["ticket"].to_s %><br />
 <% else %>
 
 Error: <%= @term["message"] %>
