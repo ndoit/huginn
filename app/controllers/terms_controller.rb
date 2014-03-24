@@ -67,9 +67,13 @@ class TermsController < ApplicationController
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE #for when Muninn is using a self-signed cert
     end
     if Huginn::Application::CONFIG["muninn_uses_ssl"]
-      muninn_response = http.get("https://#{muninn_host}:#{muninn_port}/#{uri_string}?service=#{CGI.encode(ticket.target_service)}&ticket=#{ticket.proxy_ticket}")
+      muninn_response = http.get(
+        "https://#{muninn_host}:#{muninn_port}/#{uri_string}?service=#{CGI.encode(ticket.service)}&ticket=#{ticket.proxy_ticket}"
+        )
     else
-      muninn_response = http.get("http://#{muninn_host}:#{muninn_port}/#{uri_string}?service=#{CGI.encode(ticket.target_service)}&ticket=#{ticket.proxy_ticket}")
+      muninn_response = http.get(
+        "http://#{muninn_host}:#{muninn_port}/#{uri_string}?service=#{CGI.encode(ticket.service)}&ticket=#{ticket.proxy_ticket}"
+        )
     end
     @term = JSON.parse(muninn_response.body)
   end
