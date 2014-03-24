@@ -17,8 +17,7 @@ class TermsController < ApplicationController
     CASClient::Frameworks::Rails::Filter.client.proxy_callback_url =
       "https://data-test.cc.nd.edu/cas_proxy_callback/receive_pgt"
     CASClient::Frameworks::Rails::Filter.filter(self)
-    logger.debug "Authentication complete. Session at end of authenticate! method:"
-    session_barf
+    logger.debug "Authentication complete."
   end
 
   def logout
@@ -31,6 +30,13 @@ class TermsController < ApplicationController
 
     logger.debug "Session at start of authenticated_show method:"
     session_barf
+
+    if session.has_key?(:cas_pgt)
+      logger.debug "cas_pgt symbol found."
+    end
+    if session.has_key?("cas_pgt")
+      logger.debug "cas_pgt text string found."
+    end
 
     logger.debug("Querying Muninn...")
     uri_string = "/terms/" + URI::encode(params[:id])
