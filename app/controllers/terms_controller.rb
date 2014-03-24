@@ -51,6 +51,9 @@ class TermsController < ApplicationController
     if ticket.failure_message != nil
       logger.debug ticket.failure_message.to_s
     end
+    if ticket.failure_message != nil
+      logger.debug ticket.ticket.to_s
+    end
 
     logger.debug("Querying Muninn...")
     uri_string = "/terms/" + URI::encode(params[:id])
@@ -67,14 +70,13 @@ class TermsController < ApplicationController
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE #for when Muninn is using a self-signed cert
     end
     if Huginn::Application::CONFIG["muninn_uses_ssl"]
-      muninn_response = http.get(
-        "https://#{muninn_host}:#{muninn_port}/#{uri_string}?service=#{URI::encode(ticket.service)}&ticket=#{ticket.ticket}"
-        )
+      final_url = "https://#{muninn_host}:#{muninn_port}/#{uri_string}?service=#{URI::encode(ticket.service)}&ticket=#{ticket.ticket}"
     else
-      muninn_response = http.get(
-        "http://#{muninn_host}:#{muninn_port}/#{uri_string}?service=#{URI::encode(ticket.service)}&ticket=#{ticket.ticket}"
-        )
+      final_url = "http://#{muninn_host}:#{muninn_port}/#{uri_string}?service=#{URI::encode(ticket.service)}&ticket=#{ticket.ticket}"
     end
+    muninn_response = http.get(
+      "http://#{muninn_host}:#{muninn_port}/#{uri_string}?service=#{URI::encode(ticket.service)}&ticket=#{ticket.ticket}"
+      )
     @term = JSON.parse(muninn_response.body)
   end
 
