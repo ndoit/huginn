@@ -42,7 +42,15 @@ class TermsController < ApplicationController
     ticket_output = CASClient::Frameworks::Rails::Filter.client.request_proxy_ticket(proxy_granting_ticket, cas_service_uri)
 
     logger.debug ticket_output.to_s
-    object_barf ticket_output
+    if ticket_output.success != nil
+      logger.debug ticket_output.success.to_s
+    end
+    if ticket_output.failure_code != nil
+      logger.debug ticket_output.failure_code.to_s
+    end
+    if ticket_output.failure_message != nil
+      logger.debug ticket_output.failure_message.to_s
+    end
 
     logger.debug("Querying Muninn...")
     uri_string = "/terms/" + URI::encode(params[:id])
