@@ -4,7 +4,7 @@ require "open-uri"
 
 class TermsController < ApplicationController
   #before_filter :authenticate!, :only => :authenticated_show
-  before_filter CASClient::Frameworks::Rails::Filter.filter(self), :only => :authenticated_show
+  before_filter CASClient::Frameworks::Rails::Filter, :only => :authenticated_show
 
   def authenticate!
     logger.debug "Authenticating..."
