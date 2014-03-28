@@ -1,18 +1,10 @@
 require "net/http"
 require "json"
 require "open-uri"
+require "httparty"
 
 class TermsController < ApplicationController
-  #before_filter :authenticate!, :only => :authenticated_show
   before_filter CASClient::Frameworks::Rails::Filter, :only => :authenticated_show
-
-  def authenticate!
-    logger.debug "Authenticating..."
-    CASClient::Frameworks::Rails::Filter.client.proxy_callback_url =
-      "https://data-test.cc.nd.edu/cas_proxy_callback/receive_pgt"
-    CASClient::Frameworks::Rails::Filter.filter(self)
-    logger.debug "Authentication complete."
-  end
 
   def logout
     CASClient::Frameworks::Rails::Filter.logout(self)
@@ -27,22 +19,18 @@ class TermsController < ApplicationController
 
     ticket = CASClient::Frameworks::Rails::Filter.client.request_proxy_ticket(proxy_granting_ticket, cas_service_uri)
 
+    @apiresult = HTTParty.get("https://api-dev.dc.nd.edu/general/v1/photo_by_proxy.html?" +
+      "app_id=302bbdc4&app_key=77dc7b060eca2011f374c2070af4759f&service=#{URI::encode(ticket.service)}&ticket=#{ticket.ticket}")
     logger.debug("Querying Muninn...")
     uri_string = "/terms/" + URI::encode(params[:id])
 
     http = Net::HTTP.new(muninn_host, muninn_port)
     http.use_ssl = Huginn::Application::CONFIG["muninn_uses_ssl"]
-    if !Huginn::Application::CONFIG["validate_muninn_certificate"]
-      http.verify_mode = OpenSSL::SSL::VERIFY_NONE #for when Muninn is using a self-signed cert
-    end
-    if Huginn::Application::CONFIG["muninn_uses_ssl"]
-      final_url = "https://#{muninn_host}:#{muninn_port}/#{uri_string}?service=#{URI::encode(ticket.service)}&ticket=#{ticket.ticket}"
-    else
-      final_url = "http://#{muninn_host}:#{muninn_port}/#{uri_string}?service=#{URI::encode(ticket.service)}&ticket=#{ticket.ticket}"
-    end
+
     muninn_response = http.get(
       "http://#{muninn_host}:#{muninn_port}/#{uri_string}?service=#{URI::encode(ticket.service)}&ticket=#{ticket.ticket}"
       )
+
     @term = JSON.parse(muninn_response.body)
   end
 
