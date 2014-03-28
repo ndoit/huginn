@@ -19,9 +19,6 @@ class TermsController < ApplicationController
 
     ticket = CASClient::Frameworks::Rails::Filter.client.request_proxy_ticket(proxy_granting_ticket, cas_service_uri)
 
-    @apiresult = HTTParty.get("https://api-dev.dc.nd.edu/general/v1/photo_by_proxy.html?" +
-      "app_id=302bbdc4&app_key=77dc7b060eca2011f374c2070af4759f&service=#{URI::encode(ticket.service)}&ticket=#{ticket.ticket}",
-      :verify => false)
     logger.debug("Querying Muninn...")
     uri_string = "/terms/" + URI::encode(params[:id])
 
