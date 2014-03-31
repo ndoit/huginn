@@ -22,14 +22,18 @@ class TermsController < ApplicationController
     logger.debug("Querying Muninn...")
     uri_string = "/terms/" + URI::encode(params[:id])
 
-    http = Net::HTTP.new(muninn_host, muninn_port)
-    http.use_ssl = Huginn::Application::CONFIG["muninn_uses_ssl"]
-
-    muninn_response = http.get(
-      "http://#{muninn_host}:#{muninn_port}/#{uri_string}?service=#{URI::encode(ticket.service)}&ticket=#{ticket.ticket}"
+    muninn_response = HTTParty.get(
+      "http://#{muninn_host}:#{muninn_port}/#{uri_string}"
+      #"http://#{muninn_host}:#{muninn_port}/#{uri_string}?service=#{URI::encode(ticket.service)}&ticket=#{ticket.ticket}"
       )
 
+    #http = Net::HTTP.new(muninn_host, muninn_port)
+    #http.use_ssl = Huginn::Application::CONFIG["muninn_uses_ssl"]
+
+    #muninn_response = http.get(
+
     @term = JSON.parse(muninn_response.body)
+    @term[:validated_user] = "service = #{URI::encode(ticket.service)} ticket = #{ticket.ticket}"
   end
 
   def show
