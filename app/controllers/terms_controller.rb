@@ -27,13 +27,9 @@ class TermsController < ApplicationController
       #"http://#{muninn_host}:#{muninn_port}/#{uri_string}?service=#{URI::encode(ticket.service)}&ticket=#{ticket.ticket}"
       )
 
-    #http = Net::HTTP.new(muninn_host, muninn_port)
-    #http.use_ssl = Huginn::Application::CONFIG["muninn_uses_ssl"]
-
-    #muninn_response = http.get(
-
     @term = JSON.parse(muninn_response.body)
-    @term[:validated_user] = "service = #{URI::encode(ticket.service)} ticket = #{ticket.ticket}"
+    @term["service"] = "#{URI::encode(ticket.service)}"
+    @term["ticket"] = "#{ticket.ticket}"
   end
 
   def show
