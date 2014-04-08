@@ -24,8 +24,8 @@ class TermsController < ApplicationController
     uri_string = "/terms/" + URI::encode(params[:id])
 
     muninn_response = HTTParty.get(
-      "http://#{muninn_host}:#{muninn_port}/#{uri_string}"
-      #"http://#{muninn_host}:#{muninn_port}/#{uri_string}?service=#{URI::encode(ticket.service)}&ticket=#{ticket.ticket}"
+      #{}"http://#{muninn_host}:#{muninn_port}/#{uri_string}"
+      "http://#{muninn_host}:#{muninn_port}/#{uri_string}?service=#{URI::encode(ticket.service)}&ticket=#{ticket.ticket}"
       )
 
     @term = JSON.parse(muninn_response.body)
