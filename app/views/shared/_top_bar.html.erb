@@ -52,7 +52,7 @@
             <li class="divider"></li>
 
             <!-- Dropdown -->
-            <li class="has-dropdown not-click"><a href="http://zurb.com">cfreder2</a>
+            <li class="has-dropdown not-click"><a href="http://zurb.com"><%= (session[:cas_user] ? session[:cas_user].to_s : "" %></a>
               <ul class="dropdown"><li class="title back js-generated"></li>
                 <li><label>User</label></li>
                 <li><a href="#">Logout</a></li>
