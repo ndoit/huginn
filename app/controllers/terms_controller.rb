@@ -29,7 +29,7 @@ class TermsController < ApplicationController
       )
 
     @term = JSON.parse(muninn_response.body)
-    @term["tickety"] = ticket.to_s
+    @term["huginn_user"] = ticket.user.to_s
   end
 
   def show
