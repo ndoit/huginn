@@ -16,8 +16,9 @@ class TermsController < ApplicationController
 
     cas_service_uri = "https://" + muninn_host.to_s + "/"
     proxy_granting_ticket = session[:cas_pgt]
-
-    ticket = CASClient::Frameworks::Rails::Filter.client.request_proxy_ticket(proxy_granting_ticket, cas_service_uri)
+    ticket = CASClient::Frameworks::Rails::Filter.client.request_proxy_ticket(
+      proxy_granting_ticket, cas_service_uri
+    )
 
     logger.debug("Querying Muninn...")
     uri_string = "/terms/" + URI::encode(params[:id])
@@ -28,8 +29,6 @@ class TermsController < ApplicationController
       )
 
     @term = JSON.parse(muninn_response.body)
-    @term["service"] = "#{URI::encode(ticket.service)}"
-    @term["ticket"] = "#{ticket.ticket}"
   end
 
   def show
