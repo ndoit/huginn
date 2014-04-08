@@ -29,7 +29,7 @@ class TermsController < ApplicationController
       )
 
     @term = JSON.parse(muninn_response.body)
-    @term["huginn_user"] = ticket.user.to_s
+    @term["huginn_user"] = session[:cas_user].to_s
   end
 
   def show
