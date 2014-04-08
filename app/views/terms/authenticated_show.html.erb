@@ -7,6 +7,7 @@
 	<li><a href="../offices/<%= stakeholder["name"] %>"><%= stakeholder["name"] %></a>: <%= stakeholder["stake"] %></li>
 <% end %></ul>
 <b>Muninn Thinks You Are:</b> <%= @term["validated_user"] %><br />
+<b>Ticket Data:</b> <%= @term["tickety"] %><br />
 <% else %>
 
 Error: <%= @term["message"] %>
