@@ -1,5 +1,5 @@
 # README
-Huginn
+Huginn pro
 ---------
 The front end for the BI Portal
 This project uses Zurb Foundation 5.
