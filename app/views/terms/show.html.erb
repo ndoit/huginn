@@ -1,11 +1,13 @@
 <% if @term["success"] %>
 
-<h1><%= @term["term"]["name"] %></h1>
+<%= @term %>
+
+<!--<h1><%= @term["term"]["name"] %></h1>
 <b>Definition:</b><br /><br /> <%= @term["term"]["definition"] %><br /><br />
 <b>Stakeholders:</b> <br />
 <ul><% @term["stakeholders"].each do |stakeholder| %>
 	<li><a href="../offices/<%= stakeholder["name"] %>"><%= stakeholder["name"] %></a>: <%= stakeholder["stake"] %></li>
-<% end %></ul>
+<% end %></ul>-->
 
 <% else %>
 

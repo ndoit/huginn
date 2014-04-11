@@ -1,98 +1,35 @@
+<% if @results %>
+
 <div class="row">
   <div class="large-12 columns">
     <h1 class="page-title">Glossary</h1>
   </div>
 </div>
-
 <div class="row">
-  <div class="large-9 medium-9 columns">
-    <div class="row term-glossary-row">
-	  <div class="small-12 small-centered columns ">
-	  	<!--<h4 class="definition-title">Active Student</h4> -->
-	  	<a class="definition-title" href="https://docs.google.com/document/d/1bYrCz56hUOb0TIKuNxB5SowZbR4H7l354uSnrPeKPAM/pub?embedded=true" target="_blank">Active Student</a> <br> <br>
-	  	  	<span class="definition-body">
-	      An individual who has been confirmed by an admitting office (or other admitting authority), as recorded by the University Registrar, is considered an active student until he or she:</span>
-	      <a href="#" data-reveal-id="myModal" data-reveal>..more</a>
-	  	 
-	  </div>
-	</div>
-	<div class="row term-glossary-row">
-	  <div class="small-12 small-centered columns ">
-	  	<h4 class="definition-title">Active Faculty</h4>
-	  	<span class="definition-body">
-	      An employee of the University who holds an active faculty contract, as defined in Article III of the Academic Articles, is an active faculty member unless that individual only holds appointments as ROTC faculty </span>
-	  </div>
-	</div>
-  </div>
-  <div class="large-3 medium-3 columns">
-  	<div class="panel">
-  	<form>
-	  <div class="row">
-	    <div class="large-12 columns">
-	      <label>Filter</label>
-	      <input type="text" placeholder="Term or Tag" />
-	    </div>
-	  </div>
-	  <div class="row">
-	    <div class="large-12 columns">
-	      <label>Responsible Organization</label>
-	      <select>
-	        <option value="husker">All</option>
-	        <option value="starbuck">Human Resources</option>
-	        <option value="hotdog">Provost</option>
-	        <option value="apollo">Registrar</option>
-	         <option value="steak">Finance</option>
-	      </select>
-	    </div>
-	  </div>
-	</form>
-	 <div class="row">
-  	  	<div class="columns text-center A-Z-Links">
-		  <a href="#">A</a>
-		  <a href="#">B</a>
-		  <a href="#">C</a>
-		  <a href="#">D</a>
-		  <a href="#">E</a>
-		  <a href="#">F</a>
-		  <a href="#">G</a>
-		  <a href="#">H</a>
-		  <a href="#">I</a>
-		  <a href="#">J</a>
-		  <a href="#">K</a>
-		  <a href="#">L</a>
-		  <a href="#">M</a>
-		  <a href="#">N</a>
-		</BR>
-		  <a href="#">O</a>
-		  <a href="#">P</a>
-		  <a href="#">Q</a>
-		  <a href="#">R</a>
-		  <a href="#">S</a>
-		  <a href="#">T</a>
-		  <a href="#">U</a>
-		  <a href="#">V</a>
-		  <a href="#">W</a>
-		  <a href="#">X</a>
-		  <a href="#">Y</a>
-		  <a href="#">Z</a>
-		</div>
-  	  </div>
-  	</div>
-  </div>
-
+      
+        <%= @results.each do |result| %>
+          <% if result[:type]  == 'term' then %> 
+           <a href="../terms/<%=result[:data]["name"]%>"> <strong> <%=result[:data]["name"] %></strong> </a> </br>  
+              <p>  <%= result[:data]["definition"] %></p>
+          <% end %>     
+       <% end %>
 
 </div>
 
-<div id="myModal" class="reveal-modal" data-reveal>
-	<h4 class="definition-title">Active Student</h4>
-	  	<span class="definition-body">
-	      An individual who has been confirmed by an admitting office (or other admitting authority), as recorded by the University Registrar, is considered an active student until he or she:</span>
-  <ul class="definition-body">
-			    <li>Graduates (if degree-seeking)</li>
-			    <li>Completes the <span data-tooltip class="has-tip" title="One of the major periods of instruction during the academic year.">academic term</span> (if non degree-seeking)</li>
-			    <li>Withdraws or is dismissed by the University</li>
-			    <li>Fails to enroll for a spring or fall <span data-tooltip class="has-tip" title="One of the major periods of instruction during the academic year.">academic term</span> (unless granted a leave of absence by a Dean)</li>
-		    </ul>
-  <a class="close-reveal-modal">&#215;</a>
-</div>
+<%end %>
 
+
+<% if @term["success"] %>
+<div class="row">
+                <h3><%= @term["term"]["name"] %></h3>
+<b>Definition:</b><br /><br /> <%= @term["term"]["definition"] %><br /><br />
+<b>Stakeholders:</b> <br />
+<ul><% @term["stakeholders"].each do |stakeholder| %>
+                <li><a href="../offices/<%= stakeholder["name"] %>"><%= stakeholder["name"] %></a>: <%= stakeholder["stake"] %></li>
+<% end %></ul>
+
+<% else %>
+
+Error: <%= @term["message"] %>
+</div>
+<% end %>
