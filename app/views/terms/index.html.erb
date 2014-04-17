@@ -1,35 +1,45 @@
 <% if @results %>
-
-<div class="row">
-  <div class="large-12 columns">
-    <h1 class="page-title">Glossary</h1>
+  <div class="row">
+    <div class="large-12 columns">
+      <h1 class="page-title">Glossary</h1>
+    </div>
   </div>
-</div>
-<div class="row">
-      
-        <%= @results.each do |result| %>
-          <% if result[:type]  == 'term' then %> 
-           <a href="../terms/<%=result[:data]["name"]%>"> <strong> <%=result[:data]["name"] %></strong> </a> </br>  
-              <p>  <%= result[:data]["definition"] %></p>
-          <% end %>     
-       <% end %>
-
-</div>
-
-<%end %>
-
-
-<% if @term["success"] %>
-<div class="row">
-                <h3><%= @term["term"]["name"] %></h3>
-<b>Definition:</b><br /><br /> <%= @term["term"]["definition"] %><br /><br />
-<b>Stakeholders:</b> <br />
-<ul><% @term["stakeholders"].each do |stakeholder| %>
-                <li><a href="../offices/<%= stakeholder["name"] %>"><%= stakeholder["name"] %></a>: <%= stakeholder["stake"] %></li>
-<% end %></ul>
-
-<% else %>
-
-Error: <%= @term["message"] %>
-</div>
+  <div class="row">
+    <div class="large-12 columns">
+      <div class="medium-9 large-3 medium-push-9 columns">
+        <div class="panel">
+          <form>
+          <div class="row">
+          <div class="large-12 columns">
+            <%= form_for(:tags, :url=>{:action=>'index'}, :html => { :method => 'GET'}) do |f| %>
+            <p>Search Glossary: <%= f.text_field :search1 %></p>
+          <% end %>
+          </div>
+          </div>
+          <div class="row">
+          <div class="large-12 columns">
+            <label>Responsible Organization</label>
+            <select>
+              <option value="chicken">All</option>
+              <option value="beef">Human Resources</option>
+              <option value="hotdog">Provost</option>
+              <option value="apollo">Registrar</option>
+              <option value="steak">Finance</option>
+            </select>
+          </div>
+          </div>
+          </form>
+        </div>
+      </div>
+      <div class="medium-6 large-9 medium-pull-3 columns">
+        <%@results.each do |result| %>
+        <% if result[:type]  == 'term' then %> 
+          <a href="../terms/<%=result[:data]["name"]%>"> <strong> <%=result[:data]["name"] %></strong> </a> </br>  
+          <p>  <%= result[:data]["definition"] %></p>
+        <% end %>    
+        <% end %>
+        <%= will_paginate(@results, :class => "apple_pagination") %> <br/>
+      </div>
+    </div>
+  </div>
 <% end %>

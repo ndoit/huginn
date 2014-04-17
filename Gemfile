@@ -32,6 +32,8 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+gem 'will_paginate', '~> 3.0.5'
+
 gem 'rubycas-client'
 gem 'rails-config'
 gem 'httparty'

@@ -15,6 +15,9 @@ Rails.application.routes.draw do
   get "search" => 'search#index'
   get "cas_proxy_callback/receive_pgt" => 'cas_proxy_callback#receive_pgt'
   get "cas_proxy_callback/retrieve_pgt" => 'cas_proxy_callback#retrieve_pgt'
+  resources :results, only: [:index]
+  #root to:  "results#index"
+  
 
   root 'guide#index'
 

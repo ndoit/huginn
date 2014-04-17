@@ -1,16 +1,191 @@
+
 <% if @term["success"] %>
 
-<%= @term %>
+<div class="row">
+	<div class="small-12 large-8 columns">
+		<div class="right">
+			<sup><%= @term["term"]["modified_date"].to_datetime.strftime("%a, %d %b %Y %I:%M %p") %></sup>
+		</div>
+		<h1 class="page-title"><%= @term["term"]["name"] %></h1>
+		<dfn>
+			<%= @term["term"]["definition"] %><br /><br />
+		</dfn>
+	</div>
 
-<!--<h1><%= @term["term"]["name"] %></h1>
-<b>Definition:</b><br /><br /> <%= @term["term"]["definition"] %><br /><br />
-<b>Stakeholders:</b> <br />
-<ul><% @term["stakeholders"].each do |stakeholder| %>
-	<li><a href="../offices/<%= stakeholder["name"] %>"><%= stakeholder["name"] %></a>: <%= stakeholder["stake"] %></li>
-<% end %></ul>-->
+	<div class="large-4 columns">
+        <div class="row">
+          <div class="large-12 small-6 columns">
+ 			<div class="panel">
+        		<h5>Related Reports</h5>
+      		</div>
+          </div>
+        </div>
+     </div>
+</div>	
+
+
+<div class="row">
+	<div class="small-12 large-8 columns">
+		<h5 class="page-title">General Information</h5>
+		<h6 class="subheader">Data Availability</h6>
+			<%= @term["term"]["data_availability"] %><br /><br />
+		<h6 class="subheader">Data Sensitivity</h6>
+			<%= @term["term"]["data_sensitivity"] %><br /><br />
+		<h6 class="subheader">Possible Values</h6>
+			<%= @term["term"]["possible_values"] %><br /><br />
+		<h6 class="subheader">Notes</h6>
+			<%= @term["term"]["notes"] %><br /><br />
+	</div>
+</div>
+
+
+<div class = "row">
+	<div class="small-12 large-12 columns">
+		<h5 class="page-title">R.A.C.I Matrix</h5>
+		<div class = "row">
+			<div class="small-6 large-3 columns">
+				<span data-tooltip class="has-tip [tip-right]" title="Those who do the work to achieve the task. There is at least one role with a participation type of responsible, although others can be delegated to assist in the work required.">
+					<span class="button small radius round">Responsible</span>
+					<!--<a href="#" class="button medium radius round">Responsible</a>-->
+				</span>
+			</div>
+			<div class="small-6 large-9 columns">
+				<br />
+				<% @term["stakeholders"].each do |stakeholder| %>
+					<% if (stakeholder["stake"] =="Responsible") then %>
+						<%= stakeholder["name"] %>
+					<% end %>
+				<% end %>
+			</div>
+		</div>
+		<div class = "row">
+			<div class="small-6 large-3 columns">
+				<span data-tooltip class="has-tip [tip-right]" title="The one ultimately answerable for the correct and thorough completion of the deliverable or task, and the one who delegates the work to those responsible. In other words, an accountable must sign off (approve) on work that responsible provides. There must be only one accountable specified for each task or deliverable.">
+					<a href="#" class="button small radius round">Accountable</a>
+				</span>
+			</div>
+			<div class="small-6 large-9 columns">
+				<br/>
+				<% @term["stakeholders"].each do |stakeholder| %>
+					<% if (stakeholder["stake"] =="Accountable") then %>
+						<%= stakeholder["name"] %>
+					<% end %>
+				<% end %>
+			</div>
+		</div>
+		<div class = "row">
+			<div class="small-6 large-3 columns">
+				<span data-tooltip class="has-tip [tip-right]" title="Those whose opinions are sought, typically subject matter experts; and with whom there is two-way communication.">
+					<a href="#" class="button small radius round">Consult</a>
+				</span>
+			</div>
+			<div class="small-6 large-9 columns">
+				<br />
+				<% @term["stakeholders"].each do |stakeholder| %>
+					<% if (stakeholder["stake"] =="Consult") then %>
+						<%= stakeholder["name"] %>
+					<% end %>
+				<% end %>
+			</div>
+		</div>
+		<div class = "row">
+			<div class="small-6 large-3 columns">
+				<span data-tooltip class="has-tip [tip-right]" title="Those who are kept up-to-date on progress, often only on completion of the task or deliverable; and with whom there is just one-way communication.">
+					<a href="#" class="button small radius round">Inform</a>
+				</span>
+			</div>
+			<div class="small-6 large-9 columns">
+				<br />
+				<% @term["stakeholders"].each do |stakeholder| %>
+					<% if (stakeholder["stake"] =="Inform") then %>
+						<%= stakeholder["name"] %>
+					<% end %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class = "row">
+	<div class="small-12 large-12 columns">
+		<h5 class="page-title">Technical Information</h5>
+		<% if (@term["term"]["data_sensitivity"] != "N/A") then %>
+			<h6 class="subheader">Source System</h6>
+				<%= @term["term"]["source_system"] %><br /><br />
+			<h6 class="subheader">Source Details</h6>
+				None listed at the moment
+		<% else %>
+			No Technical Information Listed for This Term
+		<% end %>
+	</div>
+</div>
+
 
 <% else %>
 
-Error: <%= @term["message"] %>
+<div class="row">
+	<div class="medium-9 large-9 columns">
+		<h1>Nonexistant Term</h1>
+		We are sorry to inform you that the term you are currently looking for does not exist in our database.  If you feel that the following term should be added to Notre Dame's data dictionary, please proceed as follows:
+	</div>
+	<div class="large-3 medium-3 columns">
+  	<div class="panel">
+  		<form>
+	  	<div class="row">
+	    	<div class="large-12 columns">
+	      		<label>Search Glossary</label>
+	      		<input type="text" placeholder="Term" />
+	    	</div>
+	  	</div>
+	  	<div class="row">
+	    	<div class="large-12 columns">
+	      		<label>Responsible Organization</label>
+	      		<select>
+	        		<option value="husker">All</option>
+	        		<option value="starbuck">Human Resources</option>
+	        		<option value="hotdog">Provost</option>
+	        		<option value="apollo">Registrar</option>
+	         		<option value="steak">Finance</option>
+	      		</select>
+	    	</div>
+	  	</div>
+		</form>
+	 	<div class="row">
+  	  		<div class="columns text-center A-Z-Links">
+		  	<a href="#">A</a>
+			  <a href="#">B</a>
+			  <a href="#">C</a>
+			  <a href="#">D</a>
+			  <a href="#">E</a>
+			  <a href="#">F</a>
+			  <a href="#">G</a>
+			  <a href="#">H</a>
+			  <a href="#">I</a>
+			  <a href="#">J</a>
+			  <a href="#">K</a>
+			  <a href="#">L</a>
+			  <a href="#">M</a>
+			  <a href="#">N</a>
+			</BR>
+			  <a href="#">O</a>
+			  <a href="#">P</a>
+			  <a href="#">Q</a>
+			  <a href="#">R</a>
+			  <a href="#">S</a>
+			  <a href="#">T</a>
+			  <a href="#">U</a>
+			  <a href="#">V</a>
+			  <a href="#">W</a>
+			  <a href="#">X</a>
+			  <a href="#">Y</a>
+			  <a href="#">Z</a>
+			</div>
+  	  	</div>
+  	</div>
+  	</div>
+</div>
+
+<!--Error: <%= @term["message"] %>-->
 
 <% end %>
+
