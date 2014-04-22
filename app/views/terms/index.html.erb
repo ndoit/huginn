@@ -12,7 +12,7 @@
           <div class="row">
           <div class="large-12 columns">
             <%= form_for(:tags, :url=>{:action=>'index'}, :html => { :method => 'GET'}) do |f| %>
-            <p>Search Glossary: <%= f.text_field :search1 %></p>
+            <p>Search Glossary: <%= f.text_field :search1, id: "search1" %></p>
           <% end %>
           </div>
           </div>
@@ -31,14 +31,16 @@
           </form>
         </div>
       </div>
-      <div class="medium-6 large-9 medium-pull-3 columns">
-        <%@results.each do |result| %>
+      <div class="medium-6 large-9 medium-pull-3 columns" id="search_results"> 
+             
+          <%@results.each do |result| %>
         <% if result[:type]  == 'term' then %> 
           <a href="../terms/<%=result[:data]["name"]%>"> <strong> <%=result[:data]["name"] %></strong> </a> </br>  
           <p>  <%= result[:data]["definition"] %></p>
         <% end %>    
         <% end %>
         <%= will_paginate(@results, :class => "apple_pagination") %> <br/>
+        
       </div>
     </div>
   </div>

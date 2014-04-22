@@ -32,6 +32,8 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+gem 'thread_safe' , '~> 0.3.1'
+
 gem 'will_paginate', '~> 3.0.5'
 
 gem 'rubycas-client'

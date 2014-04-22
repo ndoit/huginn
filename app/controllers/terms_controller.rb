@@ -59,12 +59,10 @@ class TermsController < ApplicationController
   end
 
   def index
-    muninn_host = Huginn::Application::CONFIG["muninn_host"]
-    muninn_port = Huginn::Application::CONFIG["muninn_port"]
+   
     
     logger.debug("Querying Muninn...")
    # test_string = "{ "query" : {"match_all": {}}, "from":0, "size":999}"
-    uri_string = "/search/custom/query"
     #service_uri = "localhost:3000" + uri_string
     #logger.debug "*** SESSION KEYS ***: " + session.keys.to_s
     #proxy_granting_ticket = session[:cas_pgt]
@@ -79,15 +77,42 @@ class TermsController < ApplicationController
    # end
   
    if params.has_key?(:tags)
-    search_param = params[:tags][:search1]
-   
-   json_string = '{"query":{"query_string": {"query": "*' + "#{search_param}" +'*","fields":["name","definition"],"highlight": { "fields": { "definition": {}}}}},"sort":[{"name":{"order":"asc"}}],"from":"0","size":"999"}'
-   # json_string = '{"query":{"query_string": {"query": "*' + "#{search_param}" +'*","fields":["name","definition"]}},"sort":[{"name":{"order":"asc"}}],"from":"0","size":"999"}'
+    search_s = params[:tags][:search1]
+    search_string(search_s) 
+
+      # json_string = '{"query":{"query_string": {"query": "*' + "#{search_param}" +'*","fields":["name","definition"]}},"sort":[{"name":{"order":"asc"}}],"from":"0","size":"999"}'
    else 
     json_string = '{"query":{"match_all":{}},"sort":[{"name":{"order":"asc"}}],"from":"0","size":"999"}'
-    #actual_json = JSON.parse(json_string)
+    muninn_response_render(json_string)
+    
    end
-   muninn_response = HTTParty.get("http://#{muninn_host}:#{muninn_port}/search/custom/query", { :body => json_string, 
+       
+  end
+
+  
+
+  def search_string(search_s)    
+   json_string = '{"query":{"query_string": {"query": "*' + "#{search_s}" +'*","fields":["name","definition"],"highlight": { "fields": { "name": {}}}}},"sort":[{"name.raw":{"order":"asc"}}],"from":"0","size":"999"}'
+   #json_string = '{"query":{"query_string": {"query": "*' + "#{search_s}" +'*","fields":["name","definition"],"highlight": {"fields": {"name": {"fragment_size" : 150,"number_of_fragments": 5}}},,"sort":[{"name.raw":{"order":"asc"}}],"from":"0","size":"999"}'
+   muninn_response_render(json_string)
+  end
+
+  def partial_search
+    @results = search_string( params[:q] )
+      respond_to do |format|
+      format.json {render :json => @results, layout: false}
+      format.html { render layout: false }
+    end
+        #render :text => "hello", :layout => false
+  end
+
+
+
+  def muninn_response_render(json_string)
+    muninn_host = Huginn::Application::CONFIG["muninn_host"]
+    muninn_port = Huginn::Application::CONFIG["muninn_port"]
+
+    muninn_response = HTTParty.get("http://#{muninn_host}:#{muninn_port}/search/custom/query", { :body => json_string, 
     :headers => { 'Content-Type' => 'application/json'} })
 
    # muninn_response = http.get("https://#{muninn_host}:#{muninn_port}/#{uri_string}")
@@ -100,8 +125,10 @@ class TermsController < ApplicationController
     @results =@results.sort_by { |k| "#{k[:sort_name]}"}
     
     @results = @results.paginate(page: params[:page], per_page: 20)   
-    
-  end
+ 
+   end
+
+
    def extract_results(search_response)
     response_hash = JSON.parse(search_response)
     if !response_hash.has_key?("result")

@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   get "guide/index"
   get "terms" => 'terms#index'
+  get "terms/partial_search" => 'terms#partial_search'
   get "terms/:id" => 'terms#show'
+ # get "terms/:search1" => 'terms#search_string'
   get "terms/auth/log/out" => 'terms#logout'
   get "terms/auth/:id" => 'terms#authenticated_show'
   get "offices/:id" => 'offices#show'
@@ -15,6 +17,8 @@ Rails.application.routes.draw do
   get "search" => 'search#index'
   get "cas_proxy_callback/receive_pgt" => 'cas_proxy_callback#receive_pgt'
   get "cas_proxy_callback/retrieve_pgt" => 'cas_proxy_callback#retrieve_pgt'
+
+
   resources :results, only: [:index]
   #root to:  "results#index"
   
