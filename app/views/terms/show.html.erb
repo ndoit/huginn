@@ -3,13 +3,8 @@
 
 <div class="row">
 	<div class="small-12 large-8 columns">
-		<div class="right">
-			<sup><%= @term["term"]["modified_date"].to_datetime.strftime("%a, %d %b %Y %I:%M %p") %></sup>
-		</div>
 		<h1 class="page-title"><%= @term["term"]["name"] %></h1>
-		<dfn>
 			<%= @term["term"]["definition"] %><br /><br />
-		</dfn>
 	</div>
 
 	<div class="large-4 columns">
@@ -38,85 +33,70 @@
 	</div>
 </div>
 
-
-<div class = "row">
+<div class="row">
 	<div class="small-12 large-12 columns">
-		<h5 class="page-title">R.A.C.I Matrix</h5>
-		<div class = "row">
-			<div class="small-6 large-3 columns">
-				<span data-tooltip class="has-tip [tip-right]" title="Those who do the work to achieve the task. There is at least one role with a participation type of responsible, although others can be delegated to assist in the work required.">
-					<span class="button small radius round">Responsible</span>
-					<!--<a href="#" class="button medium radius round">Responsible</a>-->
-				</span>
-			</div>
-			<div class="small-6 large-9 columns">
-				<br />
-				<% @term["stakeholders"].each do |stakeholder| %>
-					<% if (stakeholder["stake"] =="Responsible") then %>
-						<%= stakeholder["name"] %>
+		<h5 class="page-title">R.A.C.I. Matrix
+				<font class="right" size="3"> (Details)</font>
+		</h5>
+		<div class="row">
+			<table class="raci_table">
+			  <tbody>
+			    <tr>
+			      	<td>R</td>
+			      	<td>
+			      	<% @term["stakeholders"].each do |stakeholder| %>
+						<% if (stakeholder["stake"] =="Responsible") then %>
+							<%= stakeholder["name"] %>;
+						<% end %>
 					<% end %>
-				<% end %>
-			</div>
-		</div>
-		<div class = "row">
-			<div class="small-6 large-3 columns">
-				<span data-tooltip class="has-tip [tip-right]" title="The one ultimately answerable for the correct and thorough completion of the deliverable or task, and the one who delegates the work to those responsible. In other words, an accountable must sign off (approve) on work that responsible provides. There must be only one accountable specified for each task or deliverable.">
-					<a href="#" class="button small radius round">Accountable</a>
-				</span>
-			</div>
-			<div class="small-6 large-9 columns">
-				<br/>
-				<% @term["stakeholders"].each do |stakeholder| %>
-					<% if (stakeholder["stake"] =="Accountable") then %>
-						<%= stakeholder["name"] %>
-					<% end %>
-				<% end %>
-			</div>
-		</div>
-		<div class = "row">
-			<div class="small-6 large-3 columns">
-				<span data-tooltip class="has-tip [tip-right]" title="Those whose opinions are sought, typically subject matter experts; and with whom there is two-way communication.">
-					<a href="#" class="button small radius round">Consult</a>
-				</span>
-			</div>
-			<div class="small-6 large-9 columns">
-				<br />
-				<% @term["stakeholders"].each do |stakeholder| %>
-					<% if (stakeholder["stake"] =="Consult") then %>
-						<%= stakeholder["name"] %>
-					<% end %>
-				<% end %>
-			</div>
-		</div>
-		<div class = "row">
-			<div class="small-6 large-3 columns">
-				<span data-tooltip class="has-tip [tip-right]" title="Those who are kept up-to-date on progress, often only on completion of the task or deliverable; and with whom there is just one-way communication.">
-					<a href="#" class="button small radius round">Inform</a>
-				</span>
-			</div>
-			<div class="small-6 large-9 columns">
-				<br />
-				<% @term["stakeholders"].each do |stakeholder| %>
-					<% if (stakeholder["stake"] =="Inform") then %>
-						<%= stakeholder["name"] %>
-					<% end %>
-				<% end %>
-			</div>
+					</td>
+			    </tr>
+			    <tr>
+			      	<td>A</td>
+			      	<td>
+			      		<% @term["stakeholders"].each do |stakeholder| %>
+							<% if (stakeholder["stake"] =="Accountable") then %>
+								<%= stakeholder["name"] %>;
+							<% end %>
+						<% end %>
+					</td>
+			    </tr>
+			    <tr>
+			      	<td>C</td>
+			      	<td>
+			      		<% @term["stakeholders"].each do |stakeholder| %>
+							<% if (stakeholder["stake"] =="Consult") then %>
+								<%= stakeholder["name"] %>;
+							<% end %>
+						<% end %>
+			      	</td>
+			    </tr>
+			    <tr>
+			      	<td>I</td>
+			      	<td>
+			      		<% @term["stakeholders"].each do |stakeholder| %>
+							<% if (stakeholder["stake"] =="Inform") then %>
+								<%= stakeholder["name"] %>;
+							<% end %>
+						<% end %>
+			      	</td>
+			    </tr>
+			  </tbody>
+			</table>
 		</div>
 	</div>
 </div>
 
+
+
 <div class = "row">
 	<div class="small-12 large-12 columns">
-		<h5 class="page-title">Technical Information</h5>
-		<% if (@term["term"]["data_sensitivity"] != "N/A") then %>
-			<h6 class="subheader">Source System</h6>
-				<%= @term["term"]["source_system"] %><br /><br />
-			<h6 class="subheader">Source Details</h6>
-				None listed at the moment
-		<% else %>
-			No Technical Information Listed for This Term
-		<% end %>
+		<h1 class="page-title"></h1>
+		<div class="right">
+			<dfn>
+				Last Updated: <%= @term["term"]["modified_date"].to_datetime.strftime("%a, %d %b %Y %I:%M %p") %>
+			</dfn>
+		</div>
 	</div>
 </div>
 
@@ -188,4 +168,3 @@
 <!--Error: <%= @term["message"] %>-->
 
 <% end %>
-

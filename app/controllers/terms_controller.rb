@@ -92,7 +92,11 @@ class TermsController < ApplicationController
   
 
   def search_string(search_s)    
+   if !search_s.blank?
    json_string = '{"query":{"query_string": {"query": "*' + "#{search_s}" +'*","fields":["name","definition"],"highlight": { "fields": { "name": {}}}}},"sort":[{"name.raw":{"order":"asc"}}],"from":"0","size":"999"}'
+ else
+   json_string = '{"query":{"match_all":{}},"sort":[{"name":{"order":"asc"}}],"from":"0","size":"999"}'
+  end
    #json_string = '{"query":{"query_string": {"query": "*' + "#{search_s}" +'*","fields":["name","definition"],"highlight": {"fields": {"name": {"fragment_size" : 150,"number_of_fragments": 5}}},,"sort":[{"name.raw":{"order":"asc"}}],"from":"0","size":"999"}'
    muninn_response_render(json_string)
   end

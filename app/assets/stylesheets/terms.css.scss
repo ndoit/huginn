@@ -45,3 +45,41 @@
     font-weight: bold;}
     .apple_pagination a:hover, .apple_pagination a:focus {
       text-decoration: underline; }
+
+
+.raci_table {
+  background: white;
+  margin-bottom: 1.25rem;
+  border-style: none; }
+  table thead,
+  table tfoot {
+    background: whitesmoke; }
+    table thead tr th,
+    table thead tr td,
+    table tfoot tr th,
+    table tfoot tr td {
+      padding: 0.5rem 0.625rem 0.625rem;
+      font-size: 0.875rem;
+      font-weight: bold;
+      color: #222222;
+      text-align: left; }
+  table tr th,
+  table tr td {
+    padding: 1.25rem 1.25rem;
+    font-size: 0.875rem;
+    color: #222222; }
+  table tr.td, table td:first-child {
+    background: #002b5b;
+    border-radius: 2rem;
+    font-size: 2.000rem;
+    color: white;
+    text-align: center;}
+  table tr.even, table tr.alt, table tr:nth-of-type(even) {
+  background: white; }
+  table thead tr th,
+  table tfoot tr th,
+  table tbody tr td,
+  table tr td,
+  table raci_tfoot tr td {
+    display: table-cell;
+    line-height: 1.125rem; }
