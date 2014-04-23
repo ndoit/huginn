@@ -2,45 +2,65 @@
 <% if @term["success"] %>
 
 <div class="row">
+<div class="large-12 columns">
 	<div class="small-12 large-8 columns">
 		<h1 class="page-title"><%= @term["term"]["name"] %></h1>
 			<%= @term["term"]["definition"] %><br /><br />
+		<h5 class="page-title">General Information</h5>
+		<dl>
+			<dt>Data Availability</dt>
+				<dd>
+					<% if (@term["term"]["data_availability"] == "N/A") then %>
+						<font size="2" color="gray">Not Applicable</font>
+					<% else %>
+						<font size="2" color="gray"><%= @term["term"]["data_availability"] %></font>
+					<% end %>
+				</dd>
+			</dt>
+			<dt>Possible Values</dt>
+				<dd>
+					<% if (@term["term"]["possible_values"] == "N/A") then %>
+						<font size="2" color="gray">Not Applicable</font>
+					<% else %>
+						<font size="2" color="gray"><%= @term["term"]["possible_values"] %></font>
+					<% end %>
+				</dd>
+			</dt>
+			<dt>Notes</dt>
+				<dd>
+					<% if (@term["term"]["notes"] == "N/A") then %>
+						<font size="2" color="gray">Not Applicable</font>
+					<% else %>
+						<font size="2" color="gray"><%= @term["term"]["notes"] %></font>
+					<% end %>
+				</dd>
+			</dt>
+		</dl>
 	</div>
-
 	<div class="large-4 columns">
         <div class="row">
           <div class="large-12 small-6 columns">
  			<div class="panel">
         		<h5>Related Reports</h5>
+        		<ol>
+        			<li><a href="reports/tableau">Undergraduate Enrollment</a></li>
+        			<li><a href="http://localhost:3000/reports/powerview">Active Student</a></li>
+        			<li><a href="/reports/business_objects">Mendoza College Enrollment</a></li>
+        			<li><a href="/reports/access_denied">Talent Review Dashboard</a></li>
+        		</ol>
       		</div>
           </div>
         </div>
      </div>
-</div>	
-
-
-<div class="row">
-	<div class="small-12 large-8 columns">
-		<h5 class="page-title">General Information</h5>
-		<h6 class="subheader">Data Availability</h6>
-			<%= @term["term"]["data_availability"] %><br /><br />
-		<h6 class="subheader">Data Sensitivity</h6>
-			<%= @term["term"]["data_sensitivity"] %><br /><br />
-		<h6 class="subheader">Possible Values</h6>
-			<%= @term["term"]["possible_values"] %><br /><br />
-		<h6 class="subheader">Notes</h6>
-			<%= @term["term"]["notes"] %><br /><br />
-	</div>
-</div>
-
-<div class="row">
 	<div class="small-12 large-12 columns">
 		<h5 class="page-title">R.A.C.I. Matrix
+			<div id="myModal" class="reveal-modal" data-reveal>
 				<font class="right" size="3"> (Details)</font>
+			</div>
 		</h5>
 		<div class="row">
-			<table class="raci_table">
-			  <tbody>
+			<table class="raci">
+			  <tbody class="tbody">
 			    <tr>
 			      	<td>R</td>
 			      	<td>
@@ -84,13 +104,6 @@
 			  </tbody>
 			</table>
 		</div>
-	</div>
-</div>
-
-
-
-<div class = "row">
-	<div class="small-12 large-12 columns">
 		<h1 class="page-title"></h1>
 		<div class="right">
 			<dfn>
@@ -98,6 +111,7 @@
 			</dfn>
 		</div>
 	</div>
+</div>
 </div>
 
 
