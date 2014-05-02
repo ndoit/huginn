@@ -82,7 +82,7 @@ class TermsController < ApplicationController
 
       # json_string = '{"query":{"query_string": {"query": "*' + "#{search_param}" +'*","fields":["name","definition"]}},"sort":[{"name":{"order":"asc"}}],"from":"0","size":"999"}'
    else 
-    json_string = '{"query":{"match_all":{}},"sort":[{"name":{"order":"asc"}}],"from":"0","size":"999"}'
+    json_string = '{"query":{"match_all":{}},"from":"0","size":"999"}'
     muninn_response_render(json_string)
     
    end
@@ -92,7 +92,12 @@ class TermsController < ApplicationController
   
 
   def search_string(search_s)    
-   json_string = '{"query":{"query_string": {"query": "*' + "#{search_s}" +'*","fields":["name","definition"],"highlight": { "fields": { "name": {}}}}},"sort":[{"name.raw":{"order":"asc"}}],"from":"0","size":"999"}'
+   if !search_s.blank?
+    json_string ='{"query":{"multi_match":{"query": "*' + "#{search_s}" +'*","fields":["name^3","definition"],"type":"phrase","zero_terms_query": "none"}},"from":"0","size":"999","highlight": { "pre_tags": ["<FONT style=\"BACKGROUND-COLOR:yellow\">"],"post_tags": ["</FONT>"],"fields" : {"name" :{},"definition" :{}}}}'
+   #json_string = '{"query":{"query_string": {"query": "*' + "#{search_s}" +'*","fields":["name","definition"],"highlight": { "fields": { "name": {}}}}},"sort":[{"name.raw":{"order":"asc"}}],"from":"0","size":"999"}'
+   else
+    json_string = '{"query":{"match_all":{}},"from":"0","size":"999"}'
+  end
    #json_string = '{"query":{"query_string": {"query": "*' + "#{search_s}" +'*","fields":["name","definition"],"highlight": {"fields": {"name": {"fragment_size" : 150,"number_of_fragments": 5}}},,"sort":[{"name.raw":{"order":"asc"}}],"from":"0","size":"999"}'
    muninn_response_render(json_string)
   end
@@ -137,16 +142,29 @@ class TermsController < ApplicationController
     end
     output = []
     response_hash["result"]["hits"]["hits"].each do |hit|
-      node = {
-        :id => hit["_id"].to_i,
-        :type => hit["_type"],
-        :score => hit["_score"],
-        :data => hit["_source"],
-        :sort_name =>hit["_source"]["name"]
-      }
-      output << node
-     end
-    return output
+    node ={
+      :id => hit["_id"].to_i,
+      :type => hit["_type"],
+      :score => hit["_score"],
+      :data => hit["_source"],
+      :sort_name =>hit["_source"]["name"] 
+    } 
+  
+    if hit["highlight"]["name"] != nil
+      node1  = {:m_name => hit["highlight"]["name"][0]}
+      node.merge!(node1)
+    end
+    if hit["highlight"]["definition"] != nil
+       node2 ={:m_definition => hit["highlight"]["definition"][0]}
+       node.merge!(node2)
+    end
+
+    output << node
+    
+    end
+   
+   return output  
   end
 
 end
+

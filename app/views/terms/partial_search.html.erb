@@ -1,7 +1,16 @@
-<%@results.each do |result| %>
+ <%@results.each do |result| %>
         <% if result[:type]  == 'term' then %> 
-          <a href="../terms/<%=result[:data]["name"]%>"> <strong> <%=result[:data]["name"] %></strong> </a> </br>  
-          <p>  <%= result[:data]["definition"] %></p>
-        <% end %>    
-        <% end %>
-        <%= will_paginate(@results, :class => "apple_pagination") %> <br/>
+          <a href="../terms/<%=result[:data]["name"]%>"> <strong> 
+          	 <% if result[:m_name]  then %> 
+         	{{<%= result[:m_name]..html_safe %>}}</strong> </a> </br>  
+         	<%else %>
+          	<%= result[:data]["name"] %></strong> </a> </br>  
+          	<%end%>
+          	 <% if result[:m_definition]  then %> 
+         	  <p> {{ <%= result[:m_definition].html_safe %>}}</p>
+         	<%else %>
+          	  <p>  <%= result[:data]["definition"] %></p>
+          	<%end%>
+            
+         <% end %>
+        <%= will_paginate(@results, :class => "apple_pagination") %> <br>

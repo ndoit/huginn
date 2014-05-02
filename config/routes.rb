@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get "guide/index"
   get "terms" => 'terms#index'
+  #get "terms/partial_search" => 'terms#partial_search'
   get "terms/partial_search" => 'terms#partial_search'
   get "terms/:id" => 'terms#show'
  # get "terms/:search1" => 'terms#search_string'
