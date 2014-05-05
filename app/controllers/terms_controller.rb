@@ -149,14 +149,15 @@ class TermsController < ApplicationController
       :data => hit["_source"],
       :sort_name =>hit["_source"]["name"] 
     } 
-  
-    if hit["highlight"]["name"] != nil
-      node1  = {:m_name => hit["highlight"]["name"][0]}
-      node.merge!(node1)
-    end
-    if hit["highlight"]["definition"] != nil
-       node2 ={:m_definition => hit["highlight"]["definition"][0]}
-       node.merge!(node2)
+     if hit["highlight"] != nil 
+      if hit["highlight"]["name"] != nil
+        node1  = {:m_name => hit["highlight"]["name"][0]}
+        node.merge!(node1)
+      end
+      if hit["highlight"]["definition"] != nil
+        node2 ={:m_definition => hit["highlight"]["definition"][0]}
+        node.merge!(node2)
+       end
     end
 
     output << node
