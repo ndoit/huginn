@@ -106,7 +106,7 @@ class TermsController < ApplicationController
     @results = search_string( params[:q] )
       respond_to do |format|
       format.json {render :json => @results, layout: false}
-      format.html { render layout: false }
+      format.html {render layout: false }
     end
         #render :text => "hello", :layout => false
   end

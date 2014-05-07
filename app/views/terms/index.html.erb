@@ -1,5 +1,5 @@
 
-  
+  <% if @results %>
   <div class="row">
     <div class="large-12 columns">
       <h1 class="page-title">Glossary</h1>
@@ -13,7 +13,7 @@
           <div class="row">
           <div class="large-12 columns">
             <%= form_for(:tags, :url=>{:action=>'index'}, :html => { :method => 'GET'}) do |f| %>
-            <p>Search Glossary: <%= f.text_field :search1, id: "search1" %></p>
+            <p>Search Glossary: <%= f.text_field :search1, id: "search1", :autofocus => true %></p>
           <% end %>
           </div>
           </div>
@@ -43,14 +43,13 @@
             <%end%>
             <% if result[:m_definition]  then %> 
               <p> <%=  result[:m_definition].html_safe %></p>
-          <%else %>
+            <%else %>
               <p>  <%= result[:data]["definition"] %></p>
-          <%end%>
-          <% end %>     
-         <% end %>
+            <%end%>
+         <% end %>    
+        <% end %>  
         <%= will_paginate(@results, :class => "apple_pagination") %> <br>
-     
-     
-      </div>
+     </div>
     </div>
   </div>
+<% end %>

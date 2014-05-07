@@ -1,6 +1,6 @@
 
 $(document).ready( function() { 
-	$('#search1').keyup( function() {
+	$('#search1').bind("change keyup",function() {
 		var url = 'terms/partial_search?q=' + $(this).val();
 		$('#search_results').load(url);
 

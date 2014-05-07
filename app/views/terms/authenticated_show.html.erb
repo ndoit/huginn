@@ -1,15 +1,12 @@
 <% if @term["success"] %>
-
-<h1><%= @term["term"]["name"] %></h1>
-<b>Definition:</b><br /><br /> <%= @term["term"]["definition"] %><br /><br />
-<b>Stakeholders:</b> <br />
-<ul><% @term["stakeholders"].each do |stakeholder| %>
-	<li><a href="../offices/<%= stakeholder["name"] %>"><%= stakeholder["name"] %></a>: <%= stakeholder["stake"] %></li>
-<% end %></ul>
+  <h1><%= @term["term"]["name"] %></h1>
+  <b>Definition:</b><br /><br /> <%= @term["term"]["definition"] %><br /><br />
+  <b>Stakeholders:</b> <br />
+  <ul><% @term["stakeholders"].each do |stakeholder| %>
+	 <li><a href="../offices/<%= stakeholder["name"] %>"><%= stakeholder["name"] %></a>: <%= stakeholder["stake"] %></li>
+<% end%></ul>
 <b>Muninn Thinks You Are:</b> <%= @term["validated_user"] %><br />
 <b>Huginn Thinks You Are:</b> <%= @term["huginn_user"] %><br />
 <% else %>
-
-Error: <%= @term["message"] %>
-
+  Error: <%= @term["message"] %>
 <% end %>
