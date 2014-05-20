@@ -36,7 +36,7 @@ class TermsController < ApplicationController
   def show
     muninn_host = Huginn::Application::CONFIG["muninn_host"]
     muninn_port = Huginn::Application::CONFIG["muninn_port"]
-    
+
     logger.debug("Querying Muninn...")
                 uri_string = "/terms/" + URI::encode(params[:id])
                 #service_uri = "localhost:3000" + uri_string
@@ -59,8 +59,8 @@ class TermsController < ApplicationController
   end
 
   def index
-   
-    
+
+
     logger.debug("Querying Muninn...")
    # test_string = "{ "query" : {"match_all": {}}, "from":0, "size":999}"
     #service_uri = "localhost:3000" + uri_string
@@ -69,37 +69,34 @@ class TermsController < ApplicationController
     #logger.debug "*** PROXY GRANTING TICKET ***: " + proxy_granting_ticket
     #ticket = CASClient::Frameworks::Rails::Filter.client.request_proxy_ticket(service_uri, proxy_granting_ticket).ticket
     #logger.debug "*** ACTUAL TICKET ***: " + ticket.to_s
-   
+
     #http = Net::HTTP.new(muninn_host, muninn_port)
     #http.use_ssl = Huginn::Application::CONFIG["muninn_uses_ssl"]
     #if !Huginn::Application::CONFIG["validate_muninn_certificate"]
       #http.verify_mode = OpenSSL::SSL::VERIFY_NONE #for when Muninn is using a self-signed cert
    # end
-  
+
    if params.has_key?(:tags)
     search_s = params[:tags][:search1]
-    search_string(search_s) 
+    search_string(search_s)
 
       # json_string = '{"query":{"query_string": {"query": "*' + "#{search_param}" +'*","fields":["name","definition"]}},"sort":[{"name":{"order":"asc"}}],"from":"0","size":"999"}'
-   else 
-    json_string = '{"query":{"match_all":{}},"from":"0","size":"999"}'
-    muninn_response_render(json_string)
-    
-   end
-       
-  end
-
-  
-
-  def search_string(search_s)    
-  if !search_s.blank?
-   json_string ='{"query":{"multi_match":{"query": "*' + "#{search_s}" +'*","fields":["name^3","definition"],"type":"phrase","zero_terms_query": "none"}},"from":"0","size":"999","highlight": { "pre_tags": ["<FONT style=\"BACKGROUND-COLOR:yellow\">"],"post_tags": ["</FONT>"],"fields" : {"name" :{},"definition" :{}}}}'
-   #json_string = '{"query":{"query_string": {"query": "*' + "#{search_s}" +'*","fields":["name","definition"],"highlight": { "fields": { "name": {}}}}},"sort":[{"name.raw":{"order":"asc"}}],"from":"0","size":"999"}'
    else
     json_string = '{"query":{"match_all":{}},"from":"0","size":"999"}'
+    muninn_response_render(json_string)
+
+   end
+
   end
-   #json_string = '{"query":{"query_string": {"query": "*' + "#{search_s}" +'*","fields":["name","definition"],"highlight": {"fields": {"name": {"fragment_size" : 150,"number_of_fragments": 5}}},,"sort":[{"name.raw":{"order":"asc"}}],"from":"0","size":"999"}'
-   muninn_response_render(json_string)
+
+  def search_string(search_s)
+    if !search_s.blank?
+       json_string =json_string ='{"query":{"match": {"_all": {"query": "' + "#{search_s}" + '" , "operator": "and"}}},"filter":{"type":{"value":"term"}},"size":"999","sort":[{"name.raw":{"order":"asc"}}],"highlight": { "pre_tags": ["<FONT style=\"BACKGROUND-COLOR:yellow\">"],"post_tags": ["</FONT>"],"fields" : {"name"  :  {"number_of_fragments" : 0},"definition" :{"number_of_fragments" : 0}}}}'
+     else
+       json_string = '{"query":{"match_all":{}},"from":"0","size":"999"}'
+    end
+
+    muninn_response_render(json_string)
   end
 
   def partial_search
@@ -117,7 +114,7 @@ class TermsController < ApplicationController
     muninn_host = Huginn::Application::CONFIG["muninn_host"]
     muninn_port = Huginn::Application::CONFIG["muninn_port"]
 
-    muninn_response = HTTParty.get("http://#{muninn_host}:#{muninn_port}/search/custom/query", { :body => json_string, 
+    muninn_response = HTTParty.get("http://#{muninn_host}:#{muninn_port}/search/custom/query", { :body => json_string,
     :headers => { 'Content-Type' => 'application/json'} })
 
    # muninn_response = http.get("https://#{muninn_host}:#{muninn_port}/#{uri_string}")
@@ -125,12 +122,12 @@ class TermsController < ApplicationController
     output_string= ActiveSupport::JSON.decode(muninn_response.body.to_json)
 
     @results= extract_results(output_string)
-   
+
    # @results =@results.sort!{|a,b| a[:sort_name]<=> b[:sort_anme]}
     @results =@results.sort_by { |k| "#{k[:sort_name]}"}
-    
-    @results = @results.paginate(page: params[:page], per_page: 20)   
- 
+
+    @results = @results.paginate(page: params[:page], per_page: 20)
+
    end
 
 
@@ -147,9 +144,9 @@ class TermsController < ApplicationController
       :type => hit["_type"],
       :score => hit["_score"],
       :data => hit["_source"],
-      :sort_name =>hit["_source"]["name"] 
-    } 
-     if hit["highlight"] != nil 
+      :sort_name =>hit["_source"]["name"]
+    }
+     if hit["highlight"] != nil
       if hit["highlight"]["name"] != nil
         node1  = {:m_name => hit["highlight"]["name"][0]}
         node.merge!(node1)
@@ -161,11 +158,10 @@ class TermsController < ApplicationController
     end
 
     output << node
-    
+
     end
-   
-   return output  
+
+   return output
   end
 
 end
-
