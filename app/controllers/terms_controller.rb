@@ -91,7 +91,7 @@ class TermsController < ApplicationController
 
   def search_string(search_s)
     if !search_s.blank?
-       json_string =json_string ='{"query":{"match": {"_all": {"query": "' + "#{search_s}" + '" , "operator": "and"}}},"filter":{"type":{"value":"term"}},"size":"999","sort":[{"name.raw":{"order":"asc"}}],"highlight": { "pre_tags": ["<FONT style=\"BACKGROUND-COLOR:yellow\">"],"post_tags": ["</FONT>"],"fields" : {"name"  :  {"number_of_fragments" : 0},"definition" :{"number_of_fragments" : 0}}}}'
+       json_string =json_string ='{"query":{"match": {"_all": {"query": "' + "#{search_s}" + '" , "operator": "and"}}},"filter":{"type":{"value":"term"}},"size":"999"}'
      else
        json_string = '{"query":{"match_all":{}},"from":"0","size":"999"}'
     end
