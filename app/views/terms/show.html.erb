@@ -1,47 +1,42 @@
-
-<div id="json">
-	
-</div>
 <script>
-	<% @term["term"]["possible_values"] = "" %>
     term_json = '<%= @term["term"].to_json.to_s.html_safe %>'
 </script>
+
+<div class="row">
+	<div class="large-12 columns">
+		<input type="button" value="Update Term" id="updateTermButton" />
+	</div>
+</div>
 
 <% if @term["success"] %>
 <div class="row">
 <div class="large-12 columns">
 	<div class="small-12 large-8 columns">
 		<h1 class="page-title"><%= @term["term"]["name"] %></h1>
-			<%= @term["term"]["definition"] %><br /><br />
+		<div class="editable" id="definition">
+			<%= @term["term"]["definition"].html_safe %>
+		</div><br />
 		<h5 class="page-title">General Information</h5>
 		<dl>
 			<dt>Data Availability</dt>
 				<dd>
-					<% if (@term["term"]["data_availability"] == "N/A") then %>
-						<font size="2" color="gray">Not Applicable</font>
-					<% else %>
-						<font size="2" color="gray">
-							<div class="editable"> <%= @term["term"]["data_availability"] %> </div></font>
-					<% end %>
+					
+					<font size="2" color="gray">
+						<div id="data_availability" class="editable"> <%= @term["term"]["data_availability"].html_safe %> </div>
+					</font>
+				
 				</dd>
 			</dt>
 			<dt>Possible Values</dt>
 				<dd>
-					<% if (@term["term"]["possible_values"] == "N/A") then %>
-						<font size="2" color="gray">Not Applicable</font>
-					<% else %>
-						<font size="2" color="gray">
-							<div class="editable"><%= @term["term"]["possible_values"] %></div></font>
-					<% end %>
+					<font size="2" color="gray">
+						<div id="possible_values" class="editable"><%= @term["term"]["possible_values"].html_safe %></div>
+					</font>
 				</dd>
 			</dt>
 			<dt>Notes</dt>
 				<dd>
-					<% if (@term["term"]["notes"] == "N/A") then %>
-						<font size="2" color="gray">Not Applicable</font>
-					<% else %>
-						<font size="2" color="gray"><div class="editable"><%= @term["term"]["notes"] %><div class="editable"></font>
-					<% end %>
+					<font size="2" color="gray"><div id="notes" class="editable"><%= @term["term"]["notes"].html_safe %></div></font>
 				</dd>
 			</dt>
 		</dl>
