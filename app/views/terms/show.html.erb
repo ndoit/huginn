@@ -1,6 +1,13 @@
 
-<% if @term["success"] %>
+<div id="json">
+	
+</div>
+<script>
+	<% @term["term"]["possible_values"] = "" %>
+    term_json = '<%= @term["term"].to_json.to_s.html_safe %>'
+</script>
 
+<% if @term["success"] %>
 <div class="row">
 <div class="large-12 columns">
 	<div class="small-12 large-8 columns">
@@ -13,7 +20,8 @@
 					<% if (@term["term"]["data_availability"] == "N/A") then %>
 						<font size="2" color="gray">Not Applicable</font>
 					<% else %>
-						<font size="2" color="gray"><%= @term["term"]["data_availability"] %></font>
+						<font size="2" color="gray">
+							<div class="editable"> <%= @term["term"]["data_availability"] %> </div></font>
 					<% end %>
 				</dd>
 			</dt>
@@ -22,7 +30,8 @@
 					<% if (@term["term"]["possible_values"] == "N/A") then %>
 						<font size="2" color="gray">Not Applicable</font>
 					<% else %>
-						<font size="2" color="gray"><%= @term["term"]["possible_values"] %></font>
+						<font size="2" color="gray">
+							<div class="editable"><%= @term["term"]["possible_values"] %></div></font>
 					<% end %>
 				</dd>
 			</dt>
@@ -31,7 +40,7 @@
 					<% if (@term["term"]["notes"] == "N/A") then %>
 						<font size="2" color="gray">Not Applicable</font>
 					<% else %>
-						<font size="2" color="gray"><%= @term["term"]["notes"] %></font>
+						<font size="2" color="gray"><div class="editable"><%= @term["term"]["notes"] %><div class="editable"></font>
 					<% end %>
 				</dd>
 			</dt>
@@ -66,7 +75,7 @@
 			      	<td>
 			      	<% @term["stakeholders"].each do |stakeholder| %>
 						<% if (stakeholder["stake"] =="Responsible") then %>
-							<%= stakeholder["name"] %>;
+							<div class="editable"><%= stakeholder["name"] %>; <div class="editable">
 						<% end %>
 					<% end %>
 					</td>
