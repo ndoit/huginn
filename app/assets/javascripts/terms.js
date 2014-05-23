@@ -3,45 +3,49 @@ $(document).ready( function() {
 
 		term_object = JSON.parse(term_json)
 	
-		$("#json").html( JSON.stringify(term_object, null, 4) );
-		term_object.definition = "BMR " + term_object.definition
-		updateTerm( term_object )
-
    		$('#search1').bind("change keyup",function() {
-   		  if ($(this).val().length >=2 ) {
-		   var url = 'terms/partial_search?q=' + $(this).val();
-			$('#search_results').load(url);
+   		  	if ($(this).val().length >=2 ) {
+		   		var url = 'terms/partial_search?q=' + $(this).val();
+				$('#search_results').load(url);
+			}
+		})
 
-		/*
-		
-		alert(url);
-		$.ajax({
-		    url: url,
-		    dataType: "json",
-		    success: function (data) {
-		       var x = 1;
-		      //$('#search_results').html( data )  
-		    }
-		});
-		*/
-	}})
+		//alert( $('#updateTermButton').length );
+		$('#updateTermButton').click( function() {
+			updateTermObject( term_object )
+			updateTerm( term_object )
+		})
 })
+
+function updateTermObject( term_object ) {
+	//alert( tinymce )
+
+	tinymce.triggerSave();
+	$('.editable').each( function() {
+
+		id = $(this).attr('id');
+		if ( id ) {
+			p = tinymce.get(id).getContent()
+			term_object[id] = p;
+		}
+
+	});
+	
+	return term_object
+}
 
 function updateTerm( term_object ) {
 
 	$.ajax({
-	    url: term_object.name,
+	    url: term_object.id,
 	    type: 'PUT',
-	    data: {
-	    	"termJSON": JSON.stringify(term_object)
-	    },
+	    data: { "termJSON": JSON.stringify(term_object) },
     	dataType: 'json',
 	    success: function (data) {
-	       alert('yay')
+	       alert('term updated')
 	    },
 	    error: function( xhr, ajaxOptions, thrownError) {
-        alert(xhr.status);
-        alert(thrownError);
+        	alert(xhr.status + ": " + thrownError);
 	    }
 	});
 
@@ -50,9 +54,10 @@ function updateTerm( term_object ) {
 tinymce.init({
     selector: ".editable",
     inline: true,
-    toolbar: "undo redo",
-    menubar: true
-   });
+    menubar: true,
+    toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
+  });
+ 
 
 
 
