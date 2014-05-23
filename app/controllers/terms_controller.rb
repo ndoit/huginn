@@ -6,6 +6,31 @@ require "will_paginate/array"
 
 class TermsController < ApplicationController
   before_filter CASClient::Frameworks::Rails::Filter, :only => :authenticated_show
+  skip_before_action :verify_authenticity_token
+
+
+  def update
+
+    path = "/terms/#{URI.encode(params[:id])}"
+    req = Net::HTTP::Put.new(path)
+    req["Content-Type"] = "application/json"
+   # req.set_form_data(params)
+    # THIS WORKS
+    #req.body = '{"id": 4513,created_date":"2014-05-21T21:07:48Z","modified_date":"2014-05-21T21:07:48Z","id":4513,"definition":"FROM HUGIN An Active Faculty member who holds a current appointment with a Secondary Faculty Appointment Type of Dean, Associate Dean or Assistant Dean, as defined in Article II of the Academic Articles.","source_system":"Faculty Profile","possible_values":"N/A","notes":"The specific type of dean appointment held by an individual appears in the Dean Type field.","data_sensitivity":"N/A","data_availability":"N/A","name":"Active Dean"}'
+    req.body = params[:termJSON]
+
+    puts "\n\nreq.body: #{req.body}\n\n"
+
+
+   
+    response = Net::HTTP.new( Huginn::Application::CONFIG["muninn_host"], Huginn::Application::CONFIG["muninn_port"]).start do |http|
+      http.request(req) 
+    end
+    render status: response.code, text: response.body
+  end
+
+
+
 
   def logout
     CASClient::Frameworks::Rails::Filter.logout(self)
