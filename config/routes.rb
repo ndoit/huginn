@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   #get "terms/partial_search" => 'terms#partial_search'
   get "terms/partial_search" => 'terms#partial_search'
   get "terms/:id" => 'terms#show'
+  put "terms/:id" => 'terms#update'  #BMR
+
+
  # get "terms/:search1" => 'terms#search_string'
   get "terms/auth/log/out" => 'terms#logout'
   get "terms/auth/:id" => 'terms#authenticated_show'
