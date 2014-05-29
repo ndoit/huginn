@@ -21,9 +21,38 @@ class TermsController < ApplicationController
       http.request(req) 
     end
 
-    render status: response.code, text: response.body
+    render status: response.code, json: response.body
+    #render status: 200, text: ""
   end
 
+def create
+
+    req = Net::HTTP::Post.new( "/terms" )
+    req["Content-Type"] = "application/json"
+    req.body = params[:term]
+   
+    host = Huginn::Application::CONFIG["muninn_host"]
+    port = Huginn::Application::CONFIG["muninn_port"]
+    response = Net::HTTP.new( host, port ).start do |http|
+      http.request(req) 
+    end
+
+    render status: response.code, json: response.body
+    #render status: 200, text: ""
+  end
+
+def destroy
+
+    req = Net::HTTP::Delete.new( "/terms/id/#{URI.encode(params[:id])}" )
+    req.body = nil 
+    host = Huginn::Application::CONFIG["muninn_host"]
+    port = Huginn::Application::CONFIG["muninn_port"]
+    response = Net::HTTP.new( host, port ).start do |http|
+      http.request(req) 
+    end
+
+    render status: response.code, json: response.body
+  end
 
 
 

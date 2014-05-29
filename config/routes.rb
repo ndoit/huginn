@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get "terms/partial_search" => 'terms#partial_search'
   get "terms/:id" => 'terms#show'
   put "terms/:id" => 'terms#update'  #BMR
+  delete "terms/:id" => 'terms#destroy'  #SMM
+  post "terms" => 'terms#create' #SMM
 
 
  # get "terms/:search1" => 'terms#search_string'

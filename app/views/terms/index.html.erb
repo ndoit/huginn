@@ -35,16 +35,16 @@
       <div class="medium-6 large-9 medium-pull-3 columns" id="search_results"> 
         <%@results.each do |result| %>
          <% if result[:type]  == 'term' then %> 
-            <a href="../terms/<%=result[:data]["name"]%>"> <strong> 
+            <a href="../terms/<%=result[:data]["name"].html_safe %>"> <strong> 
             <% if result[:m_name]  then %> 
                <%= result[:m_name].html_safe %></strong> </a> </br>   
             <%else %>
-               <%=result[:data]["name"] %></strong> </a> </br>  
+               <%=result[:data]["name"].html_safe  %></strong> </a> </br>  
             <%end%>
             <% if result[:m_definition]  then %> 
               <p> <%=  result[:m_definition].html_safe %></p>
             <%else %>
-              <p>  <%= result[:data]["definition"] %></p>
+              <p>  <%= result[:data]["definition"].html_safe  %></p>
             <%end%>
          <% end %>    
         <% end %>  

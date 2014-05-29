@@ -1,18 +1,27 @@
 <script>
-    term_json = '<%= @term["term"].to_json.to_s.html_safe %>'
+    term_object = <%= @term["term"].to_json.to_s.html_safe %>
 </script>
 
+
 <div class="row">
-	<div class="large-12 columns">
+	<div class="large-6 columns">
 		<input type="button" value="Update Term" id="updateTermButton" />
 	</div>
+	<div class="large-6 columns">
+		<input type="button" value="Delete Term" id="deleteTermButton" />
+	</div>
+	<div class="large-6 columns">
+		<input type="button" value="Create Term" id="createTermButton" />
+			</div>	
 </div>
 
 <% if @term["success"] %>
 <div class="row">
 <div class="large-12 columns">
 	<div class="small-12 large-8 columns">
-		<h1 class="page-title"><%= @term["term"]["name"] %></h1>
+		<h1 class="page-title">
+			<%= @term["term"]["name"] %>
+		</h1>
 		<div class="editable" id="definition">
 			<%= @term["term"]["definition"].html_safe %>
 		</div><br />
