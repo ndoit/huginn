@@ -14,11 +14,11 @@ class TermsController < ApplicationController
     req = Net::HTTP::Put.new( "/terms/#{URI.encode(params[:id])}" )
     req["Content-Type"] = "application/json"
     req.body = params[:termJSON]
-   
+
     host = Huginn::Application::CONFIG["muninn_host"]
     port = Huginn::Application::CONFIG["muninn_port"]
     response = Net::HTTP.new( host, port ).start do |http|
-      http.request(req) 
+      http.request(req)
     end
 
     render status: response.code, json: response.body
@@ -31,11 +31,11 @@ def create
     req["Content-Type"] = "application/json"
     req.body = params[:term]
     #LogTime.info("Parameters :  params = #{params.to_s}");
-   
+
     host = Huginn::Application::CONFIG["muninn_host"]
     port = Huginn::Application::CONFIG["muninn_port"]
     response = Net::HTTP.new( host, port ).start do |http|
-      http.request(req) 
+      http.request(req)
     end
 
     render status: response.code, json: response.body
@@ -45,11 +45,11 @@ def create
 def destroy
 
     req = Net::HTTP::Delete.new( "/terms/id/#{URI.encode(params[:id])}" )
-    req.body = nil 
+    req.body = nil
     host = Huginn::Application::CONFIG["muninn_host"]
     port = Huginn::Application::CONFIG["muninn_port"]
     response = Net::HTTP.new( host, port ).start do |http|
-      http.request(req) 
+      http.request(req)
     end
 
     render status: response.code, json: response.body
@@ -57,9 +57,6 @@ def destroy
 
 
 
-  def logout
-    CASClient::Frameworks::Rails::Filter.logout(self)
-  end
 
   def authenticated_show
     muninn_host = Huginn::Application::CONFIG["muninn_host"]
@@ -75,7 +72,6 @@ def destroy
     uri_string = "/terms/" + URI::encode(params[:id])
 
     muninn_response = HTTParty.get(
-      #{}"http://#{muninn_host}:#{muninn_port}/#{uri_string}"
       "http://#{muninn_host}:#{muninn_port}/#{uri_string}?service=#{URI::encode(ticket.service)}&ticket=#{ticket.ticket}"
       )
 
@@ -89,12 +85,8 @@ def destroy
 
     logger.debug("Querying Muninn...")
                 uri_string = "/terms/" + URI::encode(params[:id])
-                #service_uri = "localhost:3000" + uri_string
-                #logger.debug "*** SESSION KEYS ***: " + session.keys.to_s
-                #proxy_granting_ticket = session[:cas_pgt]
-                #logger.debug "*** PROXY GRANTING TICKET ***: " + proxy_granting_ticket
-    #ticket = CASClient::Frameworks::Rails::Filter.client.request_proxy_ticket(service_uri, proxy_granting_ticket).ticket
-                #logger.debug "*** ACTUAL TICKET ***: " + ticket.to_s
+
+
     http = Net::HTTP.new(muninn_host, muninn_port)
     http.use_ssl = Huginn::Application::CONFIG["muninn_uses_ssl"]
     if !Huginn::Application::CONFIG["validate_muninn_certificate"]
@@ -105,26 +97,13 @@ def destroy
     else
       muninn_response = http.get("http://#{muninn_host}:#{muninn_port}/#{uri_string}")
     end
-                @term = JSON.parse(muninn_response.body)
+    @term = JSON.parse(muninn_response.body)
   end
 
   def index
 
 
     logger.debug("Querying Muninn...")
-   # test_string = "{ "query" : {"match_all": {}}, "from":0, "size":999}"
-    #service_uri = "localhost:3000" + uri_string
-    #logger.debug "*** SESSION KEYS ***: " + session.keys.to_s
-    #proxy_granting_ticket = session[:cas_pgt]
-    #logger.debug "*** PROXY GRANTING TICKET ***: " + proxy_granting_ticket
-    #ticket = CASClient::Frameworks::Rails::Filter.client.request_proxy_ticket(service_uri, proxy_granting_ticket).ticket
-    #logger.debug "*** ACTUAL TICKET ***: " + ticket.to_s
-
-    #http = Net::HTTP.new(muninn_host, muninn_port)
-    #http.use_ssl = Huginn::Application::CONFIG["muninn_uses_ssl"]
-    #if !Huginn::Application::CONFIG["validate_muninn_certificate"]
-      #http.verify_mode = OpenSSL::SSL::VERIFY_NONE #for when Muninn is using a self-signed cert
-   # end
 
    if params.has_key?(:tags)
     search_s = params[:tags][:search1]
@@ -133,13 +112,13 @@ def destroy
       # json_string = '{"query":{"query_string": {"query": "*' + "#{search_param}" +'*","fields":["name","definition"]}},"sort":[{"name":{"order":"asc"}}],"from":"0","size":"999"}'
    else
     json_string = '{"query":{"match_all":{}},"from":"0","size":"999"}'
-    muninn_response_render(json_string)
+    @results = MuninnAdapter.custom_query(json_string, params[:page], 20 )
 
    end
 
   end
 
- 
+
   def search_string(search_s)
     if !search_s.blank?
        json_string =json_string ='{"query":{"match": {"_all": {"query": "' + "#{search_s}" + '" , "operator": "and"}}},"filter":{"type":{"value":"term"}},"from":"0","size":"999"}'
@@ -147,7 +126,7 @@ def destroy
        json_string = '{"query":{"match_all":{}},"from":"0","size":"999"}'
     end
 
-    muninn_response_render(json_string)
+    @results = MuninnAdapter.custom_query(json_string, params[:page], 20 )
   end
 
   def partial_search
@@ -159,60 +138,5 @@ def destroy
         #render :text => "hello", :layout => false
   end
 
-
-
-  def muninn_response_render(json_string)
-    muninn_host = Huginn::Application::CONFIG["muninn_host"]
-    muninn_port = Huginn::Application::CONFIG["muninn_port"]
-
-    muninn_response = HTTParty.get("http://#{muninn_host}:#{muninn_port}/search/custom/query", { :body => json_string,
-    :headers => { 'Content-Type' => 'application/json'} })
-
-   # muninn_response = http.get("https://#{muninn_host}:#{muninn_port}/#{uri_string}")
-    # @output = muninn_response.body.to_json
-    output_string= ActiveSupport::JSON.decode(muninn_response.body.to_json)
-
-    @results= extract_results(output_string)
-
-   # @results =@results.sort!{|a,b| a[:sort_name]<=> b[:sort_anme]}
-    @results =@results.sort_by { |k| "#{k[:sort_name]}"}
-
-    @results = @results.paginate(page: params[:page], per_page: 20)
-
-   end
-
-
-   def extract_results(search_response)
-    response_hash = JSON.parse(search_response)
-    if !response_hash.has_key?("result")
-      LogTime.info("No contents.")
-      return []
-    end
-    output = []
-    response_hash["result"]["hits"]["hits"].each do |hit|
-    node ={
-      :id => hit["_id"].to_i,
-      :type => hit["_type"],
-      :score => hit["_score"],
-      :data => hit["_source"],
-      :sort_name =>hit["_source"]["name"]
-    }
-     if hit["highlight"] != nil
-      if hit["highlight"]["name"] != nil
-        node1  = {:m_name => hit["highlight"]["name"][0]}
-        node.merge!(node1)
-      end
-      if hit["highlight"]["definition"] != nil
-        node2 ={:m_definition => hit["highlight"]["definition"][0]}
-        node.merge!(node2)
-       end
-    end
-
-    output << node
-
-    end
-
-   return output
-  end
 
 end
