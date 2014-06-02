@@ -8,50 +8,18 @@ class TermsController < ApplicationController
   before_filter CASClient::Frameworks::Rails::Filter, :only => :authenticated_show
   skip_before_action :verify_authenticity_token
 
-
   def update
-
-    req = Net::HTTP::Put.new( "/terms/#{URI.encode(params[:id])}" )
-    req["Content-Type"] = "application/json"
-    req.body = params[:termJSON]
-
-    host = Huginn::Application::CONFIG["muninn_host"]
-    port = Huginn::Application::CONFIG["muninn_port"]
-    response = Net::HTTP.new( host, port ).start do |http|
-      http.request(req)
-    end
-
+    response = MuninnAdapter.put( "/terms/#{URI.encode(params[:id])}", params[:termJSON] )
     render status: response.code, json: response.body
-    #render status: 200, text: ""
   end
 
-def create
-
-    req = Net::HTTP::Post.new( "/terms/" )
-    req["Content-Type"] = "application/json"
-    req.body = params[:term]
-    #LogTime.info("Parameters :  params = #{params.to_s}");
-
-    host = Huginn::Application::CONFIG["muninn_host"]
-    port = Huginn::Application::CONFIG["muninn_port"]
-    response = Net::HTTP.new( host, port ).start do |http|
-      http.request(req)
-    end
-
+  def create
+    response = MuninnAdapter.post( '/terms/', params[:term])
     render status: response.code, json: response.body
-    #render status: 200, text: ""
   end
 
-def destroy
-
-    req = Net::HTTP::Delete.new( "/terms/id/#{URI.encode(params[:id])}" )
-    req.body = nil
-    host = Huginn::Application::CONFIG["muninn_host"]
-    port = Huginn::Application::CONFIG["muninn_port"]
-    response = Net::HTTP.new( host, port ).start do |http|
-      http.request(req)
-    end
-
+  def destroy
+    response = MuninnAdapter.delete( "/terms/id/#{URI.encode(params[:id])}" )
     render status: response.code, json: response.body
   end
 
@@ -100,42 +68,36 @@ def destroy
     @term = JSON.parse(muninn_response.body)
   end
 
+
+
+
   def index
 
-
-    logger.debug("Querying Muninn...")
+  logger.debug("Querying Muninn...")
 
    if params.has_key?(:tags)
     search_s = params[:tags][:search1]
-    search_string(search_s)
 
-      # json_string = '{"query":{"query_string": {"query": "*' + "#{search_param}" +'*","fields":["name","definition"]}},"sort":[{"name":{"order":"asc"}}],"from":"0","size":"999"}'
+    json_string = MuninnCustomSearchAdapter.create_search_string(search_s)
+    @results = MuninnCustomSearchAdapter.custom_query(json_string, params[:page], 20 )
+
    else
     json_string = '{"query":{"match_all":{}},"from":"0","size":"999"}'
-    @results = MuninnAdapter.custom_query(json_string, params[:page], 20 )
+    @results = MuninnCustomSearchAdapter.custom_query(json_string, params[:page], 20 )
 
    end
 
   end
 
 
-  def search_string(search_s)
-    if !search_s.blank?
-       json_string =json_string ='{"query":{"match": {"_all": {"query": "' + "#{search_s}" + '" , "operator": "and"}}},"filter":{"type":{"value":"term"}},"from":"0","size":"999"}'
-     else
-       json_string = '{"query":{"match_all":{}},"from":"0","size":"999"}'
-    end
-
-    @results = MuninnAdapter.custom_query(json_string, params[:page], 20 )
-  end
 
   def partial_search
-    @results = search_string( params[:q] )
+    json_string = MuninnCustomSearchAdapter.create_search_string( params[:q] )
+    @results = MuninnCustomSearchAdapter.custom_query(json_string, params[:page], 20 )
       respond_to do |format|
       format.json {render :json => @results, layout: false}
       format.html {render layout: false }
     end
-        #render :text => "hello", :layout => false
   end
 
 
