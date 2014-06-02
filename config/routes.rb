@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
 
  # get "terms/:search1" => 'terms#search_string'
-  get "terms/auth/log/out" => 'terms#logout'
+  get "terms/auth/log/out" => 'session#logout'
   get "terms/auth/:id" => 'terms#authenticated_show'
   get "offices/:id" => 'offices#show'
   get "search/:search_for" => 'search#show'
@@ -27,7 +27,7 @@ Rails.application.routes.draw do
 
   resources :results, only: [:index]
   #root to:  "results#index"
-  
+
 
   root 'guide#index'
 
