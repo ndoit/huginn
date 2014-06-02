@@ -1,21 +1,17 @@
 
 $(document).ready(function(){ 
 
-     if(term_object !=null)  {
 
-	    alert(term_object);
-   		$('#search1').bind("change keyup",function() {
-   		  	if ($(this).val().length >=2 ) {
-		   		var url = 'terms/partial_search?q=' + $(this).val();
-				$('#search_results').load(url);
-			}
-		})
+   
 
-		alert( $('#updateTermButton').length );
+		
+
+     if(typeof term_object != 'undefined')  {
+      
 		$('#updateTermButton').click(function() {
-			updateTermObject(term_object)
-			updateTerm(term_object)
-
+		alert("updating term object")
+		updateTermObject(term_object)
+		updateTerm(term_object)
 		})
 
 		$('#showJSONButton').click( function() {
@@ -28,27 +24,37 @@ $(document).ready(function(){
 		    }
 		})
 		
-		$('#createTermButton').click(function() {
-			 term_object = {
-                "name": "Active Student",
-                "definition": "An individual who has been confirmed by an admitting office (or other admitting authority), as recorded by the University Registrar, is considered an active student until he or she:\n\n● Graduates (if degree-seeking)\n● Completes the academic term (if non degree-seeking)\n● Withdraws or is dismissed by the University \n● Fails to enroll for a spring or fall academic term (unless granted a leave of absence by a Dean)\n",
-                "source_system": "Banner",
-                "data_sensitivity": "SELECT *\nFROM SGBSTDN\nWHERE Status = ‘AS’\n",
-                "possible_values": "N/A",
-                "data_availability": "Data is available by term from Fall 1982 to the present\n\n",
-                "notes": "Students who withdraw or are dismissed during an academic term may be considered active for that academic term, at the discretion of the student’s dean.\n\nDuring the Fall and Spring academic term, students have up until the sixth day of classes to complete the roll call process and students who fail to enroll are inactivated, unless on leave.  Therefore, the use of current term active student data during the first two weeks of an academic term should be done judiciously.\n"};
-				alert(term_object);
-				createTerm(term_object);
-		    
-		})
 	} 
+
+	$("#search1").bind("change keyup",function() {
+		    console.log( $(this) )
+		  	if ($(this).val().length >=2 ) {
+	   		var url = 'terms/partial_search?q=' + $(this).val();
+			$('#search_results').load(url);
+		}
+	})
+
+	$('#createTermButton').click(function() {
+		 alert("I am here creating new term");
+		var term = $('#tname').val();
+		 term_new = {
+            "name": term,
+            "definition": "",
+            "source_system": "",
+            "data_sensitivity": "",
+            "possible_values": "",
+            "data_availability": "",
+            "notes": ""};
+             $('a.close-reveal-modal').trigger('click');
+			createTerm(term_new);
+	    
+	})
 })
 
 function updateTermObject(term_object ) {
 	//alert( tinymce )
-
+     alert("updating term ..");
 	tinymce.triggerSave();
-	alert("I am in update term object");
 	$('.editable').each( function() {
 		id = $(this).attr('id');
 		if ( id ) {
@@ -95,16 +101,20 @@ function updateTerm( term_object ) {
 	});
 
 }
-function createTerm( term_object ) {
 
-	$.ajax({
-	    url:  '',
+function createTerm( term_object ) {
+     
+   $.ajax({
+		url : '/terms',
 	    type: 'POST',
 	    data: { "term": JSON.stringify(term_object) },
 	   // data: { "termJSON": term_object },
     	dataType: 'json',
 	    success: function (data) {
 	       alert('term created')
+	       var url = escape('terms/'+ term_object.name);
+	       alert(url);
+	       $('#term_detail').load(url);
 	    },
 	    error: function( xhr, ajaxOptions, thrownError) {
         	alert(xhr.status + ": " + thrownError);
@@ -113,6 +123,8 @@ function createTerm( term_object ) {
 
 
 }
+
+
 
 tinymce.init({
     selector: ".editable",

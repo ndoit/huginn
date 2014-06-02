@@ -1,22 +1,26 @@
-<script>
-    term_object = <%= @term["term"].to_json.to_s.html_safe %>
-</script>
+ 
+  <script>
+    term_object = <%= @term["term"].to_json.to_s.html_safe %> 
+ </script>
 
 
+<div id ="term_detail">
 <div class="row">
-	<div class="large-6 columns">
+	<div class="large-4 columns">
 		<input type="button" value="Update Term" id="updateTermButton" />
 	</div>
-	<div class="large-6 columns">
+	<div class="large-4 columns">
 		<input type="button" value="Delete Term" id="deleteTermButton" />
 	</div>
-	<div class="large-6 columns">
-		<input type="button" value="Create Term" id="createTermButton" />
-			</div>	
+	<div class="large-4 columns">
+		
+	</div>
+ </div>	
 </div>
 
 <% if @term["success"] %>
 <div class="row">
+</br>
 <div class="large-12 columns">
 	<div class="small-12 large-8 columns">
 		<h1 class="page-title">
@@ -24,14 +28,20 @@
 		</h1>
 		<div class="editable" id="definition">
 			<%= @term["term"]["definition"].html_safe %>
-		</div><br />
+		</div><br/>
 		<h5 class="page-title">General Information</h5>
 		<dl>
 			<dt>Data Availability</dt>
 				<dd>
 					
 					<font size="2" color="gray">
-						<div id="data_availability" class="editable"> <%= @term["term"]["data_availability"].html_safe %> </div>
+						<div id="data_availability" class="editable"> 
+							<% if @term["term"]["data_availability"]  then %> 
+							 <%= @term["term"]["data_availability"].html_safe %> 
+							 <%else%>
+							  NA
+							  <%end%>
+				    	 </div>
 					</font>
 				
 				</dd>
@@ -39,13 +49,26 @@
 			<dt>Possible Values</dt>
 				<dd>
 					<font size="2" color="gray">
-						<div id="possible_values" class="editable"><%= @term["term"]["possible_values"].html_safe %></div>
+						<div id="possible_values" class="editable">
+							<% if @term["term"]["possible_values"] then %> 
+							<%= @term["term"]["possible_values"].html_safe %>
+							 <%else%>
+							   NA
+							  <%end%>
+							</div>
 					</font>
 				</dd>
 			</dt>
 			<dt>Notes</dt>
 				<dd>
-					<font size="2" color="gray"><div id="notes" class="editable"><%= @term["term"]["notes"].html_safe %></div></font>
+					<font size="2" color="gray"><div id="notes" class="editable">
+
+						<% if @term["term"]["notes"]  then %> 
+							<%= @term["term"]["notes"].html_safe %>
+							 <%else%>
+							   NA
+							  <%end%>
+						</div></font>
 				</dd>
 			</dt>
 		</dl>
@@ -72,6 +95,14 @@
 			</div>
 		</h5>
 		<div class="row">
+			<select id="e1">
+	        <option value="CS">"Campus Data Steward"</option>
+	        <option value="PR">"Provost"</option>
+	        <option value="OS">"OSPIR"</option>
+	        <option value="BO">"Budget Office"</option>
+	         <option value="HR">"Human Resources"</option>
+	        <option value="RO">"Registrar's Office</option>
+    		</select>
 			<table class="raci">
 			  <tbody class="tbody">
 			    <tr>
@@ -190,8 +221,9 @@
   	  	</div>
   	</div>
   	</div>
-</div>
 
+</div>
+</div>
 <!--Error: <%= @term["message"] %>-->
 
 <% end %>

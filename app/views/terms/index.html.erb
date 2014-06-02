@@ -10,13 +10,27 @@
       <div class="medium-9 large-3 medium-push-9 columns">
         <div class="panel">
           <form>
+
+          <div class="row">
+          <div class="large-12 columns">
+            <a class="button" href="#" data-reveal-id="mytiny">Create Term</a>
+               <div class="reveal-modal tiny" id="mytiny" data-reveal="">
+                 <h2>Create a New Term</h2>
+                 Name: <input type="text" id = "tname" name="name"><br>
+                <input type="button" value="Save Name" id = "createTermButton"/>
+                <a class="close-reveal-modal">×</a>
+               </div>    
+         </div>
+         </div>  
+
           <div class="row">
           <div class="large-12 columns">
             <%= form_for(:tags, :url=>{:action=>'index'}, :html => { :method => 'GET'}) do |f| %>
-            <p>Search Glossary: <%= f.text_field :search1, id: "search1", :autofocus => true %></p>
-          <% end %>
+              <p>Search Glossary: <%= f.text_field :search1, id: "search1", :autofocus => true %></p>
+            <% end %>
           </div>
           </div>
+     
           <div class="row">
           <div class="large-12 columns">
             <label>Responsible Organization</label>
@@ -35,7 +49,7 @@
       <div class="medium-6 large-9 medium-pull-3 columns" id="search_results"> 
         <%@results.each do |result| %>
          <% if result[:type]  == 'term' then %> 
-            <a href="../terms/<%=result[:data]["name"].html_safe %>"> <strong> 
+            <a href="../terms/<%=result[:data]["name"].html_safe%>" <strong> 
             <% if result[:m_name]  then %> 
                <%= result[:m_name].html_safe %></strong> </a> </br>   
             <%else %>
@@ -44,12 +58,18 @@
             <% if result[:m_definition]  then %> 
               <p> <%=  result[:m_definition].html_safe %></p>
             <%else %>
+              <% if result[:data]["definition"]  then %> 
               <p>  <%= result[:data]["definition"].html_safe  %></p>
+              <%else %>
+               <p> </p>
+              <%end%>              
             <%end%>
-         <% end %>    
-        <% end %>  
-        <%= will_paginate(@results, :class => "apple_pagination") %> <br>
-     </div>
+          <%end%>
+           <%end%>
+        
+          <%= will_paginate(@results, :class => "apple_pagination") %> <br>
+      </div>
     </div>
   </div>
+
 <% end %>

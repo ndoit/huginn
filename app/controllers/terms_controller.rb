@@ -27,9 +27,10 @@ class TermsController < ApplicationController
 
 def create
 
-    req = Net::HTTP::Post.new( "/terms" )
+    req = Net::HTTP::Post.new( "/terms/" )
     req["Content-Type"] = "application/json"
     req.body = params[:term]
+    #LogTime.info("Parameters :  params = #{params.to_s}");
    
     host = Huginn::Application::CONFIG["muninn_host"]
     port = Huginn::Application::CONFIG["muninn_port"]
@@ -138,9 +139,10 @@ def destroy
 
   end
 
+ 
   def search_string(search_s)
     if !search_s.blank?
-       json_string =json_string ='{"query":{"match": {"_all": {"query": "' + "#{search_s}" + '" , "operator": "and"}}},"filter":{"type":{"value":"term"}},"size":"999"}'
+       json_string =json_string ='{"query":{"match": {"_all": {"query": "' + "#{search_s}" + '" , "operator": "and"}}},"filter":{"type":{"value":"term"}},"from":"0","size":"999"}'
      else
        json_string = '{"query":{"match_all":{}},"from":"0","size":"999"}'
     end
