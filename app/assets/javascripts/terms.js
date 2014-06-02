@@ -106,22 +106,23 @@ function updateTerm( term_object ) {
 
 function createTerm( term_object ) {
 
-   $.ajax({
-		url : '/terms',
-	    type: 'POST',
-	    data: { "term": JSON.stringify(term_object) },
-	   // data: { "termJSON": term_object },
-    	dataType: 'json',
-	    success: function (data) {
-	       alert('term created')
-	       var url = escape('terms/'+ term_object.name);
-	       alert(url);
-	       $('#term_detail').load(url);
-	    },
-	    error: function( xhr, ajaxOptions, thrownError) {
-        	alert(xhr.status + ": " + thrownError);
-	    }
-	});
+  $.ajax({
+   url : '/terms',
+     type: 'POST',
+     data: { "term": JSON.stringify(term_object) },
+    // data: { "termJSON": term_object },
+     dataType: 'json',
+     success: function (data) {
+        //alert('term created')
+        var url = escape('terms/'+ term_object.name);
+        //alert(url);
+        //$('#term_detail').load(url);
+        window.location = url;
+     },
+     error: function( xhr, ajaxOptions, thrownError) {
+         alert(xhr.status + ": " + thrownError);
+     }
+  });
 
 
 }
