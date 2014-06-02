@@ -3,7 +3,7 @@ $(document).ready(function(){
 
 
 
-
+     $('#e1').select2();
 
 
      if(typeof term_object != 'undefined')  {
