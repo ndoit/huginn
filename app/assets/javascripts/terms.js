@@ -1,13 +1,13 @@
 
-$(document).ready(function(){ 
+$(document).ready(function(){
 
 
-   
 
-		
+
+
 
      if(typeof term_object != 'undefined')  {
-      
+
 		$('#updateTermButton').click(function() {
 		alert("updating term object")
 		updateTermObject(term_object)
@@ -23,14 +23,16 @@ $(document).ready(function(){
 				deleteTerm(term_object.id)
 		    }
 		})
-		
-	} 
+
+	}
 
 	$("#search1").bind("change keyup",function() {
 		    console.log( $(this) )
 		  	if ($(this).val().length >=2 ) {
+
 	   		var url = 'terms/partial_search?q=' + $(this).val();
-			$('#search_results').load(url);
+         console.log(url)
+			$('#search_results').load(encodeURI(url));
 		}
 	})
 
@@ -47,7 +49,7 @@ $(document).ready(function(){
             "notes": ""};
              $('a.close-reveal-modal').trigger('click');
 			createTerm(term_new);
-	    
+
 	})
 })
 
@@ -65,7 +67,7 @@ function updateTermObject(term_object ) {
 		}
 
 	});
-	
+
 	return term_object
 }
 
@@ -77,7 +79,7 @@ function deleteTerm( termid ) {
 	    success: function(data, status, xhr){
 
 	    	alert( data.message );
-	    	
+
 	    },
 	    error: function(xhr, status, error) {
            alert(xhr.responseText)
@@ -103,7 +105,7 @@ function updateTerm( term_object ) {
 }
 
 function createTerm( term_object ) {
-     
+
    $.ajax({
 		url : '/terms',
 	    type: 'POST',
@@ -132,6 +134,3 @@ tinymce.init({
     menubar: false,
     toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
   });
- 
-
-
