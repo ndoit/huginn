@@ -1,12 +1,30 @@
 
+var test = $('#test');
+$(test).select2({
+    data:[
+        { id: 'CS', text: 'Campus Data Steward'}
+  , { id: 'PR', text: 'Provost'}
+  , { id: 'OS', text: 'OSPIR'}
+  , { id: 'BO', text: 'Budget Office' }
+  , { id: 'HR', text: 'Human Resources'}
+  , { id: 'RO', text: 'Registrars Office' }
+    ],
+    multiple: true,
+    width: "500px"
+});
+
+
 $(document).ready(function(){
+	   $(test).change(function() {
+	   var theSelection =JSON.stringify($(test).select2('data'));
+	   $('#selectedText').text(theSelection);
 
+   // $("selectedText").select2().select2('val', 'PR');
+//    $('#selectedText').select2('data',value());
 
+ });
 
-     $('#e1').select2();
-
-
-     if(typeof term_object != 'undefined')  {
+       if(typeof term_object != 'undefined')  {
 
 		$('#updateTermButton').click(function() {
 		alert("updating term object")
@@ -55,12 +73,17 @@ $(document).ready(function(){
 
 function updateTermObject(term_object ) {
 	//alert( tinymce )
-     alert("updating term ..");
+    alert("updating term ..");
 	tinymce.triggerSave();
 	$('.editable').each( function() {
 		id = $(this).attr('id');
 		if ( id ) {
 			p = tinymce.get(id).getContent()
+			if (id == "name") {
+				var StrippedString = p.replace(/(<([^>]+)>)/ig,"");
+				p = StrippedString;
+
+			}
 			console.log(p);
 			console.log(id);
 			term_object[id] = p;
@@ -71,6 +94,7 @@ function updateTermObject(term_object ) {
 	return term_object
 }
 
+
 function deleteTerm( termid ) {
     alert("termid :" + termid)
 	$.ajax({
@@ -79,6 +103,8 @@ function deleteTerm( termid ) {
 	    success: function(data, status, xhr){
 
 	    	alert( data.message );
+	    	 var url = '../terms'
+             window.location = url;
 
 	    },
 	    error: function(xhr, status, error) {
@@ -96,6 +122,8 @@ function updateTerm( term_object ) {
     	dataType: 'json',
 	    success: function (data) {
 	       alert('term updated')
+	       var url = escape(term_object.name);
+           window.location = url;
 	    },
 	    error: function( xhr, ajaxOptions, thrownError) {
         	alert(xhr.status + ": " + thrownError);
@@ -126,8 +154,6 @@ function createTerm( term_object ) {
 
 
 }
-
-
 
 tinymce.init({
     selector: ".editable",

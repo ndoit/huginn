@@ -23,9 +23,13 @@
 </br>
 <div class="large-12 columns">
 	<div class="small-12 large-8 columns">
-		<h1 class="page-title">
+		
+			<div id="name" class="editable">
+				<h3 class="page-title">
 			<%= @term["term"]["name"] %>
-		</h1>
+			</h3>
+		</div>
+		
 		<div class="editable" id="definition">
 			<%= @term["term"]["definition"].html_safe %>
 		</div><br/>
@@ -89,35 +93,30 @@
         </div>
      </div>
 	<div class="small-12 large-12 columns">
-		<h5 class="page-title">R.A.C.I. Matrix
-			<div id="myModal" class="reveal-modal" data-reveal>
-				<font class="right" size="3"> (Details)</font>
-			</div>
-		</h5>
+		<h5 class="page-title">R.A.C.I. Matrix</h5>
 		<div class="row">
-			<select id="e1" multiple="true" style="width: 300px">
-	        <option value="CS" selected>"Campus Data Steward"</option>
-	        <option value="PR">"Provost"</option>
-	        <option value="OS">"OSPIR"</option>
-	        <option value="BO">"Budget Office"</option>
-	         <option value="HR">"Human Resources"</option>
-	        <option value="RO">"Registrar's Office</option>
-    		</select>
+			
 			<table class="raci">
 			  <tbody class="tbody">
 			    <tr>
 			      	<td>R</td>
-			      	<td>
-			      	<% @term["stakeholders"].each do |stakeholder| %>
-						<% if (stakeholder["stake"] =="Responsible") then %>
-							<div class="editable"><%= stakeholder["name"] %>; <div class="editable">
-						<% end %>
-					<% end %>
+			      	<td> 
+			      		<div>
+			      		 <% @term["stakeholders"].each do |stakeholder| %>
+			               <% if (stakeholder["stake"] =="Responsible") then %>
+						   <%if  stakeholder["name"] then %>
+						      <%= stakeholder["name"] %>
+					      <% end %>
+                      <% end %>
+					   	<% end %>
+					</div>
 					</td>
 			    </tr>
 			    <tr>
 			      	<td>A</td>
 			      	<td>
+			    		 <input type="hidden" id="test" />
+						<p>Selected Options: <span id="selectedText"></span></p>
 			      		<% @term["stakeholders"].each do |stakeholder| %>
 							<% if (stakeholder["stake"] =="Accountable") then %>
 								<%= stakeholder["name"] %>;
