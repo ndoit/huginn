@@ -26,7 +26,8 @@ class TermsController < ApplicationController
 
 
 
-  def authenticated_show
+  def authenticated_sho
+
     muninn_host = Huginn::Application::CONFIG["muninn_host"]
     muninn_port = Huginn::Application::CONFIG["muninn_port"]
 
@@ -48,6 +49,14 @@ class TermsController < ApplicationController
   end
 
   def show
+
+    office_json = MuninnAdapter.get( "/offices" )["results"]
+    offices = []
+    office_json.each do |office|
+        offices << { id: office["id"], text: office["data"]["name"] }
+    end
+    @office_json = offices.to_json
+
     muninn_host = Huginn::Application::CONFIG["muninn_host"]
     muninn_port = Huginn::Application::CONFIG["muninn_port"]
 
@@ -67,8 +76,6 @@ class TermsController < ApplicationController
     end
     @term = JSON.parse(muninn_response.body)
   end
-
-
 
 
   def index
