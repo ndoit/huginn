@@ -1,6 +1,7 @@
 
   <script>
     term_object = <%= @term["term"].to_json.to_s.html_safe %>
+    office_json = <%= @office_json.to_s.html_safe %>
  </script>
 
 
@@ -23,13 +24,13 @@
 </br>
 <div class="large-12 columns">
 	<div class="small-12 large-8 columns">
-		
+
 			<div id="name" class="editable">
 				<h3 class="page-title">
 			<%= @term["term"]["name"] %>
 			</h3>
 		</div>
-		
+
 		<div class="editable" id="definition">
 			<%= @term["term"]["definition"].html_safe %>
 		</div><br/>
@@ -95,12 +96,12 @@
 	<div class="small-12 large-12 columns">
 		<h5 class="page-title">R.A.C.I. Matrix</h5>
 		<div class="row">
-			
+
 			<table class="raci">
 			  <tbody class="tbody">
 			    <tr>
 			      	<td>R</td>
-			      	<td> 
+			      	<td>
 			      		<div>
 			      		 <% @term["stakeholders"].each do |stakeholder| %>
 			               <% if (stakeholder["stake"] =="Responsible") then %>
