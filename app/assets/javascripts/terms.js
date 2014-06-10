@@ -1,30 +1,24 @@
 
-var test = $('#test');
-$(test).select2({
-    data:[
-        { id: 'CS', text: 'Campus Data Steward'}
-  , { id: 'PR', text: 'Provost'}
-  , { id: 'OS', text: 'OSPIR'}
-  , { id: 'BO', text: 'Budget Office' }
-  , { id: 'HR', text: 'Human Resources'}
-  , { id: 'RO', text: 'Registrars Office' }
-    ],
-    multiple: true,
-    width: "500px"
-});
+
 
 
 $(document).ready(function(){
-	   $(test).change(function() {
-	   var theSelection =JSON.stringify($(test).select2('data'));
-	   $('#selectedText').text(theSelection);
 
-   // $("selectedText").select2().select2('val', 'PR');
-//    $('#selectedText').select2('data',value());
+    var test = $('#test');
+    $(test).select2({
+        data:office_json,
+        multiple: true,
+        width: "500px"
+    });
 
- });
+    $(test).change(function() {
+        var theSelection =JSON.stringify($(test).select2('data'));
+        $('#selectedText').text(theSelection);
 
-       if(typeof term_object != 'undefined')  {
+     });
+
+
+  if(typeof term_object != 'undefined')  {
 
 		$('#updateTermButton').click(function() {
 		alert("updating term object")
