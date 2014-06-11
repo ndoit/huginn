@@ -1,10 +1,14 @@
 
-  <script>
+ <script>
     term_object = <%= @term["term"].to_json.to_s.html_safe %>
     office_json = <%= @office_json.to_s.html_safe %>
+    stake_responsible= <%= @stake_responsible_json.to_s.html_safe %>
+    stake_accountable= <%= @stake_accountable_json.to_s.html_safe %>
+    stake_consult= <%= @stake_consult_json.to_s.html_safe %>
+    stake_inform = <%= @stake_inform_json.to_s.html_safe %>
+    stakeholder_hash = <%= @stakeholder_hash.to_json.to_s.html_safe %>
+
  </script>
-
-
 <div id ="term_detail">
 <div class="row">
 	<div class="large-4 columns">
@@ -97,56 +101,19 @@
 		<h5 class="page-title">R.A.C.I. Matrix</h5>
 		<div class="row">
 
+
 			<table class="raci">
 			  <tbody class="tbody">
+			  	<% @stakeholder_hash.keys.each do |key|%>
 			    <tr>
-			      	<td>R</td>
+			      	<td><%= key[0].upcase %></td>
 			      	<td>
-			      		<div>
-			      		 <% @term["stakeholders"].each do |stakeholder| %>
-			               <% if (stakeholder["stake"] =="Responsible") then %>
-						   <%if  stakeholder["name"] then %>
-						      <%= stakeholder["name"] %>
-					      <% end %>
-                      <% end %>
-					   	<% end %>
-					</div>
+		      			<input type="hidden" class="raci_input" data-init="<%= @stakeholder_hash[key].to_json %>" >
 					</td>
 			    </tr>
-			    <tr>
-			      	<td>A</td>
-			      	<td>
-			    		 <input type="hidden" id="test" />
-						<p>Selected Options: <span id="selectedText"></span></p>
-			      		<% @term["stakeholders"].each do |stakeholder| %>
-							<% if (stakeholder["stake"] =="Accountable") then %>
-								<%= stakeholder["name"] %>;
-							<% end %>
-						<% end %>
-					</td>
-			    </tr>
-			    <tr>
-			      	<td>C</td>
-			      	<td>
-			      		<% @term["stakeholders"].each do |stakeholder| %>
-							<% if (stakeholder["stake"] =="Consult") then %>
-								<%= stakeholder["name"] %>;
-							<% end %>
-						<% end %>
-			      	</td>
-			    </tr>
-			    <tr>
-			      	<td>I</td>
-			      	<td>
-			      		<% @term["stakeholders"].each do |stakeholder| %>
-							<% if (stakeholder["stake"] =="Inform") then %>
-								<%= stakeholder["name"] %>;
-							<% end %>
-						<% end %>
-			      	</td>
-			    </tr>
-			  </tbody>
-			</table>
+			    <% end %>
+			 </table>
+
 		</div>
 		<h1 class="page-title"></h1>
 		<div class="right">
