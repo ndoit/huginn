@@ -3,19 +3,17 @@
 
 
 $(document).ready(function(){
-
-    var test = $('#test');
-    $(test).select2({
+   
+    $('.raci_input').select2({
         data:office_json,
         multiple: true,
         width: "500px"
     });
 
-    $(test).change(function() {
-        var theSelection =JSON.stringify($(test).select2('data'));
-        $('#selectedText').text(theSelection);
-
-     });
+    $('.raci_input').each( function() {
+    	$(this).data().select2.updateSelection( $(this).data('init') )
+    })
+  
 
 
   if(typeof term_object != 'undefined')  {
@@ -88,7 +86,7 @@ function updateTermObject(term_object ) {
 	return term_object
 }
 
-
+       
 function deleteTerm( termid ) {
     alert("termid :" + termid)
 	$.ajax({
