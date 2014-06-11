@@ -46,6 +46,7 @@ class TermsController < ApplicationController
 
     @term = JSON.parse(muninn_response.body)
     @term["huginn_user"] = session[:cas_user].to_s
+
   end
 
   def show
@@ -53,7 +54,7 @@ class TermsController < ApplicationController
     office_json = MuninnAdapter.get( "/offices" )["results"]
     offices = []
     office_json.each do |office|
-        offices << { id: office["id"], text: office["data"]["name"] }
+        offices << {id: office["data"]["id"], text: office["data"]["name"]}
     end
     @office_json = offices.to_json
 
@@ -74,8 +75,20 @@ class TermsController < ApplicationController
     else
       muninn_response = http.get("http://#{muninn_host}:#{muninn_port}/#{uri_string}")
     end
+
     @term = JSON.parse(muninn_response.body)
-  end
+
+    @stakeholder_hash = {}
+
+    stake_json = @term["stakeholders"]
+    stake_json.each do |stake| 
+
+      @stakeholder_hash[stake["stake"]] ||= []
+      @stakeholder_hash[stake["stake"]] << {id: stake["id"], text: stake["name"]}
+
+    end
+
+   end
 
 
   def index
