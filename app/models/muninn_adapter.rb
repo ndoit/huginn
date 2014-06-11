@@ -30,6 +30,9 @@ class MuninnAdapter
 
     http = MuninnAdapter.new_http_request
 
+    muninn_host = Huginn::Application::CONFIG["muninn_host"]
+    muninn_port = Huginn::Application::CONFIG["muninn_port"]
+
     http.use_ssl = Huginn::Application::CONFIG["muninn_uses_ssl"]
 
     if !Huginn::Application::CONFIG["validate_muninn_certificate"]
