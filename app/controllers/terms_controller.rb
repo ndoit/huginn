@@ -51,42 +51,40 @@ class TermsController < ApplicationController
 
   def show
 
-    office_json = MuninnAdapter.get( "/offices" )["results"]
+
+    # GET OFFICES
+    office_resp = MuninnAdapter.get( "/offices" )
+    office_json = JSON.parse( office_resp.body )["results"]
+
     offices = []
     office_json.each do |office|
-        offices << {id: office["data"]["id"], text: office["data"]["name"]}
+        offices << {id: office["data"]["name"], text: office["data"]["name"]}
     end
     @office_json = offices.to_json
 
-    muninn_host = Huginn::Application::CONFIG["muninn_host"]
-    muninn_port = Huginn::Application::CONFIG["muninn_port"]
-
-    logger.debug("Querying Muninn...")
-                uri_string = "/terms/" + URI::encode(params[:id])
 
 
-    http = Net::HTTP.new(muninn_host, muninn_port)
-    http.use_ssl = Huginn::Application::CONFIG["muninn_uses_ssl"]
-    if !Huginn::Application::CONFIG["validate_muninn_certificate"]
-      http.verify_mode = OpenSSL::SSL::VERIFY_NONE #for when Muninn is using a self-signed cert
-    end
-    if Huginn::Application::CONFIG["muninn_uses_ssl"]
-                  muninn_response = http.get("https://#{muninn_host}:#{muninn_port}/#{uri_string}")
-    else
-      muninn_response = http.get("http://#{muninn_host}:#{muninn_port}/#{uri_string}")
-    end
-
+    # GET TERM
+    muninn_response = MuninnAdapter.get( "/terms/" + URI::encode(params[:id]) )
     @term = JSON.parse(muninn_response.body)
 
+
+
+    # GET STAKEHOLDERS FOR TERM
     @stakeholder_hash = {}
+    @stakeholder_hash["Responsible"] = []
+    @stakeholder_hash["Consult"] = []
+    @stakeholder_hash["Inform"] = []
+    @stakeholder_hash["Accountable"] = []
 
     stake_json = @term["stakeholders"]
-    stake_json.each do |stake| 
-
-      @stakeholder_hash[stake["stake"]] ||= []
-      @stakeholder_hash[stake["stake"]] << {id: stake["id"], text: stake["name"]}
-
+    if stake_json != nil
+     stake_json.each do |stake| 
+          @stakeholder_hash[stake["stake"]] ||= []
+        @stakeholder_hash[stake["stake"]] << {id: stake["id"], text: stake["name"]}
+      end
     end
+
 
    end
 
