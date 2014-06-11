@@ -3,7 +3,7 @@
 
 
 $(document).ready(function(){
-   
+   if(typeof office_json != 'undefined')  {
     $('.raci_input').select2({
         data:office_json,
         multiple: true,
@@ -15,11 +15,11 @@ $(document).ready(function(){
     })
   
 
-
+  }
   if(typeof term_object != 'undefined')  {
 
 		$('#updateTermButton').click(function() {
-		alert("updating term object")
+		//alert("updating term object")
 		updateTermObject(term_object)
 		updateTerm(term_object)
 		})
@@ -83,6 +83,21 @@ function updateTermObject(term_object ) {
 
 	});
 
+	term_object["stakeholders"] = []
+	var i = 0;
+	$('.raci_row').each( function() {
+
+		stake = $(this).data('raci-stake')
+		console.log("stake is " + stake)
+		json_array = $('#raci' + i ).select2('data')	
+		for (var j = 0; j < json_array.length; j++ ) {
+			term_object["stakeholders"].push( { name: json_array[j]["text"], stake: stake} )	
+		}
+		i++;
+	})
+	
+	console.log( term_object )
+
 	return term_object
 }
 
@@ -115,7 +130,7 @@ function updateTerm( term_object ) {
 	    success: function (data) {
 	       alert('term updated')
 	       var url = escape(term_object.name);
-           window.location = url;
+           //window.location = url;
 	    },
 	    error: function( xhr, ajaxOptions, thrownError) {
         	alert(xhr.status + ": " + thrownError);
