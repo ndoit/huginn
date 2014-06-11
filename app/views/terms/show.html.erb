@@ -2,10 +2,6 @@
  <script>
     term_object = <%= @term["term"].to_json.to_s.html_safe %>
     office_json = <%= @office_json.to_s.html_safe %>
-    stake_responsible= <%= @stake_responsible_json.to_s.html_safe %>
-    stake_accountable= <%= @stake_accountable_json.to_s.html_safe %>
-    stake_consult= <%= @stake_consult_json.to_s.html_safe %>
-    stake_inform = <%= @stake_inform_json.to_s.html_safe %>
     stakeholder_hash = <%= @stakeholder_hash.to_json.to_s.html_safe %>
 
  </script>
@@ -104,11 +100,11 @@
 
 			<table class="raci">
 			  <tbody class="tbody">
-			  	<% @stakeholder_hash.keys.each do |key|%>
-			    <tr>
+			  	<% @stakeholder_hash.keys.each_with_index do |key, index|%>
+			    <tr class="raci_row" data-raci-stake="<%= key %>">
 			      	<td><%= key[0].upcase %></td>
 			      	<td>
-		      			<input type="hidden" class="raci_input" data-init="<%= @stakeholder_hash[key].to_json %>" >
+		      			<input type="hidden" class="raci_input" id="raci<%= index %>" data-init="<%= @stakeholder_hash[key].to_json %>" >
 					</td>
 			    </tr>
 			    <% end %>
