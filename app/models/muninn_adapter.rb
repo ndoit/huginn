@@ -45,7 +45,7 @@ class MuninnAdapter
       muninn_response = http.get("http://#{muninn_host}:#{muninn_port}/#{resource_uri}")
     end
 
-    JSON.parse(muninn_response.body)
+    muninn_response
   end
 
   private
