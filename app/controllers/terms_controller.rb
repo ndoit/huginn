@@ -73,15 +73,16 @@ class TermsController < ApplicationController
     # GET STAKEHOLDERS FOR TERM
     @stakeholder_hash = {}
     @stakeholder_hash["Responsible"] = []
+    @stakeholder_hash["Accountable"] = []
     @stakeholder_hash["Consult"] = []
     @stakeholder_hash["Inform"] = []
-    @stakeholder_hash["Accountable"] = []
+   
 
     stake_json = @term["stakeholders"]
     if stake_json != nil
      stake_json.each do |stake| 
           @stakeholder_hash[stake["stake"]] ||= []
-        @stakeholder_hash[stake["stake"]] << {id: stake["id"], text: stake["name"]}
+        @stakeholder_hash[stake["stake"]] << {id: stake["Id"], text: stake["name"]}
       end
     end
 
