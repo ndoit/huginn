@@ -1,26 +1,25 @@
-
-
-
-
+ 
 $(document).ready(function(){
-   if(typeof office_json != 'undefined')  {
-    $('.raci_input').select2({
+  if(typeof office_json != 'undefined')  {
+   $('.raci_input').select2({
         data:office_json,
         multiple: true,
         width: "500px"
     });
 
     $('.raci_input').each( function() {
-    	$(this).data().select2.updateSelection( $(this).data('init') )
-    })
-  
+    	
+    	$(this).data().select2.updateSelection($(this).data('init') )
 
-  }
+    })
+ }
   if(typeof term_object != 'undefined')  {
 
 		$('#updateTermButton').click(function() {
 		//alert("updating term object")
-		updateTermObject(term_object)
+		if (updateTermObject(term_object) == false)
+			return false;
+
 		updateTerm(term_object)
 		})
 
@@ -84,18 +83,38 @@ function updateTermObject(term_object ) {
 	});
 
 	term_object["stakeholders"] = []
-	var i = 0;
-	$('.raci_row').each( function() {
+	var office_array=[]
 
+	var i = 0;
+	var exitRACI = false;
+	var dupRACI = false;
+	$('.raci_row').each( function() {
 		stake = $(this).data('raci-stake')
-		console.log("stake is " + stake)
+		console.log("stake value is " + stake);
 		json_array = $('#raci' + i ).select2('data')	
+        if (stake == "Responsible" && json_array.length >1){
+        	alert("RACI matrix Rule violated: \n\n Responsible role is allowed only for one office. Please edit and re-submit.");
+        	exitRACI = true;
+        	return false;
+        }
 		for (var j = 0; j < json_array.length; j++ ) {
-			term_object["stakeholders"].push( { name: json_array[j]["text"], stake: stake} )	
+
+			term_object["stakeholders"].push( { name: json_array[j]["text"], stake: stake} )
+            if (office_array !=null )  {
+            	for (var k=0; k<office_array.length; k++){
+            		if (json_array[j]["text"] == office_array[k]["name"]){
+            	      alert("RACI matrix Rule violated: \n\nOne or more Departments are repeated in the RACI entry. Please edit and re-submit.");
+            		  dupRACI = true;
+                      return false;
+            	    }
+                }
+          }
+            office_array.push({name: json_array[j]["text"]});	
 		}
 		i++;
 	})
-	
+	if (exitRACI) return false;
+	if (dupRACI) return false;
 	console.log( term_object )
 
 	return term_object
@@ -130,7 +149,7 @@ function updateTerm( term_object ) {
 	    success: function (data) {
 	       alert('term updated')
 	       var url = escape(term_object.name);
-           //window.location = url;
+            window.location = url;
 	    },
 	    error: function( xhr, ajaxOptions, thrownError) {
         	alert(xhr.status + ": " + thrownError);
