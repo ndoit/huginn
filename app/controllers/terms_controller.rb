@@ -82,7 +82,7 @@ class TermsController < ApplicationController
     if stake_json != nil
      stake_json.each do |stake| 
           @stakeholder_hash[stake["stake"]] ||= []
-        @stakeholder_hash[stake["stake"]] << {id: stake["Id"], text: stake["name"]}
+        @stakeholder_hash[stake["stake"]] << {id: stake["id"], text: stake["name"]}
       end
     end
 
