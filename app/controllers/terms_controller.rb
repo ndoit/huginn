@@ -73,9 +73,10 @@ class TermsController < ApplicationController
     # GET STAKEHOLDERS FOR TERM
     @stakeholder_hash = {}
     @stakeholder_hash["Responsible"] = []
+    @stakeholder_hash["Accountable"] = []
     @stakeholder_hash["Consult"] = []
     @stakeholder_hash["Inform"] = []
-    @stakeholder_hash["Accountable"] = []
+   
 
     stake_json = @term["stakeholders"]
     if stake_json != nil
