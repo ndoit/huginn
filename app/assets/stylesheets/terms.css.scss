@@ -17,6 +17,10 @@
 	font-size: .75EM;
 }
 
+.highlight{
+	background-color: #FFFF88;
+}
+
   .apple_pagination {
   background: #f1f1f1;
   border: 1px solid #e5e5e5;
@@ -41,7 +45,7 @@
     text-shadow: rgba(255, 255, 255, 0.8) 1px 1px 1px; }
   .apple_pagination a {
     text-decoration: none;
-    color: #002b5b; 
+    color: #002b5b;
     font-weight: bold;}
     .apple_pagination a:hover, .apple_pagination a:focus {
       text-decoration: underline; }

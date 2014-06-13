@@ -3,6 +3,9 @@
 
 
 $(document).ready(function(){
+
+
+
    if(typeof office_json != 'undefined')  {
     $('.raci_input').select2({
         data:office_json,
@@ -13,7 +16,7 @@ $(document).ready(function(){
     $('.raci_input').each( function() {
     	$(this).data().select2.updateSelection( $(this).data('init') )
     })
-  
+
 
   }
   if(typeof term_object != 'undefined')  {
@@ -41,8 +44,12 @@ $(document).ready(function(){
 		  	if ($(this).val().length >=2 ) {
 
 	   		var url = 'terms/partial_search?q=' + $(this).val();
+         var search_string = $(this).val();
          console.log(url)
-			$('#search_results').load(encodeURI(url));
+			$('#search_results').load(encodeURI(url), function() {
+        $("p, a").highlight(search_string);
+      }
+      );
 		}
 	})
 
@@ -89,19 +96,19 @@ function updateTermObject(term_object ) {
 
 		stake = $(this).data('raci-stake')
 		console.log("stake is " + stake)
-		json_array = $('#raci' + i ).select2('data')	
+		json_array = $('#raci' + i ).select2('data')
 		for (var j = 0; j < json_array.length; j++ ) {
-			term_object["stakeholders"].push( { name: json_array[j]["text"], stake: stake} )	
+			term_object["stakeholders"].push( { name: json_array[j]["text"], stake: stake} )
 		}
 		i++;
 	})
-	
+
 	console.log( term_object )
 
 	return term_object
 }
 
-       
+
 function deleteTerm( termid ) {
     alert("termid :" + termid)
 	$.ajax({
