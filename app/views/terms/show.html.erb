@@ -25,24 +25,27 @@
 
 <div class="row">
   <div class="large-12 columns">
-    <div class="reveal-modal tiny" id="mytinyDelete" data-reveal="">
-       <h2>Deleting Term</h2>
-       <b> Are you sure? <b> <br> <br>
-       <input type="button" class ="tiny button" value="Yes" id="deleteConfirm" />
-       <input type="button" class ="tiny button" value="No" id="deleteCancel" />
-       <a class="close-reveal-modal">×</a>
-    </div>   
+       <div class="reveal-modal tiny" id="mytinyDelete" data-reveal="">
+      	 <h2>Deleting Term</h2> <br>
+      	 <b> Are you sure? <b> <br> <br>
+      	 <input type="button" class ="tiny button" value="Yes" id="deleteConfirm" />
+      	 <input type="button" class ="tiny button" value="No" id="deleteCancel" />
+      	 <a class="close-reveal-modal">×</a>
+     </div>   
+   </div>
   </div>
-</div>  
+ 
 
 
 <div id ="term_detail">
-<div class="row">
-	<div class="large-12 columns">
-		<input type="button" class ="tiny button"   value="Update Term" id="updateTermButton" />
-		<input type="button"  class ="tiny button" value="Delete Term" data-reveal-id="mytinyDelete" id="deleteTermButton" />
-	</div>
- </div>
+   <div class="row">
+	  <div class="large-12 columns">
+		 <div class="small-12 large-12 columns">
+		    <input type="button" class ="tiny button"   value="Update Term" id="updateTermButton" />
+		    <input type="button"  class ="tiny button" value="Delete Term" data-reveal-id="mytinyDelete" id="deleteTermButton" />
+	  </div>
+   </div>
+  </div>
 </div>
 
 <% if @term["success"] %>
