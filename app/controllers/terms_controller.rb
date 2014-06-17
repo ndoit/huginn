@@ -76,11 +76,11 @@ class TermsController < ApplicationController
     @stakeholder_hash["Accountable"] = []
     @stakeholder_hash["Consult"] = []
     @stakeholder_hash["Inform"] = []
-   
+
 
     stake_json = @term["stakeholders"]
     if stake_json != nil
-     stake_json.each do |stake| 
+     stake_json.each do |stake|
           @stakeholder_hash[stake["stake"]] ||= []
         @stakeholder_hash[stake["stake"]] << {id: stake["id"], text: stake["name"]}
       end
@@ -115,7 +115,7 @@ class TermsController < ApplicationController
     @results = MuninnCustomSearchAdapter.custom_query(json_string, params[:page], 20 )
       respond_to do |format|
       format.json {render :json => @results, layout: false}
-      format.html {render layout: false }
+      format.html {render partial: "partial_search", layout: false }
     end
   end
 
