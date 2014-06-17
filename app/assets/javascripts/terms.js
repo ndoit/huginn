@@ -12,63 +12,107 @@ $(document).ready(function(){
     	$(this).data().select2.updateSelection( $(this).data('init') )
     })
 
- }
+  }
+
   if(typeof term_object != 'undefined')  {
 
 		$('#updateTermButton').click(function() {
 		//alert("updating term object")
-		if (updateTermObject(term_object) == false)
-			return false;
+		  if (updateTermObject(term_object) == false)
+			  return false;
 
-		updateTerm(term_object)
+		  updateTerm(term_object)
 		})
 
 		$('#showJSONButton').click( function() {
 			$('#json_container').toggle()
 		})
 
-		$('#deleteTermButton').click(function() {
-			if ( confirm('Are you sure?') ) {
-				deleteTerm(term_object.id)
-		    }
+		$('#deleteConfirm').click( function() {
+			$('a.close-reveal-modal').trigger('click')
+			deleteTerm(term_object.id)
+		})
+		$('#deleteCancel').click( function() {
+			$('a.close-reveal-modal').trigger('click')
 		})
 
-	}
+  }
+  $("#search1").bind("change keyup",function() {
+     console.log( $(this) )
+     if ($(this).val().length >=2 ) {
+       var url = 'terms/partial_search?q=' + $(this).val();
+       var search_string = $(this).val();
+       console.log(url)
+       $('#search_results').load(encodeURI(url), function() {
+          $(".do_highlight").highlight(search_string);
+       });
+     }
+  })
 
-	$("#search1").bind("change keyup",function() {
-		    console.log( $(this) )
-		  	if ($(this).val().length >=2 ) {
-
-	   		var url = 'terms/partial_search?q=' + $(this).val();
-         var search_string = $(this).val();
-         console.log(url)
-			$('#search_results').load(encodeURI(url), function() {
-        $("p, a").highlight(search_string);
-      }
-      );
-		}
-	})
-
-	$('#createTermButton').click(function() {
-		 alert("I am here creating new term");
-		var term = $('#tname').val();
-		 term_new = {
-            "name": term,
-            "definition": "",
-            "source_system": "",
-            "data_sensitivity": "",
-            "possible_values": "",
-            "data_availability": "",
-            "notes": ""};
-             $('a.close-reveal-modal').trigger('click');
-			createTerm(term_new);
-
-	})
+  $('#createTermButton').click(function() {
+	var term = $('#tname').val();
+	term_new = {
+     "name": term,
+     "definition": "",
+     "source_system": "",
+     "data_sensitivity": "",
+     "possible_values": "",
+     "data_availability": "",
+     "notes": ""};
+    $('a.close-reveal-modal').trigger('click');
+    createTerm(term_new);
+  })
 })
 
+
+function clearValidationErrors() {
+ $('.alert-box').each( function() {
+ 		$(this).find('.error_list').html('');
+ 		$(this).find('.success_msg').html('');
+ 		$(this).hide()
+ })
+}
+
+function addValidationError( type, message ) {
+  error_list = $('.alert-box.' + type ).find('ul.error_list')
+  error_list.append( '<li>' + message + '</li>')
+}
+
+ function showValidationErrors() {
+ 	errors_exist = false
+ 	$('.alert-box').each( function() {
+ 		if ( $(this).find('li').length != 0 ){ 
+ 			type = $(this).find('alert','warning')
+ 		   $('.alert-box.' + type.selector).show().html_safe;
+ 		   errors_exist = true
+ 		}
+ 	})
+ 	if ( errors_exist ) {
+ 		window.scrollTo(0,0)
+ 	}
+ 	return errors_exist
+ }
+
+ function addSuccessMessage(type, message ) {
+  $('.alert-box.' + type ).find('span.success_msg').append(message);
+ }
+  function showSuccessMessage() {
+ 	success_exist = false
+ 	$('.alert-box').each( function() {
+ 		if ( $(this).find('span').html){ 
+ 			 type = $(this).find('success')
+ 		   $('.alert-box.' + type.selector).show().html_safe;
+ 		   success_exist = true
+ 		}
+ 	})
+ 	if ( success_exist) {
+ 		window.scrollTo(0,0)
+ 	}
+ 	return success_exist
+ }
+
 function updateTermObject(term_object ) {
-	//alert( tinymce )
-    alert("updating term ..");
+	clearValidationErrors()
 	tinymce.triggerSave();
 	$('.editable').each( function() {
 		id = $(this).attr('id');
@@ -92,54 +136,75 @@ function updateTermObject(term_object ) {
 	var i = 0;
 	var exitRACI = false;
 	var dupRACI = false;
+	var office_text =null;
 	$('.raci_row').each( function() {
 		stake = $(this).data('raci-stake')
 		console.log("stake value is " + stake);
 		json_array = $('#raci' + i ).select2('data')	
         if (stake == "Responsible" && json_array.length >1){
-        	alert("RACI matrix Rule violated: \n\n Responsible role is allowed only for one office. Please edit and re-submit.");
-        	exitRACI = true;
-        	return false;
+        	addValidationError( "alert", "Only one <b>Responsible</b> office is allowed.")
+        	//alert();
+        	//exitRACI = true;
+        	//return false;
         }
+      
 		for (var j = 0; j < json_array.length; j++ ) {
-
 			term_object["stakeholders"].push( { name: json_array[j]["text"], stake: stake} )
+			var office_exist = false;
             if (office_array !=null )  {
             	for (var k=0; k<office_array.length; k++){
-            		if (json_array[j]["text"] == office_array[k]["name"]){
-            	      alert("RACI matrix Rule violated: \n\nOne or more Departments are repeated in the RACI entry. Please edit and re-submit.");
-            		  dupRACI = true;
-                      return false;
+            		if (json_array[j]["text"] == office_array[k]["name"])  {
+            		  office_exist = true;
+            	      break;
             	    }
                 }
-          }
-            office_array.push({name: json_array[j]["text"]});	
-		}
-		i++;
-	})
-	if (exitRACI) return false;
-	if (dupRACI) return false;
+            }
+
+            if (!office_exist)
+              office_array.push({name: json_array[j]["text"]})	
+            else{
+              if (!office_text)
+                 office_text = json_array[j]["text"]
+              else if (office_text.search( json_array[j]["text"]) <0)
+              	office_text  += " , "+ json_array[j]["text"]
+            }
+
+       }
+       i++;
+
+	}) 
+
+  if (office_text !=null)
+    addValidationError( "alert", "<b>" +  office_text + "</b>" +  " has repeated in the RACI entry. Each office is assigned for one role per term.");
+      
+		
+	//if (exitRACI) return false;
+	//if (dupRACI) return false;
 	console.log( term_object )
 
-	return term_object
+  if ( showValidationErrors()  == true ) {
+    return false;
+  }
+  
+	return term_object;
 }
 
 
 function deleteTerm( termid ) {
-    alert("termid :" + termid)
-	$.ajax({
+  	$.ajax({
 	    url:   termid,
 	    type: 'DELETE',
 	    success: function(data, status, xhr){
-
-	    	alert( data.message );
-	    	 var url = '../terms'
-             window.location = url;
-
+	      addSuccessMessage("success", "<b>" + data.message + ". Please wait for Glossary Page display.</br>" )
+	      showSuccessMessage(); 
+        var url = '../terms'
+        window.location = url;
 	    },
 	    error: function(xhr, status, error) {
-           alert(xhr.responseText)
-       }
+           //alert(xhr.responseText)
+        addValidationError( "alert", "Delete term has errors: " + xhr.responseText);
+        showValidationErrors()
+      }
 	});
 }
 function updateTerm( term_object ) {
@@ -147,39 +212,43 @@ function updateTerm( term_object ) {
 	$.ajax({
 	    url: term_object.id,
 	    type: 'PUT',
-	    data: { "termJSON": JSON.stringify(term_object) },
+	    data: {"termJSON": JSON.stringify(term_object) },
 	   // data: { "termJSON": term_object },
     	dataType: 'json',
 	    success: function (data) {
-	       alert('term updated')
 	       var url = escape(term_object.name);
-            window.location = url;
+	       addSuccessMessage("success", "<b>" + term_object.name + "</b>" +  " updated successfully. " );
+	       showSuccessMessage();
+           window.location = url;
 	    },
 	    error: function( xhr, ajaxOptions, thrownError) {
-        	alert(xhr.status + ": " + thrownError);
+	       addValidationError( "alert", "Update term has errors: " + xhr.responseText);
+           showValidationErrors()
 	    }
 	});
 
 }
 
 function createTerm( term_object ) {
-
   $.ajax({
-   url : '/terms',
+     url : '/terms',
      type: 'POST',
-     data: { "term": JSON.stringify(term_object) },
+     data: { "term": JSON.stringify(term_object)},
     // data: { "termJSON": term_object },
      dataType: 'json',
      success: function (data) {
         //alert('term created')
+        addSuccessMessage("success", "<b>Term " + term_object.name +   " successfully. Please wait for Term Detail page display.</b>");
+	    showSuccessMessage();
         var url = escape('terms/'+ term_object.name);
         //alert(url);
         //$('#term_detail').load(url);
         window.location = url;
      },
      error: function( xhr, ajaxOptions, thrownError) {
-         alert(xhr.status + ": " + thrownError);
-     }
+          addValidationError( "alert", "Create term has errors: " + xhr.responseText);
+          showValidationErrors()
+	    }
   });
 
 
