@@ -1,20 +1,46 @@
-
  <script>
     term_object = <%= @term["term"].to_json.to_s.html_safe %>
     office_json = <%= @office_json.to_s.html_safe %>
     stakeholder_hash = <%= @stakeholder_hash.to_json.to_s.html_safe %>
 
  </script>
+
+
+<div class="row">
+	<div class="large-8 columns">
+		<div data-alert class="alert-box alert radius" style="display:none">
+		  <ul class="error_list"></ul>
+		  <a href="#" class="close">&times;</a>
+		</div>
+		<div data-alert class="alert-box warning radius" style="display:none">
+		  <ul class="error_list"></ul>
+		  <a href="#" class="close">&times;</a>
+		</div>
+		<div data-alert class="alert-box success radius" style="display:none">
+		  <span class="success_msg"></span>
+		  <a href="#" class="close">&times;</a>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+  <div class="large-12 columns">
+    <div class="reveal-modal tiny" id="mytinyDelete" data-reveal="">
+       <h2>Deleting Term</h2>
+       <b> Are you sure? <b> <br> <br>
+       <input type="button" class ="tiny button" value="Yes" id="deleteConfirm" />
+       <input type="button" class ="tiny button" value="No" id="deleteCancel" />
+       <a class="close-reveal-modal">×</a>
+    </div>   
+  </div>
+</div>  
+
+
 <div id ="term_detail">
 <div class="row">
-	<div class="large-4 columns">
-		<input type="button" value="Update Term" id="updateTermButton" />
-	</div>
-	<div class="large-4 columns">
-		<input type="button" value="Delete Term" id="deleteTermButton" />
-	</div>
-	<div class="large-4 columns">
-
+	<div class="large-12 columns">
+		<input type="button" class ="tiny button"   value="Update Term" id="updateTermButton" />
+		<input type="button"  class ="tiny button" value="Delete Term" data-reveal-id="mytinyDelete" id="deleteTermButton" />
 	</div>
  </div>
 </div>
@@ -23,8 +49,7 @@
 <div class="row">
 </br>
 <div class="large-12 columns">
-	<div class="small-12 large-8 columns">
-
+	<div class="small-12 large-12 columns">
 			<div id="name" class="editable">
 				<h3 class="page-title">
 			<%= @term["term"]["name"] %>
@@ -78,21 +103,6 @@
 			</dt>
 		</dl>
 	</div>
-	<div class="large-4 columns">
-        <div class="row">
-          <div class="large-12 small-6 columns">
- 			<div class="panel">
-        		<h5>Related Reports</h5>
-        		<ol>
-        			<li><a href="reports/tableau">Undergraduate Enrollment</a></li>
-        			<li><a href="http://localhost:3000/reports/powerview">Active Student</a></li>
-        			<li><a href="/reports/business_objects">Mendoza College Enrollment</a></li>
-        			<li><a href="/reports/access_denied">Talent Review Dashboard</a></li>
-        		</ol>
-      		</div>
-          </div>
-        </div>
-     </div>
 	<div class="small-12 large-12 columns">
 		<h5 class="page-title">R.A.C.I. Matrix</h5>
 		<div class="row">
