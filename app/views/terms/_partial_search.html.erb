@@ -1,0 +1,21 @@
+ 
+   <%results.each do |result| %>
+    <% if result[:type]  == 'term' then %> 
+     <a class="do_highlight" href="../terms/<%=result[:data]["name"]%>"> <strong> 
+     <% if result[:m_name]  then %> 
+        <%= result[:m_name].html_safe %></strong> </a> </br>  
+     <%else%>
+        <%= result[:data]["name"] %></strong> </a> </br>  
+     <%end%>
+     <% if result[:m_definition]  then %> 
+        <p class="do_highlight" > <%= result[:m_definition].html_safe %></p>
+      <%else %>
+         <% if  result[:data]["definition"]   then %> 
+           <p class="do_highlight" >  <%= result[:data]["definition"].html_safe %></p>
+          <%else%>
+          <p class="do_highlight" > NA </p>
+         <%end%>
+      <%end%>
+    <%end%>
+ <%end%>
+ <%= will_paginate(results, :class => "apple_pagination") %> <br>
