@@ -16,6 +16,10 @@ Rails.application.routes.draw do
 
   get "offices" => 'offices#index'
   get "offices/:id" => 'offices#show'
+  put "offices/:id" => 'offices#update'  #SMM
+  delete "offices/:id" => 'offices#destroy'  #SMM
+  post "offices" => 'offices#create' #SMM
+  
   get "search/:search_for" => 'search#show'
   get "reports" => 'reports#index'
   get "/reports/business_objects" => 'reports#business_objects'
