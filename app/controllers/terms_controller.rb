@@ -26,7 +26,7 @@ class TermsController < ApplicationController
 
 
 
-  def authenticated_sho
+  def authenticated_show
 
     muninn_host = Huginn::Application::CONFIG["muninn_host"]
     muninn_port = Huginn::Application::CONFIG["muninn_port"]
