@@ -40,7 +40,7 @@
 <div id ="term_detail">
    <div class="row">
 	  <div class="large-12 columns">
-		 <div class="small-12 large-12 columns">
+		 <div class="small-8 large-12 columns">
 		    <input type="button" class ="tiny button"   value="Update Term" id="updateTermButton" />
 		    <input type="button"  class ="tiny button" value="Delete Term" data-reveal-id="mytinyDelete" id="deleteTermButton" />
 	  </div>
@@ -54,9 +54,9 @@
 <div class="large-12 columns">
 	<div class="small-12 large-12 columns">
 			<div id="name" class="editable">
-				<h3 class="page-title">
-			<%= @term["term"]["name"] %>
-			</h3>
+				<h2 class="page-title">
+			<%= @term["term"]["name"].html_safe %>
+			</h2>
 		</div>
 
 		<div class="editable" id="definition">
