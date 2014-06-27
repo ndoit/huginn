@@ -11,6 +11,7 @@
 /tmp/
 /log/*.log
 /config/huginn_config.yml
+.env.local
 
 ## Documentation cache and generated files:
 /.yardoc/
