@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Huginn::Application.config.secret_key_base = 'aeb585802927db723be89a09867845ef8114c702137fb7fda8282abcb2971f7f3b8fdb4aaea5db5551a64729020c1cc6139244d0763d243d95859bb89070ae66'
+Huginn::Application.config.secret_key_base =  ENV['RAILS_SECRET_KEY_BASE']
