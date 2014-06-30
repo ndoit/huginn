@@ -7,7 +7,7 @@ require "yaml"
 require "action_mailer/railtie"
 require "sprockets/railtie"
 require "rails/test_unit/railtie"
-require 'dotenv'  
+require 'dotenv'
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env)
@@ -16,7 +16,6 @@ Dotenv.load ".env.local", ".env.#{Rails.env}"
 
 module Huginn
   class Application < Rails::Application
-    CONFIG = YAML.load_file("config/huginn_config.yml")
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -28,6 +27,6 @@ module Huginn
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
-  
+
   end
 end

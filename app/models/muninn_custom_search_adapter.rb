@@ -1,8 +1,8 @@
 class MuninnCustomSearchAdapter
 
   def self.custom_query(json_string, page, per_page )
-    muninn_host = Huginn::Application::CONFIG["muninn_host"]
-    muninn_port = Huginn::Application::CONFIG["muninn_port"]
+    muninn_host = ENV["muninn_host"]
+    muninn_port = ENV["muninn_port"]
 
     muninn_response = HTTParty.get("http://#{muninn_host}:#{muninn_port}/search/custom/query", { :body => json_string,
     :headers => { 'Content-Type' => 'application/json'} })

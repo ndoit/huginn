@@ -30,16 +30,16 @@ class MuninnAdapter
 
     http = MuninnAdapter.new_http_request
 
-    muninn_host = Huginn::Application::CONFIG["muninn_host"]
-    muninn_port = Huginn::Application::CONFIG["muninn_port"]
+    muninn_host = ENV["muninn_host"]
+    muninn_port = ENV["muninn_port"]
 
-    http.use_ssl = Huginn::Application::CONFIG["muninn_uses_ssl"]
+    http.use_ssl = ENV["muninn_uses_ssl"]
 
-    if !Huginn::Application::CONFIG["validate_muninn_certificate"]
+    if !ENV["validate_muninn_certificate"]
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE #for when Muninn is using a self-signed cert
     end
 
-    if Huginn::Application::CONFIG["muninn_uses_ssl"]
+    if ENV["muninn_uses_ssl"]
       muninn_response = http.get("https://#{muninn_host}:#{muninn_port}/#{resource_uri}")
     else
       muninn_response = http.get("http://#{muninn_host}:#{muninn_port}/#{resource_uri}")
@@ -50,7 +50,7 @@ class MuninnAdapter
 
   private
   def self.new_http_request
-    Net::HTTP.new( Huginn::Application::CONFIG["muninn_host"], Huginn::Application::CONFIG["muninn_port"] )
+    Net::HTTP.new( ENV["muninn_host"], ENV["muninn_port"] )
   end
 
   def self.perform( req )

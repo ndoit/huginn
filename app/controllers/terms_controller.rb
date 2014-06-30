@@ -28,8 +28,8 @@ class TermsController < ApplicationController
 
   def authenticated_show
 
-    muninn_host = Huginn::Application::CONFIG["muninn_host"]
-    muninn_port = Huginn::Application::CONFIG["muninn_port"]
+    muninn_host = ENV["muninn_host"]
+    muninn_port = ENV["muninn_port"]
 
     cas_service_uri = "https://" + muninn_host.to_s + "/"
     proxy_granting_ticket = session[:cas_pgt]

@@ -3,9 +3,9 @@
 class SearchController < ApplicationController
 
   def show
-    muninn_host = Huginn::Application::CONFIG["muninn_host"]
-    muninn_port = Huginn::Application::CONFIG["muninn_port"]
-    
+    muninn_host = ENV["muninn_host"]
+    muninn_port = ENV["muninn_port"]
+
     logger.debug("Querying Muninn...")
   	uri_string = "/search/" + URI::encode(params[:search_for])
   	#service_uri = "localhost:3000" + uri_string
@@ -15,8 +15,8 @@ class SearchController < ApplicationController
     #ticket = CASClient::Frameworks::Rails::Filter.client.request_proxy_ticket(service_uri, proxy_granting_ticket).ticket
   	#logger.debug "*** ACTUAL TICKET ***: " + ticket.to_s
     http = Net::HTTP.new(muninn_host, muninn_port)
-    http.use_ssl = Huginn::Application::CONFIG["muninn_uses_ssl"]
-    if !Huginn::Application::CONFIG["validate_muninn_certificate"]
+    http.use_ssl = ENV["muninn_uses_ssl"]
+    if !ENV["validate_muninn_certificate"]
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE #for when Muninn is using a self-signed cert
     end
     muninn_response = http.get("https://#{muninn_host}:#{muninn_port}/#{uri_string}")
