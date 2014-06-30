@@ -1,2 +1,0 @@
-muninn_host: ENV['MUNINN_HOST'] 
-muninn_port: ENV['MUNINN_PORT'] 
