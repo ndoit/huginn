@@ -68,6 +68,18 @@ class TermsController < ApplicationController
     muninn_response = MuninnAdapter.get( "/terms/" + URI::encode(params[:id]) )
     @term = JSON.parse(muninn_response.body)
 
+  def search_string(search_s)
+  if !search_s.blank?
+    json_string = '{"query":{"match": {"_all": {"query": "' + "#{search_s}" +'","operator": "and" }}},"size":"999","sort":[{"name":{"order":"asc"}}]}'
+    #2json_string ='{"query":{"multi_match":{"query": "*' + "#{search_s}" +'*","fields":["name^3","definition"],"type":"phrase","zero_terms_query": "none"}},"from":"0","size":"999","highlight": { "pre_tags": ["<FONT style=\"BACKGROUND-COLOR:yellow\">"],"post_tags": ["</FONT>"],"fields" : {"name" :{},"definition" :{}}}}'
+   #1json_string = '{"query":{"query_string": {"query": "*' + "#{search_s}" +'*","fields":["name","definition"],"highlight": { "fields": { "name": {}}}}},"sort":[{"name.raw":{"order":"asc"}}],"from":"0","size":"999"}'
+   else
+    json_string = '{"query":{"match_all":{}},"from":"0","size":"999"}'
+  end
+   #json_string = '{"query":{"query_string": {"query": "*' + "#{search_s}" +'*","fields":["name","definition"],"highlight": {"fields": {"name": {"fragment_size" : 150,"number_of_fragments": 5}}},,"sort":[{"name.raw":{"order":"asc"}}],"from":"0","size":"999"}'
+   muninn_response_render(json_string)
+  end
+
 
 
     # GET STAKEHOLDERS FOR TERM
