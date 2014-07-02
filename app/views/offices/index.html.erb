@@ -1,12 +1,24 @@
 <% if @offices %>
 <div class="row">
-  
-  <div class="row">
-    <div class="large-12 columns">
-      <h1 class="page-title">Departments</h1>
-    </div>
+<div class="row">
+  <div class="large-12 columns">
+    <a class ="tiny button" href="#" data-reveal-id="officetiny">Add Office</a>
+      <div class="reveal-modal tiny" id="officetiny" data-reveal="">
+          <h2>Add New Office</h2>
+              Name: <input type="text" id ="oname" name="oname"><br>
+              <input type="button" class ="tiny button" value="Save Office" id ="addOfficeButton"/>
+              <a class="close-reveal-modal">×</a>
+      </div>
   </div>
-    <div class="row">
+</div>
+
+<div class="row">
+  <div class="large-12 columns">
+    <h1 class="page-title">Offices</h1>
+  </div>
+</div>
+
+<div class="row">
   <div class="large-8 columns">
     <div data-alert class="alert-box alert radius" style="display:none">
       <ul class="error_list"></ul>
@@ -24,40 +36,13 @@
 </div>
 
  <div class="row">
-    <div class="large-12 columns">
-      <div class="medium-9 large-3 medium-push-9 columns">
-        <div class="panel">
-          <form>
-          <div class="row">
-          <div class="large-12 columns">
-            <a class="button" href="#" data-reveal-id="officetiny">Add Office</a>
-               <div class="reveal-modal tiny" id="officetiny" data-reveal="">
-                 <h2>Add New Office</h2>
-                 Name: <input type="text" id ="oname" name="oname"><br>
-                <input type="button" value="Save Office" id ="addOfficeButton"/>
-                <a class="close-reveal-modal">×</a>
-               </div>
-         </div>
-         </div>
-
-          <div class="row">
-          <div class="large-12 columns">
-            <%= form_for(:tags, :url=>{:action=>'index'},:html => { :method => 'GET'}) do |f| %>
-            <% end %>
-          </div>
-          </div>
-          </form>
-        </div>
-        </div>
- 
-      <div class="medium-6 large-9 medium-pull-3 columns" id="search_results">
-     <% @offices.each do |result| %>
-       <% if result["type"]  == "office" then %>
-         <a class="do_highlight" href="../offices/<%=result["data"]["name"].html_safe%>"> <strong> 
-           <%=result["data"]["name"].html_safe  %> </strong> </a></br><br>
+  <div class="large-12 columns" id="search_results">
+    <% @offices.each do |result| %>
+      <% if result["type"]  == "office" then %>
+        <a class="do_highlight" href="../offices/<%=result["data"]["name"].html_safe%>"> <strong> 
+        <%=result["data"]["name"].html_safe  %> </strong> </a> </br></br>
       <%end%>  
-     <%end%>
-    </div>
+    <%end%>
   </div>
 </div>
-     <%end%>
+<%end%>
