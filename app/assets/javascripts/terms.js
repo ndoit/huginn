@@ -232,8 +232,8 @@ function deleteTerm( termid ) {
       }
 	});
 }
-function updateTerm( term_object ) {
 
+function updateTerm( term_object ) {
 	$.ajax({
 	    url: term_object.id,
 	    type: 'PUT',
@@ -242,9 +242,9 @@ function updateTerm( term_object ) {
     	dataType: 'json',
 	    success: function (data) {
 	       var url = escape(term_object.name);
-	       addSuccessMessage("success", "<b>" + term_object.name + "</b>" +  " updated successfully. " );
-	       showSuccessMessage();
-           window.location = url;
+         window.location = url;
+         addSuccessMessage("success", "<b>" + term_object.name + "</b>" +  " updated successfully. " );
+         showSuccessMessage();
 	    },
 	    error: function( xhr, ajaxOptions, thrownError) {
 	       addValidationError( "alert", "Update term has errors: " + xhr.responseText);
@@ -261,43 +261,36 @@ function createTerm( term_object ) {
      data: { "term": JSON.stringify(term_object)},
      dataType: 'json',
      success: function (data) {
-        //alert('term created')
-       addSuccessMessage("success", "<b>Term " + term_object.name +   " successfully. Please wait for Term Detail page display.</b>");
-	      showSuccessMessage();
-        var url = escape('terms/'+ term_object.name);
-        //alert(url);
-        //$('#term_detail').load(url);
-        window.location = url;
-     },
+      addSuccessMessage("success", "<b>Term " + term_object.name +   " successfully. Please wait for Term Detail page display.</b>");
+	    showSuccessMessage();
+      var url = escape('terms/'+ term_object.name);
+      window.location = url;
+   },
      error: function( xhr, ajaxOptions, thrownError) {
-          addValidationError( "alert", "Added Term, " +term_object.name+ ", has error: " + xhr.responseText);
-          showValidationErrors()
-	    }
+     addValidationError( "alert", "Added Term, " +term_object.name+ ", has error: " + xhr.responseText);
+     showValidationErrors()
+	 }
   })
 
 }
 
 function addOffice(office_object ) {
-
   $.ajax({
      url : '/offices',
      type: 'POST',
      data: { "office": JSON.stringify(office_object)},
      dataType: 'json',
      success: function (data) {
-        //alert('term created')
-       addSuccessMessage("success", "<b>Office " + office_object.name +   " successfully. Please wait for Term Detail page display.</b>");
-       showSuccessMessage();
-       var url = escape('offices/'+ office_object.name);
-        //alert(url);
-        //$('#term_detail').load(url);
-        window.location = url;
+      var url = escape('offices/'+ office_object.name);
+      window.location = url;
+      addSuccessMessage("success", "<b>Office " + office_object.name +   " successfully. Please wait for Term Detail page display.</b>");
+      showSuccessMessage();
      },
      error: function( xhr, ajaxOptions, thrownError) {
-          addValidationError( "alert", "Added office, "+office_object.name+ ", has error: " + jQuery.parseJSON(xhr.responseText).message);
-          showValidationErrors()
-      }
-   })
+      addValidationError( "alert", "Added office, "+office_object.name+ ", has error: " + jQuery.parseJSON(xhr.responseText).message);
+      showValidationErrors()
+    }
+  })
 
 }
 
@@ -321,8 +314,10 @@ function updateOfficeObject(office_object ) {
    
   });
 
-    return office_object;
-  }
+  return office_object;
+}
+
+
 function updateOffice(office_object  ) {
 
   $.ajax({
@@ -331,10 +326,11 @@ function updateOffice(office_object  ) {
       data: {"officeJSON": JSON.stringify(office_object)},
       dataType: 'json',
       success: function (data) {
-         var url = escape(office_object.name);
-         addSuccessMessage("success", "<b>" + office_object.name + "</b>" +  " updated successfully. " );
-         showSuccessMessage();
-         window.location = url;
+        var url = escape(office_object.name);
+        window.location = url;
+        addSuccessMessage("success", "<b>" + office_object.name + "</b>" +  " updated successfully. " );
+        showSuccessMessage();
+         
       },
       error: function( xhr, ajaxOptions, thrownError) {
          addValidationError( "alert", "Update Office, <b>" + office_object.name + "</b>  has errors: " + jQuery.parseJSON(xhr.responseText).message);
