@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.2'
 
 # Use Foundation 5
-gem 'foundation-rails'
+gem 'foundation-rails' , '~> 5.3.0.0'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -51,6 +51,8 @@ gem "select2-rails"
 gem 'unicorn'
 gem 'dotenv'
 gem 'puma'
+#ND foundation
+gem 'nd_foundation'
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
