@@ -10,13 +10,19 @@ class OfficesController < ApplicationController
 
   # display all offices
   def index
-    logger.debug("Querying Muninn...")
-    offices_resp = MuninnAdapter.get("/offices" )
-    offices_sort = JSON.parse(offices_resp.body) ["results"]
-    @offices = offices_sort.sort_by{|k| "#{k["data"]["name"]}"}
-   
-  end
 
+    logger.debug("Querying Muninn...")
+   # offices_resp = MuninnAdapter.get("/offices" )
+    #offices_sort = JSON.parse(offices_resp.body) ["results"]
+   # @results_office = offices_sort.sort_by{|k| "#{k["data"]["name"]}"}
+    page =params[:page]
+    json_string = MuninnCustomSearchAdapter.create_search_string( params[:q] )
+    @results= MuninnCustomSearchAdapter.custom_query(json_string, params[:page], 15 )
+    @results_office= @results.select { |k| "#{k[:type]}" =="office"}
+    @results_office = @results_office.sort_by { |k| "#{k[:sort_name]}"}
+    @results_office =@results_office.paginate(:page=> page, :per_page => 15)
+       
+  end
   # display office detail page
   def show
     logger.debug("Querying Muninn...")
@@ -42,6 +48,25 @@ class OfficesController < ApplicationController
     render status: response.code, json: response.body
   end
 
-    
+ def partial_office_search
+    page =params[:page]
+    json_string = MuninnCustomSearchAdapter.create_search_string( params[:q] )
+    @results= MuninnCustomSearchAdapter.custom_query(json_string, params[:page], 15 )
+    @results_count = @results.select { |k| "#{k[:type]}" =="count"}
+    @results_count = @results_count[0][:totalcount]
+    @results_hash = {}
+    @results_count.each do |hash|
+       @results_hash[hash["term"]] = hash["count"]
+    end
+
+    @results_office= @results.select { |k| "#{k[:type]}" == "office"}
+    @results_office = @results_office.sort_by { |k| "#{k[:sort_name]}"}
+    @results_office =@results_office.paginate(:page=> page, :per_page => 15)
+      respond_to do |format|
+      format.json {render :json => @results_office, layout: false}
+      format.html {render partial: "partial_office_search", layout: false }
+    end
+ end
+
  
 end
