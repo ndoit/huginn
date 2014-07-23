@@ -93,28 +93,44 @@ class TermsController < ApplicationController
   def index
 
   logger.debug("Querying Muninn...")
-
+  
+   page =params[:page]
    if params.has_key?(:tags)
     search_s = params[:tags][:search1]
 
     json_string = MuninnCustomSearchAdapter.create_search_string(search_s)
-    @results = MuninnCustomSearchAdapter.custom_query(json_string, params[:page], 20 )
+    @results  = MuninnCustomSearchAdapter.custom_query(json_string, params[:page], 15 )
 
    else
-    json_string = '{"query":{"match_all":{}},"from":"0","size":"999"}'
-    @results = MuninnCustomSearchAdapter.custom_query(json_string, params[:page], 20 )
+    json_string = '{"query":{"match_all":{}}, "facets": {"tags":{ "terms" : {"field" : "_type"}}},"from":"0","size":"999"}'
+    @results = MuninnCustomSearchAdapter.custom_query(json_string, params[:page], 15 )
 
    end
-
+    @results_count = @results.select { |k| "#{k[:type]}" =="count"}
+    @results_term= @results.select { |k| "#{k[:type]}" =="term"}
+    @results_term = @results_term.sort_by { |k| "#{k[:sort_name]}"}
+    @results_term =@results_term.paginate(:page=> page, :per_page => 15)
+     
   end
 
 
 
   def partial_search
+    page =params[:page]
     json_string = MuninnCustomSearchAdapter.create_search_string( params[:q] )
-    @results = MuninnCustomSearchAdapter.custom_query(json_string, params[:page], 20 )
-      respond_to do |format|
-      format.json {render :json => @results, layout: false}
+    @results  = MuninnCustomSearchAdapter.custom_query(json_string, params[:page], 15 )
+    @results_count = @results.select { |k| "#{k[:type]}" =="count"}
+    @results_count = @results_count[0][:totalcount]
+    @results_hash = {}
+    @results_count.each do |hash|
+       @results_hash[hash["term"]] = hash["count"]
+    end
+
+    @results_term= @results.select { |k| "#{k[:type]}" =="term"}
+    @results_term = @results_term.sort_by { |k| "#{k[:sort_name]}"}
+    @results_term =@results_term.paginate(:page=> page, :per_page => 15)
+    respond_to do |format|
+      format.json {render :json => @results_term, layout: false}
       format.html {render partial: "partial_search", layout: false }
     end
   end
