@@ -17,7 +17,7 @@
 	font-size: .75EM;
 }
 
-.highlight{
+.highlight {
 	background-color: #FFFF88;
 }
 
@@ -69,14 +69,14 @@ table.raci {
       text-align: left; }
   table.raci tr th,
   table.raci tr td {
-    padding: 1rem 1rem;
     font-size: 0.875rem;
     color: #222222; }
   table.raci tr.td, table.raci td:first-child {
-    background: #002b5b;
+    background: #dae1e8;
     border-radius: 2rem;
+    font-weight: bold;
     font-size: 1.500rem;
-    color: white;
+    color: #002b5b;
     text-align: center;}
   table.raci tr.even, table.raci tr.alt, table.raci tr:nth-of-type(even) {
   background: white; }
