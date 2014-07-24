@@ -1,4 +1,4 @@
-// 
+//
 // FOUNDATION SETTINGS
 //
 
@@ -1016,7 +1016,7 @@ $official-gold:#dcb439;
       url('//www.nd.edu/assets/fonts/GalaxiePolarisCondensed-Medium.min.woff') format('woff'),
       url('//www.nd.edu/assets/fonts/GalaxiePolarisCondensed-Medium.min.ttf') format('truetype');
 }
-      
+
 @import 'foundation';
 
 @mixin background-size($value) {
@@ -1074,6 +1074,14 @@ h6 {font-size:1em;}
   .brandbar {
     ul {margin:0; list-style:none;}
     li {margin:0;}
+  }
+  .beta_banner{
+    position: absolute;
+    width: 100%;
+    text-align: right;
+    img {
+      height: 120px;
+    }
   }
   .dept {display:none; border-top: 1px solid  #000; @include box-shadow(0 1px 0 rgba(0,122,217,0.4) inset);}
   .site-header li {margin:0; padding:0;}
@@ -1139,14 +1147,14 @@ h6 {font-size:1em;}
     background-color:#002b5b;
     background-image:-webkit-radial-gradient(50% 20%, rgba(0,83,176,1) 0%, rgba(0,83,176,0) 100%);
     background-image:   -moz-radial-gradient(50% 20%, rgba(0,83,176,1) 0%, rgba(0,83,176,0) 100%);
-    background-image:        radial-gradient(50% 20%, rgba(0,83,176,1) 0%, rgba(0,83,176,0) 100%);        
+    background-image:        radial-gradient(50% 20%, rgba(0,83,176,1) 0%, rgba(0,83,176,0) 100%);
   }
 
   /* CONTENT
      ----------------------------------------------------*/
   .site-content {padding-top:1em;}
   .page-title {margin:0 0 .5em; padding:0 0 0.15em; border-bottom:2px solid #dcb439;}
-  
+
   /* FOOTER
      ----------------------------------------------------*/
   .site-footer {position:relative; clear:both; text-align:center;
@@ -1164,7 +1172,7 @@ h6 {font-size:1em;}
   .org,
   .tel {display:block;}
   .ndmark {display:block; width:200px; margin:2em auto;}
-  
+
 }
 
 @media #{$small-only} {
@@ -1326,7 +1334,7 @@ h6 {font-size:1em;}
     .dept-intr a {width:380px; background-image:url(//www.nd.edu/assets/images/brandbar/dept-intr-white.png);} /* Office of Internationalization */
     .dept-spir a {width:556px; background-image:url(//www.nd.edu/assets/images/brandbar/dept-spir-white.png);} /* Office of Strategic Planning and Institutional Research */
     .dept-acfs a {width:202px; background-image:url(//www.nd.edu/assets/images/brandbar/dept-acfs-white.png);} /* Office of Finance */
-  
+
     /** Blue Text **/
     .theme-bb-gold .dept-nd a   {background-image:url(//www.nd.edu/assets/images/brandbar/dept-nd-blue.png);}
     .theme-bb-gold .dept-arch a {background-image:url(//www.nd.edu/assets/images/brandbar/dept-arch-blue.png);} /* School of Architecture */
@@ -1394,7 +1402,7 @@ h6 {font-size:1em;}
     .theme-bb-lightgray .dept-intr a {background-image:url(//www.nd.edu/assets/images/brandbar/dept-intr-gray.png);} /* Office of Internationalization */
     .theme-bb-lightgray .dept-spir a {background-image:url(//www.nd.edu/assets/images/brandbar/dept-spir-gray.png);} /* Office of Strategic Planning and Institutional Research */
     .theme-bb-lightgray .dept-acfs a {background-image:url(//www.nd.edu/assets/images/brandbar/dept-acfs-gray.png);} /* Office of Finance */
-    
+
     .theme-bb-mediumgray .dept-nd a {background-image:url(//www.nd.edu/assets/images/brandbar/dept-nd-gray.png);}
     .theme-bb-mediumgray .dept-arch a {background-image:url(//www.nd.edu/assets/images/brandbar/dept-arch-gray.png);} /* School of Architecture */
     .theme-bb-mediumgray .dept-athl a {background-image:url(//www.nd.edu/assets/images/brandbar/dept-athl-gray.png);} /* Department of Athletics */
@@ -1479,7 +1487,7 @@ h6 {font-size:1em;}
 
   .dept-nd a,
   .dept a {@include background-size(auto 50px);}
-  
+
   /** White Text **/
   .dept-nd a   {background-image:url(//www.nd.edu/assets/images/brandbar/dept-nd-white@2x.png);}
   .dept-arch a {background-image:url(//www.nd.edu/assets/images/brandbar/dept-arch-white@2x.png);} /* School of Architecture */
@@ -1581,7 +1589,7 @@ h6 {font-size:1em;}
   .theme-bb-lightgray .dept-intr a {background-image:url(//www.nd.edu/assets/images/brandbar/dept-intr-gray@2x.png);} /* Office of Internationalization */
   .theme-bb-lightgray .dept-spir a {background-image:url(//www.nd.edu/assets/images/brandbar/dept-spir-gray@2x.png);} /* Office of Strategic Planning and Institutional Research */
   .theme-bb-lightgray .dept-acfs a {background-image:url(//www.nd.edu/assets/images/brandbar/dept-acfs-gray@2x.png);} /* Office of Finance */
-  
+
   .theme-bb-mediumgray .dept-nd a {background-image:url(//www.nd.edu/assets/images/brandbar/dept-nd-gray@2x.png);}
   .theme-bb-mediumgray .dept-arch a {background-image:url(//www.nd.edu/assets/images/brandbar/dept-arch-gray@2x.png);} /* School of Architecture */
   .theme-bb-mediumgray .dept-athl a {background-image:url(//www.nd.edu/assets/images/brandbar/dept-athl-gray@2x.png);} /* Department of Athletics */
