@@ -1,0 +1,24 @@
+<div>
+    <dl class="tabs vertical" data-tab>
+
+      <% @node_types.each do |type_name| %>
+        <dd class="active">
+        <a href="#<%= type_name.pluralize %>"><%= type_name %>
+            <span class="radius secondary label"><%= @results_hash[type_name] %></span>
+         </a>
+       </dd>
+      <% end %>
+
+    </dl>
+
+
+    <div class="tabs-content vertical">
+
+      <% @node_types.each do |type_name| %>
+        <div class="content active" id="<%= type_name.pluralize %>">
+          <%= render partial: "#{type_name.pluralize}/partial_search", locals: {results: @results[type_name]} %>
+        </div>
+      <% end %>
+
+    </div>
+<div>

@@ -5,41 +5,41 @@ require "httparty"
 require "will_paginate/array"
 
 class GuideController < ApplicationController
-	
-def index
 
-   logger.debug("Querying Muninn...")
-
-   if params.has_key?(:tags)
-     search_s = params[:tags][:search1]
-     page =params[:page]
-    json_string = MuninnCustomSearchAdapter.create_search_string(search_s)
-    @results = MuninnCustomSearchAdapter.custom_query(json_string, page, 15 )
-
-   else
-    json_string = '{"query":{"match_all":{}}, "facets": {"tags":{ "terms" : {"field" : "_type"}}},"from":"0","size":"999"}'
-    @results = MuninnCustomSearchAdapter.custom_query(json_string, page, 15 )
-  end
-
-     #@results= @results.sort_by { |k| "#{k[:type]}#,#{k[:sort_name]}"}
-
-    @results_office= @results.select { |k| "#{k[:type]}" =="office"}
-    @results_office = @results_office.sort_by { |k| "#{k[:sort_name]}"}
-    @results_office =@results_office.paginate(:page=> page, :per_page => 15)
-
-    @results_term= @results.select { |k| "#{k[:type]}" =="term"}
-    @results_term= @results_term.sort_by { |k| "#{k[:sort_name]}"}
-    @results_term= @results_term.paginate(:page=> page, :per_page => 15)
-    @results_count = @results.select { |k| "#{k[:type]}" =="count"}
-    #@results_count=@results_count.select { |k| "#{k[:totalcount]}" }
-
-
-
-    @results_count = @results_count[0][:totalcount]
-    @results_hash = {}
-    @results_count.each do |hash|
-       @results_hash[hash["term"]] = hash["count"]
-    end
+ def index
 
  end
+
+
+ def search
+    logger.debug("Querying Muninn...")
+
+     page = params[:page]
+     json_string = '{"query":{"match_all":{}}, "facets": {"tags":{ "terms" : {"field" : "_type"}}},"from":"0","size":"999"}'
+     @query_result = MuninnCustomSearchAdapter.custom_query(json_string, page, 15 )
+
+
+     @node_types = [ 'term', 'office', 'report'  ]
+     @results = {}
+     @node_types.each do |type_name|
+
+       @results[type_name] = @query_result.select { |k| "#{k[:type]}" == type_name }
+       @results[type_name] = @results[type_name].sort_by { |k| "#{k[:sort_name]}"}
+       @results[type_name] = @results[type_name].paginate(:page=> page, :per_page => 15)
+
+     end
+
+
+
+     # get a hash of result count by node type
+     @results_count = @query_result.select { |k| "#{k[:type]}" =="count"}
+     @results_count = @results_count[0][:totalcount]
+     @results_hash = {}
+     @results_count.each do |hash|
+        @results_hash[hash["term"]] = hash["count"]
+     end
+
+    render html: "partial_office_search", layout: false
+ end
+
 end

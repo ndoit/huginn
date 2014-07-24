@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   get "guide" => 'guide#index'
+  get "guide_search" => 'guide#search'
+
   get "terms" => 'terms#index'
     #get "terms/partial_search" => 'terms#partial_search'
   get "terms/partial_search" => 'terms#partial_search'
@@ -20,7 +22,7 @@ Rails.application.routes.draw do
   put "offices/:id" => 'offices#update'  #SMM
   delete "offices/:id" => 'offices#destroy'  #SMM
   post "offices" => 'offices#create' #SMM
-  
+
   get "search/:search_for" => 'search#show'
   get "reports" => 'reports#index'
   get "/reports/business_objects" => 'reports#business_objects'

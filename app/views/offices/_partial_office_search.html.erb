@@ -1,8 +1,0 @@
- 
-  <% @results_office.each do |result| %>
-       <% if result[:type]  == "office" then %>
-        <a class="do_highlight" href="../offices/<%=result[:data]["name"].html_safe%>"> <strong> 
-        <%=result[:data]["name"].html_safe  %> </strong> </a> </br></br>
-      <%end%>  
-   <%end%>
-<%= will_paginate(@results_office, :class => "apple_pagination" ) %> <br>
