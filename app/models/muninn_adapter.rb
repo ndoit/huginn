@@ -1,8 +1,5 @@
 class MuninnAdapter
 
-
-
-
   def self.post( resource_uri, body )
     req = Net::HTTP::Post.new( resource_uri )
     req["Content-Type"] = "application/json"
@@ -35,14 +32,27 @@ class MuninnAdapter
 
     http.use_ssl = ENV["muninn_uses_ssl"]
 
+    #if session[:cas_user] != nil
+      #cas_service_uri = "https://" + muninn_host.to_s + "/"
+      #proxy_granting_ticket = session[:cas_pgt]
+      #ticket = CASClient::Frameworks::Rails::Filter.client.request_proxy_ticket(
+        #proxy_granting_ticket, cas_service_uri
+      #)
+      #cas_proxy_params = "?service=#{URI::encode(ticket.service)}&ticket=#{ticket.ticket}"
+    #else
+      #cas_proxy_params = ""
+   # end
+    cas_proxy_params = ""
     if !ENV["validate_muninn_certificate"]
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE #for when Muninn is using a self-signed cert
     end
 
     if ENV["muninn_uses_ssl"]
-      muninn_response = http.get("https://#{muninn_host}:#{muninn_port}/#{resource_uri}")
+     muninn_response = HTTParty.get(
+      "https://#{muninn_host}:#{muninn_port}/#{resource_uri}#{cas_proxy_params}"
+      )
     else
-      muninn_response = http.get("http://#{muninn_host}:#{muninn_port}/#{resource_uri}")
+      muninn_response = http.get("http://#{muninn_host}:#{muninn_port}/#{resource_uri}#{cas_proxy_params}")
     end
 
     muninn_response

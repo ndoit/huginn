@@ -1,24 +1,22 @@
-
-  <% if @results_term %>
+<% if @results_term %>
    
- <div class="row">
-    <div class="large-12 columns">
-      <h1 class="page-title">Glossary</h1>
-    </div>
-   <div class="row">
-   <div class="large-8 columns">
+<div class="row">
+  <div class="large-12 columns">
+    <h1 class="page-title">Glossary</h1>
+  </div>
+  <div class="row">
+    <div class="large-8 columns">
       <div data-alert class="alert-box success radius" style="display:none">
       <span class="success_msg"></span>
       <a href="#" class="close">&times;</a>
-     </div>
     </div>
   </div>
+</div>
  
- <div class="row">
-  <div class="large-12 columns" id="terms">
-         <%= render partial: 'partial_search'  %> 
-  </div>
+<div class="row">
+ <div class="large-12 columns" id="terms">
+   <%= render partial: 'partial_search' %> 
  </div>
-
+</div>
 
 <% end %>
