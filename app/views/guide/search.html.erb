@@ -1,12 +1,10 @@
-<div class ="row">
+<div>
     <dl class="tabs vertical" data-tab>
-      <dd class="active">
-      <% @node_types.each do |type_name| %>
-       <% if "#{type_name}"!= "term" then %>
-        <dd>
-       <%end%>
+
+      <% @node_types.each_with_index do |type_name,index| %>
+        <dd class="<%= "active" if index == 0 %>">
         <a href="#<%= type_name.pluralize %>"><%= type_name %>
-            <span class="radius secondary label"><%= @results_hash[type_name] %></span>
+            <span class="radius secondary label"><%= @results_hash[type_name] || 0 %></span>
          </a>
        </dd>
       <% end %>
@@ -16,16 +14,11 @@
 
     <div class="tabs-content vertical">
 
-      <% @node_types.each do |type_name| %>
-       <% if "#{type_name}" == "term" then %>
-          <div class= "content active" id="<%= type_name.pluralize %>">
-       <%else%>
-          <div class="content" id="<%= type_name.pluralize %>">
-       <%end%>
-       <%= render partial: "#{type_name.pluralize}/partial_search", locals: {results: @results[type_name]} %>
-       </div>
+      <% @node_types.each_with_index do |type_name, index| %>
+        <div class="content <%= "active" if index == 0 %>" id="<%= type_name.pluralize %>">
+          <%= render partial: "#{type_name.pluralize}/partial_search", locals: {results: @results[type_name]} %>
+        </div>
       <% end %>
 
     </div>
-     
 <div>
