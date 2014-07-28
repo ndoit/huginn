@@ -14,62 +14,75 @@
         <!-- Top Bar Section -->
   
         <section class="top-bar-section">
-
+           
           <!-- Top Bar Left Nav Elements -->
           <ul class="left">
-
-            <!-- Search | has-form wrapper -->
-            <li class="has-form">
-              <div class="row collapse">
-                <div class="large-9 small-9 columns">
-                  <input type="text" placeholder="Find data">
-                </div>
-                <div class="large-3 small-3 columns">
-                  <a href="\search" class="secondary button expand">Search</a>
-                </div>
-              </div>
-            </li>
-            <!-- Dropdown -->
-            <li class="has-dropdown not-click"><a href="http://zurb.com">Explore</a>
+              <li class="has-dropdown not-click"><a href="/">Search</a>
               <ul class="dropdown"><li class="title back js-generated"></li>
 
-                <li><a href="https://sp.nd.edu/c/provost/registrar/BI_reports/BIWIPDEV/Registrar_Course_Model.rsds">Student Course</a></li>
-                <li><a href="https://sp.nd.edu/c/provost/registrar/BI_reports/BIWIPDEV/Registrar_Course_Model.rsds">Staff Headcount</a></li>
-                <li><a href="https://sp.nd.edu/c/provost/registrar/BI_reports/BIWIPDEV/Registrar_Course_Model.rsds">Faculty Headcount</a></li>
+                <li><a href="/guide#terms">Terms</a></li>
+                <li><a href="/guide#reports">Reports</a></li>
+                <li><a href="/guide#office">Offices</a></li>
                 
               </ul>
             </li>
-          </ul>
+            <li class="divider"></li>
+            <!-- Search | has-form wrapper -->
+             <li> 
+             
+                <%= form_for(:tags, :url=>{:action=>'index'}, :html => { :method => 'GET'}) do |f| %>
+                <%= f.text_field :search1,id: "search1", :autofocus => true %>
+                <% end %>
+               
+             </li> 
 
-          <!-- Top Bar Right Nav Elements -->
+            
+            
+            </ul>
+
+            <!-- Top Bar Right Nav Elements -->
           <ul class="right">
             <!-- Divider -->
-            <li class="divider"></li>
-             <!-- Anchor -->
-            <li><a href="/reports">Analytics Gallery</a></li>
-            <li class="divider"></li>
-            <li><a href="/offices">Offices</a></li>
-            <li class="divider"></li>
-            <li><a href="/terms">Glossary</a></li>
-            <li class="divider"></li>
-
-            <!-- Dropdown -->
-            <li class="has-dropdown not-click"><a href="http://zurb.com"><%= (session[:cas_user] ? session[:cas_user].to_s : "") %></a>
-              <ul class="dropdown"><li class="title back js-generated"></li>
-                <li><label>User</label></li>
-                <li><a href="#">Logout</a></li>
-                <li><a href="#">Your Security Roles</a></li>
+             <li class="has-dropdown not-click"><a href="https://login.nd.edu/cas/login"><%= (session[:cas_user] ? session[:cas_user].to_s : "Login") %></a>
+              <ul class="dropdown">
+                <li class="title back js-generated"></li>
+                <li><a href="https://login.nd.edu/cas/logout">Logout</a></li>
                 <li class="divider"></li>
-                <li><a href="#">Data Models</a></li>
-                <li class="divider"></li>
-                <li><label>Admin</label></li>
-                <li><a href="#">View Raci Matrix</a></li>
-                <li class="has-dropdown not-click"><a href="#">Manage Terms</a>
-
+                <li class="has-dropdown not-click"><a href="#">Admin</a>
                   <!-- Nested Dropdown -->
                   <ul class="dropdown"><li class="title back js-generated"></li>
-                    <li><a href="#">New Term</a></li>
-                    <li><a href="#">Edit Pending Terms</a></li>
+                    <li><a class ="tiny button" href="#" data-reveal-id="mytiny"><strong>Add New Term</strong></a>
+                      <div class="reveal-modal tiny" id="mytiny" data-reveal="">
+                          <h2>Add a New Term</h2>
+                          Name: <input type="text" id ="tname" name="tname"><br>
+                          <div class="row">
+                          <div class="large-4 columns"> <span> &nbsp;</span>
+                          </div>
+                          <div class="large-4 columns">
+                          <input type="button" class ="tiny button" value="Save Term" id ="createTermButton"/>
+                          </div>
+                          <div class="large-4 columns">
+                          </div>
+                          </div>
+                          <a class="close-reveal-modal">×</a>
+                      </div>
+                    </li>
+                    <li class="divider"></li>
+                    <li> <a class ="tiny button" href="#" data-reveal-id="officetiny"><strong>Add New Office </strong></a>
+                        <div class="reveal-modal tiny" id="officetiny" data-reveal="">
+                          <h2>Add New Office</h2>
+                          Name: <input type="text" id ="oname" name="oname"><br>
+                          <div class="row">
+                          <div class="large-4 columns"> <span> &nbsp;</span>
+                          </div>
+                          <div class="large-4 columns">
+                          <input type="button" class ="tiny button" value="Save Office" id ="addOfficeButton"/>
+                          <div class="large-4 columns">
+                          </div>
+                          </div>
+                          <a class="close-reveal-modal">×</a>
+                        </div>
+                    </li>
                   </ul>
                 </li>
               </ul>

@@ -5,7 +5,6 @@
 
  </script>
 
-
 <div class="row">
 	<div class="large-8 columns">
 		<div data-alert class="alert-box alert radius" style="display:none">
@@ -39,18 +38,18 @@
 
 <div id ="term_detail">
    <div class="row">
-	  <div class="large-12 columns">
-		 <div class="small-8 large-12 columns">
+	 <div class="large-5 columns"> &nbsp;</div>
+	 <div class="large-2 columns">
 		    <input type="button" class ="tiny button"   value="Update Term" id="updateTermButton" />
 		    <input type="button"  class ="tiny button" value="Delete Term" data-reveal-id="mytinyDelete" id="deleteTermButton" />
-	  </div>
+	 </div>
+	 <div class="large-5 columns"> &nbsp;</div>
    </div>
-  </div>
+ 
 </div>
-
 <% if @term["success"] %>
 <div class="row">
-</br>
+
 <div class="large-12 columns">
 	<div class="small-12 large-12 columns">
 			<div id="name" class="editable">
@@ -142,63 +141,7 @@
 		<h1>Nonexistant Term</h1>
 		We are sorry to inform you that the term you are currently looking for does not exist in our database.  If you feel that the following term should be added to Notre Dame's data dictionary, please proceed as follows:
 	</div>
-	<div class="large-3 medium-3 columns">
-  	<div class="panel">
-  		<form>
-	  	<div class="row">
-	    	<div class="large-12 columns">
-	      		<label>Search Glossary</label>
-	      		<input type="text" placeholder="Term" />
-	    	</div>
-	  	</div>
-	  	<div class="row">
-	    	<div class="large-12 columns">
-	      		<label>Responsible Organization</label>
-	      		<select>
-	        		<option value="husker">All</option>
-	        		<option value="starbuck">Human Resources</option>
-	        		<option value="hotdog">Provost</option>
-	        		<option value="apollo">Registrar</option>
-	         		<option value="steak">Finance</option>
-	      		</select>
-	    	</div>
-	  	</div>
-		</form>
-	 	<div class="row">
-  	  		<div class="columns text-center A-Z-Links">
-		  	<a href="#">A</a>
-			  <a href="#">B</a>
-			  <a href="#">C</a>
-			  <a href="#">D</a>
-			  <a href="#">E</a>
-			  <a href="#">F</a>
-			  <a href="#">G</a>
-			  <a href="#">H</a>
-			  <a href="#">I</a>
-			  <a href="#">J</a>
-			  <a href="#">K</a>
-			  <a href="#">L</a>
-			  <a href="#">M</a>
-			  <a href="#">N</a>
-			</BR>
-			  <a href="#">O</a>
-			  <a href="#">P</a>
-			  <a href="#">Q</a>
-			  <a href="#">R</a>
-			  <a href="#">S</a>
-			  <a href="#">T</a>
-			  <a href="#">U</a>
-			  <a href="#">V</a>
-			  <a href="#">W</a>
-			  <a href="#">X</a>
-			  <a href="#">Y</a>
-			  <a href="#">Z</a>
-			</div>
-  	  	</div>
-  	</div>
-  	</div>
-
-</div>
+	
 </div>
 <!--Error: <%= @term["message"] %>-->
 

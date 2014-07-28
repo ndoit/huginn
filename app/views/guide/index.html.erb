@@ -1,55 +1,9 @@
-
-
 <div class="row">
-  <div class="large-8 medium-8 columns">
-    <h4>Favorites</h4>
-    <!-- Grid Example -->
-    <div class="row">
-    <div class="large-4 medium-4 text-center columns">
-         <a class="th" href="/reports/powerview">
-            <%=image_tag("report_gallery/active_student.png", alt: "Power View Report")%>
-          </a><br><span class="thumbnail-report-name ">Active Students</span>
-      </div>
-      <div class="large-4 medium-4 text-center columns">
-         <a class="th" href="/reports/business_objects">
-            <%=image_tag("report_gallery/mendoza_enrollment.png", alt: "Power View Report")%>
-          </a><br><span class="thumbnail-report-name ">Mendoza Enrollment Trend</span>
-      </div>
-      <div class="large-4 medium-4 text-center columns">
-         <a class="th" href="/reports/powerview">
-            <%=image_tag("report_gallery/map.png", alt: "Power View Report")%>
-          </a><br><span class="thumbnail-report-name ">Student Origins</span>
-      </div>
-    </div>
-    
-    <hr />
-            
-    <h4>You recently viewed</h4>
-    <!-- Grid Example -->
-    <div class="row">
-      <div class="large-4 medium-4 text-center columns">
-         <a class="th" href="/reports/powerview">
-            <%=image_tag("report_gallery/dept_exams.png", alt: "Power View Report")%>
-          </a><br><span class="thumbnail-report-name">Office Space Utilization</span>
-      </div>
-      <div class="large-4 medium-4 text-center columns">
-         <a class="th" href="/reports/tableau">
-            <%=image_tag("report_gallery/undergrad_enrollment.png", alt: "Power View Report")%>
-          </a><br><span class="thumbnail-report-name ">Undergraduate Enrollment</span>
-      </div>
-      <div class="large-4 medium-4 text-center columns">
-         <a class="th" href="/reports/powerview">
-            <%=image_tag("report_gallery/tuition_costs.png", alt: "Power View Report")%>
-          </a><br><span class="thumbnail-report-name ">Tuition Cost Trend</span>
-      </div>
-    </div>
-  </div>     
-
-  <div class="large-4 medium-4 text-center columns">
-    <h4>Most popular</h4>
-    <a class="th" href="/reports/powerview">
-            <%=image_tag("report_gallery/major_growth.png", alt: "Power View Report")%>
-          </a></br><span class="thumbnail-report-name ">Enrollment Growth by Major</span>      
-  </div>
-
-</div>
+  <div class="large-12 columns" >
+     <div id="search_results">
+       <div class="loading_bar">
+         <%= image_tag "ajax-loader.gif" %>
+       </div>
+     </div>
+   </div>
+ </div>

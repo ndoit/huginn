@@ -1,0 +1,28 @@
+<script>
+  $(document).foundation();
+</script>
+
+<div>
+    <dl class="tabs vertical" data-tab>
+
+      <% @node_types.each_with_index do |type_name,index| %>
+        <dd class="<%= "active" if index == 0 %>">
+        <a href="#<%= type_name.pluralize %>"><%= type_name %>
+            <span class="radius secondary label"><%= @results_hash[type_name] || 0 %></span>
+         </a>
+       </dd>
+      <% end %>
+
+    </dl>
+
+
+    <div class="tabs-content vertical">
+
+      <% @node_types.each_with_index do |type_name, index| %>
+        <div class="content <%= "active" if index == 0 %>" id="<%= type_name.pluralize %>">
+          <%= render partial: "#{type_name.pluralize}/partial_search", locals: {results: @results[type_name] || [] } %>
+        </div>
+      <% end %>
+
+    </div>
+<div>

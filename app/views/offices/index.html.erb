@@ -1,16 +1,4 @@
-<% if @offices %>
-<div class="row">
-<div class="row">
-  <div class="large-12 columns">
-    <a class ="tiny button" href="#" data-reveal-id="officetiny">Add Office</a>
-      <div class="reveal-modal tiny" id="officetiny" data-reveal="">
-          <h2>Add New Office</h2>
-              Name: <input type="text" id ="oname" name="oname"><br>
-              <input type="button" class ="tiny button" value="Save Office" id ="addOfficeButton"/>
-              <a class="close-reveal-modal">×</a>
-      </div>
-  </div>
-</div>
+<% if @results_office%>
 
 <div class="row">
   <div class="large-12 columns">
@@ -36,13 +24,11 @@
 </div>
 
  <div class="row">
-  <div class="large-12 columns" id="search_results">
-    <% @offices.each do |result| %>
-      <% if result["type"]  == "office" then %>
-        <a class="do_highlight" href="../offices/<%=result["data"]["name"].html_safe%>"> <strong> 
-        <%=result["data"]["name"].html_safe  %> </strong> </a> </br></br>
-      <%end%>  
-    <%end%>
+  <div class="large-12 columns" id="offices">
+
+     <%= render partial: 'partial_office_search'  %>
+
+   
   </div>
 </div>
 <%end%>

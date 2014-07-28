@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
-  get "guide/index"
+  get "guide" => 'guide#index'
+  get "guide_search" => 'guide#search'
+
   get "terms" => 'terms#index'
-  #get "terms/partial_search" => 'terms#partial_search'
+    #get "terms/partial_search" => 'terms#partial_search'
   get "terms/partial_search" => 'terms#partial_search'
   get "terms/:id" => 'terms#show'
   put "terms/:id" => 'terms#update'  #BMR
@@ -15,11 +17,12 @@ Rails.application.routes.draw do
 
 
   get "offices" => 'offices#index'
+  get "offices/partial_office_search" => 'offices#partial_office_search'
   get "offices/:id" => 'offices#show'
   put "offices/:id" => 'offices#update'  #SMM
   delete "offices/:id" => 'offices#destroy'  #SMM
   post "offices" => 'offices#create' #SMM
-  
+
   get "search/:search_for" => 'search#show'
   get "reports" => 'reports#index'
   get "/reports/business_objects" => 'reports#business_objects'
@@ -37,7 +40,7 @@ Rails.application.routes.draw do
 
 
   root 'guide#index'
-
+  #root  'terms#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

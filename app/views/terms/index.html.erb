@@ -1,51 +1,22 @@
-
-  <% if @results %>
+<% if @results_term %>
+   
+<div class="row">
+  <div class="large-12 columns">
+    <h1 class="page-title">Glossary</h1>
+  </div>
   <div class="row">
-    <div class="large-12 columns">
-      <h1 class="page-title">Glossary</h1>
-    </div>
-   <div class="row">
-   <div class="large-8 columns">
+    <div class="large-8 columns">
       <div data-alert class="alert-box success radius" style="display:none">
       <span class="success_msg"></span>
       <a href="#" class="close">&times;</a>
-     </div>
     </div>
   </div>
-  <div class="row">
-    <div class="large-12 columns">
-      <div class="medium-9 large-3 medium-push-9 columns">
-        <div class="panel">
-          <form>
-          <div class="row">
-          <div class="large-12 columns">
-            <a class="button" href="#" data-reveal-id="mytiny">Create Term</a>
-               <div class="reveal-modal tiny" id="mytiny" data-reveal="">
-                 <h2>Create a New Term</h2>
-                 Name: <input type="text" id ="tname" name="name"><br>
-                <input type="button" value="Save Name" id ="createTermButton"/>
-                <a class="close-reveal-modal">×</a>
-               </div>
-         </div>
-         </div>
-
-          <div class="row">
-          <div class="large-12 columns">
-            <%= form_for(:tags, :url=>{:action=>'index'}, :html => { :method => 'GET'}) do |f| %>
-              <p>Search Glossary: <%= f.text_field :search1, id: "search1", :autofocus => true %></p>
-            <% end %>
-          </div>
-          </div>
-
-          </form>
-        </div>
-      </div>
-      <div class="medium-6 large-9 medium-pull-3 columns" id="search_results">
-
-        <%= render partial: 'partial_search'  %>
-
-      </div>
-    </div>
-  </div>
+</div>
+ 
+<div class="row">
+ <div class="large-12 columns" id="terms">
+   <%= render partial: 'partial_search' %> 
+ </div>
+</div>
 
 <% end %>
