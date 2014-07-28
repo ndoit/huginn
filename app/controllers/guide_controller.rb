@@ -15,7 +15,9 @@ class GuideController < ApplicationController
     logger.debug("Querying Muninn...")
 
      page = params[:page]
-     json_string = '{"query":{"match_all":{}}, "facets": {"tags":{ "terms" : {"field" : "_type"}}},"from":"0","size":"999"}'
+     #json_string = '{"query":{"match_all":{}}, "facets": {"tags":{ "terms" : {"field" : "_type"}}},"from":"0","size":"999"}'
+		 json_string = MuninnCustomSearchAdapter.create_search_string( params[:q] )
+
      @query_result = MuninnCustomSearchAdapter.custom_query(json_string, page, 15 )
 
 
