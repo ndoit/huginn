@@ -1,4 +1,4 @@
- 
+
 $(document).ready(function(){
 
   if (typeof office_json != 'undefined')  {
@@ -61,27 +61,23 @@ $(document).ready(function(){
     })
 
   }
-  $("#search1").bind("change keyup",function() {
-     console.log( $(this) )
-     if ($(this).val().length >=2 ) {
-       var url = '/terms/partial_search?q=' + $(this).val();
-       var search_string = $(this).val();
-       console.log(url)
-       $(".do_highlight").highlight(search_string);
-       $('#terms').load(encodeURI(url), function() {
-           $(".do_highlight").highlight(search_string);
-           
-       });
-       var url = '/offices/partial_office_search?q=' + $(this).val();
-       var search_string = $(this).val();
-       console.log(url)
-       $(".do_highlight").highlight(search_string);
-       $('#offices').load(encodeURI(url), function() {
-           $(".do_highlight").highlight(search_string);
-             
-       });
+
+
+  var pendingPartialSearch
+  var delay = 200
+  $("#search1").bind("keyup",function() {
+    
+     if ( pendingPartialSearch != null ) {
+       clearTimeout( pendingPartialSearch )  // stop the pending one
      }
+
+     // start a new one
+     pendingPartialSearch = setTimeout( function() {
+       doPartialSearch( $("#search1").val()  )
+     }, delay )
+
   })
+
 
   $('#createTermButton').click(function() {
 	var term = $('#tname').val();
@@ -123,7 +119,7 @@ function addValidationError( type, message ) {
  function showValidationErrors() {
  	errors_exist = false
  	$('.alert-box').each( function() {
- 		if ( $(this).find('li').length != 0 ){ 
+ 		if ( $(this).find('li').length != 0 ){
  			type = $(this).find('alert','warning')
  		   $('.alert-box.' + type.selector).show().html_safe;
  		   errors_exist = true
@@ -141,7 +137,7 @@ function addValidationError( type, message ) {
   function showSuccessMessage() {
  	success_exist = false
  	$('.alert-box').each( function() {
- 		if ( $(this).find('span').html){ 
+ 		if ( $(this).find('span').html){
  			 type = $(this).find('success')
  		   $('.alert-box.' + type.selector).show().html_safe;
  		   success_exist = true
@@ -183,11 +179,11 @@ function updateTermObject(term_object ) {
 	$('.raci_row').each( function() {
 		stake = $(this).data('raci-stake')
 		console.log("stake value is " + stake);
-		json_array = $('#raci' + i ).select2('data')	
+		json_array = $('#raci' + i ).select2('data')
     if (stake == "Responsible" && json_array.length >1){
     	addValidationError( "alert", "Only one <b>Responsible</b> office is allowed.")
     }
-      
+
 		for (var j = 0; j < json_array.length; j++ ) {
 			term_object["stakeholders"].push( { name: json_array[j]["text"], stake: stake} )
 			var office_exist = false;
@@ -201,7 +197,7 @@ function updateTermObject(term_object ) {
        }
 
       if (!office_exist)
-        office_array.push({name: json_array[j]["text"]})	
+        office_array.push({name: json_array[j]["text"]})
       else{
         if (!office_text)
           office_text = json_array[j]["text"]
@@ -211,7 +207,7 @@ function updateTermObject(term_object ) {
 
       }
       i++;
-	}) 
+	})
 
   if (office_text !=null)
     addValidationError( "alert", "<b>" +  office_text + "</b>" +  " has repeated in the RACI entry. Each office is assigned for one role per term.");
@@ -220,7 +216,7 @@ function updateTermObject(term_object ) {
   if ( showValidationErrors()  == true ) {
     return false;
   }
-  
+
 	return term_object;
 }
 
@@ -231,7 +227,7 @@ function deleteTerm( termid ) {
 	    type: 'DELETE',
 	    success: function(data, status, xhr){
 	      addSuccessMessage("success", "<b>" + data.message + ". Please wait for Glossary Page display.</br>" )
-	      showSuccessMessage(); 
+	      showSuccessMessage();
         var myHashLink = "terms";
         window.location = '/' + "#" + myHashLink;
 	    },
@@ -241,6 +237,20 @@ function deleteTerm( termid ) {
         showValidationErrors()
       }
 	});
+}
+
+function doPartialSearch( search_string ) {
+
+  $.ajax({
+    url:   '/guide_search?q=' + search_string,
+    success: function(data, status, xhr){
+      $('#search_results').html(data)
+      $(".do_highlight").highlight(search_string)
+      $("#search1").focus()
+    },
+    error: function(xhr, status, error) {
+    }
+  });
 }
 
 function updateTerm( term_object ) {
@@ -321,7 +331,7 @@ function updateOfficeObject(office_object ) {
       console.log(id);
       office_object[id] = p;
     }
-   
+
   });
 
   return office_object;
@@ -340,7 +350,7 @@ function updateOffice(office_object  ) {
         window.location = url;
         addSuccessMessage("success", "<b>" + office_object.name + "</b>" +  " updated successfully. " );
         showSuccessMessage();
-         
+
       },
       error: function( xhr, ajaxOptions, thrownError) {
          addValidationError( "alert", "Update Office, <b>" + office_object.name + "</b>  has errors: " + jQuery.parseJSON(xhr.responseText).message);
@@ -357,7 +367,7 @@ function deleteOffice( officeid ) {
       type: 'DELETE',
       success: function(data, status, xhr){
         addSuccessMessage("success", "<b>" + data.message + ". Please wait for Offices display Page.</br>" )
-        showSuccessMessage(); 
+        showSuccessMessage();
         var myHashLink = "offices";
         window.location = '/' + "#" + myHashLink;
       },
@@ -382,4 +392,3 @@ tinymce.init({
     ],
     toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
 });
-
