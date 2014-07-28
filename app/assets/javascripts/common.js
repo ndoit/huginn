@@ -66,7 +66,7 @@ $(document).ready(function(){
   var pendingPartialSearch
   var delay = 200
   $("#search1").bind("keyup",function() {
-    
+
      if ( pendingPartialSearch != null ) {
        clearTimeout( pendingPartialSearch )  // stop the pending one
      }
@@ -241,16 +241,13 @@ function deleteTerm( termid ) {
 
 function doPartialSearch( search_string ) {
 
-  $.ajax({
-    url:   '/guide_search?q=' + search_string,
-    success: function(data, status, xhr){
-      $('#search_results').html(data)
+  $('#search_results').html('<div class="loading_bar"><img src="/assets/ajax-loader.gif"></div>')
+  $('#search_results').load( '/guide_search?q=' + search_string,
+    function() {
       $(".do_highlight").highlight(search_string)
       $("#search1").focus()
-    },
-    error: function(xhr, status, error) {
-    }
-  });
+  })
+
 }
 
 function updateTerm( term_object ) {
