@@ -105,13 +105,15 @@ class TermsController < ApplicationController
 
    end
     @results_count = @results.select { |k| "#{k[:type]}" =="count"}
-    @results_term= @results.select { |k| "#{k[:type]}" =="term"}
-    @results_term = @results_term.sort_by { |k| "#{k[:sort_name]}"}
-    @results_term =@results_term.paginate(:page=> page, :per_page => 15)
+    @results_hash = {}
+    @results_count.each do |hash|
+       @results_hash[hash["term"]] = hash["count"]
+    end
+    @results = @results.select { |k| "#{k[:type]}" =="term"}
+    @results = @results.sort_by { |k| "#{k[:sort_name]}"}
+    @results = @results.paginate(:page=> page, :per_page => 15)
      
   end
-
-
 
   def partial_search
     page =params[:page]
@@ -124,11 +126,11 @@ class TermsController < ApplicationController
        @results_hash[hash["term"]] = hash["count"]
     end
 
-    @results_term= @results.select { |k| "#{k[:type]}" =="term"}
-    @results_term = @results_term.sort_by { |k| "#{k[:sort_name]}"}
-    @results_term =@results_term.paginate(:page=> page, :per_page => 15)
+    @results = @results.select { |k| "#{k[:type]}" =="term"}
+    @results = @results.sort_by { |k| "#{k[:sort_name]}"}
+    @results =@results.paginate(:page=> page, :per_page => 15)
     respond_to do |format|
-      format.json {render :json => @results_term, layout: false}
+      format.json {render :json => @results, layout: false}
       format.html {render partial: "partial_search", layout: false }
     end
   end
