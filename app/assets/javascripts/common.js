@@ -12,7 +12,9 @@ $(document).ready(function(){
     	$(this).data().select2.updateSelection( $(this).data('init') )
     });
 
-    }
+  }
+
+  $('#search1').watermark('Search Terms');
 
   if(typeof term_object != 'undefined')  {
 
@@ -70,9 +72,11 @@ $(document).ready(function(){
      if ( pendingPartialSearch != null ) {
        clearTimeout( pendingPartialSearch )  // stop the pending one
      }
+     console.log($("#search1").val() )
 
      // start a new one
      pendingPartialSearch = setTimeout( function() {
+        console.log($("#search1").val() )
        doPartialSearch( $("#search1").val()  )
      }, delay )
 
@@ -240,9 +244,8 @@ function deleteTerm( termid ) {
 }
 
 function doPartialSearch( search_string ) {
-
-  $('#search_results').html('<div class="loading_bar"><img src="/assets/ajax-loader.gif"></div>')
-  $('#search_results').load( '/guide_search?q=' + search_string,
+  console.log(search_string);
+  $('#search_results').load( '/guide_search?q=' + encodeURI(search_string),
     function() {
       $(".do_highlight").highlight(search_string)
       $("#search1").focus()
@@ -280,7 +283,7 @@ function createTerm( term_object ) {
      success: function (data) {
       addSuccessMessage("success", "<b>Term " + term_object.name +   " successfully. Please wait for Term Detail page display.</b>");
 	    showSuccessMessage();
-      var url = escape('terms/'+ term_object.name);
+      var url = escape('/terms/'+ term_object.name);
       window.location = url;
    },
      error: function( xhr, ajaxOptions, thrownError) {
@@ -298,7 +301,7 @@ function addOffice(office_object ) {
      data: { "office": JSON.stringify(office_object)},
      dataType: 'json',
      success: function (data) {
-      var url = escape('offices/'+ office_object.name);
+      var url = escape('/offices/'+ office_object.name);
       window.location = url;
       addSuccessMessage("success", "<b>Office " + office_object.name +   " successfully. Please wait for Office Detail page display.</b>");
       showSuccessMessage();
@@ -387,5 +390,6 @@ tinymce.init({
         "searchreplace visualblocks code fullscreen",
         "insertdatetime media table contextmenu paste "
     ],
-    toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
+    toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image|anchor"
+
 });
