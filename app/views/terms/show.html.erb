@@ -30,7 +30,7 @@
       	 <input type="button" class ="tiny button" value="Yes" id="deleteConfirm" />
       	 <input type="button" class ="tiny button" value="No" id="deleteCancel" />
       	 <a class="close-reveal-modal">×</a>
-     </div>   
+       </div>   
    </div>
   </div>
  
@@ -40,77 +40,71 @@
    <div class="row">
 	 <div class="large-5 columns"> &nbsp;</div>
 	 <div class="large-2 columns">
-		    <input type="button" class ="tiny button"   value="Update Term" id="updateTermButton" />
+		    <input type="button" class ="tiny button"  value="Update Term" id="updateTermButton" />
 		    <input type="button"  class ="tiny button" value="Delete Term" data-reveal-id="mytinyDelete" id="deleteTermButton" />
 	 </div>
 	 <div class="large-5 columns"> &nbsp;</div>
    </div>
  
 </div>
+
 <% if @term["success"] %>
 <div class="row">
-
 <div class="large-12 columns">
-	<div class="small-12 large-12 columns">
-			<div id="name" class="editable">
+   <div class="small-12 large-12 columns">
+	  <div id="name" class="editable">
 				<h2 class="page-title">
 			<%= @term["term"]["name"].html_safe %>
 			</h2>
-		</div>
-
-		<div class="editable" id="definition">
+	  </div>
+	  <div id="definition" class="editable">
+		   <% if @term["term"]["definition"]  then %>
 			<%= @term["term"]["definition"].html_safe %>
-		</div><br/>
+		   <%else%>
+			 NA
+		    <%end%>  
+    	</div> </br>
 		<h5 class="page-title">General Information</h5>
-		<dl>
-			<dt>Data Availability</dt>
-				<dd>
-
-					<font size="2" color="gray">
-						<div id="data_availability" class="editable">
-							<% if @term["term"]["data_availability"]  then %>
-							 <%= @term["term"]["data_availability"].html_safe %>
-							 <%else%>
-							  NA
-							  <%end%>
-				    	 </div>
-					</font>
-
-				</dd>
-			</dt>
-			<dt>Possible Values</dt>
-				<dd>
-					<font size="2" color="gray">
-						<div id="possible_values" class="editable">
-							<% if @term["term"]["possible_values"] then %>
-							<%= @term["term"]["possible_values"].html_safe %>
-							 <%else%>
-							   NA
-							  <%end%>
-							</div>
-					</font>
-				</dd>
-			</dt>
-			<dt>Notes</dt>
-				<dd>
-					<font size="2" color="gray"><div id="notes" class="editable">
-
-						<% if @term["term"]["notes"]  then %>
-							<%= @term["term"]["notes"].html_safe %>
-							 <%else%>
-							   NA
-							  <%end%>
-						</div></font>
-				</dd>
-			</dt>
+		<dl> </br>
+		  <dt>Data Availability</dt>
+		   <dd>
+		    <div id="data_availability" class="editable">
+			  <% if @term["term"]["data_availability"]  then %>
+				<%= @term["term"]["data_availability"].html_safe %>
+			  <%else%>
+				NA
+			  <%end%>
+			</div>
+		  </dd>
+		 </dt>
+		 <dt>Possible Values</dt>
+		  <dd>
+			<div id="possible_values" class="editable">
+			  <% if @term["term"]["possible_values"] then %>
+				<%= @term["term"]["possible_values"].html_safe %>
+			  <%else%>
+			    NA
+			  <%end%>
+			</div>
+		  </dd>
+		 </dt>
+		 <dt>Notes</dt>
+		 <dd>
+		   <div id="notes" class="editable">
+			<% if @term["term"]["notes"]  then %>
+			  <%= @term["term"]["notes"].html_safe %>
+			<%else%>
+			  NA
+			<%end%>
+		   </div> 
+		  </dd>
+		</dt>
 		</dl>
 	</div>
 	<div class="small-12 large-12 columns">
 		<h5 class="page-title">R.A.C.I. Matrix</h5>
 		<div class="row">
-
-
-			<table class="raci">
+          <table class="raci">
 			  <tbody class="tbody">
 			  	<% @stakeholder_hash.keys.each_with_index do |key, index|%>
 			    <tr class="raci_row" data-raci-stake="<%= key %>">
@@ -129,7 +123,7 @@
 				Last Updated: <%= @term["term"]["modified_date"].to_datetime.strftime("%a, %d %b %Y %I:%M %p") %>
 			</dfn>
 		</div>
-	</div>
+    </div>
 </div>
 </div>
 
