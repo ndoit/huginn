@@ -17,39 +17,24 @@
            
           <!-- Top Bar Left Nav Elements -->
           <ul class="left">
-              <li class="has-dropdown not-click"><a href="/">Search</a>
-              <ul class="dropdown"><li class="title back js-generated"></li>
 
-                <li><a href="/guide#terms">Terms</a></li>
-                <li><a href="/guide#reports">Reports</a></li>
-                <li><a href="/guide#office">Offices</a></li>
-                
-              </ul>
-            </li>
+            <li class="has-dropdown not-click"> <a href="/">All</a> </li>
             <li class="divider"></li>
             <!-- Search | has-form wrapper -->
-             <li> 
-             
+             <li>              
                 <%= form_for(:tags, :url=>{:action=>'index'}, :html => { :method => 'GET'}) do |f| %>
-                <%= f.text_field :search1,id: "search1", :autofocus => true %>
-                <% end %>
-               
+                <%= f.text_field :search1, id: "search1", :autofocus => true %>  
+                <% end %>             
              </li> 
-
-            
-            
+             
             </ul>
+            
 
             <!-- Top Bar Right Nav Elements -->
           <ul class="right">
             <!-- Divider -->
-             <li class="has-dropdown not-click"><a href="https://login.nd.edu/cas/login"><%= (session[:cas_user] ? session[:cas_user].to_s : "Login") %></a>
-              <ul class="dropdown">
-                <li class="title back js-generated"></li>
-                <li><a href="https://login.nd.edu/cas/logout">Logout</a></li>
-                <li class="divider"></li>
                 <li class="has-dropdown not-click"><a href="#">Admin</a>
-                  <!-- Nested Dropdown -->
+               <!-- Nested Dropdown -->
                   <ul class="dropdown"><li class="title back js-generated"></li>
                     <li><a class ="tiny button" href="#" data-reveal-id="mytiny"><strong>Add New Term</strong></a>
                       <div class="reveal-modal tiny" id="mytiny" data-reveal="">
@@ -68,7 +53,7 @@
                       </div>
                     </li>
                     <li class="divider"></li>
-                    <li> <a class ="tiny button" href="#" data-reveal-id="officetiny"><strong>Add New Office </strong></a>
+                     <li> <a class ="tiny button" href="#" data-reveal-id="officetiny"><strong>Add New Office </strong></a>
                         <div class="reveal-modal tiny" id="officetiny" data-reveal="">
                           <h2>Add New Office</h2>
                           Name: <input type="text" id ="oname" name="oname"><br>
@@ -84,9 +69,9 @@
                         </div>
                     </li>
                   </ul>
-                </li>
-              </ul>
-            </li>
+               </li>
+              
+           
           </ul>
         </section>
       </div>
