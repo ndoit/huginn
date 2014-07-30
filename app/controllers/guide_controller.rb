@@ -41,7 +41,7 @@ class GuideController < ApplicationController
         @results_hash[hash["term"]] = hash["count"]
      end
 
-    render html: "partial_office_search", layout: false
+     render html: "partial_search", layout: false
  end
 
 end
