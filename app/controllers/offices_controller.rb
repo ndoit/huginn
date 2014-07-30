@@ -18,9 +18,10 @@ class OfficesController < ApplicationController
     page =params[:page]
     json_string = MuninnCustomSearchAdapter.create_search_string( params[:q] )
     @results= MuninnCustomSearchAdapter.custom_query(json_string, params[:page], 15 )
-    @results_office= @results.select { |k| "#{k[:type]}" =="office"}
-    @results_office = @results_office.sort_by { |k| "#{k[:sort_name]}"}
-    @results_office =@results_office.paginate(:page=> page, :per_page => 15)
+    @results_= @results.select { |k| "#{k[:type]}" =="office"}
+    @results = @results.sort_by { |k| "#{k[:sort_name]}"}
+    @results =@results.paginate(:page=> page, :per_page => 15)
+   
        
   end
   # display office detail page
@@ -48,7 +49,7 @@ class OfficesController < ApplicationController
     render status: response.code, json: response.body
   end
 
- def partial_office_search
+ def partial_search
     page =params[:page]
     json_string = MuninnCustomSearchAdapter.create_search_string( params[:q] )
     @results= MuninnCustomSearchAdapter.custom_query(json_string, params[:page], 15 )
@@ -59,12 +60,12 @@ class OfficesController < ApplicationController
        @results_hash[hash["term"]] = hash["count"]
     end
 
-    @results_office= @results.select { |k| "#{k[:type]}" == "office"}
-    @results_office = @results_office.sort_by { |k| "#{k[:sort_name]}"}
-    @results_office =@results_office.paginate(:page=> page, :per_page => 15)
+    @results = @results.select { |k| "#{k[:type]}" == "office"}
+    @results = @results.sort_by { |k| "#{k[:sort_name]}"}
+    @results = @results.paginate(:page=> page, :per_page => 15)
       respond_to do |format|
-      format.json {render :json => @results_office, layout: false}
-      format.html {render partial: "partial_office_search", layout: false }
+      format.json {render :json => @results, layout: false}
+      format.html {render partial: "partial_search", layout: false }
     end
  end
 
