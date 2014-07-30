@@ -13,6 +13,7 @@
 //= require jquery
 //= require foundation
 //= require jquery.highlight
+//= require jquery.watermark.min
 //= require select2
 //= require_tree .
 
