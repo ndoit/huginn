@@ -22,8 +22,9 @@ class MuninnAdapter
     MuninnAdapter.perform( req )
   end
 
+ 
 
-  def self.get( resource_uri )
+  def self.get( resource_uri, cas_user, cas_pgt )
 
     http = MuninnAdapter.new_http_request
 
@@ -32,17 +33,17 @@ class MuninnAdapter
 
     http.use_ssl = ENV["muninn_uses_ssl"]
 
-    #if session[:cas_user] != nil
-      #cas_service_uri = "https://" + muninn_host.to_s + "/"
-      #proxy_granting_ticket = session[:cas_pgt]
-      #ticket = CASClient::Frameworks::Rails::Filter.client.request_proxy_ticket(
-        #proxy_granting_ticket, cas_service_uri
-      #)
-      #cas_proxy_params = "?service=#{URI::encode(ticket.service)}&ticket=#{ticket.ticket}"
-    #else
-      #cas_proxy_params = ""
-   # end
-    cas_proxy_params = ""
+    if cas_user != nil && cas_pgt != nil
+      cas_service_uri = "https://" + muninn_host.to_s + "/"
+      proxy_granting_ticket = cas_pgt
+      ticket = CASClient::Frameworks::Rails::Filter.client.request_proxy_ticket(
+        proxy_granting_ticket, cas_service_uri
+      )
+      cas_proxy_params = "?service=#{URI::encode(ticket.service)}&ticket=#{ticket.ticket}"
+    else
+      cas_proxy_params = ""
+    end
+    #cas_proxy_params = ""
     if !ENV["validate_muninn_certificate"]
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE #for when Muninn is using a self-signed cert
     end
@@ -58,6 +59,9 @@ class MuninnAdapter
     muninn_response
   end
 
+  def self.get( resource_uri )
+    return self.get(resource_uri, nil, nil)
+  end
   private
   def self.new_http_request
     Net::HTTP.new( ENV["muninn_host"], ENV["muninn_port"] )
