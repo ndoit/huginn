@@ -233,7 +233,7 @@ function deleteTerm( termid ) {
 	      addSuccessMessage("success", "<b>" + data.message + ". Please wait for Glossary Page display.</br>" )
 	      showSuccessMessage();
         var myHashLink = "terms";
-        window.location = '/' + "#" + myHashLink;
+        window.location.href = '/' + "#" + myHashLink;
 	    },
 	    error: function(xhr, status, error) {
            //alert(xhr.responseText)
@@ -262,7 +262,7 @@ function updateTerm( term_object ) {
     	dataType: 'json',
 	    success: function (data) {
 	       var url = escape(term_object.name);
-         window.location = url;
+         window.location.href = url;
          addSuccessMessage("success", "<b>" + term_object.name + "</b>" +  " updated successfully. " );
          showSuccessMessage();
 	    },
@@ -369,7 +369,7 @@ function deleteOffice( officeid ) {
         addSuccessMessage("success", "<b>" + data.message + ". Please wait for Offices display Page.</br>" )
         showSuccessMessage();
         var myHashLink = "offices";
-        window.location = '/' + "#" + myHashLink;
+        window.location.href = '/' + "#" + myHashLink;
       },
       error: function(xhr, status, error) {
            //alert(xhr.responseText)
