@@ -29,10 +29,33 @@ class TermsController < ApplicationController
 
   def authenticated_show
 
-   muninn_response = MuninnAdapter.get( "/terms/" + URI::encode(params[:id]) )
+   muninn_response = MuninnAdapter.get( "/terms/" + URI::encode(params[:id]), session[:cas_user], session[:cas_pgt] )
    @term = JSON.parse(muninn_response.body)
    @term["huginn_user"] = session[:cas_user].to_s
 
+  end
+
+
+  def authenticated_show
+    muninn_host = Huginn::Application::CONFIG["muninn_host"]
+    muninn_port = Huginn::Application::CONFIG["muninn_port"]
+
+    cas_service_uri = "https://" + muninn_host.to_s + "/"
+    proxy_granting_ticket = session[:cas_pgt]
+    ticket = CASClient::Frameworks::Rails::Filter.client.request_proxy_ticket(
+      proxy_granting_ticket, cas_service_uri
+    )
+
+    logger.debug("Querying Muninn...")
+    uri_string = "/terms/" + URI::encode(params[:id])
+
+    muninn_response = HTTParty.get(
+      #{}"http://#{muninn_host}:#{muninn_port}/#{uri_string}"
+      "http://#{muninn_host}:#{muninn_port}/#{uri_string}?service=#{URI::encode(ticket.service)}&ticket=#{ticket.ticket}"
+      )
+
+    @term = JSON.parse(muninn_response.body)
+    @term["huginn_user"] = session[:cas_user].to_s
   end
 
   def show
