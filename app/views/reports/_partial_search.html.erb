@@ -1,0 +1,12 @@
+   <% results.each do |result| %>
+    <% if result[:type]  == 'report' then %>
+     <a class="do_highlight" href="../reports/<%=result[:data]["name"]%>"> <strong>
+      <%= result[:data]["name"] %></strong> </a> 
+      <% if  result[:data]["description"]   then %>
+           <p class="do_highlight" >  <%= result[:data]["description"].html_safe %></p>
+          <%else%>
+          <p class="do_highlight" > NA </p>
+         <%end%>
+     <%end%>
+ <%end%>
+ <%= will_paginate(results, :class => "apple_pagination") %> <br>
