@@ -2,7 +2,7 @@
    <% results.each do |result| %>
     <% if result[:type]  == 'term' then %>
      <a class="do_highlight" href="../terms/<%=result[:data]["name"]%>"> <strong>
-      <%= result[:data]["name"] %></strong> </a> </br>
+      <%= result[:data]["name"] %></strong> </a> 
       <% if  result[:data]["definition"]   then %>
            <p class="do_highlight" >  <%= result[:data]["definition"].html_safe %></p>
           <%else%>
