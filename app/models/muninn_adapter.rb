@@ -24,7 +24,7 @@ class MuninnAdapter
 
  
 
-  def self.get( resource_uri, cas_user, cas_pgt )
+  def self.get( resource_uri,cas_user=nil,cas_pgt=nil)
 
     http = MuninnAdapter.new_http_request
 
@@ -59,9 +59,9 @@ class MuninnAdapter
     muninn_response
   end
 
-  def self.get( resource_uri )
-    return self.get(resource_uri, nil, nil)
-  end
+  #def self.get( resource_uri,nil,nil )
+    #return self.get(resource_uri, nil, nil)
+  #end
   private
   def self.new_http_request
     Net::HTTP.new( ENV["muninn_host"], ENV["muninn_port"] )
