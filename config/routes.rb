@@ -26,16 +26,20 @@ Rails.application.routes.draw do
   post "offices" => 'offices#create' #SMM
 
   get "search/:search_for" => 'search#show'
+  get "reports/:id" => 'reports#show'
+  post "reports" => 'reports#create' #SMM
   get "reports" => 'reports#index'
-  get "/reports/business_objects" => 'reports#business_objects'
-  get "/reports/powerview" => 'reports#powerview'
-  get "/reports/tableau" => 'reports#tableau'
-  get "/reports/ssrs" => 'reports#ssrs'
+  put "reports/:id" => 'reports#update'  #SMM
+  delete "reports/:id" => 'reports#destroy'  #SMM
+  get "reports/partial_search" => 'reportss#partial_search'
+
+
   get "/reports/access_denied" =>'reports#access_denied'
   get "search" => 'search#index'
   get "cas_proxy_callback/receive_pgt" => 'cas_proxy_callback#receive_pgt'
   get "cas_proxy_callback/retrieve_pgt" => 'cas_proxy_callback#retrieve_pgt'
 
+ 
 
   resources :results, only: [:index]
   #root to:  "results#index"
