@@ -40,7 +40,32 @@ $(document).ready(function(){
 
   }
 
-   if(typeof office_detail_json != 'undefined')  {
+
+   if(typeof report_object != 'undefined')  {
+
+    $('#updateReportButton').click(function() {
+    //alert("updating term object")
+      if (updateReportObject(report_object) == false)
+        return false;
+
+      updateReport(report_object)
+    })
+
+    $('#showJSONButton').click( function() {
+      $('#json_container').toggle()
+    })
+
+    $('#deleteConfirm').click( function() {
+      $('a.close-reveal-modal').trigger('click')
+      deleteReport(report_object.id)
+    })
+    $('#deleteCancel').click( function() {
+      $('a.close-reveal-modal').trigger('click')
+    })
+
+  }
+
+  if(typeof office_detail_json != 'undefined')  {
 
     $('#updateOfficeButton').click(function() {
     //alert("updating term object")
@@ -62,40 +87,38 @@ $(document).ready(function(){
       $('a.close-reveal-modal').trigger('click')
     })
 
-  }
+ }
 
 
-  var pendingPartialSearch
-  var delay = 200
-  $("#search1").bind("keyup",function() {
+var pendingPartialSearch
+ var delay = 200
+ $("#search1").bind("keyup",function() {
+   if ( pendingPartialSearch != null ) {
+     clearTimeout( pendingPartialSearch )  // stop the pending one
+   }
+   console.log($("#search1").val() )
 
-     if ( pendingPartialSearch != null ) {
-       clearTimeout( pendingPartialSearch )  // stop the pending one
-     }
-     console.log($("#search1").val() )
-
-     // start a new one
-     pendingPartialSearch = setTimeout( function() {
-        console.log($("#search1").val() )
-       doPartialSearch( $("#search1").val()  )
-     }, delay )
+   // start a new one
+  pendingPartialSearch = setTimeout( function() {
+   console.log($("#search1").val() )
+   doPartialSearch( $("#search1").val()  )
+   }, delay )
 
   })
 
-
-  $('#createTermButton').click(function() {
-	var term = $('#tname').val();
-	term_new = {
-     "name": term,
-     "definition": "",
-     "source_system": "",
-     "data_sensitivity": "",
-     "possible_values": "",
-     "data_availability": "",
-     "notes": ""};
-    $('a.close-reveal-modal').trigger('click');
-    createTerm(term_new);
-  })
+$('#createTermButton').click(function() {
+var term = $('#tname').val();
+term_new = {
+   "name": term,
+   "definition": "",
+   "source_system": "",
+   "data_sensitivity": "",
+   "possible_values": "",
+   "data_availability": "",
+   "notes": ""};
+  $('a.close-reveal-modal').trigger('click');
+  createTerm(term_new);
+})
 
 $('#addOfficeButton').click(function() {
   clearValidationErrors()
@@ -106,12 +129,25 @@ $('#addOfficeButton').click(function() {
   })
 })
 
+$('#createReportButton').click(function() {
+var report = $('#rname').val();
+report_new = {
+   "name": report,
+   "description": "",
+   "report_type": "",
+   "embedJSON" : "{\"width\": \"\",\"height\": \"\" ,\"name\": \"\"}"
+  };
+  $('a.close-reveal-modal').trigger('click');
+ 
+  createReport(report_new);
+})
+
 
 function clearValidationErrors() {
- $('.alert-box').each( function() {
- 		$(this).find('.error_list').html('');
- 		$(this).find('.success_msg').html('');
- 		$(this).hide()
+$('.alert-box').each( function() {
+	$(this).find('.error_list').html('');
+	$(this).find('.success_msg').html('');
+	$(this).hide()
  })
 }
 
@@ -120,58 +156,58 @@ function addValidationError( type, message ) {
   error_list.append( '<li>' + message + '</li>')
 }
 
- function showValidationErrors() {
+function showValidationErrors() {
  	errors_exist = false
  	$('.alert-box').each( function() {
  		if ( $(this).find('li').length != 0 ){
  			type = $(this).find('alert','warning')
  		   $('.alert-box.' + type.selector).show().html_safe;
  		   errors_exist = true
- 		}
- 	})
- 	if ( errors_exist ) {
- 		window.scrollTo(0,0)
- 	}
+ 		} 
+	})
+  if ( errors_exist ) {
+	window.scrollTo(0,0)
+  }
  	return errors_exist
- }
+}
 
- function addSuccessMessage(type, message ) {
+function addSuccessMessage(type, message ) {
   $('.alert-box.' + type ).find('span.success_msg').append(message);
- }
-  function showSuccessMessage() {
- 	success_exist = false
- 	$('.alert-box').each( function() {
- 		if ( $(this).find('span').html){
- 			 type = $(this).find('success')
- 		   $('.alert-box.' + type.selector).show().html_safe;
- 		   success_exist = true
- 		}
- 	})
- 	if ( success_exist) {
- 		window.scrollTo(0,0)
- 	}
- 	return success_exist
- }
+}
+function showSuccessMessage() {
+  success_exist = false
+  $('.alert-box').each( function() {
+  	if ( $(this).find('span').html){
+  		 type = $(this).find('success')
+  	   $('.alert-box.' + type.selector).show().html_safe;
+  	   success_exist = true
+  	}
+  })
+  if ( success_exist) {
+  	window.scrollTo(0,0)
+  }
+  return success_exist
+}
 
 function updateTermObject(term_object ) {
-	clearValidationErrors()
-	tinymce.triggerSave();
+  clearValidationErrors()
+  tinymce.triggerSave();
   console.log(term_object);
-	$('.editable').each( function() {
-		id = $(this).attr('id');
-		if ( id ) {
-			p = tinymce.get(id).getContent()
-			if (id == "name") {
-				var StrippedString = p.replace(/(<([^>]+)>)/ig,"");
-				p = StrippedString;
+  $('.editable').each( function() {
+  	id = $(this).attr('id');
+  	if ( id ) {
+  		p = tinymce.get(id).getContent()
+  		if (id == "name") {
+  			var StrippedString = p.replace(/(<([^>]+)>)/ig,"");
+  			p = StrippedString;
 
-			}
-			console.log(p);
-			console.log(id);
-			term_object[id] = p;
-		}
+  		}
+  		console.log(p);
+  		console.log(id);
+  		term_object[id] = p;
+  	}
 
-	});
+  })
 
 	term_object["stakeholders"] = []
 	var office_array=[]
@@ -224,6 +260,107 @@ function updateTermObject(term_object ) {
 	return term_object;
 }
 
+function createReport(report_object ) {
+  report_object_string = JSON.stringify(report_object)
+  $.ajax({
+     url : '/reports',
+     type: 'POST',
+     data: { "report": report_object_string},
+     dataType: 'json',
+     success: function (data) {
+      addSuccessMessage("success", "<b>Report " + report_object.name +   " successfully. Please wait for report Detail page display.</b>")
+      showSuccessMessage();
+      var url = escape('/reports/'+ report_object.name)
+      window.location = url;
+   },
+     error: function( xhr, ajaxOptions, thrownError) {
+     addValidationError( "alert", "Added Report, " +report_object.name+ ", has error: " + xhr.responseText)
+     showValidationErrors()
+   }
+  })
+
+}
+
+function updateReportObject(report_object ) {
+  clearValidationErrors()
+  tinymce.triggerSave();
+  console.log(report_object );
+   $('.editable').each(function() {
+    id = $(this).attr('id');
+    if ( id ) {
+      p = tinymce.get(id).getContent()
+      if ((id == "name")  || (id =="t_height") || (id =="t_width")){
+        var StrippedString = p.replace(/(<([^>]+)>)/ig,"");
+        p = StrippedString;
+      }
+      if (id =='t_width'){
+         w = p
+        
+      }
+      if (id =='t_height'){
+         h =p
+       
+      }
+      if (id =='t_name'){
+
+         n = p.replace(/(<p>|<\/p>)/g, "");
+         n = n.replace(/&amp;/g, '&');
+      }
+      if (id =='t_report_type'){
+
+         r = p.replace(/(<p>|<\/p>)/g, "");
+          
+      }
+     
+     console.log(id);
+	   if (id !='t_width' && id !='t_height'  && id !='t_name') {
+         report_object[id] = p;
+	   }
+       console.log(report_object);
+    }
+  }) 
+  report_object["embedJSON"] = "{\"width\": \""+w+"\", \"height\" : \"" + h+"\",\"name\":\""+ n+"\"}"
+}
+
+function updateReport( report_object ) {
+  $.ajax({
+      url: report_object.id,
+      type: 'PUT',
+      data: {"reportJSON": JSON.stringify(report_object) },
+     // data: { "termJSON": term_object },
+      dataType: 'json',
+      success: function (data) {
+         var url = escape(report_object.name);
+         window.location.href = url;
+         addSuccessMessage("success", "<b>" + report_object.name + "</b>" +  " updated successfully. " );
+         showSuccessMessage();
+      },
+      error: function( xhr, ajaxOptions, thrownError) {
+         addValidationError( "alert", "Update Report has errors: " + xhr.responseText);
+           showValidationErrors()
+      }
+  })
+
+}
+
+function deleteReport( reportid ) {
+    $.ajax({
+      url:   reportid,
+      type: 'DELETE',
+      success: function(data, status, xhr){
+        addSuccessMessage("success", "<b>" + data.message + ". Please wait for Reports Page display.</br>" )
+        showSuccessMessage();
+        var myHashLink = "reports";
+        window.location.href = '/' + "#" + myHashLink;
+      },
+      error: function(xhr, status, error) {
+           //alert(xhr.responseText)
+        addValidationError( "alert", "Report delete has errors: " + xhr.responseText);
+        showValidationErrors()
+      }
+  });
+}
+
 
 function deleteTerm( termid ) {
   	$.ajax({
@@ -270,7 +407,7 @@ function updateTerm( term_object ) {
 	       addValidationError( "alert", "Update term has errors: " + xhr.responseText);
            showValidationErrors()
 	    }
-	});
+	})
 
 }
 
@@ -293,6 +430,28 @@ function createTerm( term_object ) {
   })
 
 }
+
+function createReport(report_object ) {
+  report_object_string = JSON.stringify(report_object)
+  $.ajax({
+     url : '/reports',
+     type: 'POST',
+     data: { "report": report_object_string},
+     dataType: 'json',
+     success: function (data) {
+      addSuccessMessage("success", "<b>Report " + report_object.name +   " successfully. Please wait for report Detail page display.</b>")
+      showSuccessMessage();
+      var url = escape('/reports/'+ report_object.name)
+      window.location = url;
+   },
+     error: function( xhr, ajaxOptions, thrownError) {
+     addValidationError( "alert", "Added Report, " +report_object.name+ ", has error: " + xhr.responseText)
+     showValidationErrors()
+   }
+  })
+
+}
+
 
 function addOffice(office_object ) {
   $.ajax({
