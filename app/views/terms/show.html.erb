@@ -1,4 +1,4 @@
- <script>
+<script>
     term_object = <%= @term["term"].to_json.to_s.html_safe %>
     office_json = <%= @office_json.to_s.html_safe %>
     stakeholder_hash = <%= @stakeholder_hash.to_json.to_s.html_safe %>
@@ -24,57 +24,56 @@
 
 <div class="row">
   <div class="large-12 columns">
-       <div class="reveal-modal tiny" id="mytinyDelete" data-reveal="">
-      	 <h2>Deleting Term</h2> <br>
-      	 <b> Are you sure? <b> <br> <br>
-      	 <input type="button" class ="tiny button" value="Yes" id="deleteConfirm" />
-      	 <input type="button" class ="tiny button" value="No" id="deleteCancel" />
-      	 <a class="close-reveal-modal">×</a>
-       </div>   
+     <div class="reveal-modal tiny" id="mytinyDelete" data-reveal="">
+       <h2>Deleting Term</h2> <br>
+       <b> Are you sure? <b> <br> <br>
+       <input type="button" class ="tiny button" value="Yes" id="deleteConfirm" />
+       <input type="button" class ="tiny button" value="No" id="deleteCancel" />
+       <a class="close-reveal-modal">×</a>
+      </div>   
    </div>
-  </div>
+</div>
  
 
 
 <div id ="term_detail">
    <div class="row">
 	 <div class="large-5 columns"> &nbsp;</div>
-	 <div class="large-2 columns">
+	   <div class="large-2 columns">
 		    <input type="button" class ="tiny button"  value="Update Term" id="updateTermButton" />
 		    <input type="button"  class ="tiny button" value="Delete Term" data-reveal-id="mytinyDelete" id="deleteTermButton" />
-	 </div>
-	 <div class="large-5 columns"> &nbsp;</div>
+	   </div>
+	<div class="large-5 columns"> &nbsp;</div>
    </div>
- 
 </div>
 
 <% if @term["success"] %>
 <div class="row">
 <div class="large-12 columns">
-   <div class="small-12 large-12 columns">
+  <div class="small-12 large-12 columns">
 	  <div id="name" class="editable">
-				<h2 class="page-title">
+		<h2 class="page-title">
 			<%= @term["term"]["name"].html_safe %>
-			</h2>
+		</h2>
 	  </div>
 	  <div id="definition" class="editable">
-		   <% if @term["term"]["definition"]  then %>
-			<%= @term["term"]["definition"].html_safe %>
-		   <%else%>
-			 NA
-		    <%end%>  
-    	</div> </br>
-		<h5 class="page-title">General Information</h5>
-		<dl> </br>
+		 <% if @term["term"]["definition"]  then %>
+		  <%= @term["term"]["definition"].html_safe %>
+		 <%else%>
+		   NA
+	     <%end%>  
+      </div> 
+	  <h5 class="page-title">General Information</h5>
+	   <dl> 
 		  <dt>Data Availability</dt>
-		   <dd>
-		    <div id="data_availability" class="editable">
-			  <% if @term["term"]["data_availability"]  then %>
-				<%= @term["term"]["data_availability"].html_safe %>
-			  <%else%>
+		  <dd>
+		   <div id="data_availability" class="editable">
+		    <% if @term["term"]["data_availability"]  then %>
+			  <%= @term["term"]["data_availability"].html_safe %>
+			<%else%>
 				NA
-			  <%end%>
-			</div>
+	        <%end%>
+		   </div>
 		  </dd>
 		 </dt>
 		 <dt>Possible Values</dt>
@@ -115,28 +114,37 @@
 			    </tr>
 			    <% end %>
 			 </table>
-
 		</div>
-		<h1 class="page-title"></h1>
-		<div class="right">
-			<dfn>
-				Last Updated: <%= @term["term"]["modified_date"].to_datetime.strftime("%a, %d %b %Y %I:%M %p") %>
-			</dfn>
-		</div>
+	</div>	
+	<div class="row">
+      <div class="large-12 large-centered columns"></br>
+      <h5 class="page-title">Reports Associated with this Term </h5>
+        <% if !@term["reports"].empty? then %>
+          <% @term["reports"].each do |result| %>
+          <% if result["name"]  then %>
+           <a class="do_highlight" href="../reports/<%=result["name"].html_safe %>"> <strong>
+              <%= result["name"] %></strong> </a> </br>
+          <% end %>
+         <% end %>
+        <%else%> </br>
+           Terms are not registered with this data governance term </br> </br>
+        <% end %>
+      </div>
     </div>
-</div>
-</div>
-
-
-<% else %>
-
-<div class="row">
+	<h1 class="page-title"></h1>
+	<div class="right">
+  	  <dfn>
+	   Last Updated: <%= @term["term"]["modified_date"].to_datetime.strftime("%a, %d %b %Y %I:%M %p") %>
+	  </dfn>
+	</div>
+ </div>
+ </div>
+ <% else %>
+ <div class="row">
 	<div class="medium-9 large-9 columns">
 		<h1>Nonexistant Term</h1>
 		We are sorry to inform you that the term you are currently looking for does not exist in our database.  If you feel that the following term should be added to Notre Dame's data dictionary, please proceed as follows:
 	</div>
-	
 </div>
 <!--Error: <%= @term["message"] %>-->
-
 <% end %>
