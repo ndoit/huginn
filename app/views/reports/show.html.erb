@@ -1,0 +1,185 @@
+
+<script>
+  report_object = <%= @report["report"].to_json.to_s.html_safe %>
+  report_embed_object = <%=  @report_embed.to_json.to_s.html_safe %>
+</script>
+
+
+
+
+<div class="row">
+  <div class="large-8 columns">
+    <div data-alert class="alert-box alert radius" style="display:none">
+      <ul class="error_list"></ul>
+      <a href="#" class="close">&times;</a>
+    </div>
+    <div data-alert class="alert-box warning radius" style="display:none">
+      <ul class="error_list"></ul>
+      <a href="#" class="close">&times;</a>
+    </div>
+    <div data-alert class="alert-box success radius" style="display:none">
+      <span class="success_msg"></span>
+      <a href="#" class="close">&times;</a>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="large-12 columns">
+   <div class="reveal-modal tiny" id="mytinyDelete" data-reveal="">
+     <h2>Deleting Report</h2> <br>
+      <b> Are you sure? <b> <br> <br>
+      <input type="button" class ="tiny button" value="Yes" id="deleteConfirm" />
+      <input type="button" class ="tiny button" value="No" id="deleteCancel" />
+      <a class="close-reveal-modal">×</a>
+    </div>  
+  </div>
+</div>
+
+
+<div class="row">
+   <div class="large-5 columns"> &nbsp;</div>
+   <div class="large-2 columns">
+        <input type="button" class ="tiny button"  value="Update Report" id="updateReportButton" />
+        <input type="button"  class ="tiny button" value="Delete Report" data-reveal-id="mytinyDelete" id="deleteReportButton" />
+   </div>
+   <div class="large-5 columns"> &nbsp; </div>
+</div>
+ 
+<div id ="report_detail">
+  <% if @report["success"] %>
+    <div class="row">
+     <div class="large-12 columns">
+      <div id="name" class="editable">
+        <h2 class="page-title">
+          <%= @report["report"]["name"].html_safe %>
+        </h2>
+      </div>
+
+      <div id="description" class="editable">
+       <% if @report["report"]["description"]  then %>
+          <%= @report["report"]["description"].html_safe %>
+       <%else%>
+          NA
+       <%end%>  
+      </div> 
+
+
+     <dl> 
+      <dt>Report Type</dt>
+      <dd>
+      <div id="report_type" class="editable">
+       <% if @report["report"]["report_type"]  then %>
+          <%= @report["report"]["report_type"].html_safe %>
+       <%else%>
+          NA
+       <%end%>  
+      </div> 
+      </dd>
+      </dt>
+
+     <dt>Data Source</dt>
+      <dd>
+      <div id="datasource" class="editable">
+       <% if @report["report"]["datasource"]  then %>
+          <%= @report["report"]["datasource"].html_safe %>
+       <%else%>
+          NA
+       <%end%>  
+      </div>  
+      </dd>
+      </dt>
+     </dl>
+
+    </div>
+   </div>
+
+   <% if @report_embed["width"] != "" then %>
+    <div class="row">
+     <div class="large-12 large-centered columns">  
+       <script type='text/javascript' src='https://tableau.nd.edu/javascripts/api/viz_v1.js'></script>
+       <div class='tableauPlaceholder' style='width: <%= @report_embed["width"] %>   px; height:  <%=@report_embed["height"] %>  px;'>
+       <object class='tableauViz' width=' <%= @report_embed["width"] %> ' height=' <%= @report_embed["height"] %> ' style='display:none;'>
+        <param name='host_url' value='https%3A%2F%2Ftableau.nd.edu%2F' />
+        <param name='site_root' value='' />
+        <param name='name' value= <%= @report_embed["name"].html_safe %>  />
+        <param name='tabs' value='no' />
+        <param name='toolbar' value='no' />
+       </object>
+       </div>
+     </div>
+    </div>
+        
+   <% end %>
+
+  <div class="row">
+   <div class="large-12 large-centered columns"> </br>
+    <h5 class="page-title">Report Parameters for Tablaeu</h5
+    <dl> </br>
+      <dt>Report Width</dt>
+       <dd>
+         <div id="t_width" class="editable">
+          <% if @report_embed["width"] !=""  then %>
+            <%= @report_embed["width"] %>
+          <%else%>
+            NA
+         <%end%>  
+        </div> 
+       </dd>
+     </dt>
+     <dt>Report Height</dt>
+       <dd>
+       <div id="t_height" class="editable">
+         <% if @report_embed["height"] !="" then %>
+           <%= @report_embed["height"] %>
+         <%else%>
+          NA
+         <%end%>  
+       </div> 
+      </dd>
+     </dt> 
+     <dt>Report Name</dt>
+       <dd>  
+       <div id="t_name" class="editable">
+       <% if @report_embed["name"] !=""  then %>
+          <%= @report_embed["name"] %>
+       <%else%>
+          NA
+       <%end%>
+      </div>    
+      </dd>
+     </dt> 
+    </dl>     
+   </div>
+  </div>
+   
+  <div class="row">
+   <div class="large-12 large-centered columns"></br>
+    <h5 class="page-title">Report Contains Following Data Governance Terms</h5>
+     <% if !@report["terms"].empty? then %>
+      <% @report["terms"].each do |result| %>
+       <% if result["name"]  then %>
+         <a class="do_highlight" href="../terms/<%=result["name"]%>"> <strong>
+             <%= result["name"] %></strong> 
+         </a> </br>
+       <% end %>
+     <% end %>
+     <%else%> </br>
+       No Terms have been registered with this report</br></br>
+     <% end %>
+   </div>
+ </div>
+ 
+  <% else %>
+
+  <div class="row">
+    <div class="medium-12 large-12 columns">
+    	<h1>Unregistered Report</h1>
+    		This report is unregistered or the meta-data about the report has been lost.  Please send us feedback and we will get back to you within 1 busienss day.
+     </div>
+  </div>
+
+  <% end %>
+
+</div>
+</div>
