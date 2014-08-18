@@ -28,7 +28,7 @@ class TermsController < ApplicationController
 
 
   def authenticated_show
-
+   Rails.logger.info("CAS User: #{session[:cas_user].to_s}, CAS Pgt: #{session[:cas_pgt].to_s}")
    muninn_response = MuninnAdapter.get( "/terms/" + URI::encode(params[:id]), session[:cas_user], session[:cas_pgt] )
    @term = JSON.parse(muninn_response.body)
    @term["huginn_user"] = session[:cas_user].to_s
