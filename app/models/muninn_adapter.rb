@@ -24,7 +24,7 @@ class MuninnAdapter
 
  
 
-  def self.get( resource_uri,cas_user=nil,cas_pgt=nil)
+  def self.get( resource_uri,cas_user,cas_pgt)
 
     http = MuninnAdapter.new_http_request
 
@@ -47,7 +47,7 @@ class MuninnAdapter
     if !ENV["validate_muninn_certificate"]
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE #for when Muninn is using a self-signed cert
     end
-
+     Rails.logger.info("cas_proxy_params ********************* : #{cas_proxy_params}" );
     if ENV["muninn_uses_ssl"]
      muninn_response = HTTParty.get(
       "https://#{muninn_host}:#{muninn_port}/#{resource_uri}#{cas_proxy_params}"
