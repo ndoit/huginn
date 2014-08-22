@@ -21,7 +21,7 @@ class GuideController < ApplicationController
      @query_result = MuninnCustomSearchAdapter.custom_query(json_string, page, 15 )
 
 
-     @node_types = [ 'term', 'office', 'report'  ]
+     @node_types = [ 'report', 'term']
      @results = {}
      @node_types.each do |type_name|
 

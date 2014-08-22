@@ -500,6 +500,7 @@ function updateOfficeObject(office_object ) {
   return office_object;
 }
 
+    
 
 function updateOffice(office_object  ) {
 

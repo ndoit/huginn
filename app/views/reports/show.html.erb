@@ -10,7 +10,7 @@
        viz.refresh() 
       else
        viz.revert()
-      } 
+     } 
    </script>
 
 <div class="row">
@@ -42,46 +42,20 @@
   </div>
 </div>
 
-
-<div class="row">
-   <div class="large-5 columns"> &nbsp;</div>
-   <div class="large-2 columns">
-        <input type="button" class ="tiny button"  value="Update Report" id="updateReportButton" />
-        <input type="button"  class ="tiny button" value="Delete Report" data-reveal-id="mytinyDelete" id="deleteReportButton" />
-   </div>
-   <div class="large-5 columns"> &nbsp; </div>
-</div>
- 
 <div id ="report_detail">
+
+
+
   <% if @report["success"] %>
-    <div class="row">
-     <div class="large-12 columns">
-      <div id="name" class="editable">
-        <h2 class="page-title">
-          <%= @report["report"]["name"].html_safe %>
-        </h2>
-      </div>
-
-      <div id="description" class="editable">
-       <% if @report["report"]["description"]  then %>
-          <%= @report["report"]["description"].html_safe %>
-       <%else%>
-          NA
-       <%end%>  
-      </div> 
-
-
-    </div> 
-    </div>
-
+    
    <% if @report_embed["width"] != "" then %>
     <div class="row">
     <div class="large-12 large-centered columns">  
      <script type='text/javascript' src='https://tableau.nd.edu/javascripts/api/viz_v1.js'></script>
       <div class="row">
        <div class="large-12 large-centered columns">  
-         <input type="button" class ="tiny button" value="Refresh Data" onclick="RefreshRevert('Refresh')" />
-         <input type="button" class ="tiny button" value="Reset Filters" onclick="RefreshRevert('Reset')" />
+        <a href="javascript:RefreshRevert('Refresh')">Refresh Data</a> &nbsp;&nbsp;&nbsp;
+        <a href="javascript:RefreshRevert('Reset')">Reset Filters</a>
        </div>
      </div>
     <div class='tableauPlaceholder' style='width:<%= @report_embed["width"] %>; height:<%=@report_embed["height"] %>;'>
@@ -90,6 +64,7 @@
     <param name='site_root' value='' />
     <param name='name' value= <%= @report_embed["name"].html_safe %> />
     <param name='tabs' value='no' />
+     <param name='linktarget' value='_self' />
     <param name='toolbar' value='no' />
     </object>
     </div>
@@ -127,7 +102,48 @@
     </div>
    </div>
 
+  
+   
   <div class="row">
+   <div class="large-12 large-centered columns"></br>
+    <h5 class="page-title">Report Contains Following Data Governance Terms</h5>
+     <% if !@report["terms"].empty? then %>
+      <% @report["terms"].each do |result| %>
+       <% if result["name"]  then %>
+         <a class="do_highlight" href="../terms/<%=result["name"]%>"> <strong>
+             <%= result["name"] %></strong> 
+         </a> </br>
+       <% end %>  </br>
+     <% end %>
+     <%else%> </br>
+       Data Governance Terms have not been yet registered with this report</br></br>
+     <% end %>
+   </div>
+ </div>
+
+
+ <div class="row">
+     <div class="large-12 columns">
+      <div id="name" class="editable">
+        <h2 class="page-title">
+          <%= @report["report"]["name"].html_safe %>
+        </h2>
+      </div>
+
+      <div id="description" class="editable">
+       <% if @report["report"]["description"]  then %>
+          <%= @report["report"]["description"].html_safe %>
+       <%else%>
+          NA
+       <%end%>  
+      </div> 
+
+
+    </div> 
+    </div>
+
+
+ <div class="row">
    <div class="large-12 large-centered columns"> </br>
     <h5 class="page-title">Report Parameters for Tableau</h5
     <dl> </br>
@@ -167,23 +183,15 @@
     </dl>     
    </div>
   </div>
-   
-  <div class="row">
-   <div class="large-12 large-centered columns"></br>
-    <h5 class="page-title">Report Contains Following Data Governance Terms</h5>
-     <% if !@report["terms"].empty? then %>
-      <% @report["terms"].each do |result| %>
-       <% if result["name"]  then %>
-         <a class="do_highlight" href="../terms/<%=result["name"]%>"> <strong>
-             <%= result["name"] %></strong> 
-         </a> </br>
-       <% end %>
-     <% end %>
-     <%else%> </br>
-       Data Governance Terms have not been yet registered with this report</br></br>
-     <% end %>
+
+ <div class="row">
+   <div class="large-4 columns"> &nbsp;</div>
+   <div class="large-6 columns">
+        <input type="button" class ="small button"  value="Update Report" id="updateReportButton" />
+        <input type="button"  class ="small button" value="Delete Report" data-reveal-id="mytinyDelete" id="deleteReportButton" />
    </div>
- </div>
+   <div class="large-2 columns"> &nbsp; </div>
+</div>
  
   <% else %>
 

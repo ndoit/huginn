@@ -1242,6 +1242,8 @@ h6 {font-size:1em;}
    ----------------------------------------------------*/
 /*@media only screen and (min-width:60em) {*/
 @media #{$large-up} {
+  .row {max-width:90%;}
+  .top-bar input {width:45em;}
   .site-content {padding-top:2em;}
   .site-link,
   .org,
