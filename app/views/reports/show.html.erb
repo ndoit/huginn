@@ -2,10 +2,16 @@
 <script>
   report_object = <%= @report["report"].to_json.to_s.html_safe %>
   report_embed_object = <%=  @report_embed.to_json.to_s.html_safe %>
-</script>
+  function RefreshRevert(p_action){
 
+      var viz = window.tableau.vizs[0] 
 
-
+      if(p_action  == "Refresh")
+       viz.refresh() 
+      else
+       viz.revert()
+      } 
+   </script>
 
 <div class="row">
   <div class="large-8 columns">
@@ -65,6 +71,34 @@
       </div> 
 
 
+    </div> 
+    </div>
+
+   <% if @report_embed["width"] != "" then %>
+    <div class="row">
+    <div class="large-12 large-centered columns">  
+     <script type='text/javascript' src='https://tableau.nd.edu/javascripts/api/viz_v1.js'></script>
+      <div class="row">
+       <div class="large-12 large-centered columns">  
+         <input type="button" class ="tiny button" value="Refresh Data" onclick="RefreshRevert('Refresh')" />
+         <input type="button" class ="tiny button" value="Reset Filters" onclick="RefreshRevert('Reset')" />
+       </div>
+     </div>
+    <div class='tableauPlaceholder' style='width:<%= @report_embed["width"] %>; height:<%=@report_embed["height"] %>;'>
+    <object class='tableauViz' width='<%= @report_embed["width"] %>' height='<%= @report_embed["height"]%>' style='display:none;'>
+    <param name='host_url' value='https%3A%2F%2Ftableau.nd.edu%2F' />
+    <param name='site_root' value='' />
+    <param name='name' value= <%= @report_embed["name"].html_safe %> />
+    <param name='tabs' value='no' />
+    <param name='toolbar' value='no' />
+    </object>
+    </div>
+   </div>
+ </br>
+
+   <% end %>
+   <div class="row">
+     <div class="large-12 columns">
      <dl> 
       <dt>Report Type</dt>
       <dd>
@@ -86,36 +120,16 @@
        <%else%>
           NA
        <%end%>  
-      </div>  
+       </div>  
       </dd>
       </dt>
      </dl>
-
     </div>
    </div>
 
-   <% if @report_embed["width"] != "" then %>
-    <div class="row">
-     <div class="large-12 large-centered columns">  
-       <script type='text/javascript' src='https://tableau.nd.edu/javascripts/api/viz_v1.js'></script>
-       <div class='tableauPlaceholder' style='width: <%= @report_embed["width"] %>   px; height:  <%=@report_embed["height"] %>  px;'>
-       <object class='tableauViz' width=' <%= @report_embed["width"] %> ' height=' <%= @report_embed["height"] %> ' style='display:none;'>
-        <param name='host_url' value='https%3A%2F%2Ftableau.nd.edu%2F' />
-        <param name='site_root' value='' />
-        <param name='name' value= <%= @report_embed["name"].html_safe %>  />
-        <param name='tabs' value='no' />
-        <param name='toolbar' value='no' />
-        <param name='seamless' value='yes'/>
-       </object>
-       </div>
-     </div>
-    </div>
-        
-   <% end %>
-
   <div class="row">
    <div class="large-12 large-centered columns"> </br>
-    <h5 class="page-title">Report Parameters for Tablaeu</h5
+    <h5 class="page-title">Report Parameters for Tableau</h5
     <dl> </br>
       <dt>Report Width</dt>
        <dd>
@@ -166,7 +180,7 @@
        <% end %>
      <% end %>
      <%else%> </br>
-       No Terms have been registered with this report</br></br>
+       Data Governance Terms have not been yet registered with this report</br></br>
      <% end %>
    </div>
  </div>

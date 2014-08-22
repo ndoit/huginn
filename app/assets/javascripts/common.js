@@ -1,6 +1,6 @@
 
 $(document).ready(function(){
-
+  
   if (typeof office_json != 'undefined')  {
    $('.raci_input').select2({
         data:office_json,
@@ -38,6 +38,7 @@ $(document).ready(function(){
 			$('a.close-reveal-modal').trigger('click')
 		})
 
+   
   }
 
 
@@ -62,6 +63,9 @@ $(document).ready(function(){
     $('#deleteCancel').click( function() {
       $('a.close-reveal-modal').trigger('click')
     })
+   
+  
+   
 
   }
 
@@ -202,7 +206,7 @@ function updateTermObject(term_object ) {
   			p = StrippedString;
 
   		}
-  		console.log(p);
+    	console.log(p);
   		console.log(id);
   		term_object[id] = p;
   	}
@@ -306,9 +310,9 @@ function updateReportObject(report_object ) {
          n = p.replace(/(<p>|<\/p>)/g, "");
          n = n.replace(/&amp;/g, '&');
       }
-      if (id =='t_report_type'){
+      if (id =='report_type' || id == 'datasource'){
 
-         r = p.replace(/(<p>|<\/p>)/g, "");
+         p = p.replace(/(<p>|<\/p>)/g, "");
           
       }
      
