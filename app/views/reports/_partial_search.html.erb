@@ -1,11 +1,11 @@
    <% results.each do |result| %>
     <% if result[:type]  == 'report' then %>
      <a class="do_highlight" href="../reports/<%=result[:data]["name"]%>"> <strong>
-      <%= result[:data]["name"] %></strong> </a> 
+      <%= result[:data]["name"] %></strong> </a>  </br>
       <% if  result[:data]["description"]   then %>
-           <p class="do_highlight">  <%= result[:data]["description"].html_safe %></p>
+           <div class="do_highlight">  <%= result[:data]["description"].html_safe %></div> 
           <%else%>
-          <p class="do_highlight"> NA </p>
+          <div class="do_highlight"> NA </div>
          <%end%>
      <%end%>
  <%end%>

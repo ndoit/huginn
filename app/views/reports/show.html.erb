@@ -47,6 +47,24 @@
 
 
   <% if @report["success"] %>
+
+  <div class="row">
+     <div class="large-12 columns">
+      <div id="name" class="editable">
+        <h2 class="page-title">
+          <%= @report["report"]["name"].html_safe %>
+        </h2>
+      </div>
+
+      <div id="description" class="editable">
+       <% if @report["report"]["description"]  then %>
+          <%= @report["report"]["description"].html_safe %>
+       <%else%>
+          NA
+       <%end%>    
+      </div> 
+     </div> 
+    </div>
     
    <% if @report_embed["width"] != "" then %>
     <div class="row">
@@ -63,88 +81,66 @@
     <param name='host_url' value='https%3A%2F%2Ftableau.nd.edu%2F' />
     <param name='site_root' value='' />
     <param name='name' value= <%= @report_embed["name"].html_safe %> />
-    <param name='tabs' value='no' />
+    <param name='tabs' value=<%= @report_embed["tabs"].html_safe %> />
      <param name='linktarget' value='_self' />
     <param name='toolbar' value='no' />
     </object>
     </div>
    </div>
  </br>
-
    <% end %>
-   <div class="row">
-     <div class="large-12 columns">
-     <dl> 
-      <dt>Report Type</dt>
-      <dd>
-      <div id="report_type" class="editable">
-       <% if @report["report"]["report_type"]  then %>
-          <%= @report["report"]["report_type"].html_safe %>
-       <%else%>
-          NA
-       <%end%>  
-      </div> 
-      </dd>
-      </dt>
 
-     <dt>Data Source</dt>
-      <dd>
-      <div id="datasource" class="editable">
-       <% if @report["report"]["datasource"]  then %>
-          <%= @report["report"]["datasource"].html_safe %>
-       <%else%>
-          NA
-       <%end%>  
-       </div>  
-      </dd>
-      </dt>
-     </dl>
-    </div>
-   </div>
 
-  
-   
-  <div class="row">
-   <div class="large-12 large-centered columns"></br>
-    <h5 class="page-title">Report Contains Following Data Governance Terms</h5>
-     <% if !@report["terms"].empty? then %>
-      <% @report["terms"].each do |result| %>
-       <% if result["name"]  then %>
-         <a class="do_highlight" href="../terms/<%=result["name"]%>"> <strong>
-             <%= result["name"] %></strong> 
-         </a> </br>
-       <% end %>  </br>
-     <% end %>
-     <%else%> </br>
-       Data Governance Terms have not been yet registered with this report</br></br>
-     <% end %>
-   </div>
+<div class="row">
+ <div class="large-12 large-centered columns"></br> </br>
+  <h5 class="page-title">Data Governance Terms</h5>
+   <% if !@report["terms"].empty? then %>
+    <% @report["terms"].each do |result| %>
+     <% if result["name"]  then %>
+       <a class="do_highlight" href="../terms/<%=result["name"]%>"> <strong>
+           <%= result["name"] %></strong> 
+       </a> </br>
+     <% end %>  </br>
+   <% end %>
+   <%else%> 
+     Data Governance Terms have not been yet registered with this report</br></br>
+   <% end %>
+ </div>
+</div>
+
+<div class="row">
+   <div class="large-12 columns"> 
+   <h5 class="page-title">Additional Information</h5
+   <dl> 
+    <dt>Report Type</dt>
+    <dd>
+    <div id="report_type" class="editable">
+     <% if @report["report"]["report_type"]  then %>
+        <%= @report["report"]["report_type"].html_safe %>
+     <%else%>
+        NA
+     <%end%>  
+    </div> 
+    </dd>
+    </dt>
+
+   <dt>Data Source</dt>
+    <dd>
+    <div id="datasource" class="editable">
+     <% if @report["report"]["datasource"]  then %>
+        <%= @report["report"]["datasource"].html_safe %>
+     <%else%>
+        NA
+     <%end%>  
+     </div>  
+    </dd>
+    </dt>
+   </dl>
+  </div>
  </div>
 
-
- <div class="row">
-     <div class="large-12 columns">
-      <div id="name" class="editable">
-        <h2 class="page-title">
-          <%= @report["report"]["name"].html_safe %>
-        </h2>
-      </div>
-
-      <div id="description" class="editable">
-       <% if @report["report"]["description"]  then %>
-          <%= @report["report"]["description"].html_safe %>
-       <%else%>
-          NA
-       <%end%>  
-      </div> 
-
-
-    </div> 
-    </div>
-
-
- <div class="row">
-   <div class="large-12 large-centered columns"> </br>
+<div class="row">
+  <div class="large-12 large-centered columns"> 
     <h5 class="page-title">Report Parameters for Tableau</h5
     <dl> </br>
       <dt>Report Width</dt>
@@ -180,9 +176,20 @@
       </div>    
       </dd>
      </dt> 
+      <dt>Report Tabs</dt>
+       <dd>  
+       <div id="t_tabs" class="editable">
+       <% if @report_embed["tabs"] !=""  then %>
+          <%= @report_embed["tabs"] %>
+       <%else%>
+          NA
+       <%end%>
+      </div>    
+      </dd>
+     </dt> 
     </dl>     
-   </div>
-  </div>
+ </div>
+</div>
 
  <div class="row">
    <div class="large-4 columns"> &nbsp;</div>
@@ -192,7 +199,7 @@
    </div>
    <div class="large-2 columns"> &nbsp; </div>
 </div>
- 
+</div> 
   <% else %>
 
   <div class="row">
@@ -204,5 +211,5 @@
 
   <% end %>
 
-</div>
+
 </div>

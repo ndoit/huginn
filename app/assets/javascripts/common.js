@@ -293,7 +293,7 @@ function updateReportObject(report_object ) {
     id = $(this).attr('id');
     if ( id ) {
       p = tinymce.get(id).getContent()
-      if ((id == "name")  || (id =="t_height") || (id =="t_width")){
+      if ((id == "name")  || (id =="t_height") || (id =="t_width") || (id =="t_tabs") ){
         var StrippedString = p.replace(/(<([^>]+)>)/ig,"");
         p = StrippedString;
       }
@@ -305,25 +305,29 @@ function updateReportObject(report_object ) {
          h =p
        
       }
+      if (id =='t_tabs'){
+         t =p
+       
+      }
       if (id =='t_name'){
 
          n = p.replace(/(<p>|<\/p>)/g, "");
          n = n.replace(/&amp;/g, '&');
       }
-      if (id =='report_type' || id == 'datasource'){
+      if (id =='report_type' || id == 'datasource' ){
 
          p = p.replace(/(<p>|<\/p>)/g, "");
           
       }
      
      console.log(id);
-	   if (id !='t_width' && id !='t_height'  && id !='t_name') {
+	   if (id !='t_width' && id !='t_height'  && id !='t_name'&& id !='t_tabs') {
          report_object[id] = p;
 	   }
        console.log(report_object);
     }
   }) 
-  report_object["embedJSON"] = "{\"width\": \""+w+"\", \"height\" : \"" + h+"\",\"name\":\""+ n+"\"}"
+  report_object["embedJSON"] = "{\"width\": \""+w+"\", \"height\" : \"" + h+"\",\"name\":\""+ n+"\",\"tabs\":\""+t+"\"}"
 }
 
 function updateReport( report_object ) {
