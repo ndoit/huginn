@@ -37,6 +37,8 @@ Rails.application.routes.draw do
   get "/reports/access_denied" =>'reports#access_denied'
   get "search" => 'search#index'
   get "cas_proxy_callback/receive_pgt" => 'cas_proxy_callback#receive_pgt'
+  post "cas_proxy_callback/receive_pgt" => 'cas_proxy_callback#receive_pgt'
+  put "cas_proxy_callback/receive_pgt" => 'cas_proxy_callback#receive_pgt'
   get "cas_proxy_callback/retrieve_pgt" => 'cas_proxy_callback#retrieve_pgt'
 
  
