@@ -38,7 +38,7 @@ gem 'thread_safe' , '~> 0.3.1'
 
 gem 'will_paginate', '~> 3.0.5'
 
-gem 'rubycas-client','~> 2.3.8'
+gem 'rubycas-client','~> 2.3.10.rc1'
 gem 'rails-config'
 gem 'httparty'
 
