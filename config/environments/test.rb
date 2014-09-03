@@ -34,4 +34,8 @@ Huginn::Application.configure do
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
+
+  # CAS proxy settings
+  config.cas_base_url = "https://login-test.cc.nd.edu/cas/"
+  config.cas_proxy_callback_url = "https://data-test.nd.edu/cas_proxy_callback/receive_pgt"
 end

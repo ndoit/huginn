@@ -24,4 +24,8 @@ Huginn::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+
+  # CAS proxy settings
+  config.cas_base_url = "https://login-test.cc.nd.edu/cas/"
+  config.cas_proxy_callback_url = "https://bitdata1-dev.dc.nd.edu/cas_proxy_callback/receive_pgt"
 end
