@@ -1,28 +1,39 @@
 <script>
   $(document).foundation();
+  $('.data-type-label-container').click( function() {
+    $(this).find('.toggle_light').toggleClass('toggle_off')
+  })
 </script>
 
-<div>
-    <dl class="tabs vertical" data-tab>
+<div class="row">
+
+    <!-- SIDEBAR -->
+    <dl class="left-sidebar small-2 column">
 
       <% @node_types.each_with_index do |type_name,index| %>
-        <dd class="<%= "active" if index == 0 %>">
-        <a href="#<%= type_name.pluralize %>"><%= type_name %>
-            <span class="radius secondary label"><%= @results_hash[type_name] || 0 %></span>
-         </a>
-       </dd>
+        <div class="data-type-label-container">
+          <div>
+            <div class="data-type-toggle"><div class="toggle_light toggle_on"></div></div>
+            <div class="data-type-label"><%= type_name %></div>
+            <div class="data-type-count"><%= @results_hash[type_name] || 0 %></div>
+          </div>
+        </div>
+      </br>
       <% end %>
 
     </dl>
+    <!-- SIDEBAR -->
 
 
-    <div class="tabs-content vertical">
 
-      <% @node_types.each_with_index do |type_name, index| %>
-        <div class="content <%= "active" if index == 0 %>" id="<%= type_name.pluralize %>">
-          <%= render partial: "#{type_name.pluralize}/partial_search", locals: {results: @results[type_name] || [] } %>
+    <!-- SEARCH RESULTS -->
+    <div class="small-10   column">
+        <div class="content" >
+          <%= render partial: "terms/partial_search", locals: {results: @results || [] } %>
         </div>
-      <% end %>
-
     </div>
+    <!-- SEARCH RESULTS -->
+
+
+
 <div>

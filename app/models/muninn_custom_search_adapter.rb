@@ -41,15 +41,15 @@ class MuninnCustomSearchAdapter
     end
 
      totalcount = { :type => "count",:totalcount => response_hash["result"]["facets"]["tags"]["terms"]}
-   
+
      output << totalcount
 
-  end 
+  end
 
 
 
   def self.create_search_string(search_s)
-    if !search_s.blank?
+    if !search_s.nil?
      json_string ='{"query":{"match": {"_all": {"query": "' + "#{search_s}" + '" , "operator": "and"}}},"facets": {"tags":{ "terms" : {"field" : "_type"}}},"from":"0","size":"999"}'
      else
        json_string = '{"query":{"match_all":{}}, "facets": {"tags":{ "terms" : {"field" : "_type"}}},"from":"0","size":"999"}'
@@ -59,5 +59,3 @@ class MuninnCustomSearchAdapter
 
 
 end
-
-

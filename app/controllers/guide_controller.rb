@@ -16,20 +16,28 @@ class GuideController < ApplicationController
 
      page = params[:page]
      #json_string = '{"query":{"match_all":{}}, "facets": {"tags":{ "terms" : {"field" : "_type"}}},"from":"0","size":"999"}'
-		 json_string = MuninnCustomSearchAdapter.create_search_string( params[:q] )
-
-     @query_result = MuninnCustomSearchAdapter.custom_query(json_string, page, 15 )
+		 search_string = MuninnCustomSearchAdapter.create_search_string( params[:q] )
 
 
-     @node_types = [ 'report', 'term']
+     @query_result = MuninnCustomSearchAdapter.custom_query(search_string, page, 15 )
+
+
+     # divide up results
+     @node_types = [ 'report', 'term', 'office' ]
      @results = {}
      @node_types.each do |type_name|
 
        @results[type_name] = @query_result.select { |k| "#{k[:type]}" == type_name }
-       @results[type_name] = @results[type_name].sort_by { |k| "#{k[:sort_name]}"}
-       @results[type_name] = @results[type_name].paginate(:page=> page, :per_page => 15)
+                                          .sort_by { |k| "#{k[:sort_name]}"}
+                                          .paginate(:page=> page, :per_page => 15)
 
      end
+
+     # all results, sorted and paged.
+     # still need the select clause b/c of the "count" type node.
+     @results = @query_result.select { |k| @node_types.include? "#{k[:type]}" }
+                             .sort_by { |k| "#{k[:sort_name]}"}
+                             .paginate(:page=> page, :per_page => 15)
 
 
 

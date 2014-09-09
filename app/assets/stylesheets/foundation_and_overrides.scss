@@ -1677,3 +1677,93 @@ h6 {font-size:1em;}
     .site-footer .ndmark {position:absolute; top:20px; right:0;}
 
 }
+
+
+
+@mixin roundy-box {
+
+  @include radius(20px);
+  color: black;
+  border: solid thin;
+
+  margin: 10px;
+  font-weight: 200px;
+  padding: 5px;
+  font-size: 1em;
+}
+
+.data-type-label-container {
+  @include label();
+  @include roundy-box;
+  width:90%;
+  background-color: #F0F0F0;
+}
+
+@mixin circle($width, $color) {
+  width: $width;
+  height: $width;
+  background-color: $color;
+  @include radius( $width/2 );
+}
+
+.toggle_on {
+  top: 5px;
+  left: 5px;
+  position:relative;
+  @include circle(10px, lightGreen );
+  border : thin solid darkGray;
+}
+.toggle_off {
+  background-color: gray;
+}
+
+.left-sidebar{
+  height: 100%;
+  border-right: solid inset black;
+}
+
+.result_row{
+  padding-bottom:15px;
+  padding-top: 15px;
+
+  .result_header{
+    height:auto;
+    overflow:auto;
+
+    .result_title{
+      float:left;
+    }
+    .result_type{
+      text-align:center;
+      float:right;
+      color: black;
+      width:10%;
+      background-color: #F0F0F0;
+      @include roundy-box;
+    }
+  }
+  .result_body{
+
+  }
+
+}
+
+
+.data-type-toggle{
+  float:left;
+  width:10%;
+}
+.data-type-label{
+  padding-left:10%;
+  text-align: left;
+  float:left;
+  width: 60%;
+}
+.data-type-count{
+  width:30%;
+  float:left;
+  color: white;
+  background-color: navy;
+  border-radius: 15px;
+  padding: 2px;
+}
