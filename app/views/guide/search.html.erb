@@ -2,7 +2,34 @@
   $(document).foundation();
   $('.data-type-label-container').click( function() {
     $(this).find('.toggle_light').toggleClass('toggle_off')
+
+
+    url = '/guide_search?'
+    url += 'selected_resources=' + get_selected_resources()
+
+    if ( $('#search1').val().length ) {
+      url += '&q=' + $('#search1').val()
+    }
+    console.log(url)
+
+    //
+
+    $('#search_results').load( url )
   })
+
+  function displayLoading() {
+    $('#search_results_right').html("<div class='search_results_msg'><img src='/assets/ajax-loader.gif'></div>")
+  }
+
+
+  function get_selected_resources() {
+    resources = []
+    $('.toggle_light').not('.toggle_off').each( function() {
+      resources.push( $(this).data('resource-name') )
+    })
+    return resources.join(",")
+  }
+
 </script>
 
 <div class="row">
@@ -13,7 +40,7 @@
       <% @node_types.each_with_index do |type_name,index| %>
         <div class="data-type-label-container">
           <div>
-            <div class="data-type-toggle"><div class="toggle_light toggle_on"></div></div>
+            <div class="data-type-toggle"><div data-resource-name="<%= type_name %>" class="toggle_light toggle_on <%= "toggle_off" if !@selected_node_types.include? type_name %>"></div></div>
             <div class="data-type-label"><%= type_name %></div>
             <div class="data-type-count"><%= @results_hash[type_name] || 0 %></div>
           </div>
@@ -27,7 +54,7 @@
 
 
     <!-- SEARCH RESULTS -->
-    <div class="small-10   column">
+    <div class="small-10 column" id="search_results_right">
         <div class="content" >
           <%= render partial: "terms/partial_search", locals: {results: @results || [] } %>
         </div>

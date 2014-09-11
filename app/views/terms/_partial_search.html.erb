@@ -1,27 +1,30 @@
-
-<% results.each do |result| %>
-  <div class="result_row">
-    <div class="result_header">
-      <div class="result_title">
-          <h4>
-            <a class="do_highlight" href="../<%= result[:type].pluralize %>/<%=result[:data]["name"]%>">
-              <%= result[:data]["name"] %>
-            </a>
-        </h4>
+<% if results.size == 0 %>
+  <div class="search_results_msg">No results match your current criteria</div>
+<% else %>
+  <% results.each do |result| %>
+    <div class="result_row">
+      <div class="result_header">
+        <div class="result_title">
+            <h4>
+              <a class="do_highlight" href="../<%= result[:type].pluralize %>/<%=result[:data]["name"]%>">
+                <%= result[:data]["name"] %>
+              </a>
+          </h4>
+        </div>
+        <div class="result_type">
+          <%= result[:type] %>
+        </div>
       </div>
-      <div class="result_type">
-        <%= result[:type] %>
+
+      <div class="do_highlight result_body">
+        <% if result[:data]["definition"]  then %>
+          <%= result[:data]["definition"].html_safe %>
+        <%else%>
+          NA
+        <%end%>
       </div>
-    </div>
 
-    <div class="do_highlight result_body">
-      <% if result[:data]["definition"]  then %>
-        <%= result[:data]["definition"].html_safe %>
-      <%else%>
-        NA
-      <%end%>
-    </div>
-
-</div>
- <%end%>
- <%= will_paginate(results, :class => "apple_pagination") %> <br>
+  </div>
+   <%end%>
+   <%= will_paginate(results, :class => "apple_pagination") %> <br>
+<% end %>

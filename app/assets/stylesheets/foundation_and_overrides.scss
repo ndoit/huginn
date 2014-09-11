@@ -1699,23 +1699,7 @@ h6 {font-size:1em;}
   background-color: #F0F0F0;
 }
 
-@mixin circle($width, $color) {
-  width: $width;
-  height: $width;
-  background-color: $color;
-  @include radius( $width/2 );
-}
 
-.toggle_on {
-  top: 5px;
-  left: 5px;
-  position:relative;
-  @include circle(10px, lightGreen );
-  border : thin solid darkGray;
-}
-.toggle_off {
-  background-color: gray;
-}
 
 .left-sidebar{
   height: 100%;
@@ -1752,7 +1736,28 @@ h6 {font-size:1em;}
 .data-type-toggle{
   float:left;
   width:10%;
+  cursor:pointer;
 }
+
+@mixin circle($width, $color) {
+  width: $width;
+  height: $width;
+  background-color: $color;
+  @include radius( $width/2 );
+}
+
+
+.toggle_on {
+  top: 5px;
+  left: 5px;
+  position:relative;
+  @include circle(10px, lightGreen );
+  border : thin solid darkGray;
+}
+.toggle_off {
+  background-color: gray;
+}
+
 .data-type-label{
   padding-left:10%;
   text-align: left;

@@ -1,6 +1,6 @@
 
 $(document).ready(function(){
-  
+
   if (typeof office_json != 'undefined')  {
    $('.raci_input').select2({
         data:office_json,
@@ -38,7 +38,7 @@ $(document).ready(function(){
 			$('a.close-reveal-modal').trigger('click')
 		})
 
-   
+
   }
 
 
@@ -63,9 +63,9 @@ $(document).ready(function(){
     $('#deleteCancel').click( function() {
       $('a.close-reveal-modal').trigger('click')
     })
-   
-  
-   
+
+
+
 
   }
 
@@ -142,7 +142,7 @@ report_new = {
    "embedJSON" : "{\"width\": \"\",\"height\": \"\" ,\"name\": \"\"}"
   };
   $('a.close-reveal-modal').trigger('click');
- 
+
   createReport(report_new);
 })
 
@@ -167,7 +167,7 @@ function showValidationErrors() {
  			type = $(this).find('alert','warning')
  		   $('.alert-box.' + type.selector).show().html_safe;
  		   errors_exist = true
- 		} 
+ 		}
 	})
   if ( errors_exist ) {
 	window.scrollTo(0,0)
@@ -299,15 +299,15 @@ function updateReportObject(report_object ) {
       }
       if (id =='t_width'){
          w = p
-        
+
       }
       if (id =='t_height'){
          h =p
-       
+
       }
       if (id =='t_tabs'){
          t =p
-       
+
       }
       if (id =='t_name'){
 
@@ -317,16 +317,16 @@ function updateReportObject(report_object ) {
       if (id =='report_type' || id == 'datasource' ){
 
          p = p.replace(/(<p>|<\/p>)/g, "");
-          
+
       }
-     
+
      console.log(id);
 	   if (id !='t_width' && id !='t_height'  && id !='t_name'&& id !='t_tabs') {
          report_object[id] = p;
 	   }
        console.log(report_object);
     }
-  }) 
+  })
   report_object["embedJSON"] = "{\"width\": \""+w+"\", \"height\" : \"" + h+"\",\"name\":\""+ n+"\",\"tabs\":\""+t+"\"}"
 }
 
@@ -390,7 +390,15 @@ function deleteTerm( termid ) {
 
 function doPartialSearch( search_string ) {
   console.log(search_string);
-  $('#search_results').load( '/guide_search?q=' + encodeURI(search_string),
+
+  var search = encodeURI(search_string)
+  var url = '/guide_search'
+  if ( search.length  ) {
+    url += '?q=' + search
+  }
+
+
+  $('#search_results').load( url,
     function() {
       $(".do_highlight").highlight(search_string)
       $("#search1").focus()
@@ -504,7 +512,7 @@ function updateOfficeObject(office_object ) {
   return office_object;
 }
 
-    
+
 
 function updateOffice(office_object  ) {
 
