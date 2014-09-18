@@ -16,7 +16,6 @@ class GuideController < ApplicationController
 
  end
 
-
  def search
      logger.debug("Querying Muninn...")
 
@@ -51,11 +50,11 @@ private
 
   def resource_count_hash( raw_result )
     # get a hash of result count by node type
-    results_count = raw_result.select { |k| "#{k[:type]}" =="count"}
+    results_count = raw_result.select { |k| "#{k[:type]}" =="doc_count"}
     results_count = results_count[0][:totalcount]
     results_hash = {}
     results_count.each do |hash|
-       results_hash[hash["term"]] = hash["count"]
+       results_hash[hash["term"]] = hash["doc_count"]
     end
     results_hash
   end

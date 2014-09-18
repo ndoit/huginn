@@ -6,6 +6,6 @@ Huginn::Application.initialize!
 
 
 CASClient::Frameworks::Rails::Filter.configure(
-:cas_base_url => "https://login-test.cc.nd.edu/cas/",
-:proxy_callback_url => "https://data-test.cc.nd.edu/cas_proxy_callback/receive_pgt"
+:cas_base_url => Huginn::Application.config.cas_base_url,
+:proxy_callback_url => Huginn::Application.config.cas_proxy_callback_url
 )
