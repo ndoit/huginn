@@ -38,6 +38,7 @@ $(document).ready(
 
 function executeSearch() {
 
+  console.log("executeSearch")
   search_string = $('#search1').val()
   console.log(search_string);
 
@@ -132,6 +133,7 @@ function executeFilter() {
   displayLoading()
   $('#search_results').load( searchURL(1), function() {
     highlightSearchString()
+    bindInfiniteScrollBehavior()
   } )
 }
 
