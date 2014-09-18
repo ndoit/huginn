@@ -6,49 +6,70 @@ require "will_paginate/array"
 
 class GuideController < ApplicationController
 
+  before_filter :node_types
+
+ def node_types
+   @node_types = [ 'report', 'term', 'office' ]
+ end
+
  def index
 
  end
 
 
  def search
-    logger.debug("Querying Muninn...")
+     logger.debug("Querying Muninn...")
 
-     page = params[:page]
-     #json_string = '{"query":{"match_all":{}}, "facets": {"tags":{ "terms" : {"field" : "_type"}}},"from":"0","size":"999"}'
-		 search_string = MuninnCustomSearchAdapter.create_search_string( params[:q] )
+     params[:page] ||= 1
+     
+     muninn_result = muninn_result( params[:q], params[:page] )
+     @selected_node_types = selected_resource_array( @node_types, params )
+     @results = filter_results( muninn_result, params[:page], @selected_node_types )
 
-     @query_result = MuninnCustomSearchAdapter.custom_query(search_string, page, 15 )
+     @resource_count_hash = resource_count_hash( muninn_result )
 
-     # divide up results
-     @node_types = [ 'report', 'term', 'office' ]
-     @results = {}
-
-
-    @selected_node_types = selected_resource_array( @node_types, params )
-
-     # all results, sorted and paged.
-     # use the select clause to only return the desired resource types.
-     # we always need to use select to avoid grabbing the "count" node.
-     @results = @query_result.select { |k| @selected_node_types.include? "#{k[:type]}" }
-                             .sort_by { |k| "#{k[:sort_name]}"}
-                             .paginate(:page=> page, :per_page => 10)
-
-
-
-     # get a hash of result count by node type
-     @results_count = @query_result.select { |k| "#{k[:type]}" =="count"}
-     @results_count = @results_count[0][:totalcount]
-     @results_hash = {}
-     @results_count.each do |hash|
-        @results_hash[hash["term"]] = hash["count"]
+     if ( params[:page].to_i > 1 )
+       render partial: "terms/partial_search", locals: { results: @results || [] }, layout: false
+     else
+       render html: "search", layout: false
      end
-
-     render html: "search", layout: false
  end
 
 
 private
+
+  def prep_search( params )
+    muninn_result = muninn_result( params[:q], params[:page] )
+    @selected_node_types = selected_resource_array( @node_types, params )
+    @results = filter_results( muninn_result, params[:page], @selected_node_types )
+  end
+
+  def muninn_result( query_string, page_number )
+    search_string = MuninnCustomSearchAdapter.create_search_string( query_string )
+    MuninnCustomSearchAdapter.custom_query(search_string, page_number, 15 )
+  end
+
+  def resource_count_hash( raw_result )
+    # get a hash of result count by node type
+    results_count = raw_result.select { |k| "#{k[:type]}" =="count"}
+    results_count = results_count[0][:totalcount]
+    results_hash = {}
+    results_count.each do |hash|
+       results_hash[hash["term"]] = hash["count"]
+    end
+    results_hash
+  end
+
+
+  def filter_results( raw_result, page, selected_types )
+    # all results, sorted and paged.
+    # use the select clause to only return the desired resource types.
+    # we always need to use select to avoid grabbing the "count" node.
+    results = {}
+    results = raw_result.select { |k| selected_types.include? "#{k[:type]}" }
+                         .sort_by { |k| "#{k[:sort_name]}"}
+                         .paginate(:page=> page, :per_page => 10)
+  end
 
   # no key == get all.
   # empty key == get nothing!

@@ -26,5 +26,6 @@
 
   </div>
    <%end%>
-   <%= will_paginate(results, :class => "apple_pagination") %> <br>
+
+   <div class="more_results" id="<%= Time.now.getutc.to_s%>" foo="<%= params[:page].to_i + 1 %>" data-next-page="<%= params[:page].to_i + 1 %>">More Results</div>
 <% end %>

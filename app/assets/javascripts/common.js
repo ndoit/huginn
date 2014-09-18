@@ -94,21 +94,7 @@ $(document).ready(function(){
  }
 
 
-var pendingPartialSearch
- var delay = 200
- $("#search1").bind("keyup",function() {
-   if ( pendingPartialSearch != null ) {
-     clearTimeout( pendingPartialSearch )  // stop the pending one
-   }
-   console.log($("#search1").val() )
 
-   // start a new one
-  pendingPartialSearch = setTimeout( function() {
-   console.log($("#search1").val() )
-   doPartialSearch( $("#search1").val()  )
-   }, delay )
-
-  })
 
 $('#createTermButton').click(function() {
 var term = $('#tname').val();
@@ -388,23 +374,7 @@ function deleteTerm( termid ) {
 	});
 }
 
-function doPartialSearch( search_string ) {
-  console.log(search_string);
 
-  var search = encodeURI(search_string)
-  var url = '/guide_search'
-  if ( search.length  ) {
-    url += '?q=' + search
-  }
-
-
-  $('#search_results').load( url,
-    function() {
-      $(".do_highlight").highlight(search_string)
-      $("#search1").focus()
-  })
-
-}
 
 function updateTerm( term_object ) {
 	$.ajax({
