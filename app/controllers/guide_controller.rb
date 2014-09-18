@@ -16,7 +16,7 @@ class GuideController < ApplicationController
 
      page = params[:page]
      #json_string = '{"query":{"match_all":{}}, "facets": {"tags":{ "terms" : {"field" : "_type"}}},"from":"0","size":"999"}'
-		 json_string = MuninnCustomSearchAdapter.create_search_string( params[:q] )
+         json_string = MuninnCustomSearchAdapter.create_search_string( params[:q] )
 
      @query_result = MuninnCustomSearchAdapter.custom_query(json_string, page, 15 )
 
@@ -34,11 +34,11 @@ class GuideController < ApplicationController
 
 
      # get a hash of result count by node type
-     @results_count = @query_result.select { |k| "#{k[:type]}" =="count"}
+     @results_count = @query_result.select { |k| "#{k[:type]}" == "doc_count"}
      @results_count = @results_count[0][:totalcount]
      @results_hash = {}
      @results_count.each do |hash|
-        @results_hash[hash["term"]] = hash["count"]
+         @results_hash[hash["key"]] = hash["doc_count"]
      end
 
      render html: "search", layout: false

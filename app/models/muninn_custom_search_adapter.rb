@@ -40,7 +40,7 @@ class MuninnCustomSearchAdapter
 
     end
 
-     totalcount = { :type => "count",:totalcount => response_hash["result"]["facets"]["tags"]["terms"]}
+     totalcount = { :type => "doc_count",:totalcount => response_hash["result"]["aggregations"]["type"]["buckets"]}
    
      output << totalcount
 
@@ -49,15 +49,16 @@ class MuninnCustomSearchAdapter
 
 
   def self.create_search_string(search_s)
-    if !search_s.blank?
-     json_string ='{"query":{"match": {"_all": {"query": "' + "#{search_s}" + '" , "operator": "and"}}},"facets": {"tags":{ "terms" : {"field" : "_type"}}},"from":"0","size":"999"}'
-     else
-       json_string = '{"query":{"match_all":{}}, "facets": {"tags":{ "terms" : {"field" : "_type"}}},"from":"0","size":"999"}'
-    end
 
+   if !search_s.blank?
+     json_string ='{ "query" : { "query_string" : {"query" :  "' + "#{search_s}" + '","default_operator": "and", "fields" : ["name","definition", "description"]}},"aggs" : {"type" : {"terms" : { "field" :  "_type" }}},"from":"0","size":"999" }'
+     else
+       json_string = '{ "query" : { "query_string" : {"query" : "*","default_operator": "and", "fields" : ["name", "definition","description"]}},"aggs" : {"type" : {"terms" : { "field" :  "_type" }}},"from":"0","size":"999" }'
+    end
   end
 
 
 end
+
 
 
