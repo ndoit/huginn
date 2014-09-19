@@ -12,23 +12,21 @@
         </ul>
 
         <!-- Top Bar Section -->
-  
+
         <section class="top-bar-section">
-           
+
           <!-- Top Bar Left Nav Elements -->
           <ul class="left">
 
             <li class="has-dropdown not-click"> <a href="/">All</a> </li>
             <li class="divider"></li>
             <!-- Search | has-form wrapper -->
-             <li>              
-                <%= form_for(:tags, :url=>{:action=>'index'}, :html => { :method => 'GET'}) do |f| %>
-                <%= f.text_field :search1, id: "search1", :autofocus => true %>  
-                <% end %>             
-             </li> 
-             
+             <li>
+                <%= text_field_tag "search1" %>
+             </li>
+
             </ul>
-            
+
 
             <!-- Top Bar Right Nav Elements -->
           <ul class="right">
@@ -86,8 +84,8 @@
                     </li>
                   </ul>
                </li>
-              
-           
+
+
           </ul>
         </section>
       </div>

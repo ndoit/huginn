@@ -19,17 +19,20 @@ $(document).ready(
     var delay = 200
     $("#search1").bind("keyup",function() {
 
-      // if the user is still typing, cancel the pending search
-      if ( pendingPartialSearch != null ) {
-         clearTimeout( pendingPartialSearch )  // stop the pending one
-      }
-      console.log($("#search1").val() )
+      search_val = $("#search1").val()
+      if ( search_val.length == 0 || search_val.length >= 3 ) {
+        // if the user is still typing, cancel the pending search
+        if ( pendingPartialSearch != null ) {
+           clearTimeout( pendingPartialSearch )  // stop the pending one
+        }
+        console.log( search_val )
 
-       // set a new search to execute in 200ms
-      pendingPartialSearch = setTimeout( function() {
-        console.log($("#search1").val() )
-        executeSearch()
-      }, delay )
+         // set a new search to execute in 200ms
+        pendingPartialSearch = setTimeout( function() {
+          console.log(search_val)
+          executeSearch()
+        }, delay )
+      }
 
     })
 
