@@ -1,25 +1,81 @@
+require "net/http"
+require "json"
+require "open-uri"
+require "httparty"
+require "will_paginate/array"
+
 class MuninnCustomSearchAdapter
 
-  def self.custom_query(json_string, page, per_page )
-    muninn_host = ENV["muninn_host"]
-    muninn_port = ENV["muninn_port"]
+  attr_reader :selected_node_types, :results
 
-    muninn_response = HTTParty.get("http://#{muninn_host}:#{muninn_port}/search/custom/query", { :body => json_string,
-    :headers => { 'Content-Type' => 'application/json'} })
+  def initialize
+    @node_types = [ 'report', 'term', 'office' ]
+  end
 
-    output_string= ActiveSupport::JSON.decode(muninn_response.body.to_json)
+  def prep_search( args )
+    @muninn_result = query_muninn( args[:q], args[:page] )
+    @selected_node_types = selected_resource_array( args )
+    @results = filter_results( @muninn_result, args[:page], @selected_node_types )
+  end
 
-    results= MuninnCustomSearchAdapter.extract_results(output_string)
+  def resource_count_hash()
+    # get a hash of result count by node type
+    results_count = @muninn_result.select { |k| "#{k[:type]}" =="doc_count"}
+    results_count = results_count[0][:totalcount]
+    results_hash = {}
+    results_count.each do |hash|
+       results_hash[hash["key"]] = hash["doc_count"]
+    end
+    results_hash
+  end
 
-    #results = results.sort_by { |k| "#{k[:type]}#,#{k[:sort_name]}"}
 
-    #results.paginate(page: page, per_page: 15)
+  def raw_result
+    @muninn_result
+  end
 
-   end
+  def create_search_string(search_s)
+   if !search_s.blank?
+     json_string ='{ "query" : { "query_string" : {"query" :  "' + "#{search_s}" + '","default_operator": "and", "fields" : ["name","definition", "description"]}},"aggs" : {"type" : {"terms" : { "field" :  "_type" }}},"from":"0","size":"999" }'
+     else
+       json_string = '{ "query" : { "query_string" : {"query" : "*","default_operator": "and", "fields" : ["name", "definition","description"]}},"aggs" : {"type" : {"terms" : { "field" :  "_type" }}},"from":"0","size":"999" }'
+    end
+
+    puts "query string: " + json_string
+    json_string
+  end
 
 
+private
+  def query_muninn( query_string, page_number )
+    search_string = create_search_string( query_string )
+    custom_query(search_string, page_number, 15 )
+  end
 
-  def self.extract_results(search_response)
+
+  # no key == get all.
+  # empty key == get nothing!
+  def selected_resource_array( args )
+    if ( args.keys.include? "selected_resources" )
+      args["selected_resources"].split(",")
+    else
+      # get all.  return the original
+      @node_types
+    end
+  end
+
+  def filter_results( raw_result, page, selected_types )
+    # all results, sorted and paged.
+    # use the select clause to only return the desired resource types.
+    # we always need to use select to avoid grabbing the "count" node.
+    results = {}
+    results = raw_result.select { |k| selected_types.include? "#{k[:type]}" }
+                         .sort_by { |k| "#{k[:sort_name]}"}
+                         .paginate(:page=> page, :per_page => 10)
+  end
+
+
+  def extract_results(search_response)
     response_hash = JSON.parse(search_response)
     if !response_hash.has_key?("result")
       LogTime.info("No contents.")
@@ -40,22 +96,24 @@ class MuninnCustomSearchAdapter
 
     end
 
-     totalcount = { :type => "count",:totalcount => response_hash["result"]["facets"]["tags"]["terms"]}
+     totalcount = { :type => "doc_count",:totalcount => response_hash["result"]["aggregations"]["type"]["buckets"]}
 
      output << totalcount
 
   end
 
+  def custom_query(json_string, page, per_page )
+    muninn_host = ENV["muninn_host"]
+    muninn_port = ENV["muninn_port"]
 
+    muninn_response = HTTParty.get("http://#{muninn_host}:#{muninn_port}/search/custom/query", { :body => json_string,
+    :headers => { 'Content-Type' => 'application/json'} })
 
-  def self.create_search_string(search_s)
-    if !search_s.nil?
-     json_string ='{"query":{"match": {"_all": {"query": "' + "#{search_s}" + '" , "operator": "and"}}},"facets": {"tags":{ "terms" : {"field" : "_type"}}},"from":"0","size":"999"}'
-     else
-       json_string = '{"query":{"match_all":{}}, "facets": {"tags":{ "terms" : {"field" : "_type"}}},"from":"0","size":"999"}'
-    end
+    output_string= ActiveSupport::JSON.decode(muninn_response.body.to_json)
 
-  end
+    results= extract_results(output_string)
+
+   end
 
 
 end
