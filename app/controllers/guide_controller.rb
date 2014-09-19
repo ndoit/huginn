@@ -1,9 +1,3 @@
-require "net/http"
-require "json"
-require "open-uri"
-require "httparty"
-require "will_paginate/array"
-
 class GuideController < ApplicationController
 
   before_filter :node_types

@@ -36,9 +36,9 @@ class MuninnCustomSearchAdapter
 
   def create_search_string(search_s)
    if !search_s.blank?
-     json_string ='{ "query" : { "query_string" : {"query" :  "' + "#{search_s}" + '","default_operator": "and", "fields" : ["name","definition", "description"]}},"aggs" : {"type" : {"terms" : { "field" :  "_type" }}},"from":"0","size":"999" }'
+     json_string ='{ "query" : { "query_string" : {"query" :  "' + "#{search_s}" + '","default_operator": "and" }},"aggs" : {"type" : {"terms" : { "field" :  "_type" }}},"from":"0","size":"999" }'
      else
-       json_string = '{ "query" : { "query_string" : {"query" : "*","default_operator": "and", "fields" : ["name", "definition","description"]}},"aggs" : {"type" : {"terms" : { "field" :  "_type" }}},"from":"0","size":"999" }'
+       json_string = '{ "query" : { "query_string" : {"query" : "*","default_operator": "and"}},"aggs" : {"type" : {"terms" : { "field" :  "_type" }}},"from":"0","size":"999" }'
     end
 
     puts "query string: " + json_string
