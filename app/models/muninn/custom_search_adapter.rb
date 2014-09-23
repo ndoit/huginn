@@ -4,7 +4,7 @@ require "open-uri"
 require "httparty"
 require "will_paginate/array"
 
-class MuninnCustomSearchAdapter
+class Muninn::CustomSearchAdapter
 
   attr_reader :selected_node_types, :results
 

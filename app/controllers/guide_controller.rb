@@ -4,6 +4,7 @@ class GuideController < ApplicationController
 
  def node_types
    @node_types = [ 'report', 'term', 'office' ]
+   @security_roles = Muninn::SecurityRoleAdapter.all
  end
 
  def index
@@ -15,7 +16,7 @@ class GuideController < ApplicationController
 
      params[:page] ||= 1
 
-     mcsa = MuninnCustomSearchAdapter.new
+     mcsa = Muninn::CustomSearchAdapter.new
      @results = mcsa.prep_search( params )
      @muninn_result = mcsa.raw_result
      @selected_node_types = mcsa.selected_node_types  # should the mcsa do this

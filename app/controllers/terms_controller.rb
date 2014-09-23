@@ -9,18 +9,18 @@ class TermsController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def update
-    response = MuninnAdapter.put( "/terms/#{URI.encode(params[:id])}", params[:termJSON] )
+    response = Muninn::Adapter.put( "/terms/#{URI.encode(params[:id])}", params[:termJSON] )
     render status: response.code, json: response.body
   end
 
   def create
 
-    response = MuninnAdapter.post( '/terms/', params[:term])
+    response = Muninn::Adapter.post( '/terms/', params[:term])
     render status: response.code, json: response.body
   end
 
   def destroy
-    response = MuninnAdapter.delete( "/terms/id/#{URI.encode(params[:id])}" )
+    response = Muninn::Adapter.delete( "/terms/id/#{URI.encode(params[:id])}" )
     render status: response.code, json: response.body
   end
 
@@ -32,7 +32,7 @@ class TermsController < ApplicationController
     Rails.logger.info("PGT is nil.")
    end
    Rails.logger.info("CAS User: #{session[:cas_user].to_s}, CAS Pgt: #{session[:cas_pgt].to_s}")
-   muninn_response = MuninnAdapter.get( "/terms/" + URI::encode(params[:id]), session[:cas_user], session[:cas_pgt] )
+   muninn_response = Muninn::Adapter.get( "/terms/" + URI::encode(params[:id]), session[:cas_user], session[:cas_pgt] )
    @term = JSON.parse(muninn_response.body)
    @term["huginn_user"] = session[:cas_user].to_s
 
@@ -44,7 +44,7 @@ class TermsController < ApplicationController
 
 
     # GET OFFICES
-    office_resp = MuninnAdapter.get( "/offices" )
+    office_resp = Muninn::Adapter.get( "/offices" )
     office_json = JSON.parse( office_resp.body )["results"]
 
     offices = []
@@ -56,7 +56,7 @@ class TermsController < ApplicationController
 
 
     # GET TERM
-    muninn_response = MuninnAdapter.get( "/terms/" + URI::encode(params[:id]) )
+    muninn_response = Muninn::Adapter.get( "/terms/" + URI::encode(params[:id]) )
     @term = JSON.parse(muninn_response.body)
 
   def search_string(search_s)
@@ -101,12 +101,12 @@ class TermsController < ApplicationController
    if params.has_key?(:tags)
     search_s = params[:tags][:search1]
 
-    json_string = MuninnCustomSearchAdapter.create_search_string(search_s)
-    @results  = MuninnCustomSearchAdapter.custom_query(json_string, params[:page], 15 )
+    json_string = Muninn::CustomSearchAdapter.create_search_string(search_s)
+    @results  = Muninn::CustomSearchAdapter.custom_query(json_string, params[:page], 15 )
 
    else
     json_string = '{"query":{"match_all":{}}, "facets": {"tags":{ "terms" : {"field" : "_type"}}},"from":"0","size":"999"}'
-    @results = MuninnCustomSearchAdapter.custom_query(json_string, params[:page], 15 )
+    @results = Muninn::CustomSearchAdapter.custom_query(json_string, params[:page], 15 )
 
    end
     @results_count = @results.select { |k| "#{k[:type]}" =="count"}
@@ -122,8 +122,8 @@ class TermsController < ApplicationController
 
   def partial_search
     page =params[:page]
-    json_string = MuninnCustomSearchAdapter.create_search_string( params[:q] )
-    @results  = MuninnCustomSearchAdapter.custom_query(json_string, params[:page], 15 )
+    json_string = Muninn::CustomSearchAdapter.create_search_string( params[:q] )
+    @results  = Muninn::CustomSearchAdapter.custom_query(json_string, params[:page], 15 )
     @results_count = @results.select { |k| "#{k[:type]}" =="count"}
     @results_count = @results_count[0][:totalcount]
     @results_hash = {}

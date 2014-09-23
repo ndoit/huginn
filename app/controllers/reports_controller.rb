@@ -9,35 +9,35 @@ class ReportsController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def update
-    response = MuninnAdapter.put( "/reports/#{URI.encode(params[:id])}", params[:reportJSON] )
+    response = Muninn::Adapter.put( "/reports/#{URI.encode(params[:id])}", params[:reportJSON] )
     render status: response.code, json: response.body
   end
 
   def create
 
-    response = MuninnAdapter.post( '/reports/', params[:report])
+    response = Muninn::Adapter.post( '/reports/', params[:report])
     render status: response.code, json: response.body
   end
 
   def destroy
-    response = MuninnAdapter.delete( "/reports/id/#{URI.encode(params[:id])}" )
+    response = Muninn::Adapter.delete( "/reports/id/#{URI.encode(params[:id])}" )
     render status: response.code, json: response.body
   end
 
   def show
     logger.debug("Querying Muninn...")
-    reports_resp = MuninnAdapter.get( "/reports/" + URI::encode(params[:id]) )
-    @report = JSON.parse(reports_resp.body)  
+    reports_resp = Muninn::Adapter.get( "/reports/" + URI::encode(params[:id]) )
+    @report = JSON.parse(reports_resp.body)
     @report_embed = JSON.parse(@report["report"]["embedJSON"])
-    
-   
-   
+
+
+
  end
 
 
   def authenticated_show
 
-   muninn_response = MuninnAdapter.get( "/reports/" + URI::encode(params[:id]), session[:cas_user], session[:cas_pgt] )
+   muninn_response = Muninn::Adapter.get( "/reports/" + URI::encode(params[:id]), session[:cas_user], session[:cas_pgt] )
    @report = JSON.parse(muninn_response.body)
    @report["huginn_user"] = session[:cas_user].to_s
 
@@ -45,8 +45,8 @@ class ReportsController < ApplicationController
 
   def partial_search
     page =params[:page]
-    json_string = MuninnCustomSearchAdapter.create_search_string( params[:q] )
-    @results  = MuninnCustomSearchAdapter.custom_query(json_string, params[:page], 15 )
+    json_string = Muninn::CustomSearchAdapter.create_search_string( params[:q] )
+    @results  = Muninn::CustomSearchAdapter.custom_query(json_string, params[:page], 15 )
     @results_count = @results.select { |k| "#{k[:type]}" =="count"}
     @results_count = @results_count[0][:totalcount]
     @results_hash = {}
@@ -63,6 +63,6 @@ class ReportsController < ApplicationController
     end
   end
 
- 
-  
+
+
 end

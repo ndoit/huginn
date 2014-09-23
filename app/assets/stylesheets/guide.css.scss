@@ -19,7 +19,7 @@
 	margin: 0 auto;
 }
 
-.data-type-label-container:hover{
+.toggleable-data-type-label-container:hover{
 	cursor:pointer;
 	background-color:white;
 }
@@ -32,4 +32,15 @@
 
 .role_header{
 	font-style: italic;
+}
+
+.sidebar_security_role_row{
+	height:auto;
+	overflow:auto;
+	padding-bottom:5px;
+}
+.sidebar_security_role_row_header{
+	height:auto;
+	overflow:auto;
+	text-decoration:underline;
 }

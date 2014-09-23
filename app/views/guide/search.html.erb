@@ -6,7 +6,7 @@
     <dl class="left-sidebar small-2 column">
 
       <% @node_types.each_with_index do |type_name,index| %>
-        <div class="data-type-label-container">
+        <div class="data-type-label-container toggleable-data-type-label-container">
           <div>
             <div class="data-type-toggle"><div data-resource-name="<%= type_name %>" class="toggle_light toggle_on <%= "toggle_off" if !@selected_node_types.include? type_name %>"></div></div>
             <div class="data-type-label"><%= type_name %></div>
@@ -15,6 +15,20 @@
         </div>
       </br>
       <% end %>
+      <div class="data-type-label-container">
+        <div>
+          <div class="sidebar_security_role_row sidebar_security_role_header">
+            <div class="data-type-toggle">&nbsp;</div>
+            <div class="data-type-label">security roles</div>
+          </div>
+          <% @security_roles.each do |role| %>
+            <div class="sidebar_security_role_row">
+              <div class="data-type-toggle"><div class="toggle_light toggle_on toggle_off"></div></div>
+              <div class="data-type-label"><%= role.name %></div>
+            </div>
+          <% end %>
+        </div>
+      </div>
 
     </dl>
     <!-- SIDEBAR -->

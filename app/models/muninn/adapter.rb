@@ -1,32 +1,32 @@
-class MuninnAdapter
+class Muninn::Adapter
 
   def self.post( resource_uri, body )
     req = Net::HTTP::Post.new( resource_uri )
     req["Content-Type"] = "application/json"
     req.body = body
 
-    MuninnAdapter.perform( req )
+    Muninn::Adapter.perform( req )
 
   end
 
   def self.delete( resource_uri )
     req = Net::HTTP::Delete.new( resource_uri )
     req.body = nil
-    MuninnAdapter.perform( req )
+    Muninn::Adapter.perform( req )
   end
 
   def self.put( resource_uri, body )
     req = Net::HTTP::Put.new( resource_uri )
     req["Content-Type"] = "application/json"
     req.body = body
-    MuninnAdapter.perform( req )
+    Muninn::Adapter.perform( req )
   end
 
- 
+
 
   def self.get( resource_uri,cas_user = nil,cas_pgt = nil)
 
-    http = MuninnAdapter.new_http_request
+    http = Muninn::Adapter.new_http_request
 
     muninn_host = ENV["muninn_host"]
     muninn_port = ENV["muninn_port"]
@@ -68,7 +68,7 @@ class MuninnAdapter
   end
 
   def self.perform( req )
-    response = MuninnAdapter.new_http_request.start do |http|
+    response = Muninn::Adapter.new_http_request.start do |http|
       http.request(req)
     end
   end
