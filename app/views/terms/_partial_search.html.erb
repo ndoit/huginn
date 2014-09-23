@@ -6,23 +6,37 @@
       <div class="result_header">
         <div class="result_title">
             <h4>
-              <a class="do_highlight" href="../<%= result[:type].pluralize %>/<%=result[:data]["name"]%>">
-                <%= result[:data]["name"] %>
+              <a class="do_highlight" href="../<%= result["type"].pluralize %>/<%=result["data"]["name"]%>">
+                <%= result["data"]["name"] %>
               </a>
           </h4>
         </div>
         <div class="result_type">
-          <%= result[:type] %>
+          <%= result["type"] %>
         </div>
       </div>
 
       <div class="do_highlight result_body">
-        <% if result[:data]["definition"]  then %>
-          <%= result[:data]["definition"].html_safe %>
-        <%else%>
-          NA
+        <% if result["data"]["definition"]  then %>
+          <%= result["data"]["definition"].html_safe %>
         <%end%>
       </div>
+
+
+      <% if result["type"] == "report" %>
+      <span class="role_header">Required roles</span>
+      <ul>
+         <% if result.has_key?("data")
+              if result["data"].has_key?("security_roles")
+           result["data"]["security_roles"].each do |role| %>
+
+            <li><%= role["name"] %></li>
+
+      <%    end
+            end %>
+      <%   end %>
+      </ul>
+      <% end %>
 
   </div>
    <%end%>

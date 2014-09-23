@@ -20,8 +20,8 @@ class MuninnCustomSearchAdapter
 
   def resource_count_hash()
     # get a hash of result count by node type
-    results_count = @muninn_result.select { |k| "#{k[:type]}" =="doc_count"}
-    results_count = results_count[0][:totalcount]
+    results_count = @muninn_result.select { |k| "#{k["type"]}" =="doc_count"}
+    results_count = results_count[0]["totalcount"]
     results_hash = {}
     results_count.each do |hash|
        results_hash[hash["key"]] = hash["doc_count"]
@@ -69,8 +69,8 @@ private
     # use the select clause to only return the desired resource types.
     # we always need to use select to avoid grabbing the "count" node.
     results = {}
-    results = raw_result.select { |k| selected_types.include? "#{k[:type]}" }
-                         .sort_by { |k| "#{k[:sort_name]}"}
+    results = raw_result.select { |k| selected_types.include? "#{k["type"]}" }
+                         .sort_by { |k| "#{k["sort_name"]}"}
                          .paginate(:page=> page, :per_page => 10)
   end
 
@@ -85,18 +85,18 @@ private
     response_hash["result"]["hits"]["hits"].each do |hit|
 
       node ={
-        :id => hit["_id"].to_i,
-        :type => hit["_type"],
-        :score => hit["_score"],
-        :data => hit["_source"],
-        :sort_name =>hit["_source"]["name"]
+        "id" => hit["_id"].to_i,
+        "type" => hit["_type"],
+        "score" => hit["_score"],
+        "data" => hit["_source"],
+        "sort_name" =>hit["_source"]["name"]
 
       }
       output << node
 
     end
 
-     totalcount = { :type => "doc_count",:totalcount => response_hash["result"]["aggregations"]["type"]["buckets"]}
+     totalcount = { "type" => "doc_count","totalcount" => response_hash["result"]["aggregations"]["type"]["buckets"]}
 
      output << totalcount
 
