@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-    
+
   #before_filter :authenticate!
 
   def authenticate!
@@ -15,5 +15,16 @@ class ApplicationController < ActionController::Base
       logger.debug ":cas_pgt: " + session[:cas_pgt].to_s
     end
   end
+
+
+  def current_user
+    @current_user ||= cas_user
+  end
+
+  def cas_user
+
+  end
+
+  helper_method :current_user
 
 end
