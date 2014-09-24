@@ -22,7 +22,11 @@ class ApplicationController < ActionController::Base
   end
 
   def cas_user
-    User.new( session[:cas_user ] )
+    if ( session.has_key?(:cas_user) )
+      User.new( session[:cas_user ] )
+    else
+      nil
+    end
   end
 
   helper_method :current_user

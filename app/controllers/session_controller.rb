@@ -8,6 +8,7 @@ class SessionController < ActionController::Base
 
 
     def logout
+      session.clear
       CASClient::Frameworks::Rails::Filter.logout(self)
     end
 
