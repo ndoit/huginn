@@ -15,8 +15,11 @@
 
 
 #search_results{
-	width: 80%;
+	width: 100%;
 	margin: 0 auto;
+}
+@media screen and (max-width: 800px) {
+	width: 80%;
 }
 
 .toggleable-data-type-label-container:hover{

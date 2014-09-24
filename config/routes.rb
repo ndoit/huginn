@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get "terms" => 'terms#index'
 
   get "/login" => 'session#login'
-  get "/logout" => 'session#logout'
+  get "/logout" => 'session#logout  '
 
     #get "terms/partial_search" => 'terms#partial_search'
   get "terms/partial_search" => 'terms#partial_search'
@@ -107,3 +107,4 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 end
+
