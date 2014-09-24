@@ -31,7 +31,7 @@
             <!-- Top Bar Right Nav Elements -->
           <ul class="right">
             <!-- Divider -->
-                <div class="welcome">Hello</div>
+                <div class="welcome"><% if current_user %>Welcome <%=current_user.name%><% end %></div>
                 <li class="has-dropdown not-click"><a href="#">Admin</a>
                <!-- Nested Dropdown -->
                   <ul class="dropdown"><li class="title back js-generated"></li>
@@ -68,6 +68,7 @@
                         </div>
                     </li>
                      <li class="divider"></li>
+                     <% if current_user.can( :publish_report ) %>
                      <li> <a class ="tiny button" href="#" data-reveal-id="reporttiny"><strong>Add New Report </strong></a>
                         <div class="reveal-modal tiny" id="reporttiny" data-reveal="">
                           <h2>Add New Report</h2>
@@ -83,6 +84,7 @@
                           <a class="close-reveal-modal">×</a>
                         </div>
                     </li>
+                    <% end %>
                   </ul>
                </li>
 

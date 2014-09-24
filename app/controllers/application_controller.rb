@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
   end
 
   def cas_user
-
+    User.new( session[:cas_user ] )
   end
 
   helper_method :current_user
