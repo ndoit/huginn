@@ -3,7 +3,10 @@ Rails.application.routes.draw do
   get "guide_search" => 'guide#search'
 
   get "terms" => 'terms#index'
- 
+
+  get "/login" => 'session#login'
+  get "/logout" => 'session#logout  '
+
     #get "terms/partial_search" => 'terms#partial_search'
   get "terms/partial_search" => 'terms#partial_search'
   get "terms/:id" => 'terms#show'
@@ -18,7 +21,7 @@ Rails.application.routes.draw do
 
 
   get "offices" => 'offices#index'
- 
+
   get "offices/partial_search" => 'offices#partial_search'
   get "offices/:id" => 'offices#show'
   put "offices/:id" => 'offices#update'  #SMM
@@ -41,7 +44,7 @@ Rails.application.routes.draw do
   put "cas_proxy_callback/receive_pgt" => 'cas_proxy_callback#receive_pgt'
   get "cas_proxy_callback/retrieve_pgt" => 'cas_proxy_callback#retrieve_pgt'
 
- 
+
 
   resources :results, only: [:index]
   #root to:  "results#index"
