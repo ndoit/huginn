@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get "terms" => 'terms#index'
 
   get "/login" => 'session#login'
-  get "/logout" => 'session#logout  '
+  get "/logout" => 'session#logout'
 
     #get "terms/partial_search" => 'terms#partial_search'
   get "terms/partial_search" => 'terms#partial_search'
@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
 
  # get "terms/:search1" => 'terms#search_string'
-  get "terms/auth/log/out" => 'session#logout'
+  #get "terms/auth/log/out" => 'session#logout'
   get "terms/auth/:id" => 'terms#authenticated_show'
 
 
