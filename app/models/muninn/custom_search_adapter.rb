@@ -18,7 +18,7 @@ class Muninn::CustomSearchAdapter
     @results = filter_results( @muninn_result, args[:page], @selected_node_types )
   end
 
-  def resource_count_hash()
+  def resource_count_hash
     # get a hash of result count by node type
     results_count = @muninn_result.select { |k| "#{k["type"]}" =="doc_count"}
     results_count = results_count[0]["totalcount"]
@@ -73,6 +73,7 @@ private
                          .sort_by { |k| "#{k["sort_name"]}"}
                          .paginate(:page=> page, :per_page => 10)
   end
+
 
 
   def extract_results(search_response)

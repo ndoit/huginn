@@ -1,12 +1,48 @@
-   <% results.each do |result| %>
-    <% if result[:type]  == 'report' then %>
-     <a class="do_highlight" href="../reports/<%=result[:data]["name"]%>"> <strong>
-      <%= result[:data]["name"] %></strong> </a>  </br>
-      <% if  result[:data]["description"]   then %>
-           <div class="do_highlight">  <%= result[:data]["description"].html_safe %></div> 
-          <%else%>
-          <div class="do_highlight"> NA </div>
+
+<% current_user.security_roles %>
+<% required_array = result["data"]["security_roles"].map{ |a| a["name"]} %>
+<% current_user.security_roles & required_array %>
+<% (current_user.security_roles & required_array).length %>
+
+<% if (current_user.security_roles & required_array).length != 0  %>
+
+     <div class="result_row">
+       <div class="result_header">
+         <div class="result_title">
+             <h4>
+               <a class="do_highlight" href="../<%= result["type"].pluralize %>/<%=result["data"]["name"]%>">
+                 <%= result["data"]["name"] %>
+               </a>
+           </h4>
+         </div>
+         <div class="result_type">
+           <%= result["type"] %>
+         </div>
+       </div>
+
+       <div class="do_highlight result_body">
+         <% if result["data"]["definition"]  then %>
+           <%= result["data"]["definition"].html_safe %>
          <%end%>
-     <%end%>
- <%end%>
- <%= will_paginate(results, :class => "apple_pagination") %> <br>
+       </div>
+
+
+       <span class="role_header">Required roles</span>
+       <ul>
+          <% if result.has_key?("data")
+               if result["data"].has_key?("security_roles")
+            result["data"]["security_roles"].each do |role| %>
+
+             <li><%= role["name"] %></li>
+
+       <%    end
+             end %>
+       <%   end %>
+       </ul>
+
+   </div>
+
+
+<% else %>
+debug: report hidden
+<% end %>

@@ -23,7 +23,7 @@ class GuideController < ApplicationController
      @resource_count_hash = mcsa.resource_count_hash
 
      if ( params[:page].to_i > 1 )
-       render partial: "terms/partial_search", locals: { results: @results || [] }, layout: false
+       render partial: "partial_search", locals: { results: @results || [] }, layout: false
      else
        render html: "search", layout: false
      end
