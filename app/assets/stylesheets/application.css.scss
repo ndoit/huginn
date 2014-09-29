@@ -34,4 +34,12 @@ body {
 	position: relative;
 	top: 11px;
 	font-size: .9em;
+
+	a{
+		color:white;
+		font-style: italic;
+	}
+	a:hover{
+		color: lightGray;
+	}
 }

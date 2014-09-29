@@ -41,9 +41,16 @@
 	height:auto;
 	overflow:auto;
 	padding-bottom:5px;
+
+	.data-type-label{
+		width:80%;
+		white-space:normal;
+	}
 }
 .sidebar_security_role_row_header{
 	height:auto;
 	overflow:auto;
 	text-decoration:underline;
+	
+
 }
