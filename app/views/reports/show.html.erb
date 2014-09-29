@@ -65,29 +65,46 @@
       </div> 
      </div> 
     </div>
-    
-   <% if @report_embed["width"] != "" then %>
+   
+   <% if @report["report"]["report_type"] == "External" %> 
+    <!-- External report -->
     <div class="row">
-    <div class="large-12 large-centered columns">  
-     <script type='text/javascript' src='https://tableau.nd.edu/javascripts/api/viz_v1.js'></script>
-      <div class="row">
-       <div class="large-12 large-centered columns">  
-        <a href="javascript:RefreshRevert('Refresh')">Refresh Data</a> &nbsp;&nbsp;&nbsp;
-        <a href="javascript:RefreshRevert('Reset')">Reset Filters</a>
-       </div>
-     </div>
-    <div class='tableauPlaceholder' style='width:<%= @report_embed["width"] %>; height:<%=@report_embed["height"] %>;'>
-    <object class='tableauViz' width='<%= @report_embed["width"] %>' height='<%= @report_embed["height"]%>' style='display:none;'>
-    <param name='host_url' value='https%3A%2F%2Ftableau.nd.edu%2F' />
-    <param name='site_root' value='' />
-    <param name='name' value= <%= @report_embed["name"].html_safe %> />
-    <param name='tabs' value=<%= @report_embed["tabs"].html_safe %> />
-     <param name='linktarget' value='_self' />
-    <param name='toolbar' value='no' />
-    </object>
+      <div class="large-12 large-centered columns">  
+        <iframe
+          id="reportframe"
+          frameborder="0"
+          scrolling="no"
+          width="<%= @report_embed["width"] %>"
+          height="<%= @report_embed["height"] %>"
+          src="<%= @report_embed["external_uri"] %>"
+        ></iframe>
+      </div>
     </div>
-   </div>
- </br>
+   <% else %>
+    <!-- Tableau report -->
+    <% if @report_embed["width"] != "" then %>
+      <div class="row">
+      <div class="large-12 large-centered columns">  
+       <script type='text/javascript' src='https://tableau.nd.edu/javascripts/api/viz_v1.js'></script>
+        <div class="row">
+         <div class="large-12 large-centered columns">  
+          <a href="javascript:RefreshRevert('Refresh')">Refresh Data</a> &nbsp;&nbsp;&nbsp;
+          <a href="javascript:RefreshRevert('Reset')">Reset Filters</a>
+         </div>
+       </div>
+      <div class='tableauPlaceholder' style='width:<%= @report_embed["width"] %>; height:<%=@report_embed["height"] %>;'>
+      <object class='tableauViz' width='<%= @report_embed["width"] %>' height='<%= @report_embed["height"]%>' style='display:none;'>
+      <param name='host_url' value='https%3A%2F%2Ftableau.nd.edu%2F' />
+      <param name='site_root' value='' />
+      <param name='name' value= <%= @report_embed["name"].html_safe %> />
+      <param name='tabs' value=<%= @report_embed["tabs"].html_safe %> />
+       <param name='linktarget' value='_self' />
+      <param name='toolbar' value='no' />
+      </object>
+      </div>
+     </div>
+      </br>
+    <% end %>
    <% end %>
 
 
@@ -205,7 +222,7 @@
   <div class="row">
     <div class="medium-12 large-12 columns">
     	<h1>Unregistered Report</h1>
-    		This report is unregistered or the meta-data about the report has been lost.  Please send us feedback and we will get back to you within 1 busienss day.
+    		This report is unregistered or the meta-data about the report has been lost.  Please send us feedback and we will get back to you within 1 business day.
      </div>
   </div>
 
