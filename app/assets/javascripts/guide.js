@@ -1,19 +1,25 @@
 $(document).ready(
   function() {
-  	executeSearch()
+  	executeFilter()
 
-    $('#content').on('click', '.more_results',
-      function() {
-        loadMoreResults( $(this) )
-      }
-    )
+    bindFilterToggleBehavior()
 
+    bindTypeaheadSearchBehavior() 
+    
+
+  }
+)
+
+function bindFilterToggleBehavior() {
     $('#content').on( 'click', '.data-type-label-container', function() {
       $(this).find('.toggle_light').toggleClass('toggle_off')
       executeFilter()
     })
+}
 
-
+// every keyup event starts a search that will
+// execute in 200ms unless another key is pressed!
+function bindTypeAheadSearchBehavior() {
     // typeahead binding
     var pendingPartialSearch
     var delay = 200
@@ -30,36 +36,38 @@ $(document).ready(
          // set a new search to execute in 200ms
         pendingPartialSearch = setTimeout( function() {
           console.log(search_val)
-          executeSearch()
+          executeFilter()
         }, delay )
       }
 
     })
-
-  }
-)
-
-function executeSearch() {
-
-  console.log("executeSearch")
-  search_string = $('#search1').val()
-  console.log(search_string);
-
-  var search = encodeURI(search_string)
-  var url = '/guide_search'
-  if ( search.length  ) {
-    url += '?q=' + search
-  }
-
-  $('#search_results').load( url,
-    function() {
-      highlightSearchString()
-      bindInfiniteScrollBehavior()
-      $("#search1").focus()
-  })
-
 }
 
+
+function executeFilter() {
+  console.log(getSearchURL(1))
+  displayLoading()
+  $('#search_results').load( getSearchURL(1), function() {
+    highlightSearchString()
+    bindInfiniteScrollBehavior()
+  } )
+}
+
+
+function getSearchURL( page ) {
+  url = '/guide_search?'
+  url += 'selected_resources=' + getSelectedResourceList()
+
+  var searchString = encodeURI($('#search1').val())
+  if ( searchString.length ) {
+    url += '&q=' + $('#search1').val()
+  }
+  if ( page != 1 ) {
+    url += "&page=" + page
+  }
+
+  return url
+}
 
 
 
@@ -90,7 +98,7 @@ function bindInfiniteScrollBehavior() {
 
 function loadMoreResults( more_button ) {
     more_button.html("<div><img src='/assets/ajax-loader.gif'></div>")
-    url = searchURL( more_button.data('next-page') )
+    url = getSearchURL( more_button.data('next-page') )
     console.log( url )
 
     // replace the current "more" button with the new content, which
@@ -108,19 +116,6 @@ function highlightSearchString() {
 }
 
 
-function searchURL( page ) {
-  url = '/guide_search?'
-  url += 'selected_resources=' + selectedResourceList()
-
-  if ( $('#search1').val().length ) {
-    url += '&q=' + $('#search1').val()
-  }
-  if ( page != 1 ) {
-    url += "&page=" + page
-  }
-
-  return url
-}
 
 
 function displayLoading() {
@@ -128,22 +123,7 @@ function displayLoading() {
 }
 
 
-
-
-
-function executeFilter() {
-  console.log(searchURL(1))
-  displayLoading()
-  $('#search_results').load( searchURL(1), function() {
-    highlightSearchString()
-    bindInfiniteScrollBehavior()
-  } )
-}
-
-
-
-
-function selectedResourceList() {
+function getSelectedResourceList() {
   resources = []
   $('.toggle_light').not('.toggle_off').each( function() {
     resources.push( $(this).data('resource-name') )
