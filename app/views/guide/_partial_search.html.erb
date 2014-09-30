@@ -1,5 +1,7 @@
 <% if results.size == 0 %>
-  <div class="search_results_msg">No results match your current criteria</div>
+	<% if params[:page] == 1 %>
+	  <div class="search_results_msg">No results match your current criteria</div>
+  	<% end %>
 <% else %>
   <% results.each do |result| %>
     <%= render partial: "#{result['type'].pluralize}/partial_search", locals: { result: result }, layout: false %>
