@@ -18,10 +18,14 @@ class User
     end
   end
 
+  def has_role?( role )
+    security_roles.include? role
+  end
+
   private
   def get_security_roles
     # call web service
-    [ "Report Publisher" ]
+    [ "General Analyst" ]
   end
 
 end

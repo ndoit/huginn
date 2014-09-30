@@ -19,12 +19,12 @@
         <div>
           <div class="sidebar_security_role_row sidebar_security_role_header">
             <div class="data-type-toggle">&nbsp;</div>
-            <div class="data-type-label">security roles</div>
+            <div class="data-type-label">my security roles</div>
           </div>
-          <% @security_roles.each do |role| %>
+          <% @report_roles.each do |role| %>
             <div class="sidebar_security_role_row">
               <div class="data-type-toggle"><div class="toggle_light toggle_on toggle_off"></div></div>
-              <div class="data-type-label"><%= role.name %></div>
+              <div class="data-type-label"><%= role.name %> </div>
             </div>
           <% end %>
         </div>

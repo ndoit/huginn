@@ -9,7 +9,7 @@ class GuideController < ApplicationController
    # @node_types << "report"
    #end
 
-   @security_roles = Muninn::SecurityRoleAdapter.all
+   @report_roles = Muninn::SecurityRoleAdapter.all.select { |k| k.report_role? && (current_user.has_role? k.name) }
  end
 
  def index
