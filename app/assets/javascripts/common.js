@@ -14,8 +14,6 @@ $(document).ready(function(){
 
   }
 
-  $('#search1').watermark('Search Terms');
-
   if(typeof term_object != 'undefined')  {
 
 		$('#updateTermButton').click(function() {

@@ -5,6 +5,12 @@ $(document).ready(
     bindFilterToggleBehavior()
 
     bindTypeaheadSearchBehavior() 
+
+    $('.dddm-header').click( function() {
+      window.location = "/"
+    })
+
+    $('#search1').watermark('Search Terms');
     
   }
 )
