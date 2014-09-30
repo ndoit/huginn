@@ -1,10 +1,5 @@
 
-<% current_user.security_roles %>
-<% required_array = result["data"]["security_roles"].map{ |a| a["name"]} %>
-<% current_user.security_roles & required_array %>
-<% (current_user.security_roles & required_array).length %>
 
-<% if (current_user.security_roles & required_array).length != 0  %>
 
      <div class="result_row">
        <div class="result_header">
@@ -41,8 +36,3 @@
        </ul>
 
    </div>
-
-
-<% else %>
-debug: report hidden
-<% end %>

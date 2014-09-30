@@ -6,7 +6,6 @@ $(document).ready(
 
     bindTypeaheadSearchBehavior() 
     
-
   }
 )
 
@@ -17,9 +16,10 @@ function bindFilterToggleBehavior() {
     })
 }
 
-// every keyup event starts a search that will
-// execute in 200ms unless another key is pressed!
-function bindTypeAheadSearchBehavior() {
+
+function bindTypeaheadSearchBehavior() {
+    // every keyup event starts a search that will
+    // execute in 200ms unless another key is pressed!
     // typeahead binding
     var pendingPartialSearch
     var delay = 200
@@ -56,7 +56,8 @@ function executeFilter() {
 
 function getSearchURL( page ) {
   url = '/guide_search?'
-  url += 'selected_resources=' + getSelectedResourceList()
+
+  url += selectedResources()
 
   var searchString = encodeURI($('#search1').val())
   if ( searchString.length ) {
@@ -122,6 +123,15 @@ function displayLoading() {
   $('#search_results_right').html("<div class='search_results_msg'><img src='/assets/ajax-loader.gif'></div>")
 }
 
+
+function selectedResources() {
+  var url = ''
+  if ( $('.toggle_light').length != 0 ) {
+    url = 'selected_resources=' + getSelectedResourceList()
+  }
+  return url
+    
+}
 
 function getSelectedResourceList() {
   resources = []
