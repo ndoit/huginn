@@ -35,7 +35,7 @@ class Muninn::CustomSearchAdapter
                                         true
                                       else
                                         if k["type"] == "report" && 
-                                           arrays_intersect?( security_roles_to_array(k["data"]["security_roles"]), role_array) 
+                                           Services::General.arrays_intersect?( security_roles_to_array(k["data"]["security_roles"]), role_array) 
                                            @filtered_report_count += 1
                                            true
                                         else
@@ -98,10 +98,6 @@ private
 
   def security_roles_to_array( json_string ) 
     json_string.map{ |a| a["name"] }
-  end
-
-  def arrays_intersect?( array1, array2 )
-    (array1 & array2).length != 0
   end
 
   def query_muninn( query_string, page_number )
