@@ -10,7 +10,7 @@ $(document).ready(
       window.location = "/"
     })
 
-    $('#search1').watermark('Search Terms');
+    $('#search1').watermark('Search');
     
   }
 )

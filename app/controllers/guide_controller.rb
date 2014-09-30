@@ -4,7 +4,7 @@ before_filter :node_types
 
 def node_types
 
-  @node_types = [ 'term', 'report' ]
+  @node_types = [ 'report', 'term' ]
   #if current_user
   # @node_types << "report"
   #end
