@@ -134,13 +134,17 @@ function selectedResources() {
   var url = ''
   if ( $('.toggle_light').length != 0 ) {
     url = 'selected_resources=' + getSelectedResourceList()
+  } else {
+    if ( $('#initial_selected_resources').val().length ) {
+      url = 'selected_resources=' + $('#initial_selected_resources').val()
+    } 
   }
   return url
     
 }
 
 function getSelectedResourceList() {
-  resources = []
+  var resources = []
   $('.toggle_light').not('.toggle_off').each( function() {
     resources.push( $(this).data('resource-name') )
   })
