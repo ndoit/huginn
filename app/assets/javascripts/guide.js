@@ -135,7 +135,7 @@ function selectedResources() {
   if ( $('.toggle_light').length != 0 ) {
     url = 'selected_resources=' + getSelectedResourceList()
   } else {
-    if ( $('#initial_selected_resources').val().length ) {
+    if ( $('#initial_selected_resources').length != 0 ) {
       url = 'selected_resources=' + $('#initial_selected_resources').val()
     } 
   }
