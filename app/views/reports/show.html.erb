@@ -80,7 +80,29 @@
         ></iframe>
       </div>
     </div>
-   <% else %>
+  <% elsif @report["report"]["report_type"] == "Aggregation" %>
+    <!-- Aggregation of sub-reports -->
+    <div class="row">
+      <div class="large-12 columns">
+        <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-<%= @report_embed["gridsize"].to_s %>">
+        <% @subreports.each do |subreport| %>
+          <li>
+            <div class="row">
+              <div class="small-12 medium-12 large-12 columns">
+                <a href="<%= subreport["name"] %>"><h5><%= subreport["name"] %></h5></a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="small-12 medium-12 large-12 columns">
+                <a href="<%= subreport["name"] %>"><img src="<%= subreport["thumbnail_uri"] %>"></img></a>
+              </div>
+            </div>
+          </li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% else %>
     <!-- Tableau report -->
     <% if @report_embed["width"] != "" then %>
       <div class="row">
@@ -105,7 +127,7 @@
      </div>
       </br>
     <% end %>
-   <% end %>
+  <% end %>
 
 
 <div class="row">
