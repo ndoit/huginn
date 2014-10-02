@@ -7,6 +7,11 @@ class SecurityRole
     @role_eds_code = args["role_eds_code"]
     @is_public = args["is_public"]
     @name = args["name"]
+    @report_role = args["report_role"]
+  end
+
+  def report_role?
+  	@report_role == 'Y'
   end
 
 end

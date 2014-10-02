@@ -11,11 +11,12 @@ class User
     @roles ||= get_security_roles
   end
 
+  def has_role?( role )
+    security_roles.include? role
+  end
+
   def can( action )
-    case action
-    when :publish_report
-      security_roles.include? "Report Publisher"
-    end
+    Services::Permissions.can( security_roles, action )
   end
 
   private

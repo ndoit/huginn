@@ -1068,6 +1068,19 @@ h6 {font-size:1em;}
 
   /* HEADER
      ----------------------------------------------------*/
+  .dddm-header{
+	color: white;
+	font-size: 1.75em;
+	padding-left: 15px;
+	line-height: 1;
+	top: 5px;
+	position: relative;	
+  }
+  .dddm-header:hover{
+  	cursor:pointer;
+  	color:lightGray;
+  }
+
   .site-header {margin:0; text-align:center;}
   .brandbar,
   .titlebar {overflow:hidden;}
@@ -1075,6 +1088,7 @@ h6 {font-size:1em;}
     ul {margin:0; list-style:none;}
     li {margin:0;}
   }
+
 
 
 
@@ -1712,7 +1726,7 @@ h6 {font-size:1em;}
 
 @mixin roundy-box {
 
-  @include radius(20px);
+  @include radius(10px);
   color: black;
   border: solid thin;
 
@@ -1799,14 +1813,13 @@ h6 {font-size:1em;}
 
 
 .toggle_on {
-  top: 5px;
-  left: 5px;
-  position:relative;
-  @include circle(10px, lightGreen );
-  border : thin solid darkGray;
+	left: 10px;
+	position: relative;
+	width: 10px;
+	height: 10px;
 }
 .toggle_off {
-  background-color: gray;
+  /*background-color: gray;*/
 }
 
 .data-type-label{
@@ -1820,6 +1833,6 @@ h6 {font-size:1em;}
   float:left;
   color: white;
   background-color: navy;
-  border-radius: 15px;
+  border-radius: 7.5px;
   padding: 2px;
 }

@@ -5,8 +5,13 @@ $(document).ready(
     bindFilterToggleBehavior()
 
     bindTypeaheadSearchBehavior() 
-    
 
+    $('.dddm-header').click( function() {
+      window.location = "/"
+    })
+
+    $('#search1').watermark('Search');
+    
   }
 )
 
@@ -17,9 +22,10 @@ function bindFilterToggleBehavior() {
     })
 }
 
-// every keyup event starts a search that will
-// execute in 200ms unless another key is pressed!
-function bindTypeAheadSearchBehavior() {
+
+function bindTypeaheadSearchBehavior() {
+    // every keyup event starts a search that will
+    // execute in 200ms unless another key is pressed!
     // typeahead binding
     var pendingPartialSearch
     var delay = 200
@@ -56,7 +62,8 @@ function executeFilter() {
 
 function getSearchURL( page ) {
   url = '/guide_search?'
-  url += 'selected_resources=' + getSelectedResourceList()
+
+  url += selectedResources()
 
   var searchString = encodeURI($('#search1').val())
   if ( searchString.length ) {
@@ -123,8 +130,21 @@ function displayLoading() {
 }
 
 
+function selectedResources() {
+  var url = ''
+  if ( $('.toggle_light').length != 0 ) {
+    url = 'selected_resources=' + getSelectedResourceList()
+  } else {
+    if ( $('#initial_selected_resources').length != 0 ) {
+      url = 'selected_resources=' + $('#initial_selected_resources').val()
+    } 
+  }
+  return url
+    
+}
+
 function getSelectedResourceList() {
-  resources = []
+  var resources = []
   $('.toggle_light').not('.toggle_off').each( function() {
     resources.push( $(this).data('resource-name') )
   })
