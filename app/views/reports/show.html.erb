@@ -13,6 +13,7 @@
      } 
    </script>
 
+
 <div class="row">
   <div class="large-8 columns">
     <div data-alert class="alert-box alert radius" style="display:none">
@@ -107,6 +108,19 @@
     <% end %>
    <% end %>
 
+
+<div class="row">
+ <div class="large-12 large-centered columns"></br> </br>
+  <h5 class="page-title">Sample Image</h5>
+    <%= image_tag @report_photo.image_url(:small) %>
+    <%= form_tag report_image_upload_path, :method => "post", :id => 'report_image_upload', :multipart => true do %>
+
+      <%= hidden_field_tag "id", @report["report"]["id"] %>
+      Upload/replace sample image:
+      <%= file_field_tag "image" %>
+    <% end %>
+  </div>
+</div>
 
 <div class="row">
  <div class="large-12 large-centered columns"></br> </br>

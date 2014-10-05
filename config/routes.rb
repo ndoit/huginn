@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   
   root 'welcome#index'
 
+  get '/up' => 'reports#upload_test'
+  post '/up' => 'reports#upload', as: :report_image_upload
 
   get "browse" => 'guide#index', as: :browse
   get "browse/:selected_resources" => 'guide#index'
