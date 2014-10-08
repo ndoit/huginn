@@ -1,5 +1,20 @@
 source 'https://rubygems.org'
 
+# image upload
+# http://railscasts.com/episodes/374-image-manipulation
+# http://railscasts.com/episodes/253-carrierwave-file-uploads
+# how to use carrierwave without a table -- 	https://coderwall.com/p/e9d_ja
+# ---------------------------------------------------------------------
+# Setup
+# sudo yum install ImageMagick (case sensitive)
+# rails g uploader report_image
+# https://gist.github.com/cblunt/1303386
+gem 'fog', '~> 1.23.0' # for uploading to Amazon S3.  http://railscasts.com/episodes/383-uploading-to-amazon-s3
+gem 'mini_magick'
+gem 'carrierwave'
+# ---------------------------------------------------------------------
+#image upload
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
 

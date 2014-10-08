@@ -28,6 +28,7 @@ class ReportsController < ApplicationController
     logger.debug("Querying Muninn...")
     reports_resp = Muninn::Adapter.get( "/reports/" + URI::encode(params[:id]) )
     @report = JSON.parse(reports_resp.body)
+    @report_photo = Report.new( @report["report"]["id"])
     @report_embed = JSON.parse(@report["report"]["embedJSON"])
 
     if @report["report"]["report_type"] == "Aggregation"
@@ -41,6 +42,18 @@ class ReportsController < ApplicationController
       end
     end
  end
+
+  # TEST TEST TEST
+  def upload_test
+  end
+
+  def upload
+    r = Report.new( params[:id] )
+    r.report_image = params[:image]
+    r.save
+    render text: "hi"
+  end
+  # TEST TEST TEST
 
 
   def authenticated_show
