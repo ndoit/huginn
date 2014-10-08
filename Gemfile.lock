@@ -181,7 +181,7 @@ DEPENDENCIES
   carrierwave
   coffee-rails (~> 4.0.0)
   dotenv
-  fog
+  fog (~> 1.23.0)
   foundation-rails (~> 5.3.0.0)
   httparty
   jbuilder (~> 1.2)
