@@ -43,23 +43,35 @@
 <div class="row">
 <div class="large-12 columns">
   <div class="small-12 large-12 columns">
+  	 <% if current_user && current_user.can( :edit_term ) %>
 	  <div id="name" class="editable">
-		<h2 class="page-title">
+	  	 <%else%>
+	 	  <div id="name">
+	 	    <%end%>
+	 	<h2 class="page-title">
 			<%= @term["term"]["name"].html_safe %>
 		</h2>
 	  </div>
+	     <% if current_user && current_user.can( :edit_term ) %>
 	  <div id="definition" class="editable">
+	  	 <%else%>
+	 	  <div id="definition">
+	 	    <%end%>
 		 <% if @term["term"]["definition"]  then %>
 		  <%= @term["term"]["definition"].html_safe %>
 		 <%else%>
 		   NA
 	     <%end%>  
-      </div> 
-	  <h5 class="page-title">General Information</h5>
+       </div>
+	   <h5 class="page-title">General Information</h5>
 	   <dl> 
-		  <dt>Data Availability</dt>
+		<dt>Data Availability</dt>
 		  <dd>
+		  	 <% if current_user && current_user.can( :edit_term ) %>
 		   <div id="data_availability" class="editable">
+		   <%else%>
+	 	   <div id="data_availability">
+	 	    <%end%>
 		    <% if @term["term"]["data_availability"]  then %>
 			  <%= @term["term"]["data_availability"].html_safe %>
 			<%else%>
@@ -68,9 +80,14 @@
 		   </div>
 		  </dd>
 		 </dt>
-		 <dt>Possible Values</dt>
+			 <dt>Possible Values</dt>
 		  <dd>
-			<div id="possible_values" class="editable">
+		  	 <% if current_user && current_user.can( :edit_term ) %>
+		   		<div id="possible_values" class="editable">
+		   <%else%>
+	 	   <div id="possible_values">
+	 	    <%end%>
+	
 			  <% if @term["term"]["possible_values"] then %>
 				<%= @term["term"]["possible_values"].html_safe %>
 			  <%else%>
@@ -81,20 +98,26 @@
 		 </dt>
 		 <dt>Notes</dt>
 		 <dd>
-		   <div id="notes" class="editable">
-			<% if @term["term"]["notes"]  then %>
+		  <% if current_user && current_user.can(:edit_term ) %>
+		   	<div id="notes" class="editable">
+		   	  <%else%>
+			   <div id="notes">
+			  <%end%>
+	 	    <% if @term["term"]["notes"]  then %>
 			  <%= @term["term"]["notes"].html_safe %>
 			<%else%>
 			  NA
 			<%end%>
-		   </div> 
+		   </div> 		 
 		  </dd>
 		</dt>
 		</dl>
 	</div>
+	<div class="row">
 	<div class="small-12 large-12 columns">
 		<h5 class="page-title">R.A.C.I. Matrix</h5>
-		<div class="row">
+		 <% if current_user && current_user.can( :edit_term ) %>
+		 <div class="row">
           <table class="raci">
 			  <tbody class="tbody">
 			  	<% @stakeholder_hash.keys.each_with_index do |key, index|%>
@@ -105,9 +128,29 @@
 					</td>
 			    </tr>
 			    <% end %>
+			   </tbody>
 			 </table>
 		</div>
-	
+		<%else%>
+		<div class="row">
+			 <table>
+             	<% @stakeholder_hash.keys.each_with_index do |key, index|%>
+			    <tr class="raci_row">
+			      	<td><h5> <%=key%></h5></td>
+			       	<td>
+			       	  <%@stakeholder_hash[key].each do |stake|%>
+		      		    <%=stake[:text].to_s %>  </br>
+		      		  <% end %> 
+		      			</br> 
+					</td>
+                </tr>
+			    <% end %>
+			     </tbody>
+			  </table>
+		</div>
+	    <% end %>
+	</div>
+	</div>
 	<div class="row">
       <div class="large-12 large-centered columns"></br>
       <h5 class="page-title">Reports Associated with this Term </h5>
@@ -124,6 +167,7 @@
       </div>
     </div>
     
+    <% if current_user && current_user.can( :edit_term ) %>
       <div class="row">
       <h1 class="page-title"></h1>
 	 <div class="large-5 columns"> &nbsp;</div>
@@ -133,6 +177,7 @@
 	   </div>
 	<div class="large-5 columns"> &nbsp;</div>
    </div>
+    <% end %>
 </div>
 </div>
 	

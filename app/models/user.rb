@@ -22,7 +22,7 @@ class User
   private
   def get_security_roles
     # call web service
-    [ "Report Publisher" ]
+    [ "Report Publisher"]
   end
 
 end
