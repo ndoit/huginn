@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
-  get "guide" => 'guide#index'
+  
+  root 'welcome#index'
+
+  get '/up' => 'reports#upload_test'
+  post '/up' => 'reports#upload', as: :report_image_upload
+
+  get "browse" => 'guide#index', as: :browse
+  get "browse/:selected_resources" => 'guide#index'
+
   get "guide_search" => 'guide#search'
 
   get "terms" => 'terms#index'
@@ -50,7 +58,7 @@ Rails.application.routes.draw do
   #root to:  "results#index"
 
 
-  root 'guide#index'
+  
   #root  'terms#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

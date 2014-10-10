@@ -315,6 +315,8 @@ function updateReportObject(report_object ) {
 }
 
 function updateReport( report_object ) {
+  
+
   $.ajax({
       url: report_object.id,
       type: 'PUT',
@@ -332,6 +334,8 @@ function updateReport( report_object ) {
            showValidationErrors()
       }
   })
+
+  $('form#report_image_upload').submit()  // silently submit the image upload.  how to validate??
 
 }
 

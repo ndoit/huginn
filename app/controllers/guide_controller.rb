@@ -16,7 +16,9 @@ def node_types
 end
 
 def index
-
+  if params.has_key?(:selected_resources)
+    params[:selected_resources] = params[:selected_resources].singularize
+  end
 end
 
 def search
