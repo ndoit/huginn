@@ -22,7 +22,8 @@ class User
   private
   def get_security_roles
     # call web service
-    [ "Report Publisher" ]
+    #[ "Report Publisher" ]
+    Muninn::UserAdapter.security_roles( self.name )
   end
 
 end
