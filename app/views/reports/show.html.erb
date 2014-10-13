@@ -1,17 +1,33 @@
 
 <script>
   report_object = <%= @report["report"].to_json.to_s.html_safe %>
-  report_embed_object = <%=  @report_embed.to_json.to_s.html_safe %>
-  function RefreshRevert(p_action){
+  report_embed_object = <%= @report_embed.to_json.to_s.html_safe %>
 
-      var viz = window.tableau.vizs[0] 
 
-      if(p_action  == "Refresh")
-       viz.refresh() 
-      else
-       viz.revert()
-     } 
-   </script>
+  function Refresh(){
+
+      var viz = window.tableau.vizs[0];
+
+          viz.refresh();
+     
+   } 
+
+  function exportData() {
+       var reportName = decodeHTML('<%=@report_embed["name"].to_s.html_safe%>')
+       var url = 'https://tableau.nd.edu/views/'+ reportName+'/DashboardName.csv'
+       popup = window.open(url,'','height=100, width =500, location=no');
+       popup.document.title = 'Once the Excel file has been downloaded, close this window.';
+       if (window.focus) {
+        newwindow.focus()
+        return false;
+      } 
+   }
+
+  function decodeHTML( str ) {
+     return $('<div />').html(str).text()
+  }
+
+</script>
 
 
 <div class="row">
@@ -51,21 +67,33 @@
 
   <div class="row">
      <div class="large-12 columns">
-      <div id="name" class="editable">
+      <% if current_user && current_user.can( :publish_report ) %>
+        <div id="name" class="editable">
+      <%else%>
+       <div id="name">
+      <%end%>
         <h2 class="page-title">
           <%= @report["report"]["name"].html_safe %>
         </h2>
       </div>
-
+     </div>
+    </div>
+    <div class="row">
+     <div class="large-12 columns">
+      <% if current_user && current_user.can( :publish_report ) %>
       <div id="description" class="editable">
+       <%else%>
+       <div id="description">
+       <%end%>
        <% if @report["report"]["description"]  then %>
-          <%= @report["report"]["description"].html_safe %>
+          <%= @report["report"]["description"].html_safe %> <br><br>
        <%else%>
           NA
        <%end%>    
       </div> 
      </div> 
     </div>
+
    
    <% if @report["report"]["report_type"] == "External" %> 
     <!-- External report -->
@@ -105,14 +133,14 @@
     </div>
   <% else %>
     <!-- Tableau report -->
-    <% if @report_embed["width"] != "" then %>
+   <% if @report_embed["width"] != "" then %>
       <div class="row">
       <div class="large-12 large-centered columns">  
        <script type='text/javascript' src='https://tableau.nd.edu/javascripts/api/viz_v1.js'></script>
         <div class="row">
          <div class="large-12 large-centered columns">  
-          <a href="javascript:RefreshRevert('Refresh')">Refresh Data</a> &nbsp;&nbsp;&nbsp;
-          <a href="javascript:RefreshRevert('Reset')">Reset Filters</a>
+          <a href="javascript:Refresh()">Refresh Data</a> &nbsp;&nbsp;&nbsp;
+          <%= link_to_function image_tag("/assets/images/report_gallery/excel.png", :size=> "40x40",:align=> "middle" ), "javascript:exportData()"%>
          </div>
        </div>
       <div class='tableauPlaceholder' style='width:<%= @report_embed["width"] %>; height:<%=@report_embed["height"] %>;'>
@@ -129,6 +157,7 @@
       </br>
     <% end %>
   <% end %>
+
 
 
 <div class="row">
@@ -167,7 +196,12 @@
    <dl> 
     <dt>Report Type</dt>
     <dd>
+
+  <% if current_user && current_user.can( :publish_report ) %>
     <div id="report_type" class="editable">
+    <%else %>
+     <div id="report_type">
+    <%end%>
      <% if @report["report"]["report_type"]  then %>
         <%= @report["report"]["report_type"].html_safe %>
      <%else%>
@@ -179,7 +213,11 @@
 
    <dt>Data Source</dt>
     <dd>
+   <% if current_user && current_user.can( :publish_report ) %>
     <div id="datasource" class="editable">
+    <%else%>
+    <div id="datasource">
+    <%end%>
      <% if @report["report"]["datasource"]  then %>
         <%= @report["report"]["datasource"].html_safe %>
      <%else%>
@@ -191,8 +229,8 @@
    </dl>
   </div>
  </div>
-
-<div class="row">
+<% if current_user && current_user.can( :publish_report ) %>
+ <div class="row">
   <div class="large-12 large-centered columns"> 
     <h5 class="page-title">Report Parameters for Tableau</h5
     <dl> </br>
@@ -242,19 +280,19 @@
      </dt> 
     </dl>     
  </div>
-</div>
+ </div>
 
- <div class="row">
+  <div class="row">
    <div class="large-4 columns"> &nbsp;</div>
    <div class="large-6 columns">
         <input type="button" class ="small button"  value="Update Report" id="updateReportButton" />
         <input type="button"  class ="small button" value="Delete Report" data-reveal-id="mytinyDelete" id="deleteReportButton" />
    </div>
    <div class="large-2 columns"> &nbsp; </div>
-</div>
-</div> 
+  </div>
+ </div> 
+<% end %>
   <% else %>
-
   <div class="row">
     <div class="medium-12 large-12 columns">
     	<h1>Unregistered Report</h1>
