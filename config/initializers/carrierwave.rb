@@ -1,4 +1,8 @@
 # config/initializers/carrierwave.rb
+
+# http://stackoverflow.com/questions/17937479/carrierwave-fog-credentials-access-denied
+# weird -- i can upload from the cli with brich assigned to no groups
+# it only works through carrierwave when i created a group with s3 permissions and put brich in there
  
 CarrierWave.configure do |config|
   config.fog_credentials = {
@@ -14,8 +18,11 @@ CarrierWave.configure do |config|
     :provider              => 'AWS',
     :aws_access_key_id     => ENV['S3_KEY'],
     :aws_secret_access_key => ENV['S3_SECRET'],
-    :region                => ENV['S3_REGION']
+    :region                => ENV['S3_REGION'],
+    :path_style            => true   
   }
+  # re: path_style and dot in bucket name
+  # http://stackoverflow.com/questions/18340551/amazon-s3-hostname-does-not-match-the-server-certificate-opensslsslsslerr
  
   # For testing, upload files to local `tmp` folder.
   # if Rails.env.test? || Rails.env.cucumber?
