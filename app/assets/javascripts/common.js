@@ -327,15 +327,19 @@ function updateReport( report_object ) {
          var url = escape(report_object.name);
          window.location.href = url;
          addSuccessMessage("success", "<b>" + report_object.name + "</b>" +  " updated successfully. " );
-         showSuccessMessage();
+         showSuccessMessage();  
       },
       error: function( xhr, ajaxOptions, thrownError) {
          addValidationError( "alert", "Update Report has errors: " + xhr.responseText);
            showValidationErrors()
       }
-  })
+  }).done(function(data) {
+    $('form#report_image_upload').submit()  // silently submit the image upload.  how to validate??    
+    var url = escape(report_object.name)
+    window.location.href = url
+  });
 
-  $('form#report_image_upload').submit()  // silently submit the image upload.  how to validate??
+  
 
 }
 
