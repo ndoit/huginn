@@ -1,8 +1,8 @@
-
+ <% if @report["success"] %>
 <script>
   report_object = <%= @report["report"].to_json.to_s.html_safe %>
   report_embed_object = <%= @report_embed.to_json.to_s.html_safe %>
-
+   stakeholder_hash = <%= @stakeholder_hash.to_json.to_s.html_safe %>
 
   function Refresh(){
 
@@ -63,7 +63,7 @@
 
 
 
-  <% if @report["success"] %>
+ 
 
   <div class="row">
      <div class="large-12 columns">
@@ -292,15 +292,13 @@
   </div>
  </div> 
 <% end %>
-  <% else %>
+  
+<% else %>
+   
   <div class="row">
     <div class="medium-12 large-12 columns">
-    	<h1>Unregistered Report</h1>
-    		This report is unregistered or the meta-data about the report has been lost.  Please send us feedback and we will get back to you within 1 business day.
+      <h1>Unregistered Report</h1>
+        This report is unregistered or the meta-data about the report has been lost.  Please send us feedback and we will get back to you within 1 business day.
      </div>
   </div>
-
-  <% end %>
-
-
-</div>
+ <% end%> 
