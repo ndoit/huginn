@@ -28,7 +28,7 @@ def search
 
   mcsa = Muninn::CustomSearchAdapter.new( params )  
   mcsa.filter_reports( role_filter_array )
-      .filter_results
+  #    .filter_results
  
   @results = mcsa.results
   @muninn_result = mcsa.raw_result
