@@ -27,8 +27,8 @@ def search
   params[:page] ||= 1
 
   mcsa = Muninn::CustomSearchAdapter.new( params )  
-  mcsa.filter_reports( role_filter_array )
-      .filter_results
+  #mcsa.filter_reports( role_filter_array )
+  mcsa.filter_results
  
   @results = mcsa.results
   @muninn_result = mcsa.raw_result

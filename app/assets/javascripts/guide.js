@@ -67,7 +67,7 @@ function getSearchURL( page ) {
 
   var searchString = encodeURI($('#search1').val())
   if ( searchString.length ) {
-    url += '&q=' + $('#search1').val()
+    url += '&q=' + searchString
   }
   if ( page != 1 ) {
     url += "&page=" + page

@@ -16,8 +16,8 @@ class Report
     def image_url( size )
     	filename = size.to_s + "_" + self.id.to_s + ".png"
 
-    	root = "https://s3-us-west-2.amazonaws.com/brich-fog-test"
-    	url = "/uploads/report/#{self.id.to_s}/#{filename}"
+    	root = "#{ENV['S3_ASSET_URL']}/#{ENV['S3_BUCKET_NAME']}"
+    	url = "/uploads/#{Rails.env}/report/#{self.id.to_s}/#{filename}"
     	root + url
     end
 
