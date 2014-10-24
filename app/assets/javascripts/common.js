@@ -316,6 +316,7 @@ function updateReportObject(report_object ) {
 
 function updateReport( report_object ) {
   
+$('form#report_image_upload').submit()
 
   $.ajax({
       url: report_object.id,
@@ -324,6 +325,7 @@ function updateReport( report_object ) {
      // data: { "termJSON": term_object },
       dataType: 'json',
       success: function (data) {
+         console.log("succcess block")
          var url = escape(report_object.name);
          window.location.href = url;
          addSuccessMessage("success", "<b>" + report_object.name + "</b>" +  " updated successfully. " );
@@ -333,11 +335,15 @@ function updateReport( report_object ) {
          addValidationError( "alert", "Update Report has errors: " + xhr.responseText);
            showValidationErrors()
       }
-  }).done(function(data) {
-    $('form#report_image_upload').submit()  // silently submit the image upload.  how to validate??    
+  })
+  /*.done(function(data) {
+    console.log("done block")
+    //$('form#report_image_upload').submit()  // silently submit the image upload.  how to validate??    
     var url = escape(report_object.name)
     window.location.href = url
   });
+*/
+
 
   
 

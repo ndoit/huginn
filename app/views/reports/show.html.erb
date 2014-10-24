@@ -159,12 +159,15 @@
     <% end %>
 
 
-
-  <div class="row">
-   <div class="large-12 large-centered columns"></br> </br>
-    <h5 class="page-title">Sample Image</h5>
-      <%= image_tag @report_photo.image_url(:small) %>
-      <%= form_tag report_image_upload_path, :method => "post", :id => 'report_image_upload', :multipart => true do %>
+<!--
+<div class="row">
+ <div class="large-12 large-centered columns"></br> </br>
+  <h5 class="page-title">Sample Image</h5>
+    <%= image_tag @report_photo.image_url(:small) %>
+    <Br/>
+    <span style="font-weight:normal;font-size:.7em;font-style:italic">Recently uploaded images may take a few moments to appear.</span>
+    <br/>
+    <%= form_tag report_image_upload_path, :method => "post", :id => 'report_image_upload', :multipart => true do %>
 
         <%= hidden_field_tag "id", @report["report"]["id"] %>
         Upload/replace sample image:
@@ -172,6 +175,7 @@
       <% end %>
     </div>
   </div>
+-->
 
   <div class="row">
    <div class="large-12 large-centered columns"></br> </br>
