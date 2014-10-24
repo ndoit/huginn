@@ -337,7 +337,7 @@ $('form#report_image_upload').submit()
       }
   }).done(function(data) {
     console.log("done block")
-    $('form#report_image_upload').submit()  // silently submit the image upload.  how to validate??    
+    //$('form#report_image_upload').submit()  // silently submit the image upload.  how to validate??    
     var url = escape(report_object.name)
     window.location.href = url
   });
