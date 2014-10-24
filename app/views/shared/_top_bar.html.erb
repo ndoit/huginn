@@ -30,7 +30,22 @@
             <!-- Top Bar Right Nav Elements -->
           <ul class="right">
             <!-- Divider -->
-                <div class="welcome"><% if current_user %>Welcome <%=current_user.name%>! <%= link_to "Log Out", logout_path %><%else%><%= link_to "Log In", login_path %><% end %></div>
+                
+                  <% if current_user %>
+                    <li><%= link_to 'Report Gallery', "/browse/report" %></a></li>
+                    <li><%= link_to 'Glossary', "/browse/term" %></li>
+                    <li class="has-dropdown">
+                      <a href="#"><%=current_user.name%></a>
+                      <ul class="dropdown">
+                        <li><a href="#"><%= link_to "Log Out", logout_path %></a></li>
+                        <li><a href="#">Register New Report</a></li>
+                        <li><a href="#">New Term</a></li>
+                      </ul>
+                    </li>
+                  <%else%>
+                    <%= link_to "Log In", login_path %>
+                  <% end %>
+                
                  <% if current_user && (current_user.can( :publish_report ) || current_user.can(:edit_term )) %>
                   <li class="has-dropdown not-click"><a href="#">Admin</a>
                   <ul class="dropdown">
