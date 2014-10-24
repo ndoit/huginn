@@ -326,8 +326,8 @@ $('form#report_image_upload').submit()
       dataType: 'json',
       success: function (data) {
          console.log("succcess block")
-         //var url = escape(report_object.name);
-         //window.location.href = url;
+         var url = escape(report_object.name);
+         window.location.href = url;
          addSuccessMessage("success", "<b>" + report_object.name + "</b>" +  " updated successfully. " );
          showSuccessMessage();  
       },
@@ -335,12 +335,14 @@ $('form#report_image_upload').submit()
          addValidationError( "alert", "Update Report has errors: " + xhr.responseText);
            showValidationErrors()
       }
-  }).done(function(data) {
+  })
+  /*.done(function(data) {
     console.log("done block")
     //$('form#report_image_upload').submit()  // silently submit the image upload.  how to validate??    
     var url = escape(report_object.name)
     window.location.href = url
   });
+*/
 
 
   
