@@ -30,12 +30,13 @@
             <!-- Top Bar Right Nav Elements -->
           <ul class="right">
             <!-- Divider -->
-                
+            <li><%= link_to 'Report Gallery', "/browse/report" %></a></li>
+            <li><%= link_to 'Glossary', "/browse/term" %></li>
+            <li class="has-dropdown">      
             <% if current_user %>
-              <li><%= link_to 'Report Gallery', "/browse/report" %></a></li>
-              <li><%= link_to 'Glossary', "/browse/term" %></li>
-              <li class="has-dropdown">
+              
                 <a href="#"><%=current_user.name%></a>
+
                 <ul class="dropdown">
                   <li><a href="#"><%= link_to "Log Out", logout_path %></a></li>
 
@@ -96,12 +97,14 @@
                   <li><a href="#" style="text-algin: left;">New Term</a></li>
                 </ul>
               </li>
-            <%else%>
+            </ul>
+          <%else%>
+            <li>
+            <%= link_to "Log In", login_path %>
+          </li>
+          <% end %>
 
-              <%= link_to "Log In", login_path %>
-            <% end %>
-
-          </ul>
+          
         </section>
       </div>
     </div>
