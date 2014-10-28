@@ -58,8 +58,8 @@
                     </div>
                   </li>
                   <% end %>
- <!-- && current_user.can(:edit_term) -->
-                  <% if current_user %>
+
+                  <% if current_user && current_user.can(:edit_term)%>
                     <!-- <li class="divider"></li> -->
                     <li class="title back js-generated"></li>
                     <li><a href="#" data-reveal-id="mytiny"><strong>Add New Term</strong></a>
