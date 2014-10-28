@@ -24,7 +24,7 @@
                 <h3 class="dddm-header">Data Driven Decision Making</h3>
              </li>
 
-            </ul>
+          </ul>
 
 
             <!-- Top Bar Right Nav Elements -->
@@ -35,76 +35,79 @@
             <li class="has-dropdown">      
             <% if current_user %>
               
-                <a href="#"><%=current_user.name%></a>
+              <a href="#"><%=current_user.name%></a>
 
-                <ul class="dropdown">
-                  <li><a href="#"><%= link_to "Log Out", logout_path %></a></li>
+              <ul class="dropdown">
+                <li><a href="#"><%= link_to "Log Out", logout_path %></a></li>
 
-                  <% if current_user && current_user.can( :publish_report ) %>
-                    <li class="active" > <a href="#" data-reveal-id="reporttiny"><strong>Register New Report</strong></a>
-                      <div class="reveal-modal tiny" id="reporttiny" data-reveal="">
-                        <h2>Add New Report</h2>
-                        Name: <input type="text" id ="rname" name="rname"><br>
+                <% if current_user && current_user.can( :publish_report ) %>
+                  <li class="divider"></li>
+                  <li> <a href="#" data-reveal-id="reporttiny"><strong>Register New Report</strong></a>
+                    <div class="reveal-modal tiny" id="reporttiny" data-reveal="">
+                      <h2>Add New Report</h2>
+                      Name: <input type="text" id ="rname" name="rname"><br>
+                      <div class="row">
+                      <div class="large-4 columns"> <span> &nbsp;</span>
+                      </div>
+                      <div class="large-4 columns">
+                      <input type="button" class ="tiny button" value="Save Report" id ="createReportButton"/>
+                      <div class="large-4 columns">
+                      </div>
+                      </div>
+                      <a class="close-reveal-modal">×</a>
+                    </div>
+                  </li>
+                  <% end %>
+ <!-- && current_user.can(:edit_term) -->
+                  <% if current_user %>
+                    <!-- <li class="divider"></li> -->
+                    <li class="title back js-generated"></li>
+                    <li><a href="#" data-reveal-id="mytiny"><strong>Add New Term</strong></a>
+                      <div class="reveal-modal tiny" id="mytiny" data-reveal="">
+                        <h2>Add a New Term</h2>
+                        Name: <input type="text" id ="tname" name="tname"><br>
                         <div class="row">
-                        <div class="large-4 columns"> <span> &nbsp;</span>
-                        </div>
-                        <div class="large-4 columns">
-                        <input type="button" class ="tiny button" value="Save Report" id ="createReportButton"/>
-                        <div class="large-4 columns">
-                        </div>
+                          <div class="large-4 columns"> <span> &nbsp;</span>
+                          </div>
+                          <div class="large-4 columns">
+                            <input type="button" class ="tiny button" value="Save Term" id ="createTermButton"/>
+                          </div>
+                          <div class="large-4 columns">
+                          </div>
                         </div>
                         <a class="close-reveal-modal">×</a>
                       </div>
                     </li>
-                    <% end %>
 
-                    <% if current_user && current_user.can(:edit_term) %>
-                    <li class="title back js-generated"></li>
-                      <li><a class ="tiny button" href="#" data-reveal-id="mytiny"><strong>Add New Term</strong></a>
-                        <div class="reveal-modal tiny" id="mytiny" data-reveal="">
-                            <h2>Add a New Term</h2>
-                            Name: <input type="text" id ="tname" name="tname"><br>
-                            <div class="row">
-                            <div class="large-4 columns"> <span> &nbsp;</span>
-                            </div>
-                            <div class="large-4 columns">
-                            <input type="button" class ="tiny button" value="Save Term" id ="createTermButton"/>
-                            </div>
-                            <div class="large-4 columns">
-                            </div>
-                            </div>
-                            <a class="close-reveal-modal">×</a>
-                        </div>
-                      </li>
-
-                    <li class="divider"></li>
-                     <li> <a class ="tiny button" href="#" data-reveal-id="officetiny"><strong>Add New Office </strong></a>
-                        <div class="reveal-modal tiny" id="officetiny" data-reveal="">
-                          <h2>Add New Office</h2>
-                          Name: <input type="text" id ="oname" name="oname"><br>
-                          <div class="row">
+                    <!-- <li class="divider"></li> -->
+                    <li> <a href="#" data-reveal-id="officetiny"><strong>Add New Office </strong></a>
+                      <div class="reveal-modal tiny" id="officetiny" data-reveal="">
+                        <h2>Add New Office</h2>
+                        Name: <input type="text" id ="oname" name="oname"><br>
+                        <div class="row">
                           <div class="large-4 columns"> <span> &nbsp;</span>
                           </div>
                           <div class="large-4 columns">
-                          <input type="button" value="Save Office" id ="addOfficeButton"/>
-                          <div class="large-4 columns">
+                            <input type="button" value="Save Office" id ="addOfficeButton"/>
                           </div>
+                          <div class="large-4 columns">
                           </div>
                           <a class="close-reveal-modal">×</a>
                         </div>
+                      </div>
                     </li>
-                <% end %>
-                  <li><a href="#" style="text-algin: left;">New Term</a></li>
+                  <% end %>
                 </ul>
               </li>
             </ul>
-          <%else%>
-            <li>
-            <%= link_to "Log In", login_path %>
-          </li>
-          <% end %>
+            <%else%>
+              <li>
+                <%= link_to "Log In", login_path %>
+              </li>
 
-          
+            <% end %>
+
+          </ul> 
         </section>
       </div>
     </div>
