@@ -11,11 +11,15 @@ def node_types
 
   @report_roles = []
   if current_user 
+    #checks whether muninn's stored securtiy roles have any matches with the user
+    # Why have this? unless the user has more roles than muninn does, just use the current user's roles
     @report_roles = Muninn::SecurityRoleAdapter.all.select { |k| k.report_role? && (current_user.has_role? k.name) }
   end
 end
 
+
 def index
+  #checks whether any search params have been entered
   if params.has_key?(:selected_resources)
     params[:selected_resources] = params[:selected_resources].singularize
   end

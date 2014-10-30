@@ -53,6 +53,7 @@ class ReportsController < ApplicationController
     r = Report.new( params[:id] )
     r.report_image = params[:image]
     r.save
+    # redirect_to :back
     render text: "hi"
   end
   # TEST TEST TEST
