@@ -1,9 +1,12 @@
 <div class="result_row">
   <div class="result_header">
+
     <div class="result_title">
       <h4>
         <a class="do_highlight" href="../<%= result["type"].pluralize %>/<%=result["data"]["name"]%>">
           <%= result["data"]["name"] %>
+          <%= image_tag("thug_dog.jpg") %>
+
         </a>
       </h4>
     </div>
@@ -13,7 +16,9 @@
   </div>
 
   <div class="do_highlight result_body">
+    <%= result.to_json %> 
     <% if result["data"]["definition"]  then %>
+
       <%= result["data"]["definition"].html_safe %>
     <%end%>
   </div>

@@ -79,7 +79,7 @@ class Muninn::CustomSearchAdapter
        json_string = '{ "query" : { "query_string" : {"query" : "*","default_operator": "and"}},"aggs" : {"type" : {"terms" : { "field" :  "_type" }}},"from":"0","size":"999" }'
     end
 
-    puts "query string: " + json_string
+    #puts "query string: " + json_string
     json_string
   end
 

@@ -28,9 +28,22 @@ class ReportsController < ApplicationController
     logger.debug("Querying Muninn...")
     reports_resp = Muninn::Adapter.get( "/reports/" + URI::encode(params[:id]) )
     @report = JSON.parse(reports_resp.body)
-    @report_photo = Report.new( @report["report"]["id"])
-    @report_embed = JSON.parse(@report["report"]["embedJSON"])
-  end
+    # logger.debug(@report)
+    if @report["success"] 
+        @report_photo = Report.new( @report["report"]["id"])
+        @report_embed = JSON.parse(@report["report"]["embedJSON"])
+
+        if @report["report"]["report_type"] == "Aggregation"
+          logger.debug("Aggregation report requested, querying sub-reports...")
+          @subreports = []
+          @report_embed["subreports"].each do |subreport_name|
+            logger.debug("Querying for " + subreport_name + "...")
+            subreport_response = Muninn::Adapter.get("/reports/" + URI::encode(subreport_name), session[:cas_user], session[:cas_pgt])
+            subreport_json = JSON.parse(subreport_response.body)
+            @subreports << { "name" => subreport_json["report"]["name"], "thumbnail_uri" => subreport_json["report"]["thumbnail_uri"] }
+          end
+        end
+    end
 
   # TEST TEST TEST
   def upload_test
