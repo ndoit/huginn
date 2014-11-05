@@ -9,7 +9,7 @@ class Muninn::CustomSearchAdapter
   attr_reader :selected_node_types, :results
 
   def initialize(args)
-    @node_types = [ 'report', 'term', 'office' ]
+    @node_types = [  'report', 'term', 'office' ]
     @muninn_result = query_muninn( args[:q], args[:page] )
     @page = args[:page]
     @selected_node_types = selected_resource_array( args )
@@ -22,7 +22,7 @@ class Muninn::CustomSearchAdapter
     self
   end
 
- 
+
 
   def filter_reports( role_array )
     @results ||= raw_result
@@ -31,19 +31,19 @@ class Muninn::CustomSearchAdapter
     # if you're not a report, go on through.
     # if you are, you must match the provided security roles.
     # also, we'll keep a count of how many reports get through.
-    @results = @results.select { |k|  if k["type"] != "report" 
-                                        true
-                                      else
-                                        if k["type"] == "report" && 
-                                           Services::General.arrays_intersect?( security_roles_to_array(k["data"]["security_roles"]), role_array) 
-                                           @filtered_report_count += 1
-                                           true
-                                        else
-                                          false
-                                        end
-                                      end
-                                      
-                               }
+    @results = @results.select do |k|
+      if k["type"] != "report"
+        true
+      else
+        if k["type"] == "report" && current_user &&
+          Services::General.arrays_intersect?( security_roles_to_array(k["data"]["security_roles"]), role_array)
+          @filtered_report_count += 1
+          true
+        else
+          false
+        end
+      end
+    end
     @results
     self
   end
@@ -94,9 +94,9 @@ private
     @results.select { |k| selected_types.include? k["type"] }
                          .sort_by { |k| k["sort_name"] }
                          .paginate(:page=> page, :per_page => 10)
-  end 
+  end
 
-  def security_roles_to_array( json_string ) 
+  def security_roles_to_array( json_string )
     json_string.map{ |a| a["name"] }
   end
 

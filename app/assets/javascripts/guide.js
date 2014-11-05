@@ -4,24 +4,28 @@ $(document).ready(
 
     bindFilterToggleBehavior()
 
-    bindTypeaheadSearchBehavior() 
+    bindTypeaheadSearchBehavior()
 
+// When the user clicks on the banner, redirects to root
     $('.dddm-header').click( function() {
       window.location = "/"
     })
 
-    $('#search1').watermark('Search');
-    
+// Puts the default greyed out text in the search box
+    $('#search1').watermark('Search')
+
   }
 )
 
+// On click of the left bar filters,
+// Switch the checkbox to different styling,
+// and perform the executFilter funcion
 function bindFilterToggleBehavior() {
     $('#content').on( 'click', '.data-type-label-container', function() {
       $(this).find('.toggle_light').toggleClass('toggle_off')
       executeFilter()
     })
 }
-
 
 function bindTypeaheadSearchBehavior() {
     // every keyup event starts a search that will
@@ -49,23 +53,24 @@ function bindTypeaheadSearchBehavior() {
     })
 }
 
-
+// console logs what was input into search box
+// displays the spinning bar gif
+//
 function executeFilter() {
-  console.log(getSearchURL(1))
+  var searchURL = getSearchURL(1)
+  console.log(searchURL)
   displayLoading()
-  $('#search_results').load( getSearchURL(1), function() {
+  $('#search_results').load( searchURL, function() {
     highlightSearchString()
     bindInfiniteScrollBehavior()
   } )
 }
 
-
+// assigns the url as the base '/guide_search' and adds selectedResources()
 function getSearchURL( page ) {
-  url = '/guide_search?'
+  url = '/guide_search?' + selectedResources()
 
-  url += selectedResources()
-
-  var searchString = encodeURI($('#search1').val())
+  var searchString = encodeURI( $('#search1').val() )
   if ( searchString.length ) {
     url += '&q=' + searchString
   }
@@ -75,6 +80,42 @@ function getSearchURL( page ) {
 
   return url
 }
+
+// sets url as an empty string
+// selected resources checks if the side bar is displayed
+// then sets url as get selected resources
+function selectedResources() {
+  var url = ''
+  if ( sidebarExists() ) {
+    url = 'selected_resources=' + getSelectedResourceList()
+  } else {
+    if ( $('#initial_selected_resources').length != 0 ) {
+      url = 'selected_resources=' + $('#initial_selected_resources').val()
+    }
+  }
+  return url
+
+}
+
+// checks which side bar items are checked,
+// stores those names as a variable with a string
+function getSelectedResourceList() {
+  var resources = []
+  userSelectedResources().each( function() {
+    resources.push( $(this).data('resource-name') )
+  })
+  return resources.join(",")
+}
+
+function sidebarExists() {
+  return $('.toggle_light').length != 0
+}
+
+function userSelectedResources() {
+  return $('.toggle_light').not('.toggle_off')
+}
+
+//////////bindinfinitescrollbehavior//////////
 
 
 
@@ -127,26 +168,4 @@ function highlightSearchString() {
 
 function displayLoading() {
   $('#search_results_right').html("<div class='search_results_msg'><img src='/assets/ajax-loader.gif'></div>")
-}
-
-
-function selectedResources() {
-  var url = ''
-  if ( $('.toggle_light').length != 0 ) {
-    url = 'selected_resources=' + getSelectedResourceList()
-  } else {
-    if ( $('#initial_selected_resources').length != 0 ) {
-      url = 'selected_resources=' + $('#initial_selected_resources').val()
-    } 
-  }
-  return url
-    
-}
-
-function getSelectedResourceList() {
-  var resources = []
-  $('.toggle_light').not('.toggle_off').each( function() {
-    resources.push( $(this).data('resource-name') )
-  })
-  return resources.join(",")
 }
