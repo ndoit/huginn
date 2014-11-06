@@ -29,7 +29,9 @@ class GuideController < ApplicationController
     logger.debug("Querying Muninn...")
 
     params[:page] ||= 1
-
+    puts params
+    puts "YOLO SWAGGER"
+    
     mcsa = Muninn::CustomSearchAdapter.new( params )
     #mcsa.filter_reports( role_filter_array )
     mcsa.filter_results

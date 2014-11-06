@@ -258,11 +258,10 @@ def search
   logger.debug("Querying Muninn...")
 
   params[:page] ||= 1
-  puts params
-  puts "YOLO SWAGGER"
+
 
   mcsa = Muninn::CustomSearchAdapter.new( params )
-  #mcsa.filter_reports( role_filter_array )
+  
   mcsa.filter_results
 
   @results = mcsa.results
@@ -278,4 +277,39 @@ def search
 end
 ```
 
-First thing it's doing is checking the params
+First thing it's doing is checking the params. Upon checking the development logs outputs
+
+```ruby
+Started GET "/guide_search?selected_resources=report" for 127.0.0.1 at 2014-11-06 15:26:57 +0000
+Processing by GuideController#search as HTML
+  Parameters: {"selected_resources"=>"report"}
+Existing local CAS session detected for "rsnodgra". Previous ticket "ST-1332680-7LbxLCyCJX0ca7uZlN2b-cas" will be re-used.
+cas_proxy_params ********************* :
+Querying Muninn...
+  Rendered reports/_partial_search.html.erb (30.8ms)
+  Rendered guide/_partial_search.html.erb (243.1ms)
+  Rendered guide/search.html.erb (455.5ms)
+Completed 200 OK in 2223ms (Views: 760.7ms)
+```
+
+So we see that the params is just a hash `{"selected_resources"=>"report"}`. So the line `params[:page] ||= 1` I'm a little unclear. Let's try it in a console
+```ruby
+hash = {"selected_resources" => "report"}
+# => {"selected_resources"=>"report"}
+hash[:page] ||= 1
+# => 1
+hash
+# => {"selected_resources"=>"report", :page=>1}
+
+###########
+
+hash = {"selected_resources" => "report", :page => 3}
+# => {"selected_resources"=>"report", :page => 3}
+hash[:page] ||= 1
+# => {"selected_resources"=>"report", :page=>2}
+hash
+# => {"selected_resources"=>"report", :page=>2}
+
+```
+
+I know `||=` is a ruby operator that basicallly means if `:page` doesn't exist, create it. Otherwise, leave it alone. I think this is for the infinite scroll behavior. It'll check which page you're on by looking at the params and then load the next batch of results.
