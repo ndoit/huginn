@@ -55,11 +55,12 @@ function bindTypeaheadSearchBehavior() {
 
 // console logs what was input into search box
 // displays the spinning bar gif
-//
+// then sends a get request to searchURL in huginn
 function executeFilter() {
   var searchURL = getSearchURL(1)
   console.log(searchURL)
   displayLoading()
+
   $('#search_results').load( searchURL, function() {
     highlightSearchString()
     bindInfiniteScrollBehavior()

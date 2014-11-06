@@ -216,3 +216,66 @@ Next is the guide/index.html page being rendered in the 'yield' area of the main
 ```
 
 In the index we can see the search bar and the loader bar gif. This seems to tell me that most of the rest of the action is occuring in AJAX. Good news is there's only two javascript files. Let's first hunt in guide.js
+
+So. After much hunting and about a days worth of working through the javascript, it is indeed in guide.js.
+
+A couple of things are going on but, the main request is right here
+
+```javascript
+function executeFilter() {
+  var searchURL = getSearchURL(1)
+  console.log(searchURL)
+  displayLoading()
+
+  $('#search_results').load( searchURL, function() {
+    highlightSearchString()
+    bindInfiniteScrollBehavior()
+  } )
+}
+```
+
+A couple things are happening here. First let's jump ahead and look at the actual request.
+
+```javascript
+$('#search_results').load( searchURL, function() {
+  highlightSearchString()
+  bindInfiniteScrollBehavior()
+} )
+```
+This could probably be refactored into it's own method. But later. So a little refresher, the `.load` jquery method accepts up to 3 parameters- the URL controller route, a data object being sent down, and a callback response. In this example it's only using 2, the URL route the request will be sent to, and the callback function on response.  
+So depending on which URL gets sent determines which controller#action is perfomed. Because we're displaying our searchURL in `console.log(searchURL)` let's see which one is sent when I click report gallery button.
+
+`/guide_search?selected_resources=report`
+
+Now, I'm a little worried because I believe this gets sent back down to the guide controller and I'll lose it again. But let's check the routes
+
+`guide_search GET    /guide_search(.:format)                    guide#search`
+
+Ok. So it does go down to the guidecontroller#search action. Let's see it.
+
+```ruby
+def search
+  logger.debug("Querying Muninn...")
+
+  params[:page] ||= 1
+  puts params
+  puts "YOLO SWAGGER"
+
+  mcsa = Muninn::CustomSearchAdapter.new( params )
+  #mcsa.filter_reports( role_filter_array )
+  mcsa.filter_results
+
+  @results = mcsa.results
+  @muninn_result = mcsa.raw_result
+  @selected_node_types = mcsa.selected_node_types  # should the mcsa do this
+  @resource_count_hash = mcsa.resource_count_hash
+
+  if ( params[:page].to_i > 1 )
+    render partial: "partial_search", locals: { results: @results || [] }, layout: false
+  else
+    render html: "search", layout: false
+  end
+end
+```
+
+First thing it's doing is checking the params
