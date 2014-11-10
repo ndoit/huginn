@@ -430,7 +430,61 @@ And here is the response back. Muninn sends a response back as JSON but, ruby in
 {"term":{"created_date":"2014-10-23T20:54:15Z","modified_date":"2014-10-28T19:01:11Z","created_by":"","modified_by":"","id":118,"definition":"An individual who has been confirmed by an admitting office (or other admitting authority), as recorded by the University Registrar, is considered an active student until he or she:\n\n● Graduates (if degree-seeking)\n● Completes the academic term (if non degree-seeking)\n● Withdraws or is dismissed by the University \n● Fails to enroll for a spring or fall academic term (unless granted a leave of absence by a Dean)\n","source_system":"Banner","possible_values":"N/A","notes":"Students who withdraw or are dismissed during an academic term may be considered active for that academic term, at the discretion of the student’s dean.\n\nDuring the Fall and Spring academic term, students have up until the sixth day of classes to complete the roll call process and students who fail to enroll are inactivated, unless on leave.  Therefore, the use of current term active student data during the first two weeks of an academic term should be done judiciously.\n","data_sensitivity":"SELECT *\nFROM SGBSTDN\nWHERE Status = ‘AS’\n","data_availability":"Data is available by term from Fall 1982 to the present\n\n","name":"Active Student"},"success":true,"stakeholders":[],"reports":[],"validated_user":null,"raci_matrix":{}}[vagrant@localhost ~]$
 ```
 
-
+```ruby
 @results = [{"id"=>4493, "type"=>"report", "score"=>1.0, "data"=>{"id"=>4493, "datasource"=>"NA", "data_last_updated"=>nil, "description"=>"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>\n<p><br /><br /></p>", "embedJSON"=>"{\"width\": \"500\", \"height\" : \"500\",\"name\":\"Sales/2013SalesGrowth\",\"tabs\":\"no\"}", "report_type"=>"Tableau", "thumbnail_uri"=>nil, "name"=>"Yolo Swag", "domain_tags"=>[], "bus_process_tags"=>[], "offices"=>[], "terms"=>[], "security_roles"=>[]}, "sort_name"=>"Yolo Swag"}]
 
 @results[0]["type"] == "report"
+```
+
+We need to parse this response into something useful. I needed a refresher on hash syntax so here's my example
+
+```ruby
+apples = Hash.new
+apples[:golden_delicious] = { :type => "sweet", :color => "green", :forbidden => true }
+apples[:red_delicious] = { :type => "sweet", :color => "red", :forbidden => true}
+apples[:granny_smith] = { :type => "tart", :color => "green", :forbidden => false}
+apples[:macintosh] = { :type => "mild", :color => "red", :forbidden => true}
+apples[:gala] = { :type => "sweet", :color => "red", :forbidden => true}
+# {:gala=>{:type=>"sweet", :forbidden=>true, :color=>"red"}, :red_delicious=>{:type=>"sweet", :forbidden=>true, :color=>"red"}, :granny_smith=>{:type=>"tart", :forbidden=>false, :color=>"green"}, :golden_delicious=>{:type=>"sweet", :forbidden=>true, :color=>"green"}, :macintosh=>{:type=>"mild", :forbidden=>true, :color=>"red"}}
+```
+
+We created a hash similar to the type found above. A hash where each term was defined by its name then a hash with all the parameters inside it.
+
+```ruby
+apples[:golden_delicious][:type]
+# => "sweet"
+apples[:red_delicious][:type]
+# => "sweet"
+```
+
+So we can query inside the individual hashes by going 2 params deep. Now let's see if we can select certain hashes
+
+```ruby
+nonforbidden = Array.new
+nonforbidden = apples.each do { |k, v|  
+  if v[:forbidden] == false
+    nonforbidden << k
+  end
+end
+# => [:granny_smith]
+
+puts nonforbidden.singleton_class
+# => #<Class:#<Array:0x)07ff2b081148>>
+
+puts nonforbidden[:gala]
+# => {:type=>"sweet", :color=>"red", :forbidden=>true}
+```
+This isnt working. for some reason, it's putting in all of the hashes
+
+Let's try something else
+
+```ruby
+nonforbidden = apples.select { | k, v | v[:forbidden] == false }
+# => [[:granny_smith, {}]]
+```
+
+Now we only have the one that we want
+
+---
+
+In a seperate file I've got a 
