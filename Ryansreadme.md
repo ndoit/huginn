@@ -261,7 +261,7 @@ def search
 
 
   mcsa = Muninn::CustomSearchAdapter.new( params )
-  
+
   mcsa.filter_results
 
   @results = mcsa.results
@@ -313,3 +313,124 @@ hash
 ```
 
 I know `||=` is a ruby operator that basicallly means if `:page` doesn't exist, create it. Otherwise, leave it alone. I think this is for the infinite scroll behavior. It'll check which page you're on by looking at the params and then load the next batch of results.
+
+```ruby
+mcsa = Muninn::CustomSearchAdapter.new( params )
+mcsa.filter_results
+```
+
+---
+
+Ok so now we're onto the muninn adapters.
+
+```ruby
+class Muninn::CustomSearchAdapter
+
+  attr_reader :selected_node_types, :results
+
+  def initialize(args)
+    @node_types = [  'report', 'term', 'office' ]
+    @muninn_result = query_muninn( args[:q], args[:page] )
+    @page = args[:page]
+    @selected_node_types = selected_resource_array( args )
+    self
+  end
+```
+
+There's `@node_types` again! `@muninn_result` has `query_muninn` method lets look at that.
+
+```ruby
+def query_muninn( query_string, page_number )
+  search_string = create_search_string( query_string )
+  custom_query(search_string, page_number, 15 )
+end
+```
+
+And another method
+
+```ruby
+def create_search_string(search_s)
+ if !search_s.blank?
+   json_string ='{ "query" : { "query_string" : {"query" :  "' + "#{search_s}" + '","default_operator": "and"}},"aggs" : {"type" : {"terms" : { "field" :  "_type" }}},"from":"0","size":"999" }'
+ else
+     json_string = '{ "query" : { "query_string" : {"query" : "*","default_operator": "and"}},"aggs" : {"type" : {"terms" : { "field" :  "_type" }}},"from":"0","size":"999" }'
+  end
+
+  #puts "query string: " + json_string
+  json_string
+end
+```
+
+So I've found that if I don't enter anything into the search bar, I get the params I've found. If I do enter something, i get something like
+```ruby
+  Parameters: {"selected_resources"=>"report,term", "q"=>"degree"}
+```
+
+I don't like that `!search_s.blank?` check. There's a well written blog post [here](http://www.railstips.org/blog/archives/2008/12/01/unless-the-abused-ruby-conditional/) that explains why we don't use unless in place of if statements.
+
+```ruby
+def create_search_string(search_s)
+  if search_s.blank?
+    json_string = '{ "query" : { "query_string" : {"query" : "*","default_operator": "and"}},"aggs" : {"type" : {"terms" : { "field" :  "_type" }}},"from":"0","size":"999" }'
+  else
+    json_string ='{ "query" : { "query_string" : {"query" :  "' + "#{search_s}" + '","default_operator": "and"}},"aggs" : {"type" : {"terms" : { "field" :  "_type" }}},"from":"0","size":"999" }'
+  end
+  #puts "query string: " + json_string
+  json_string
+end
+```
+
+Just a simple flip and much better.
+
+After our search_string definition, the next step is
+```ruby
+custom_query(search_string, page_number, 15 )
+```
+
+Alright find the custom_query method
+
+```ruby
+def custom_query(json_string, page, per_page )
+  muninn_host = ENV["muninn_host"]
+  muninn_port = ENV["muninn_port"]
+
+  muninn_response = HTTParty.get("http://#{muninn_host}:#{muninn_port}/search/custom/query",
+  { :body => json_string, :headers => { 'Content-Type' => 'application/json'} })
+
+  output_string= ActiveSupport::JSON.decode(muninn_response.body.to_json)
+
+  results= extract_results(output_string)
+
+ end
+ ```
+
+ There's a lot of jargon in here but
+ ```ruby
+ muninn_host = ENV["muninn_host"]
+ muninn_port = ENV["muninn_port"]
+ ```
+ is checking the secret keys for the muninn access points.
+
+ ```ruby
+ muninn_response = HTTParty.get("http://#{muninn_host}:#{muninn_port}/search/custom/query",
+ { :body => json_string, :headers => { 'Content-Type' => 'application/json'} })
+ ```
+is the actual request being sent to muninn. This is a get request with the json_string we just defined.
+
+```ruby
+output_string= ActiveSupport::JSON.decode(muninn_response.body.to_json)
+```
+And here is the response back. Muninn sends a response back as JSON but, ruby interprets it as a string. It has to be coded back into JSON before we can start playing with it.
+
+```ruby
+[vagrant@localhost ~]$ curl 'http://localhost:3000/terms/active'
+{"message":"term not found.","success":false,"validated_user":null,"raci_matrix":{}}[vagrant@localhost ~]$ curl 'http://localhost:3000/terms/Active'
+{"message":"term not found.","success":false,"validated_user":null,"raci_matrix":{}}[vagrant@localhost ~]$ curl 'http://localhost:3000/terms/Active Student'
+[vagrant@localhost ~]$ curl 'http://localhost:3000/terms/Active%20Student'
+{"term":{"created_date":"2014-10-23T20:54:15Z","modified_date":"2014-10-28T19:01:11Z","created_by":"","modified_by":"","id":118,"definition":"An individual who has been confirmed by an admitting office (or other admitting authority), as recorded by the University Registrar, is considered an active student until he or she:\n\n● Graduates (if degree-seeking)\n● Completes the academic term (if non degree-seeking)\n● Withdraws or is dismissed by the University \n● Fails to enroll for a spring or fall academic term (unless granted a leave of absence by a Dean)\n","source_system":"Banner","possible_values":"N/A","notes":"Students who withdraw or are dismissed during an academic term may be considered active for that academic term, at the discretion of the student’s dean.\n\nDuring the Fall and Spring academic term, students have up until the sixth day of classes to complete the roll call process and students who fail to enroll are inactivated, unless on leave.  Therefore, the use of current term active student data during the first two weeks of an academic term should be done judiciously.\n","data_sensitivity":"SELECT *\nFROM SGBSTDN\nWHERE Status = ‘AS’\n","data_availability":"Data is available by term from Fall 1982 to the present\n\n","name":"Active Student"},"success":true,"stakeholders":[],"reports":[],"validated_user":null,"raci_matrix":{}}[vagrant@localhost ~]$
+```
+
+
+@results = [{"id"=>4493, "type"=>"report", "score"=>1.0, "data"=>{"id"=>4493, "datasource"=>"NA", "data_last_updated"=>nil, "description"=>"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>\n<p><br /><br /></p>", "embedJSON"=>"{\"width\": \"500\", \"height\" : \"500\",\"name\":\"Sales/2013SalesGrowth\",\"tabs\":\"no\"}", "report_type"=>"Tableau", "thumbnail_uri"=>nil, "name"=>"Yolo Swag", "domain_tags"=>[], "bus_process_tags"=>[], "offices"=>[], "terms"=>[], "security_roles"=>[]}, "sort_name"=>"Yolo Swag"}]
+
+@results[0]["type"] == "report"

@@ -29,8 +29,8 @@ class ReportsController < ApplicationController
     reports_resp = Muninn::Adapter.get( "/reports/" + URI::encode(params[:id]) )
     @report = JSON.parse(reports_resp.body)
     # logger.debug(@report)
-    if @report["success"] 
-      @report_photo = Report.new( @report["report"]["id"])
+    if @report["success"]
+      @report_photo = ReportPhoto.new( @report["report"]["id"])
       @report_embed = JSON.parse(@report["report"]["embedJSON"])
 
       if @report["report"]["report_type"] == "Aggregation"

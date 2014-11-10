@@ -17,10 +17,7 @@ class Muninn::CustomSearchAdapter
   end
 
 
-  def filter_results
-    @results = p_filter_results( @page, @selected_node_types )
-    self
-  end
+
 
 
 
@@ -73,15 +70,21 @@ class Muninn::CustomSearchAdapter
   end
 
   def create_search_string(search_s)
+    # checks if you entered anything into the search box
     if search_s.blank?
       json_string = '{ "query" : { "query_string" : {"query" : "*","default_operator": "and"}},"aggs" : {"type" : {"terms" : { "field" :  "_type" }}},"from":"0","size":"999" }'
     else
+      # if you did, saves it as part of the json_string
       json_string ='{ "query" : { "query_string" : {"query" :  "' + "#{search_s}" + '","default_operator": "and"}},"aggs" : {"type" : {"terms" : { "field" :  "_type" }}},"from":"0","size":"999" }'
     end
     #puts "query string: " + json_string
     json_string
   end
 
+  def filter_results
+    @results = p_filter_results( @page, @selected_node_types )
+    self
+  end
 
 private
 

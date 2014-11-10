@@ -29,15 +29,35 @@ class GuideController < ApplicationController
     logger.debug("Querying Muninn...")
 
     params[:page] ||= 1
-    puts params
-    puts "YOLO SWAGGER"
-    
+
+
     mcsa = Muninn::CustomSearchAdapter.new( params )
     #mcsa.filter_reports( role_filter_array )
     mcsa.filter_results
 
     @results = mcsa.results
+
+
+
+
+
+    @report_photos = Array.new
+
+
+    @reports = @results.select { |k| "#{k[:type]}" =="report"}
+    logger.debug("Ok, These are the results:' #{@results}'")
+
+    logger.debug("Now these are the first item in reports: #{@reports[1]}")
+
+    # @reports.each do |r|
+    #   @report_photos << ReportPhoto.new( r["id"])
+    # end
+
+
     @muninn_result = mcsa.raw_result
+
+    # logger.debug("Ok, These are the muninnresults:' #{@muninn_result}'")
+
     @selected_node_types = mcsa.selected_node_types  # should the mcsa do this
     @resource_count_hash = mcsa.resource_count_hash
 
