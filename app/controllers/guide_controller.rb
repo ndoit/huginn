@@ -2,6 +2,8 @@ class GuideController < ApplicationController
 
   before_filter :node_types, :report_roles
 
+  
+
   def node_types
     @node_types = [ 'report', 'term' ]
     # if current_user
@@ -26,6 +28,7 @@ class GuideController < ApplicationController
   end
 
   def search
+
     logger.debug("Querying Muninn...")
 
     params[:page] ||= 1
