@@ -14,6 +14,31 @@ $(document).ready(function(){
 
   }
 
+ if (typeof term_gov_json != 'undefined')  {
+   $('.term_input').select2({
+        data:term_gov_json,
+        multiple: true,
+        width: "500px"
+    });
+
+    $('.term_input').val(function() {
+      $(this).data().select2.updateSelection( $(this).data('init') )
+    });
+
+  }
+  if (typeof security_roles_json != 'undefined')  {
+   $('.role_input').select2({
+        data:security_roles_json,
+        multiple: true,
+        width: "500px"
+    });
+
+    $('.role_input').val(function() {
+      $(this).data().select2.updateSelection( $(this).data('init') )
+    });
+
+  }
+
   if(typeof term_object != 'undefined')  {
 
 		$('#updateTermButton').click(function() {
@@ -312,6 +337,67 @@ function updateReportObject(report_object ) {
     }
   })
   report_object["embedJSON"] = "{\"width\": \""+w+"\", \"height\" : \"" + h+"\",\"name\":\""+ n+"\",\"tabs\":\""+t+"\"}"
+
+  report_object["terms"] = []
+  var term_array=[]
+
+  var term_text =null;
+  json_term_array = $('#term_input').select2('data')
+  console.log(json_term_array);
+  for (var j = 0; j < json_term_array.length; j++ ) {
+      report_object["terms"].push( { name: json_term_array[j]["text"]} )
+      var term_exist = false;
+      if (term_array !=null )  {
+         for (var k=0; k<term_array.length; k++){
+            if (json_term_array[j]["text"] == term_array[k]["name"])  {
+              term_exist = true;
+              break;
+            }
+         }
+       }
+
+  if (!term_exist)
+    term_array.push({name: json_term_array[j]["text"]})
+  else{
+    if (!term_text)
+      term_text = json_term_array[j]["text"]
+    else if (term_text.search( json_term_array[j]["text"]) <0)
+      term_text  += " , "+ json_term_array[j]["text"]
+    }
+
+  }
+
+  report_object["security_roles"] = []
+  var report_array=[]
+
+  var report_text =null;
+  json_roles_array = $('#role_input').select2('data')
+  console.log(json_roles_array);
+  for (var j = 0; j < json_roles_array.length; j++ ) {
+      report_object["security_roles"].push( { name: json_roles_array[j]["text"]} )
+      var report_exist = false;
+      if (report_array !=null )  {
+         for (var k=0; k<report_array.length; k++){
+            if (json_roles_array[j]["text"] == term_array[k]["name"])  {
+              report_exist = true;
+              break;
+            }
+         }
+       }
+
+  if (!report_exist)
+    report_array.push({name: json_roles_array[j]["text"]})
+  else{
+    if (!report_text)
+      report_text = json_roles_array[j]["text"]
+    else if (report_text.search( json_roles_array[j]["text"]) <0)
+      report_text  += " , "+ json_roles_array[j]["text"]
+    }
+
+  }
+       
+       
+    
 }
 
 function updateReport( report_object ) {
