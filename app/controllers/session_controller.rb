@@ -3,12 +3,9 @@ class SessionController < ApplicationController
     before_filter CASClient::Frameworks::Rails::Filter, :only => :login
 
 
-
+    # Upon login, takes you to report gallery
     def login
-      # render js: "alert('Hello Rails');"
-      # logger.debug("This is in the session controller")
       redirect_to "/browse/reports"
-      # redirect_to :controller => 'guide', :action => 'index'
     end
 
 
