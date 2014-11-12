@@ -179,6 +179,8 @@
     </div>
   </div>
 -->
+<% if @report["report"]["report_type"] !=  "External"  &&  @report["report"]["report_type"] != "Aggregation" %> 
+
 
 <% if current_user && current_user.can( :publish_report ) %>
  <div class="row">
@@ -246,7 +248,7 @@
    </div>
   </div>
   <% end %>
- 
+ <% end %>
   <div class="row">
      <div class="large-12 columns"> 
      <h5 class="page-title">Additional Information</h5
@@ -287,6 +289,8 @@
      </dl>
     </div>
    </div>
+  <% if @report["report"]["report_type"] !=  "External"  &&  @report["report"]["report_type"] != "Aggregation" %> 
+
   <% if current_user && current_user.can( :publish_report ) %>
    <div class="row">
     <div class="large-12 large-centered columns"> 
@@ -341,8 +345,7 @@
    </div>
     
 
-   <% if @report["report"]["report_type"] !=  "External"  &&  @report["report"]["report_type"] != "Aggregation" %> 
-
+  
     <div class="row">
      <div class="large-4 columns"> &nbsp;</div>
      <div class="large-6 columns">
