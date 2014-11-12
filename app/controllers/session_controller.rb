@@ -5,7 +5,10 @@ class SessionController < ApplicationController
 
 
     def login
-      redirect_to root_url
+      # render js: "alert('Hello Rails');"
+      # logger.debug("This is in the session controller")
+      redirect_to "/browse/reports"
+      # redirect_to :controller => 'guide', :action => 'index'
     end
 
 
