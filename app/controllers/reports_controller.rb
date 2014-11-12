@@ -75,7 +75,9 @@ class ReportsController < ApplicationController
 
         roles= []
         roles_json.each do |role|
-           roles << {id: role["data"]["id"], text: role["data"]["name"]}
+          if role["data"]["name"] != "Term Editor"
+            roles << {id: role["data"]["id"], text: role["data"]["name"]}
+          end
         end
         @security_roles_json =roles.to_json
 
