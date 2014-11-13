@@ -3,9 +3,9 @@ class SessionController < ApplicationController
     before_filter CASClient::Frameworks::Rails::Filter, :only => :login
 
 
-
+    # Upon login, takes you to report gallery
     def login
-      redirect_to root_url
+      redirect_to "/browse/reports"
     end
 
 
