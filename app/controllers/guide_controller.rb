@@ -30,11 +30,9 @@ class GuideController < ApplicationController
   end
 
   def search
-<<<<<<< HEAD
-    render "filter_count_nav_bar.html.erb"    
-=======
 
->>>>>>> report_auth
+    render "filter_count_nav_bar.html.erb"    
+
     logger.debug("Querying Muninn...")
 
     params[:page] ||= 1
