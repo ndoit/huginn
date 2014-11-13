@@ -26,6 +26,7 @@ class GuideController < ApplicationController
   end
 
   def search
+    render "filter_count_nav_bar.html.erb"    
     logger.debug("Querying Muninn...")
 
     params[:page] ||= 1
@@ -45,9 +46,9 @@ class GuideController < ApplicationController
 
 
     @reports = @results.select { |k| "#{k[:type]}" =="report"}
-    logger.debug("Ok, These are the results:' #{@results}'")
+    # logger.debug("Ok, These are the results:' #{@results}'")
 
-    logger.debug("Now these are the first item in reports: #{@reports[1]}")
+    logger.debug("New stuff")
 
     # @reports.each do |r|
     #   @report_photos << ReportPhoto.new( r["id"])
@@ -61,10 +62,12 @@ class GuideController < ApplicationController
     @selected_node_types = mcsa.selected_node_types  # should the mcsa do this
     @resource_count_hash = mcsa.resource_count_hash
 
+
+
     if ( params[:page].to_i > 1 )
       render partial: "partial_search", locals: { results: @results || [] }, layout: false
     else
-      render html: "search", layout: false
+      render html: "filter_count_nav_bar", layout: false
     end
   end
 
