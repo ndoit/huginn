@@ -1,5 +1,5 @@
 # for now, this class only exists to contain the CarrierWave uploader
-class Report
+class ReportPhoto
 
     extend CarrierWave::Mount
     attr_accessor :id, :report_image
@@ -8,7 +8,7 @@ class Report
     def initialize( id )
     	@id = id
     end
-    
+
     def save
         self.store_report_image!
     end

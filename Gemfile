@@ -59,13 +59,17 @@ gem 'httparty'
 
 gem "select2-rails"
 
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0.0'
+end
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
 # Use unicorn as the app server
 gem 'unicorn'
 gem 'dotenv'
-gem 'puma'
+#gem 'puma'
 #ND foundation
 gem 'nd_foundation'
 
