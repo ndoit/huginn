@@ -1,21 +1,23 @@
 <!-- I want to call this file filter_count_nav_bar.html.erb -->
 <div class="row">
-  <div class="large-2 column"></div>  
-  <div class="large-10 column">
+  <div class="medium-9 medium-centered columns">
+
+
     <dl class="sub-nav">
       <dt>Results:</dt>
       <dd class="active"><a href="#">All</a></dd>
-      <% @node_types.each_with_index do |type_name,index| %>
-
+<!--       <% @node_types.each_with_index do |type_name,index| %>
+      <% end %> -->
       <dd><a href="#">Reports</a></dd>
       <dd><a href="#">Glossary</a></dd>
       <!-- <dd><a href="#">Offices</a></dd> -->
     </dl>
   </div>
 </div>
+</div>
 
 <!-- SIDEBAR -->
-<div class="row">
+<!-- <div class="row">
   <dl class="left-sidebar small-2 column">
 
     <% @node_types.each_with_index do |type_name,index| %>
@@ -61,11 +63,13 @@
 
 
     <!-- SEARCH RESULTS -->
-    <div class="small-10 column" id="search_results_right">
+  <div class="row">
+    <div class="large-11 large-centered columns" id="search_results_right">
         <div class="content" >
           <%= render partial: "partial_search", locals: {results: @results || [] } %>
         </div>
     </div>
+  </div>
     <!-- SEARCH RESULTS -->
 
 </div>

@@ -31,7 +31,7 @@ class GuideController < ApplicationController
 
   def search
 
-    render "filter_count_nav_bar.html.erb"    
+ 
 
     logger.debug("Querying Muninn...")
 
@@ -50,7 +50,7 @@ class GuideController < ApplicationController
 # each time the user hits muninn, muninn retrieves everything and then sends it back
 
 
-    @report_photos = Array.new
+    # @report_photos = Array.new
 
 
 
@@ -99,11 +99,11 @@ class GuideController < ApplicationController
     @resource_count_hash = mcsa.resource_count_hash
 
 
-
+    # render "filter_count_nav_bar.html.erb"
     if ( params[:page].to_i > 1 )
       render partial: "partial_search", locals: { results: @results || [] }, layout: false
     else
-      render html: "filter_count_nav_bar", layout: false
+      render html: "search", layout: false
     end
   end
 

@@ -22,7 +22,8 @@ $(document).ready(
 // and perform the executFilter funcion
 function bindFilterToggleBehavior() {
     $('#content').on( 'click', '.data-type-label-container', function() {
-      $(this).find('.toggle_light').toggleClass('toggle_off')
+      // I'm using a different partial now. this wont be needed anymore
+      // $(this).find('.toggle_light').toggleClass('toggle_off')
       executeFilter()
     })
 }
