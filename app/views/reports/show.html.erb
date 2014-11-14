@@ -2,7 +2,10 @@
   <script>
     report_object = <%= @report["report"].to_json.to_s.html_safe %>
     report_embed_object = <%= @report_embed.to_json.to_s.html_safe %>
-     stakeholder_hash = <%= @stakeholder_hash.to_json.to_s.html_safe %>
+    term_reports = <%= @term_reports.to_s.html_safe %>
+    term_gov_json =<%= @term_gov_json.to_s.html_safe %>
+    role_reports  = <%= @role_reports.to_s.html_safe %>
+    security_roles_json =<%= @security_roles_json.to_s.html_safe %>
 
     function Refresh(){
 
@@ -80,20 +83,20 @@
       </div>
       <div class="row">
        <div class="large-12 columns">
-        <% if current_user && current_user.can( :publish_report ) %>
+      <% if current_user && current_user.can( :publish_report ) %>
         <div id="description" class="editable">
          <%else%>
          <div id="description">
          <%end%>
          <% if @report["report"]["description"]  then %>
-            <%= @report["report"]["description"].html_safe %> <br><br>
+            <%= @report["report"]["description"].html_safe %>
          <%else%>
             NA
          <%end%>    
         </div> 
        </div> 
       </div>
-
+      
      
      <% if @report["report"]["report_type"] == "External" %> 
       <!-- External report -->
@@ -176,31 +179,84 @@
     </div>
   </div>
 
+<% if @report["report"]["report_type"] !=  "External"  &&  @report["report"]["report_type"] != "Aggregation" %> 
 
-  <div class="row">
+
+
+<% if current_user && current_user.can( :publish_report ) %>
+ <div class="row">
+   <div class="large-12 large-centered columns"></br> </br>
+     <h5 class="page-title">Data Governance Terms</h5>
+     <div class="row">
+      <table class="raci">
+       <tbody class="tbody">
+         <tr class="term_row">
+          <td> <input type="hidden" class="term_input" id="term_input" data-init="<%= @term_reports.to_s%>"> </td>
+         </tr>
+       </tbody>
+      </table>
+    </div>
+  </div>
+ </div>
+ <%else%>
+ <div class="row">
    <div class="large-12 large-centered columns"></br> </br>
     <h5 class="page-title">Data Governance Terms</h5>
-     <% if !@report["terms"].empty? then %>
+    <% if !@report["terms"].empty? then %>
       <% @report["terms"].each do |result| %>
        <% if result["name"]  then %>
-         <a class="do_highlight" href="../terms/<%=result["name"]%>"> <strong>
+        <a class="do_highlight" href="../terms/<%=result["name"]%>"> <strong>
              <%= result["name"] %></strong> 
-         </a> </br>
+        </a> </br>
        <% end %>  </br>
      <% end %>
      <%else%> 
        Data Governance Terms have not been yet registered with this report</br></br>
      <% end %>
+    </div>
+  </div>
+  <% end %>
+
+  <% if current_user && current_user.can( :publish_report ) %>
+  <div class="row">
+   <div class="large-12 large-centered columns"></br> </br>
+    <h5 class="page-title">Security Roles Associated with Reports</h5>
+    <div class="row">
+     <table class="raci">
+     <tbody class="tbody">
+       <tr class="security_row">
+        <td> <input type="hidden" class="role_input" id="role_input" data-init="<%=@role_reports.to_s%>"> </td>
+       </tr>
+     </tbody>
+     </table>
+     </div>
+    </div>
+  </div>
+  <%else%>
+  <div class="row">
+   <div class="large-12 large-centered columns"></br> </br>
+    <h5 class="page-title">Security Roles Associated with Reports</h5>
+     <% if !@report["security_roles"].empty? then %>
+      <% @report["security_roles"].each do |result| %>
+        <% if result["name"]  then %>
+           <strong> <%= result["name"] %></strong> 
+         </br>
+        <% end %></br>
+     <% end %>
+     <%else%> 
+       Security roles have not been yet registered with this report</br></br>
+     <% end %>
    </div>
   </div>
-
+  <% end %>
+ <% end %>
   <div class="row">
      <div class="large-12 columns"> 
      <h5 class="page-title">Additional Information</h5
      <dl> 
       <dt>Report Type</dt>
-      <dd>
-
+     <dd> &nbsp; </dd>
+    <dd>
     <% if current_user && current_user.can( :publish_report ) %>
       <div id="report_type" class="editable">
       <%else %>
@@ -213,26 +269,29 @@
        <%end%>  
       </div> 
       </dd>
-      </dt>
-
+ 
+     <dd> &nbsp; </dd>
      <dt>Data Source</dt>
-      <dd>
+     <dd> &nbsp; </dd>
+     <dd>
      <% if current_user && current_user.can( :publish_report ) %>
       <div id="datasource" class="editable">
       <%else%>
       <div id="datasource">
       <%end%>
-       <% if @report["report"]["datasource"]  then %>
-          <%= @report["report"]["datasource"].html_safe %>
+       <% if @report["report"]["datasource"]   then %>
+          <%= @report["report"]["datasource"] %>
        <%else%>
           NA
        <%end%>  
        </div>  
       </dd>
-      </dt>
+
      </dl>
     </div>
    </div>
+  <% if @report["report"]["report_type"] !=  "External"  &&  @report["report"]["report_type"] != "Aggregation" %> 
+
   <% if current_user && current_user.can( :publish_report ) %>
    <div class="row">
     <div class="large-12 large-centered columns"> 
@@ -285,7 +344,9 @@
       </dl>     
    </div>
    </div>
-    <% if @report["report"]["report_type"] !=  "External"  &&  @report["report"]["report_type"] != "Aggregation" %> 
+    
+
+  
     <div class="row">
      <div class="large-4 columns"> &nbsp;</div>
      <div class="large-6 columns">
@@ -295,9 +356,8 @@
      <div class="large-2 columns"> &nbsp; </div>
     </div>
    </div> 
-   <% end %>
-  <% end %>
-    
+  <% end%>     
+  <% end%> 
   <% else %>
    
   <div class="row">
