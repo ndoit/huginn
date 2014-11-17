@@ -62,8 +62,10 @@ class GuideController < ApplicationController
 
     @reports = @results.select { |k| k["type"] =="report"}
     # logger.debug("************THIS IS EVEN NEWER **************")
-    # logger.debug("Ok, These are the results: #{@results}")
-    # logger.debug("And these are the reports: #{@reports}")
+
+    ApplicationHelper.log("Ok, These are the results: #{@results}")
+    ApplicationHelper.log("And these are the reports: #{@reports}")
+    
     # @arrayed_results = @results.split(",")
     # logger.debug("Arrayed results: #{@arrayed_results}")
     # @arrayed_reports = @arrayed_results.select { |k| k["type"] == "reports"}
