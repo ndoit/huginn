@@ -13,13 +13,15 @@
           Created By: Registrar
 
       .do_highlight.result_body
-        - if result["data"]["definition"]  then
-          = result["data"]["definition"].html_safe        
+        - if result["data"]["description"]  then
+          - @description = result["data"]["description"].truncate(300, separator: ' ')
+          = @description.html_safe        
       %span.role_header 
       - if result.has_key?("data")
         - if result["data"].has_key?("security_roles")
           %ul
             - result["data"]["security_roles"].each do |role|
               %li= role["name"]
-      .button.tiny.radius.disabled.result-type
-        = result["type"]
+      .shape
+        %p= result["type"]
+%hr

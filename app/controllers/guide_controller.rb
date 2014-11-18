@@ -60,11 +60,11 @@ class GuideController < ApplicationController
     # logger.debug("Ok, These are the results:' #{@results}'")
 
 
-    # @reports = @results.select { |k| k["type"] =="report"}
+    @reports = @results.select { |k| k["type"] =="report"}
     logger.debug("************THIS IS EVEN NEWER **************")
 
     # ApplicationHelper.log("Ok, These are the results: #{@results}")
-    logger.degbug("And these are the reports: #{@reports}")
+    logger.debug("And these are the reports: #{@reports}")
 
     # @arrayed_results = @results.split(",")
     # logger.debug("Arrayed results: #{@arrayed_results}")
