@@ -84,8 +84,10 @@ function getSearchURL( page ) {
 }
 
 // sets url as an empty string
-// selected resources checks if the side bar is displayed
+// sidebarExists() checks if the side bar is displayed
 // then sets url as get selected resources
+
+//This is what's determining what results get displayed.
 function selectedResources() {
   var url = ''
   if ( sidebarExists() ) {

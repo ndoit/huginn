@@ -1,0 +1,25 @@
+.row
+  .result_row
+    .medium-3.columns
+      = image_tag("lhamascarf.jpg")
+    .medium-9.columns
+      .result_header
+
+        .result_title
+          %h4
+            %a.do_highlight{:href => "../#{result["type"].pluralize}/#{result["data"]["name"]}"}
+              = result["data"]["name"]
+        %p.created_line 
+          Created By: Registrar
+
+      .do_highlight.result_body
+        - if result["data"]["definition"]  then
+          = result["data"]["definition"].html_safe        
+      %span.role_header 
+      - if result.has_key?("data")
+        - if result["data"].has_key?("security_roles")
+          %ul
+            - result["data"]["security_roles"].each do |role|
+              %li= role["name"]
+      .button.tiny.radius.disabled.result-type
+        = result["type"]

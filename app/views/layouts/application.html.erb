@@ -47,7 +47,34 @@
     </header>
 
     <main id="content" class="site-content" role="main">
-        <%= yield %>
+      <% unless current_user %>
+        <div class="row">
+          <div class="large-5 large-centered columns splash">
+            <h2> Welcome To The BI Portal</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-7 large-centered columns splash">
+            <h2>At The University Of Notre Dame du Lac</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-5 medium-7 medium-centered columns">
+            <%= image_tag("dome_fullwidth.jpg", :class =>"th") %>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="large-5 medium-7 medium-centered columns">
+            <!-- <a href="#" class="button expand">LOG IN</a> -->
+            <%= link_to "LOG IN", login_path, class: "button expand" %>
+
+          </div>
+        </div>
+      <% end %>
+
+      <%= yield %>
+
     </main>
 
     <footer id="footer" class="site-footer row" role="contentinfo">
