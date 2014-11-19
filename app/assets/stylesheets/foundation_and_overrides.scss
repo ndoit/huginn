@@ -1846,3 +1846,22 @@ h6 {font-size:1em;}
   border-radius: 7.5px;
   padding: 2px;
 }
+
+.shape {
+    margin-left: 5px;
+    background: #5D7999;
+    height: 35px;
+    width: 100px;
+    transform: skew(-30deg);
+    -webkit-transform: skew(-30deg) ;
+    -moz-transform: skew(-30deg) ;
+}
+
+.shape p {
+    text-align: center;
+    color: ghostwhite;
+    transform: skew(30deg);
+    -webkit-transform: skew(30deg) ;
+    -moz-transform: skew(30deg);
+    padding: 5%;
+}
