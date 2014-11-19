@@ -2,6 +2,9 @@
   .result_row
     .medium-3.columns
       = image_tag("lhamascarf.jpg")
+
+      - @report_photos.each do |rp|
+        = image_tag rp.image_url(:medium)
     .medium-9.columns
       .result_header
 

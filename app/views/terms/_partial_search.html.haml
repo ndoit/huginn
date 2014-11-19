@@ -1,0 +1,12 @@
+.row
+  .result_row
+    .result_header
+      .result_title
+        %h4
+          %a.do_highlight{:href => "../#{result["type"].pluralize}/#{result["data"]["name"]}"}
+            = result["data"]["name"]
+    .shape
+      %p= result["type"]
+    .do_highlight.result_body
+      - if result["data"]["definition"]  then
+        = result["data"]["definition"].html_safe

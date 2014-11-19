@@ -6,5 +6,5 @@
     #search_results
       .loading_bar
         - if params.has_key?(:selected_resources)
-          %input#initial_selected_resources{:type => "hidden", :value => params['selected_resources']}/
+          %input#initial_selected_resources{:type => "hidden", :value => params['selected_resources']}
         = image_tag "ajax-loader.gif"

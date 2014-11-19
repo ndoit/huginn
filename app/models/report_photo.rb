@@ -6,7 +6,7 @@ class ReportPhoto
     mount_uploader :report_image, ReportImageUploader
 
     def initialize( id )
-    	@id = id
+      @id = id
     end
 
     def save
@@ -14,11 +14,13 @@ class ReportPhoto
     end
 
     def image_url( size )
-    	filename = size.to_s + "_" + self.id.to_s + ".png"
+      filename = size.to_s + "_" + self.id.to_s + ".png"
 
-    	root = "#{ENV['S3_ASSET_URL']}/#{ENV['S3_BUCKET_NAME']}"
-    	url = "/uploads/#{Rails.env}/report/#{self.id.to_s}/#{filename}"
-    	root + url
+      root = "#{ENV['S3_ASSET_URL']}/#{ENV['S3_BUCKET_NAME']}"
+
+            
+      url = "/uploads/#{Rails.env}/report/#{self.id.to_s}/#{filename}"
+      root + url
     end
 
 

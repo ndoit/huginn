@@ -2,8 +2,8 @@ $(document).ready(
   function() {
   	executeFilter()
 
-    bindFilterToggleBehavior()
-
+    // bindFilterToggleBehavior()
+    // console.log(@report_photos)
     bindTypeaheadSearchBehavior()
 
 // When the user clicks on the banner, redirects to root
@@ -20,13 +20,13 @@ $(document).ready(
 // On click of the left bar filters,
 // Switch the checkbox to different styling,
 // and perform the executFilter funcion
-function bindFilterToggleBehavior() {
-    $('#content').on( 'click', '.data-type-label-container', function() {
-      // I'm using a different partial now. this wont be needed anymore
-      // $(this).find('.toggle_light').toggleClass('toggle_off')
-      executeFilter()
-    })
-}
+// function bindFilterToggleBehavior() {
+//     $('#content').on( 'click', '.data-type-label-container', function() {
+//       // I'm using a different partial now. this wont be needed anymore
+//       $(this).find('.toggle_light').toggleClass('toggle_off')
+//       executeFilter()
+//     })
+// }
 
 function bindTypeaheadSearchBehavior() {
     // every keyup event starts a search that will
