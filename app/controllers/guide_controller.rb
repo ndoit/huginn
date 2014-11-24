@@ -39,17 +39,21 @@ class GuideController < ApplicationController
 
     params[:page] ||= 1
 
-
+    @query = params[:selected_resources]
     mcsa = Muninn::CustomSearchAdapter.new( params )
     #mcsa.filter_reports( role_filter_array )
+
+    params[:selected_resources] ||= @query 
+    logger.debug("These are the returning params: #{params}")
+    
     mcsa.filter_results
 
     @results = mcsa.results
 
 
-# Right now the results are coming in and only getting parsed at the view layer. If I want to add authentication on certain terms and reports, I would need to parse out the terms and reports here at the controller/model level BEFORE sending it to the view. 
+    # Right now the results are coming in and only getting parsed at the view layer. If I want to add authentication on certain terms and reports, I would need to parse out the terms and reports here at the controller/model level BEFORE sending it to the view. 
 
-# each time the user hits muninn, muninn retrieves everything and then sends it back
+    # each time the user hits muninn, muninn retrieves everything and then sends it back
 
     # logger.debug("Ok, These are the results:' #{@results}'")
 
