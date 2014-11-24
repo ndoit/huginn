@@ -55,20 +55,35 @@ class GuideController < ApplicationController
 
     # each time the user hits muninn, muninn retrieves everything and then sends it back
 
-    # logger.debug("Ok, These are the results:' #{@results}'")
+    logger.debug("Ok, These are the results:' #{@results}'")
 
+    # r.push(ReportPhoto.new(r["id"]))
 
-    @reports = @results.select { |k| k["type"] =="report"}
+    # @reports = @results.select { |k| k["type"] =="report"}
 
-    logger.debug("YOLO Swagger")
-    logger.debug("************THIS IS EVEN NEWER **************")
-    logger.debug("And these are the reports: #{@reports}")
+    # logger.debug("YOLO Swagger")
+    # logger.debug("************THIS IS EVEN NEWER **************")
+    # logger.debug("And these are the reports: #{@reports}")
 
-    @report_photos = Array.new
-    @reports.each do |r|
-      @report_photos << ReportPhoto.new( r["id"])
+    # HASHTAG LOVE IT!
+    # puts "HASHTAG LOVE IT"
+
+    @results.each do |r|
+      if r["type"] == "report"
+        r["photo"] = ReportPhoto.new( r["id"] )
+        # logger.debug("#{r["data"]["photo"]}")
+      end
     end
-    # logger.debug("these are hopefully the report photos: #{@report_photos}")
+
+    # @report_photos = Array.new
+    # unless @reports.empty?
+    #   @reports.each do |r|
+    #     @report_photos << ReportPhoto.new( r["id"])
+    #   end
+    # end
+    
+    # logger.debug("report photo ids new version: #{@report_photos.first.id}}")
+
 
     
     # logger.debug("@results is a :#{@results.singleton_class}")
@@ -101,4 +116,4 @@ class GuideController < ApplicationController
     end
   end
 
-end
+end 

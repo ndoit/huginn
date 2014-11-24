@@ -23,5 +23,5 @@ class ReportPhoto
       root + url
     end
 
-
+    # alias_method :photo_id, :id
 end
