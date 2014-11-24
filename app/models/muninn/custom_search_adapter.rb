@@ -9,7 +9,7 @@ class Muninn::CustomSearchAdapter
   attr_reader :selected_node_types, :results
 
   def initialize(args)
-    @node_types = [  'report', 'term', 'office' ]
+    @node_types = [  'report' ]
     @muninn_result = query_muninn( args[:q], args[:page] )
     @page = args[:page]
     @selected_node_types = selected_resource_array( args )

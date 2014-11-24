@@ -39,60 +39,40 @@ class GuideController < ApplicationController
 
     params[:page] ||= 1
 
-
+    @query = params[:selected_resources]
     mcsa = Muninn::CustomSearchAdapter.new( params )
     #mcsa.filter_reports( role_filter_array )
+
+    params[:selected_resources] ||= @query 
+    logger.debug("These are the returning params: #{params}")
+    
     mcsa.filter_results
 
     @results = mcsa.results
 
 
-# Right now the results are coming in and only getting parsed at the view layer. If I want to add authentication on certain terms and reports, I would need to parse out the terms and reports here at the controller/model level BEFORE sending it to the view. 
+    # Right now the results are coming in and only getting parsed at the view layer. If I want to add authentication on certain terms and reports, I would need to parse out the terms and reports here at the controller/model level BEFORE sending it to the view. 
 
-# each time the user hits muninn, muninn retrieves everything and then sends it back
+    # each time the user hits muninn, muninn retrieves everything and then sends it back
 
-
-    # @report_photos = Array.new
-
-
-
- 
     # logger.debug("Ok, These are the results:' #{@results}'")
 
 
     @reports = @results.select { |k| k["type"] =="report"}
-    logger.debug("************THIS IS EVEN NEWER **************")
 
-    # ApplicationHelper.log("Ok, These are the results: #{@results}")
+    logger.debug("YOLO Swagger")
+    logger.debug("************THIS IS EVEN NEWER **************")
     logger.debug("And these are the reports: #{@reports}")
 
-    # @arrayed_results = @results.split(",")
-    # logger.debug("Arrayed results: #{@arrayed_results}")
-    # @arrayed_reports = @arrayed_results.select { |k| k["type"] == "reports"}
+    @report_photos = Array.new
+    @reports.each do |r|
+      @report_photos << ReportPhoto.new( r["id"])
+    end
+    # logger.debug("these are hopefully the report photos: #{@report_photos}")
+
     
-    # logger.debug("Arrayed Reports: #{@arrayed_reports}")
-
-
-
-    # logger.debug("We're gonna try parsing the results: #{@results.split(",")}")
-
-    # logger.debug("Now these are the report items in unparsed results: #{@reports}")
-    # @arrayed_results = @results.split(",")
-
     # logger.debug("@results is a :#{@results.singleton_class}")
     #= > @results is a :#<Class:#<WillPaginate::Collection:0x00000006a8bc80>>
-
-    # @reports = @arrayed_results.select { |k| k[:type] =="report"}
-
-    # logger.debug("and finally we should hopefully have parsed reports: #{@reports}")
-
-
-    
-
-
-    # @reports.each do |r|
-    #   @report_photos << ReportPhoto.new( r["id"])
-    # end
 
 
     @muninn_result = mcsa.raw_result
