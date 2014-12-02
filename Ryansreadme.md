@@ -487,4 +487,19 @@ Now we only have the one that we want
 
 ---
 
-In a seperate file I've got a 
+
+CURL
+====
+
+
+
+curl -XGET http://bitdata-db1-dev.dc.nd.edu:7474
+{
+  "management" : "http://bitdata-db1-dev.dc.nd.edu:7474/db/manage/",
+  "data" : "http://bitdata-db1-dev.dc.nd.edu:7474/db/data/"
+}
+
+
+muninn:3000
+elastic:9200
+neo4j:7474?

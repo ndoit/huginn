@@ -41,6 +41,10 @@ class GuideController < ApplicationController
 
     @query = params[:selected_resources]
     mcsa = Muninn::CustomSearchAdapter.new( params )
+
+    # because we are going to do security down on the muninn side of things,
+    # we no longer need to filter reports on huginn side.
+    
     #mcsa.filter_reports( role_filter_array )
 
     params[:selected_resources] ||= @query 
@@ -57,42 +61,19 @@ class GuideController < ApplicationController
 
     logger.debug("Ok, These are the results:' #{@results}'")
 
-    # r.push(ReportPhoto.new(r["id"]))
-
-    # @reports = @results.select { |k| k["type"] =="report"}
-
-    # logger.debug("YOLO Swagger")
-    # logger.debug("************THIS IS EVEN NEWER **************")
-    # logger.debug("And these are the reports: #{@reports}")
-
-    # HASHTAG LOVE IT!
-    # puts "HASHTAG LOVE IT"
-
     @results.each do |r|
+      #for all results of type report
       if r["type"] == "report"
+        #create a new key/value pair with the ReportPhoto class
         r["photo"] = ReportPhoto.new( r["id"] )
-        # logger.debug("#{r["data"]["photo"]}")
       end
     end
 
-    # @report_photos = Array.new
-    # unless @reports.empty?
-    #   @reports.each do |r|
-    #     @report_photos << ReportPhoto.new( r["id"])
-    #   end
-    # end
-    
-    # logger.debug("report photo ids new version: #{@report_photos.first.id}}")
-
-
-    
     # logger.debug("@results is a :#{@results.singleton_class}")
     #= > @results is a :#<Class:#<WillPaginate::Collection:0x00000006a8bc80>>
 
 
     @muninn_result = mcsa.raw_result
-
-    # logger.debug("Ok, These are the muninnresults:' #{@muninn_result}'")
 
     @selected_node_types = mcsa.selected_node_types  # should the mcsa do this
     @resource_count_hash = mcsa.resource_count_hash

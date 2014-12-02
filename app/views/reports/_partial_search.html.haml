@@ -1,39 +1,28 @@
-%div{:id => "#{result["data"]["id"]}"}
-  .row
-    .result_row
-      .medium-3.columns
-        / = result["photo"]
-        / - photo = result["photo"].image_url(:medium)
-        / = photo
-        / - if photo
-        /   Does exist
-        / - else
-        /   Does not exist
+.row{:id => "#{result["data"]["id"]}"}
+  .result_row
+    .medium-3.columns
+      = image_tag result["photo"].image_url(:medium), :onerror => "this.src = '/assets/lhamascarf.jpg';this.removeAttribute('onerror');"
+      
+    .medium-9.columns
+      .result_header
 
+        .result_title
+          %h4
+            %a.do_highlight{:href => "../#{result["type"].pluralize}/#{result["data"]["name"]}"}
+              = result["data"]["name"]
+        %p.created_line 
+          Created By: Registrar
 
-        = image_tag result["photo"].image_url(:medium)
-        / - @report_photos.each do |rp|
-        /   = image_tag rp.image_url(:medium)
-      .medium-9.columns
-        .result_header
-
-          .result_title
-            %h4
-              %a.do_highlight{:href => "../#{result["type"].pluralize}/#{result["data"]["name"]}"}
-                = result["data"]["name"]
-          %p.created_line 
-            Created By: Registrar
-
-        .do_highlight.result_body
-          - if result["data"]["description"]  then
-            - @description = result["data"]["description"].truncate(300, separator: ' ')
-            = @description.html_safe        
-        %span.role_header 
-        - if result.has_key?("data")
-          - if result["data"].has_key?("security_roles")
-            %ul
-              - result["data"]["security_roles"].each do |role|
-                %li= role["name"]
-        .shape
-          %p= result["type"]
-  %hr
+      .do_highlight.result_body
+        - if result["data"]["description"]  then
+          - @description = result["data"]["description"].truncate(300, separator: ' ')
+          = @description.html_safe        
+      %span.role_header 
+      - if result.has_key?("data")
+        - if result["data"].has_key?("security_roles")
+          %ul
+            - result["data"]["security_roles"].each do |role|
+              %li= role["name"]
+      .shape
+        %p= result["type"]
+%hr
