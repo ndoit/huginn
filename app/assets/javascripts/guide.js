@@ -3,7 +3,7 @@ $(document).ready(
   	executeFilter()
 
     // bindFilterToggleBehavior()
-    // console.log(@report_photos)
+
     bindTypeaheadSearchBehavior()
 
 // When the user clicks on the banner, redirects to root
@@ -13,6 +13,8 @@ $(document).ready(
 
 // Puts the default greyed out text in the search box
     $('#search1').watermark('Search')
+
+
 
   }
 )
@@ -125,7 +127,7 @@ function userSelectedResources() {
 
 
 // the live version of this event didn't seem to work correctly,
-// so it is manually bound after the dynamic content loads.
+// so it is manually bound after  the dynamic content loads.
 function bindInfiniteScrollBehavior() {
   console.log('binding')
   $('.more_results').unbind('inview')
