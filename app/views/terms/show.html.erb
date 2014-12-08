@@ -154,7 +154,7 @@
 	<div class="row">
       <div class="large-12 large-centered columns"></br>
       <h5 class="page-title">Reports Associated with this Term </h5>
-        <% if !@term["reports"].empty? then %>
+        <% unless @term["reports"] == nil then %>
           <% @term["reports"].each do |result| %>
           <% if result["name"]  then %>
            <a class="do_highlight" href="../reports/<%=result["name"].html_safe %>"> <strong>
