@@ -45,7 +45,7 @@ class ReportImageUploader < CarrierWave::Uploader::Base
   # For images you might use something like this:
   def extension_white_list
     %w(jpg jpeg gif png)
-  end  
+  end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url

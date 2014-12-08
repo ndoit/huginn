@@ -15,14 +15,17 @@ class ReportPhoto
       self.store_report_image!
   end
 
-  def image_url( size )
-    filename = size.to_s + "_" + self.id.to_s + ".png"
-
-    root = "#{ENV['S3_ASSET_URL']}/#{ENV['S3_BUCKET_NAME']}"
-
-          
-    url = "/uploads/#{Rails.env}/report/#{self.id.to_s}/#{filename}"
+  def image_url( size )  
+    url = "/uploads/#{Rails.env}/report/#{self.id.to_s}/#{filename(size)}"
     root + url
+  end
+
+  def filename(size)
+    @filename = size.to_s + "_" + self.id.to_s + ".png"
+  end
+
+  def root
+    "#{ENV['S3_ASSET_URL']}/#{ENV['S3_BUCKET_NAME']}"
   end
 
 end

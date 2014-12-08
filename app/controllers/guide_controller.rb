@@ -40,6 +40,8 @@ class GuideController < ApplicationController
     params[:page] ||= 1
 
     @query = params[:selected_resources]
+    @full_query = params
+    logger.debug("these are the full params sent to muninn: #{@full_query}")
     mcsa = Muninn::CustomSearchAdapter.new( params )
 
     # because we are going to do security down on the muninn side of things,

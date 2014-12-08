@@ -1,1 +1,0 @@
-visitor_logs_in_spec.rb

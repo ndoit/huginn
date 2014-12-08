@@ -50,7 +50,7 @@ class TermsController < ApplicationController
     offices = []
     office_json.each do |office|
         offices << {id: office["data"]["name"], text: office["data"]["name"]}
-    end
+    
     @office_json = offices.to_json
 
 
@@ -58,7 +58,8 @@ class TermsController < ApplicationController
     # GET TERM
     muninn_response = Muninn::Adapter.get( "/terms/" + URI::encode(params[:id]) )
     @term = JSON.parse(muninn_response.body)
-
+  end
+  
   def search_string(search_s)
   if !search_s.blank?
     json_string = '{"query":{"match": {"_all": {"query": "' + "#{search_s}" +'","operator": "and" }}},"size":"999","sort":[{"name":{"order":"asc"}}]}'
