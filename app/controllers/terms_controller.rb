@@ -37,7 +37,7 @@ class TermsController < ApplicationController
     @term = JSON.parse(muninn_response.body)
     logger.debug("These are the show terms: #{@term}")
     @term["huginn_user"] = session[:cas_user].to_s
-    @term["reports"] = "Example Report"
+    @term["reports"] ||= []
 
     # GET STAKEHOLDERS FOR TERM
     @stakeholder_hash = {}
@@ -60,6 +60,7 @@ class TermsController < ApplicationController
 
  
   def show
+
       # GET OFFICES
     office_resp = Muninn::Adapter.get( "/offices" )
     office_json = JSON.parse( office_resp.body )["results"]
@@ -73,6 +74,7 @@ class TermsController < ApplicationController
       # GET TERM
     muninn_response = Muninn::Adapter.get( "/terms/" + URI::encode(params[:id]) )
     @term = JSON.parse(muninn_response.body)
+    @term["reports"] ||= []
 
       # GET STAKEHOLDERS FOR TERM
     @stakeholder_hash = {}
