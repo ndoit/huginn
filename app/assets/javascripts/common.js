@@ -343,7 +343,7 @@ function updateReportObject(report_object ) {
 
   var term_text =null;
   json_term_array = $('#term_input').select2('data')
-  console.log(json_term_array);
+  console.log("This is the json_term_array: " + json_term_array);
   for (var j = 0; j < json_term_array.length; j++ ) {
       report_object["terms"].push( { name: json_term_array[j]["text"]} )
       var term_exist = false;

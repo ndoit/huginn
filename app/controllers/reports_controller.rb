@@ -6,7 +6,7 @@ require "will_paginate/array"
 
 class ReportsController < ApplicationController
   before_filter CASClient::Frameworks::Rails::Filter
-  # skip_before_action :verify_authenticity_token
+  skip_before_action :verify_authenticity_token
 
   def update
     response = Muninn::Adapter.put( "/reports/#{URI.encode(params[:id])}", params[:reportJSON] )
