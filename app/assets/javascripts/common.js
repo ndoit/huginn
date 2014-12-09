@@ -356,14 +356,14 @@ function updateReportObject(report_object ) {
          }
        }
 
-  if (!term_exist)
-    term_array.push({name: json_term_array[j]["text"]})
-  else{
-    if (!term_text)
-      term_text = json_term_array[j]["text"]
-    else if (term_text.search( json_term_array[j]["text"]) <0)
-      term_text  += " , "+ json_term_array[j]["text"]
-    }
+    if (!term_exist)
+      term_array.push({name: json_term_array[j]["text"]})
+    else{
+      if (!term_text)
+        term_text = json_term_array[j]["text"]
+      else if (term_text.search( json_term_array[j]["text"]) <0)
+        term_text  += " , "+ json_term_array[j]["text"]
+      }
 
   }
 
@@ -378,7 +378,7 @@ function updateReportObject(report_object ) {
       var report_exist = false;
       if (report_array !=null )  {
          for (var k=0; k<report_array.length; k++){
-            if (json_roles_array[j]["text"] == term_array[k]["name"])  {
+            if (json_roles_array[j]["text"] == report_array[k]["name"])  {
               report_exist = true;
               break;
             }
