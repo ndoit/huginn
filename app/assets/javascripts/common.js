@@ -345,60 +345,61 @@ function updateReportObject(report_object ) {
   json_term_array = $('#term_input').select2('data')
   console.log("This is the json_term_array: " + json_term_array);
   for (var j = 0; j < json_term_array.length; j++ ) {
-      report_object["terms"].push( { name: json_term_array[j]["text"]} )
-      var term_exist = false;
-      if (term_array !=null )  {
-         for (var k=0; k<term_array.length; k++){
-            if (json_term_array[j]["text"] == term_array[k]["name"])  {
-              term_exist = true;
-              break;
-            }
-         }
-       }
-
-    if (!term_exist)
+    report_object["terms"].push( { name: json_term_array[j]["text"]} )
+    var term_exists = false;
+    if (term_array !=null )  {
+      for (var k=0; k<term_array.length; k++){
+        if (json_term_array[j]["text"] == term_array[k]["name"])  {
+          term_exists = true;
+          break;
+        }
+      }
+    }
+    if (!term_exists){
       term_array.push({name: json_term_array[j]["text"]})
+    }
     else{
       if (!term_text)
         term_text = json_term_array[j]["text"]
-      else if (term_text.search( json_term_array[j]["text"]) <0)
+      else if (term_text.search( json_term_array[j]["text"]) <0){
         term_text  += " , "+ json_term_array[j]["text"]
       }
-
+    }
   }
 
-  report_object["security_roles"] = []
-  var report_array=[]
 
-  var report_text =null;
+  report_object["security_roles"] = []
+  var role_array=[]
+
+  var role_text =null;
   json_roles_array = $('#role_input').select2('data')
   console.log(json_roles_array);
   for (var j = 0; j < json_roles_array.length; j++ ) {
-      report_object["security_roles"].push( { name: json_roles_array[j]["text"]} )
-      var report_exist = false;
-      if (report_array !=null )  {
-         for (var k=0; k<report_array.length; k++){
-            if (json_roles_array[j]["text"] == report_array[k]["name"])  {
-              report_exist = true;
-              break;
-            }
-         }
+    report_object["security_roles"].push( { name: json_roles_array[j]["text"]} )
+    var role_exists = false;
+    if (role_array !=null )  {
+       for (var k=0; k<role_array.length; k++){
+          if (json_roles_array[j]["text"] == role_array[k]["name"])  {
+            role_exists = true;
+            break;
+          }
        }
+     }
 
-  if (!report_exist)
-    report_array.push({name: json_roles_array[j]["text"]})
-  else{
-    if (!report_text)
-      report_text = json_roles_array[j]["text"]
-    else if (report_text.search( json_roles_array[j]["text"]) <0)
-      report_text  += " , "+ json_roles_array[j]["text"]
+    if (!role_exists){
+      role_array.push({name: json_roles_array[j]["text"]})
     }
-
+    else{
+      if (!role_text){
+        role_text = json_roles_array[j]["text"]
+      }
+      else if (role_text.search( json_roles_array[j]["text"]) <0){
+        role_text  += " , "+ json_roles_array[j]["text"]
+      }
+    }
   }
-       
-       
-    
 }
+
 
 function updateReport( report_object ) {
   
