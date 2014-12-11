@@ -367,34 +367,35 @@ function updateReportObject(report_object ) {
     }
   }
 
+  // By default, we are setting write ability to true for all associated role nodes
+  report_object["allows_access_with"] = []
+  var access_array=[]
 
-  report_object["security_roles"] = []
-  var role_array=[]
+  var access_text =null;
+  json_access_array = $('#role_input').select2('data')
+  console.log(json_access_array);
+  for (var j = 0; j < json_access_array.length; j++ ) {
 
-  var role_text =null;
-  json_roles_array = $('#role_input').select2('data')
-  console.log(json_roles_array);
-  for (var j = 0; j < json_roles_array.length; j++ ) {
-    report_object["security_roles"].push( { name: json_roles_array[j]["text"]} )
-    var role_exists = false;
-    if (role_array !=null )  {
-       for (var k=0; k<role_array.length; k++){
-          if (json_roles_array[j]["text"] == role_array[k]["name"])  {
-            role_exists = true;
-            break;
-          }
-       }
-     }
+    report_object["allows_access_with"].push( { name: json_access_array[j]["text"], allow_update_and_delete: true} )
+    var access_exists = false;
+    if (access_array !=null )  {
+      for (var k=0; k<access_array.length; k++){
+        if (json_access_array[j]["text"] == access_array[k]["name"])  {
+          access_exists = true;
+          break;
+        }
+      }
+    }
 
-    if (!role_exists){
-      role_array.push({name: json_roles_array[j]["text"]})
+    if (!access_exists){
+      access_array.push({name: json_access_array[j]["text"]})
     }
     else{
-      if (!role_text){
-        role_text = json_roles_array[j]["text"]
+      if (!access_text){
+        access_text = json_access_array[j]["text"]
       }
-      else if (role_text.search( json_roles_array[j]["text"]) <0){
-        role_text  += " , "+ json_roles_array[j]["text"]
+      else if (access_text.search( json_access_array[j]["text"]) <0){
+        access_text  += " , "+ json_access_array[j]["text"]
       }
     }
   }

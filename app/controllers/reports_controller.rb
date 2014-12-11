@@ -31,61 +31,66 @@ class ReportsController < ApplicationController
     @report = JSON.parse(reports_resp.body)
 
     if @report["success"] 
-        @report_photo = ReportPhoto.new( @report["report"]["id"])
-        @report_embed = JSON.parse(@report["report"]["embedJSON"])
-        term_report_json = @report["terms"]
-        if term_report_json  != nil
-          term_report = []
-          term_report_json.each do |term|
-            term_report << {id: term["id"], text: term["name"]}
-          end
-          @term_reports = term_report.to_json
+
+      ## GET Report's Associated Terms
+      @report_photo = ReportPhoto.new( @report["report"]["id"])
+      @report_embed = JSON.parse(@report["report"]["embedJSON"])
+      term_report_json = @report["terms"]
+      if term_report_json  != nil
+        term_report = []
+        term_report_json.each do |term|
+          term_report << {id: term["id"], text: term["name"]}
         end
-        roles_report_json = @report["security_roles"]
-        if roles_report_json  != nil
-          roles_report = []
-          roles_report_json.each do |role|
-            roles_report << {id: role["id"], text: role["name"]}
-          end
-          @role_reports = roles_report.to_json
+        @term_reports = term_report.to_json
+        logger.debug("these are the report's terms: #{@report["terms"]}")
+      end
+
+      ## GET Report's Associated Security Access
+      roles_report_json = @report["allows_access_with"]
+      logger.debug("these are the @report['allows_access_with']: #{@report["allows_access_with"]}")
+      if roles_report_json  != nil
+        roles_report = []
+        roles_report_json.each do |role|
+          roles_report << {id: role["id"], text: role["name"]}
         end
+        @role_reports = roles_report.to_json
+      end
 
-        if @report["report"]["report_type"] == "Aggregation"
-          logger.debug("Aggregation report requested, querying sub-reports...")
-          @subreports = []
-          @report_embed["subreports"].each do |subreport_name|
-            logger.debug("Querying for " + subreport_name + "...")
-            subreport_response = Muninn::Adapter.get("/reports/" + URI::encode(subreport_name), session[:cas_user], session[:cas_pgt])
-            subreport_json = JSON.parse(subreport_response.body)
-            @subreports << { "name" => subreport_json["report"]["name"], "thumbnail_uri" => subreport_json["report"]["thumbnail_uri"] }
-          end
+      ## GET subreport?
+      if @report["report"]["report_type"] == "Aggregation"
+        logger.debug("Aggregation report requested, querying sub-reports...")
+        @subreports = []
+        @report_embed["subreports"].each do |subreport_name|
+          logger.debug("Querying for " + subreport_name + "...")
+          subreport_response = Muninn::Adapter.get("/reports/" + URI::encode(subreport_name), session[:cas_user], session[:cas_pgt])
+          subreport_json = JSON.parse(subreport_response.body)
+          @subreports << { "name" => subreport_json["report"]["name"], "thumbnail_uri" => subreport_json["report"]["thumbnail_uri"] }
         end
+      end
 
-         # GET Terms
-        terms_resp = Muninn::Adapter.get( "/terms" )
-        terms_json = JSON.parse(  terms_resp.body )["results"]
+       # GET All Terms
+      terms_resp = Muninn::Adapter.get( "/terms" )
+      terms_json = JSON.parse(  terms_resp.body )["results"]
 
-        terms= []
-        terms_json.each do |term|
-              terms << {id: term["data"]["id"], text: term["data"]["name"]}
+      terms= []
+      terms_json.each do |term|
+            terms << {id: term["data"]["id"], text: term["data"]["name"]}
+      end
+      @term_gov_json =terms.to_json
+
+      # GET All Security Access
+      roles_resp = Muninn::Adapter.get( "/security_roles" )
+      roles_json = JSON.parse(  roles_resp.body )["results"]
+
+      roles= []
+      roles_json.each do |role|
+        if role["data"]["name"] != "Term Editor"
+          roles << {id: role["data"]["id"], text: role["data"]["name"]}
         end
-        @term_gov_json =terms.to_json
-
-        # GET Security roles
-        roles_resp = Muninn::Adapter.get( "/security_roles" )
-        roles_json = JSON.parse(  roles_resp.body )["results"]
-
-        roles= []
-        roles_json.each do |role|
-          if role["data"]["name"] != "Term Editor"
-            roles << {id: role["data"]["id"], text: role["data"]["name"]}
-          end
-        end
-        @security_roles_json =roles.to_json
-
-
+      end
+      @security_roles_json = roles.to_json
+      logger.debug("\n muninn's security_roles: #{@security_roles_json}")
     end
-
   end
 
   # TEST TEST TEST
@@ -96,8 +101,8 @@ class ReportsController < ApplicationController
     r = ReportPhoto.new( params[:id] )
     r.report_image = params[:image]
     r.save
-    # redirect_to :back
-    render text: "hi"
+    redirect_to :back
+    # render text: "hi"
   end
   # TEST TEST TEST
 
