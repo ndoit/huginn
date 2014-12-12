@@ -8,29 +8,6 @@
     role_reports  = <%= @role_reports.to_s.html_safe %>
     security_roles_json =<%= @security_roles_json.to_s.html_safe %>
 
-    function Refresh(){
-
-        var viz = window.tableau.vizs[0];
-
-            viz.refresh();
-       
-     } 
-
-    function exportData() {
-         var reportName = decodeHTML('<%=@report_embed["name"].to_s%>')
-         var url = 'https://tableau.nd.edu/views/'+ reportName+'/DashboardName.csv'
-         popup = window.open(url,'','height=100, width =500, location=no');
-         popup.document.title = 'Once the Excel file has been downloaded, close this window.';
-         if (window.focus) {
-          newwindow.focus()
-          return false;
-        } 
-     }
-
-    function decodeHTML( str ) {
-       return $('<div />').html(str).text()
-    }
-
   </script>
 
 
