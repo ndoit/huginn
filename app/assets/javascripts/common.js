@@ -630,6 +630,7 @@ function deleteOffice( officeid ) {
 
 tinymce.init({
     selector: "div.editable",
+    relative_urls: false,
     inline: true,
     menubar: true,
     plugins: [

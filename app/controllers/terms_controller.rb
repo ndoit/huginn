@@ -5,8 +5,8 @@ require "httparty"
 require "will_paginate/array"
 
 class TermsController < ApplicationController
-  before_filter CASClient::Frameworks::Rails::Filter, :only => :authenticated_show
-  # before_action :verify_authenticity_token
+  before_filter CASClient::Frameworks::Rails::Filter
+  skip_before_action :verify_authenticity_token
 
   def update
     response = Muninn::Adapter.put( "/terms/#{URI.encode(params[:id])}", params[:termJSON] )
