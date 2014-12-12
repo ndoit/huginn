@@ -322,10 +322,11 @@ function updateReportObject(report_object ) {
 
          n = p.replace(/(<p>|<\/p>)/g, "");
          n = n.replace(/&amp;/g, '&');
+         n = n.replace(/(")/g, "");
       }
       if (id =='report_type' || id == 'datasource' ){
 
-         p = p.replace(/(<p>|<\/p>)/g, "");
+        p = p.replace(/(<p>|<\/p>)/g, "");
 
       }
 
@@ -444,8 +445,8 @@ function deleteReport( reportid ) {
       success: function(data, status, xhr){
         addSuccessMessage("success", "<b>" + data.message + ". Please wait for Reports Page display.</br>" )
         showSuccessMessage();
-        var myHashLink = "reports";
-        window.location.href = '/' + "#" + myHashLink;
+        var myHashLink = "browse/reports";
+        window.location.href = '/' + myHashLink;
       },
       error: function(xhr, status, error) {
            //alert(xhr.responseText)

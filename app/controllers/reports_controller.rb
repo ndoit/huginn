@@ -29,7 +29,7 @@ class ReportsController < ApplicationController
     logger.debug("Querying Muninn...")
     reports_resp = Muninn::Adapter.get( "/reports/" + URI::encode(params[:id]) )
     @report = JSON.parse(reports_resp.body)
-
+    logger.debug("checking report success: #{@report["success"]}")
     if @report["success"] 
 
       ## GET Report's Associated Terms
@@ -47,7 +47,7 @@ class ReportsController < ApplicationController
 
       ## GET Report's Associated Security Access
       roles_report_json = @report["allows_access_with"]
-      logger.debug("these are the @report['allows_access_with']: #{@report["allows_access_with"]}")
+      logger.debug("these are the associated report roles: #{@report["allows_access_with"]}")
       if roles_report_json  != nil
         roles_report = []
         roles_report_json.each do |role|
