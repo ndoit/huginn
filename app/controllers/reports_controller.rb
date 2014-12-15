@@ -51,6 +51,7 @@ class ReportsController < ApplicationController
       if roles_report_json  != nil
         roles_report = []
         roles_report_json.each do |role|
+
           roles_report << {id: role["id"], text: role["name"]}
         end
         @role_reports = roles_report.to_json
@@ -84,7 +85,7 @@ class ReportsController < ApplicationController
 
       roles= []
       roles_json.each do |role|
-        if role["data"]["name"] != "Term Editor"
+        if role["data"]["name"] != "Term Editor" && role["data"]["report_role"] == "Y"
           roles << {id: role["data"]["id"], text: role["data"]["name"]}
         end
       end
