@@ -38,6 +38,12 @@ Rails.application.routes.draw do
   delete "offices/:id" => 'offices#destroy'  #SMM
   post "offices" => 'offices#create' #SMM
 
+  get "datasets/partial_search" => 'datasets#partial_search'
+  get "datasets/:id" => 'datasets#show'
+  put "datasets/:id" => 'datasets#update'  #SMM
+  delete "datasets/:id" => 'datasets#destroy'  #SMM
+  post "datasets" => 'datasets#create' #SMM
+
   get "search/:search_for" => 'search#show'
   get "reports/:id" => 'reports#show'
   post "reports" => 'reports#create' #SMM
@@ -53,6 +59,8 @@ Rails.application.routes.draw do
   post "cas_proxy_callback/receive_pgt" => 'cas_proxy_callback#receive_pgt'
   put "cas_proxy_callback/receive_pgt" => 'cas_proxy_callback#receive_pgt'
   get "cas_proxy_callback/retrieve_pgt" => 'cas_proxy_callback#retrieve_pgt'
+
+
 
 
 

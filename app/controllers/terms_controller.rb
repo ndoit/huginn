@@ -5,8 +5,8 @@ require "httparty"
 require "will_paginate/array"
 
 class TermsController < ApplicationController
-  before_filter CASClient::Frameworks::Rails::Filter, :only => :authenticated_show
-  # before_action :verify_authenticity_token
+  before_filter CASClient::Frameworks::Rails::Filter
+  skip_before_action :verify_authenticity_token
 
   def update
     response = Muninn::Adapter.put( "/terms/#{URI.encode(params[:id])}", params[:termJSON] )
@@ -28,50 +28,16 @@ class TermsController < ApplicationController
 
 
   def authenticated_show
-   if session[:cas_pgt] == nil
-    Rails.logger.info("PGT is nil.")
-   end
-   Rails.logger.info("CAS User: #{session[:cas_user].to_s}, CAS Pgt: #{session[:cas_pgt].to_s}")
-   muninn_response = Muninn::Adapter.get( "/terms/" + URI::encode(params[:id]), session[:cas_user], session[:cas_pgt] )
-   @term = JSON.parse(muninn_response.body)
-   @term["huginn_user"] = session[:cas_user].to_s
-
-  end
-
-
- 
-  def show
-
-
-    # GET OFFICES
-    office_resp = Muninn::Adapter.get( "/offices" )
-    office_json = JSON.parse( office_resp.body )["results"]
-
-    offices = []
-    office_json.each do |office|
-        offices << {id: office["data"]["name"], text: office["data"]["name"]}
+    if session[:cas_pgt] == nil
+      Rails.logger.info("PGT is nil.")
     end
-    @office_json = offices.to_json
 
-
-
-    # GET TERM
-    muninn_response = Muninn::Adapter.get( "/terms/" + URI::encode(params[:id]) )
+    Rails.logger.info("CAS User: #{session[:cas_user].to_s}, CAS Pgt: #{session[:cas_pgt].to_s}")
+    muninn_response = Muninn::Adapter.get( "/terms/" + URI::encode(params[:id]), session[:cas_user], session[:cas_pgt] )
     @term = JSON.parse(muninn_response.body)
-
-  def search_string(search_s)
-  if !search_s.blank?
-    json_string = '{"query":{"match": {"_all": {"query": "' + "#{search_s}" +'","operator": "and" }}},"size":"999","sort":[{"name":{"order":"asc"}}]}'
-    #2json_string ='{"query":{"multi_match":{"query": "*' + "#{search_s}" +'*","fields":["name^3","definition"],"type":"phrase","zero_terms_query": "none"}},"from":"0","size":"999","highlight": { "pre_tags": ["<FONT style=\"BACKGROUND-COLOR:yellow\">"],"post_tags": ["</FONT>"],"fields" : {"name" :{},"definition" :{}}}}'
-   #1json_string = '{"query":{"query_string": {"query": "*' + "#{search_s}" +'*","fields":["name","definition"],"highlight": { "fields": { "name": {}}}}},"sort":[{"name.raw":{"order":"asc"}}],"from":"0","size":"999"}'
-   else
-    json_string = '{"query":{"match_all":{}},"from":"0","size":"999"}'
-  end
-   #json_string = '{"query":{"query_string": {"query": "*' + "#{search_s}" +'*","fields":["name","definition"],"highlight": {"fields": {"name": {"fragment_size" : 150,"number_of_fragments": 5}}},,"sort":[{"name.raw":{"order":"asc"}}],"from":"0","size":"999"}'
-   muninn_response_render(json_string)
-  end
-
-
+    logger.debug("These are the show terms: #{@term}")
+    @term["huginn_user"] = session[:cas_user].to_s
+    @term["reports"] ||= []
 
     # GET STAKEHOLDERS FOR TERM
     @stakeholder_hash = {}
@@ -88,9 +54,60 @@ class TermsController < ApplicationController
         @stakeholder_hash[stake["stake"]] << {id: stake["id"], text: stake["name"]}
       end
     end
+  end
 
 
-   end
+
+ 
+  def show
+
+      # GET OFFICES
+    office_resp = Muninn::Adapter.get( "/offices" )
+    office_json = JSON.parse( office_resp.body )["results"]
+    logger.debug("These are the show offices: #{office_json}")
+    offices = []
+    office_json.each do |office|
+      offices << {id: office["data"]["name"], text: office["data"]["name"]}
+    end
+    @office_json = offices.to_json
+
+      # GET TERM
+    muninn_response = Muninn::Adapter.get( "/terms/" + URI::encode(params[:id]) )
+    @term = JSON.parse(muninn_response.body)
+    @term["reports"] ||= []
+
+      # GET STAKEHOLDERS FOR TERM
+    @stakeholder_hash = {}
+    @stakeholder_hash["Responsible"] = []
+    @stakeholder_hash["Accountable"] = []
+    @stakeholder_hash["Consult"] = []
+    @stakeholder_hash["Inform"] = []
+
+
+    stake_json = @term["stakeholders"]
+    if stake_json != nil
+     stake_json.each do |stake|
+          @stakeholder_hash[stake["stake"]] ||= []
+        @stakeholder_hash[stake["stake"]] << {id: stake["id"], text: stake["name"]}
+      end
+    end
+  end
+  
+  def search_string(search_s)
+    if !search_s.blank?
+      json_string = '{"query":{"match": {"_all": {"query": "' + "#{search_s}" +'","operator": "and" }}},"size":"999","sort":[{"name":{"order":"asc"}}]}'
+      #2json_string ='{"query":{"multi_match":{"query": "*' + "#{search_s}" +'*","fields":["name^3","definition"],"type":"phrase","zero_terms_query": "none"}},"from":"0","size":"999","highlight": { "pre_tags": ["<FONT style=\"BACKGROUND-COLOR:yellow\">"],"post_tags": ["</FONT>"],"fields" : {"name" :{},"definition" :{}}}}'
+      #1json_string = '{"query":{"query_string": {"query": "*' + "#{search_s}" +'*","fields":["name","definition"],"highlight": { "fields": { "name": {}}}}},"sort":[{"name.raw":{"order":"asc"}}],"from":"0","size":"999"}'
+    else
+      json_string = '{"query":{"match_all":{}},"from":"0","size":"999"}'
+    end
+      #json_string = '{"query":{"query_string": {"query": "*' + "#{search_s}" +'*","fields":["name","definition"],"highlight": {"fields": {"name": {"fragment_size" : 150,"number_of_fragments": 5}}},,"sort":[{"name.raw":{"order":"asc"}}],"from":"0","size":"999"}'
+      muninn_response_render(json_string)
+  end
+
+
+
+
 
 
   def index

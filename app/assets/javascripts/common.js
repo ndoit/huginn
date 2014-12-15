@@ -322,10 +322,11 @@ function updateReportObject(report_object ) {
 
          n = p.replace(/(<p>|<\/p>)/g, "");
          n = n.replace(/&amp;/g, '&');
+         n = n.replace(/(")/g, "");
       }
       if (id =='report_type' || id == 'datasource' ){
 
-         p = p.replace(/(<p>|<\/p>)/g, "");
+        p = p.replace(/(<p>|<\/p>)/g, "");
 
       }
 
@@ -343,62 +344,64 @@ function updateReportObject(report_object ) {
 
   var term_text =null;
   json_term_array = $('#term_input').select2('data')
-  console.log(json_term_array);
+  console.log("This is the json_term_array: " + json_term_array);
   for (var j = 0; j < json_term_array.length; j++ ) {
-      report_object["terms"].push( { name: json_term_array[j]["text"]} )
-      var term_exist = false;
-      if (term_array !=null )  {
-         for (var k=0; k<term_array.length; k++){
-            if (json_term_array[j]["text"] == term_array[k]["name"])  {
-              term_exist = true;
-              break;
-            }
-         }
-       }
-
-  if (!term_exist)
-    term_array.push({name: json_term_array[j]["text"]})
-  else{
-    if (!term_text)
-      term_text = json_term_array[j]["text"]
-    else if (term_text.search( json_term_array[j]["text"]) <0)
-      term_text  += " , "+ json_term_array[j]["text"]
+    report_object["terms"].push( { name: json_term_array[j]["text"]} )
+    var term_exists = false;
+    if (term_array !=null )  {
+      for (var k=0; k<term_array.length; k++){
+        if (json_term_array[j]["text"] == term_array[k]["name"])  {
+          term_exists = true;
+          break;
+        }
+      }
     }
-
+    if (!term_exists){
+      term_array.push({name: json_term_array[j]["text"]})
+    }
+    else{
+      if (!term_text)
+        term_text = json_term_array[j]["text"]
+      else if (term_text.search( json_term_array[j]["text"]) <0){
+        term_text  += " , "+ json_term_array[j]["text"]
+      }
+    }
   }
 
-  report_object["security_roles"] = []
-  var report_array=[]
+  // By default, we are setting write ability to true for all associated role nodes
+  report_object["allows_access_with"] = []
+  var access_array=[]
 
-  var report_text =null;
-  json_roles_array = $('#role_input').select2('data')
-  console.log(json_roles_array);
-  for (var j = 0; j < json_roles_array.length; j++ ) {
-      report_object["security_roles"].push( { name: json_roles_array[j]["text"]} )
-      var report_exist = false;
-      if (report_array !=null )  {
-         for (var k=0; k<report_array.length; k++){
-            if (json_roles_array[j]["text"] == term_array[k]["name"])  {
-              report_exist = true;
-              break;
-            }
-         }
-       }
+  var access_text =null;
+  json_access_array = $('#role_input').select2('data')
+  console.log(json_access_array);
+  for (var j = 0; j < json_access_array.length; j++ ) {
 
-  if (!report_exist)
-    report_array.push({name: json_roles_array[j]["text"]})
-  else{
-    if (!report_text)
-      report_text = json_roles_array[j]["text"]
-    else if (report_text.search( json_roles_array[j]["text"]) <0)
-      report_text  += " , "+ json_roles_array[j]["text"]
+    report_object["allows_access_with"].push( { name: json_access_array[j]["text"], allow_update_and_delete: true} )
+    var access_exists = false;
+    if (access_array !=null )  {
+      for (var k=0; k<access_array.length; k++){
+        if (json_access_array[j]["text"] == access_array[k]["name"])  {
+          access_exists = true;
+          break;
+        }
+      }
     }
 
+    if (!access_exists){
+      access_array.push({name: json_access_array[j]["text"]})
+    }
+    else{
+      if (!access_text){
+        access_text = json_access_array[j]["text"]
+      }
+      else if (access_text.search( json_access_array[j]["text"]) <0){
+        access_text  += " , "+ json_access_array[j]["text"]
+      }
+    }
   }
-       
-       
-    
 }
+
 
 function updateReport( report_object ) {
   
@@ -442,8 +445,8 @@ function deleteReport( reportid ) {
       success: function(data, status, xhr){
         addSuccessMessage("success", "<b>" + data.message + ". Please wait for Reports Page display.</br>" )
         showSuccessMessage();
-        var myHashLink = "reports";
-        window.location.href = '/' + "#" + myHashLink;
+        var myHashLink = "browse/reports";
+        window.location.href = '/' + myHashLink;
       },
       error: function(xhr, status, error) {
            //alert(xhr.responseText)
@@ -627,6 +630,7 @@ function deleteOffice( officeid ) {
 
 tinymce.init({
     selector: "div.editable",
+    relative_urls: false,
     inline: true,
     menubar: true,
     plugins: [
