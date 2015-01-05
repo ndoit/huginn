@@ -39,61 +39,62 @@
           #name
             %h2.page-title
               = @dataset["dataset"]["name"].html_safe
+    .row
+      .large-12.columns
+        - if current_user && current_user.can( :publish_dataset )
+          #description.editable
+        - else
+          #description
+            - if @dataset["dataset"]["description"]  then
+              = @dataset["dataset"]["description"].html_safe
+            - else
+              NA
+    - if @dataset["dataset"]["dataset_type"] !=  "External"  &&  @dataset["dataset"]["dataset_type"] != "Aggregation"
+      - if current_user && current_user.can( :publish_dataset )
+        .row
+          .large-12.large-centered.columns
+            %h5.page-title Data Governance Terms
+            .row
+              %table.raci
+                %tbody.tbody
+                  %tr.term_row
+                    %td
+                      %input#term_input.term_input{"data-init" => @term_datasets.to_s, :type => "hidden"}/
+      - else
+        .row
+          .large-12.large-centered.columns
+            %h5.page-title Data Governance Terms
+            - if !@dataset["terms"].empty? then
+              - @dataset["terms"].each do |result|
+                - if result["name"]  then
+                  %a.do_highlight{:href => "../terms/#{result["name"]}"}
+                    %strong
+                      = result["name"]
+            - else
+              Data Governance Terms have not been yet registered with this dataset
+    - if current_user && current_user.can( :publish_dataset )
       .row
-        .large-12.columns
-          - if current_user && current_user.can( :publish_dataset )
-            #description.editable
+        .large-12.large-centered.columns
+          %h5.page-title Security Roles Associated with datasets
+          .row
+            %table.raci
+              %tbody.tbody
+                %tr.security_row
+                  %td
+                    %input#role_input.role_input{"data-init" => @role_datasets.to_s, :type => "hidden"}/
+    - else
+      .row
+        .large-12.large-centered.columns
+          %h5.page-title Security Roles Associated with datasets
+          - if !@dataset["allows_access_with"].empty? then
+            - @dataset["allows_access_with"].each do |result|
+              - if result["name"]  then
+                %strong
+                  = result["name"]
           - else
-            #description
-              - if @dataset["dataset"]["description"]  then
-                = @dataset["dataset"]["description"].html_safe
-              - else
-                NA
-        - if @dataset["dataset"]["dataset_type"] !=  "External"  &&  @dataset["dataset"]["dataset_type"] != "Aggregation"
-          - if current_user && current_user.can( :publish_dataset )
-            .row
-              .large-12.large-centered.columns
-                %h5.page-title Data Governance Terms
-                .row
-                  %table.raci
-                    %tbody.tbody
-                      %tr.term_row
-                        %td
-                          %input#term_input.term_input{"data-init" => @term_datasets.to_s, :type => "hidden"}/
-          - else
-            .row
-              .large-12.large-centered.columns
-                %h5.page-title Data Governance Terms
-                - if !@dataset["terms"].empty? then
-                  - @dataset["terms"].each do |result|
-                    - if result["name"]  then
-                      %a.do_highlight{:href => "../terms/#{result["name"]}"}
-                        %strong
-                          = result["name"]
-                - else
-                  Data Governance Terms have not been yet registered with this dataset
-          - if current_user && current_user.can( :publish_dataset )
-            .row
-              .large-12.large-centered.columns
-                %h5.page-title Security Roles Associated with datasets
-                .row
-                  %table.raci
-                    %tbody.tbody
-                      %tr.security_row
-                        %td
-                          %input#role_input.role_input{"data-init" => @role_datasets.to_s, :type => "hidden"}/
-          - else
-            .row
-              .large-12.large-centered.columns
-                %h5.page-title Security Roles Associated with datasets
-                - if !@dataset["allows_access_with"].empty? then
-                  - @dataset["allows_access_with"].each do |result|
-                    - if result["name"]  then
-                      %strong
-                        = result["name"]
-                - else
-                  Security roles have not been yet registered with this dataset
-  - if current_user && current_user.can( :publish_dataset )
+            Security roles have not been yet registered with this dataset
+  - if current_user 
+    / && current_user.can( :publish_dataset )
     .row
       .large-4.columns  
       .large-6.columns

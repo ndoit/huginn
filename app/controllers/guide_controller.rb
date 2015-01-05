@@ -61,7 +61,7 @@ class GuideController < ApplicationController
 
     # each time the user hits muninn, muninn retrieves everything and then sends it back
 
-    logger.debug("Ok, These are the results:' #{@results}'")
+    logger.debug("Ok, These are the results: '#{@results}'")
 
     @results.each do |r|
       #for all results of type report
