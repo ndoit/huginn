@@ -33,16 +33,29 @@
   #report_detail
     .row
       .large-12.columns
-        - if current_user && current_user.can( :publish_dataset )
-          #name.editable
-        - else
-          #name
-            %h2.page-title
-              = @dataset["dataset"]["name"].html_safe
+        #name{:class => ("editable" if current_user) }
+          / && current_user.can( :publish_dataset
+          %h2.page-title
+            = @dataset["dataset"]["name"].html_safe
+
+        /- if current_user 
+        /   && current_user.can( :publish_dataset )
+        /  #name.editable
+        /    %h2.page-title
+        /      = @dataset["dataset"]["name"].html_safe
+        /- else
+        /  #name 
+        /    %h2.page-title
+        /      = @dataset["dataset"]["name"].html_safe
     .row
       .large-12.columns
-        - if current_user && current_user.can( :publish_dataset )
+        - if current_user
+          / && current_user.can( :publish_dataset )
           #description.editable
+            - if @dataset["dataset"]["description"]  then
+              = @dataset["dataset"]["description"].html_safe
+            - else
+              NA
         - else
           #description
             - if @dataset["dataset"]["description"]  then
@@ -121,6 +134,7 @@
                   = result["name"]
           - else
             Security roles have not been yet registered with this dataset
+  %br
   - if current_user 
     / && current_user.can( :publish_dataset )
     .row

@@ -5,7 +5,12 @@ require "httparty"
 require "will_paginate/array"
 
 class TermsController < ApplicationController
-  before_filter CASClient::Frameworks::Rails::Filter
+  ### when all security actions are on, it asks to sign in for #show
+  ### when all are off, #update errors out
+
+  # before_filter CASClient::Frameworks::Rails::Filter
+  ### commenting out before_filter seems to fix everything
+  
   skip_before_action :verify_authenticity_token
 
   def update
