@@ -33,6 +33,23 @@ class Muninn::Adapter
 
     http.use_ssl = ENV["muninn_uses_ssl"]
 
+    ### impersonate cas proxy params ###
+    ### uncomment to impersonate ###
+    # if cas_user != nil && cas_pgt != nil
+    #   cas_service_uri = "https://" + muninn_host.to_s + "/"
+    #   proxy_granting_ticket = cas_pgt
+    #   ticket = CASClient::Frameworks::Rails::Filter.client.request_proxy_ticket(
+    #     proxy_granting_ticket, cas_service_uri
+    #   )
+    #   cas_proxy_params = "?service=#{URI::encode(ticket.service)}&ticket=#{ticket.ticket}"
+    # elsif cas_user != nil
+    #   cas_proxy_params = "?impersonate=#{cas_user}"
+    # else
+    #   cas_proxy_params = ""
+    # end
+    ###    ###
+
+    ### regular cas proxy ticket ###
     if cas_user != nil && cas_pgt != nil
       cas_service_uri = "https://" + muninn_host.to_s + "/"
       proxy_granting_ticket = cas_pgt
@@ -43,7 +60,8 @@ class Muninn::Adapter
     else
       cas_proxy_params = ""
     end
-    #cas_proxy_params = ""
+    ###    ###
+    cas_proxy_params = ""
     if !ENV["validate_muninn_certificate"]
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE #for when Muninn is using a self-signed cert
     end
