@@ -31,7 +31,7 @@ class OfficesController < ApplicationController
     @office = JSON.parse(office_resp.body)
     #@office  =office_sort.sort_by{|hash| "#{hash["stakes"]["name"]}"}
 
- end
+  end
 
   def update
     response = Muninn::Adapter.put( "/offices/#{URI.encode(params[:id])}", params[:officeJSON] )
@@ -57,7 +57,7 @@ class OfficesController < ApplicationController
     @results_count = @results_count[0][:totalcount]
     @results_hash = {}
     @results_count.each do |hash|
-       @results_hash[hash["term"]] = hash["count"]
+      @results_hash[hash["term"]] = hash["count"]
     end
 
     @results = @results.select { |k| "#{k[:type]}" == "office"}

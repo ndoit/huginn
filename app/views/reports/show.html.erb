@@ -1,3 +1,4 @@
+
 <% if @report["success"] %>
   <script>
     report_object = <%= @report["report"].to_json.to_s.html_safe %>
@@ -6,29 +7,6 @@
     term_gov_json =<%= @term_gov_json.to_s.html_safe %>
     role_reports  = <%= @role_reports.to_s.html_safe %>
     security_roles_json =<%= @security_roles_json.to_s.html_safe %>
-
-    function Refresh(){
-
-        var viz = window.tableau.vizs[0];
-
-            viz.refresh();
-       
-     } 
-
-    function exportData() {
-         var reportName = decodeHTML('<%=@report_embed["name"].to_s.html_safe%>')
-         var url = 'https://tableau.nd.edu/views/'+ reportName+'/DashboardName.csv'
-         popup = window.open(url,'','height=100, width =500, location=no');
-         popup.document.title = 'Once the Excel file has been downloaded, close this window.';
-         if (window.focus) {
-          newwindow.focus()
-          return false;
-        } 
-     }
-
-    function decodeHTML( str ) {
-       return $('<div />').html(str).text()
-    }
 
   </script>
 
@@ -137,26 +115,23 @@
     <% else %>
       <!-- Tableau report -->
      <% if @report_embed["width"] != "" then %>
-        <div class="row">
+      <div class="row">
         <div class="large-12 large-centered columns">  
-         <script type='text/javascript' src='https://tableau.nd.edu/javascripts/api/viz_v1.js'></script>
-          <div class="row">
-           <div class="large-12 large-centered columns">  
-            <a href="javascript:Refresh()">Refresh Data</a> &nbsp;&nbsp;&nbsp;
-            <%= link_to_function image_tag("report_gallery/excel.png", :size=> "40x40",:align=> "middle" ), "javascript:exportData()"%>
-           </div>
-         </div>
-        <div class='tableauPlaceholder' style='width:<%= @report_embed["width"] %>; height:<%=@report_embed["height"] %>;'>
-        <object class='tableauViz' width='<%= @report_embed["width"] %>' height='<%= @report_embed["height"]%>' style='display:none;'>
-        <param name='host_url' value='https%3A%2F%2Ftableau.nd.edu%2F' />
-        <param name='site_root' value='' />
-        <param name='name' value= <%= @report_embed["name"].html_safe %> />
-        <param name='tabs' value=<%= @report_embed["tabs"].html_safe %> />
-         <param name='linktarget' value='_self' />
-        <param name='toolbar' value='no' />
-        </object>
+          <script type='text/javascript' src='https://tableau.nd.edu/javascripts/api/viz_v1.js'></script>
+              
+               
+          <div class='tableauPlaceholder' style='width:<%= @report_embed["width"] %>; height:<%=@report_embed["height"] %>;'>
+            <object class='tableauViz' width='<%= @report_embed["width"] %>' height='<%= @report_embed["height"]%>' style='display:none;'>
+              <param name='host_url' value='https%3A%2F%2Ftableau.nd.edu%2F' />
+              <param name='site_root' value='' />
+              <param name='name' value= <%= @report_embed["name"].html_safe %> />
+              <param name='tabs' value=<%= @report_embed["tabs"].html_safe %> />
+               <param name='linktarget' value='_self' />
+              <param name='toolbar' value='yes' />
+            </object>
+          </div>
         </div>
-       </div>
+      </div>
         </br>
       <% end %>
     <% end %>
@@ -166,7 +141,10 @@
 <div class="row">
  <div class="large-12 large-centered columns"></br> </br>
   <h5 class="page-title">Sample Image</h5>
-    <%= image_tag @report_photo.image_url(:small) %>
+    <div class="medium-3 columns">
+      <%= image_tag @report_photo.image_url(:small), :onerror => "this.src = '/assets/lhamascarf.jpg';this.removeAttribute('onerror');" %>
+      <!-- <%= image_tag @report_photo.image_url(:small) %> -->
+    </div>
     <Br/>
     <span style="font-weight:normal;font-size:.7em;font-style:italic">Recently uploaded images may take a few moments to appear.</span>
     <br/>
