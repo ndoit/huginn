@@ -9,6 +9,7 @@ class Muninn::CustomSearchAdapter
   attr_reader :selected_node_types, :results
 
   def initialize(args)
+    Rails.logger.debug("CustomSearchAdapter initializing with args: " + args.to_s)
     @node_types = [  'report' ]
     @muninn_result = query_muninn( args[:q], args[:page] )
     @page = args[:page]
@@ -154,6 +155,7 @@ private
     muninn_host = ENV["muninn_host"]
     muninn_port = ENV["muninn_port"]
 
+    Rails.logger.debug("Querying Muninn: GET method, URL = http://#{muninn_host}:#{muninn_port}/search/custom/query, body = #{json_string}")
     muninn_response = HTTParty.get("http://#{muninn_host}:#{muninn_port}/search/custom/query", { :body => json_string,
     :headers => { 'Content-Type' => 'application/json'} })
 

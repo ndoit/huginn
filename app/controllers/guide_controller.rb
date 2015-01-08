@@ -36,6 +36,7 @@ class GuideController < ApplicationController
  
 
     logger.debug("Querying Muninn...")
+    logger.debug("Params: " + params.to_s)
 
     params[:page] ||= 1
 
