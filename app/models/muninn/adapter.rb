@@ -9,8 +9,8 @@ class Muninn::Adapter
         proxy_granting_ticket, cas_service_uri
       )
       return "?service=#{URI::encode(ticket.service)}&ticket=#{ticket.ticket}"
-    elsif cas_user != nil
-      return "?impersonate=#{cas_user}"
+    #elsif cas_user != nil
+    #  return "?impersonate=#{cas_user}"
     else
       return ""
     end
