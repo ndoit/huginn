@@ -154,15 +154,19 @@
 	<div class="row">
       <div class="large-12 large-centered columns"></br>
       <h5 class="page-title">Reports Associated with this Term </h5>
-        <% unless @term["reports"].empty? then %>
-          <% @term["reports"].each do |result| %>
-          <% if result["name"]  then %>
-           <a class="do_highlight" href="../reports/<%=result["name"].html_safe %>"> <strong>
-              <%= result["name"] %></strong> </a> </br>
-          <% end %>  </br>
-         <% end %>
-        <%else%> </br>
-          Reports are not registered with this data governance term </br> </br>
+        <% if current_user %>
+          <% unless @term["reports"].empty? then %>
+            <% @term["reports"].each do |result| %>
+            <% if result["name"]  then %>
+             <a class="do_highlight" href="../reports/<%=result["name"].html_safe %>"> <strong>
+                <%= result["name"] %></strong> </a> </br>
+            <% end %>  </br>
+           <% end %>
+          <%else%> </br>
+            Reports are not registered with this data governance term </br> </br>
+          <% end %>
+        <% else %>
+          You must be logged in to see reports associated  </br> </br>
         <% end %>
       </div>
     </div>

@@ -6,7 +6,7 @@ require "will_paginate/array"
 
 class TermsController < ApplicationController
   # before_filter CASClient::Frameworks::Rails::Filter
-  unless current_user
+  unless @current_user
     skip_before_action :verify_authenticity_token
   end
 
