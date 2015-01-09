@@ -70,7 +70,7 @@ class ReportsController < ApplicationController
       end
 
        # GET All Terms
-      terms_resp = Muninn::Adapter.get( "/terms" )
+      terms_resp = Muninn::Adapter.get( "/terms", session[:cas_user], session[:cas_pgt])
       terms_json = JSON.parse(  terms_resp.body )["results"]
 
       terms= []
@@ -80,7 +80,7 @@ class ReportsController < ApplicationController
       @term_gov_json =terms.to_json
 
       # GET All Security Access
-      roles_resp = Muninn::Adapter.get( "/security_roles" )
+      roles_resp = Muninn::Adapter.get( "/security_roles", session[:cas_user], session[:cas_pgt])
       roles_json = JSON.parse(  roles_resp.body )["results"]
 
       roles= []
