@@ -59,26 +59,25 @@ class Muninn::Adapter
     Rails.logger.debug(
       "Muninn GET: resource_uri = #{resource_uri}, cas_user = #{cas_user.to_s}, cas_pgt = #{cas_pgt.to_s}, body = #{body.to_s}"
       )
-    req = Net::HTTP::Get.new( resource_uri + cas_proxy_params(cas_user, cas_pgt) )
-    req["Content-Type"] = "application/json"
-    req.body = body
+    response = HTTParty.get("http://" + ENV["muninn_host"] + ":" + ENV["muninn_port"] + resource_uri + cas_proxy_params(cas_user,cas_pgt),
+      :body => (body == nil) ? nil : body,
+      :headers => {'Content-Type' => 'application/json'} )
 
-    output = Muninn::Adapter.perform( req )
-    Rails.logger.debug("Muninn GET output: #{output}")
-    return output
+    Rails.logger.debug("Muninn GET output: #{response}")
+    return response
   end
 
   private
+
   def self.new_http_request
-    Net::HTTP.new( ENV["muninn_host"], ENV["muninn_port"] )
+    return Net::HTTP.new( ENV["muninn_host"], ENV["muninn_port"] )
   end
 
   def self.perform( req )
     response = Muninn::Adapter.new_http_request.start do |http|
-      http.request(req)
+      http.request( req )
     end
     return response
   end
-
 
 end

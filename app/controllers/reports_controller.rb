@@ -27,7 +27,7 @@ class ReportsController < ApplicationController
   def show
 
     logger.debug("Querying Muninn...")
-    reports_resp = Muninn::Adapter.get( "/reports/" + URI::encode(params[:id], session[:cas_user], session[:cas_pgt] ) )
+    reports_resp = Muninn::Adapter.get( "/reports/" + URI::encode(params[:id]), session[:cas_user], session[:cas_pgt]  )
     @report = JSON.parse(reports_resp.body)
     logger.debug("checking report success: #{@report["success"]}")
     if @report["success"] 
