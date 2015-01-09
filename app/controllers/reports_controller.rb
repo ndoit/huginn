@@ -9,25 +9,25 @@ class ReportsController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def update
-    response = Muninn::Adapter.put( "/reports/#{URI.encode(params[:id])}", params[:reportJSON] )
+    response = Muninn::Adapter.put( "/reports/#{URI.encode(params[:id])}", session[:cas_user], session[:cas_pgt], params[:reportJSON] )
     render status: response.code, json: response.body
   end
 
   def create
 
-    response = Muninn::Adapter.post( '/reports/', params[:report])
+    response = Muninn::Adapter.post( '/reports/', session[:cas_user], session[:cas_pgt], params[:report])
     render status: response.code, json: response.body
   end
 
   def destroy
-    response = Muninn::Adapter.delete( "/reports/id/#{URI.encode(params[:id])}" )
+    response = Muninn::Adapter.delete( "/reports/id/#{URI.encode(params[:id])}", session[:cas_user], session[:cas_pgt] )
     render status: response.code, json: response.body
   end
 
   def show
 
     logger.debug("Querying Muninn...")
-    reports_resp = Muninn::Adapter.get( "/reports/" + URI::encode(params[:id]) )
+    reports_resp = Muninn::Adapter.get( "/reports/" + URI::encode(params[:id], session[:cas_user], session[:cas_pgt] ) )
     @report = JSON.parse(reports_resp.body)
     logger.debug("checking report success: #{@report["success"]}")
     if @report["success"] 

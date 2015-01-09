@@ -16,7 +16,7 @@ class GuideController < ApplicationController
   def report_roles
     @report_roles = []
     if current_user
-      @report_roles = Muninn::SecurityRoleAdapter.all.select do |k|
+      @report_roles = Muninn::SecurityRoleAdapter.all(session[:cas_user], session[:cas_pgt]).select do |k|
         k.report_role? && (current_user.has_role? k.name)
       end
     end
@@ -43,7 +43,7 @@ class GuideController < ApplicationController
     @query = params[:selected_resources]
     @full_query = params
     logger.debug("these are the full params sent to muninn: #{@full_query}")
-    mcsa = Muninn::CustomSearchAdapter.new( params )
+    mcsa = Muninn::CustomSearchAdapter.new( params, session[:cas_user], session[:cas_pgt] )
 
     # because we are going to do security down on the muninn side of things,
     # we no longer need to filter reports on huginn side.

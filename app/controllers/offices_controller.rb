@@ -16,8 +16,8 @@ class OfficesController < ApplicationController
     #offices_sort = JSON.parse(offices_resp.body) ["results"]
    # @results_office = offices_sort.sort_by{|k| "#{k["data"]["name"]}"}
     page =params[:page]
-    json_string = Muninn::CustomSearchAdapter.create_search_string( params[:q] )
-    @results= Muninn::CustomSearchAdapter.custom_query(json_string, params[:page], 15 )
+    json_string = Muninn::CustomSearchAdapter.create_search_string( params[:q], session[:cas_user], session[:cas_pgt] )
+    @results= Muninn::CustomSearchAdapter.custom_query(json_string, params[:page], 15, session[:cas_user], session[:cas_pgt] )
     @results_= @results.select { |k| "#{k[:type]}" =="office"}
     @results = @results.sort_by { |k| "#{k[:sort_name]}"}
     @results =@results.paginate(:page=> page, :per_page => 15)
@@ -27,19 +27,19 @@ class OfficesController < ApplicationController
   # display office detail page
   def show
     logger.debug("Querying Muninn...")
-    office_resp = Muninn::Adapter.get( "/offices/" + URI::encode(params[:id]) )
+    office_resp = Muninn::Adapter.get( "/offices/" + URI::encode(params[:id]), session[:cas_user], session[:cas_pgt] )
     @office = JSON.parse(office_resp.body)
     #@office  =office_sort.sort_by{|hash| "#{hash["stakes"]["name"]}"}
 
   end
 
   def update
-    response = Muninn::Adapter.put( "/offices/#{URI.encode(params[:id])}", params[:officeJSON] )
+    response = Muninn::Adapter.put( "/offices/#{URI.encode(params[:id])}", session[:cas_user], session[:cas_pgt], params[:officeJSON] )
     render status: response.code, json: response.body
   end
 
   def create
-    response = Muninn::Adapter.post( '/offices/', params[:office])
+    response = Muninn::Adapter.post( '/offices/', session[:cas_user], session[:cas_pgt], params[:office])
     render status: response.code, json: response.body
   end
 
@@ -52,7 +52,7 @@ class OfficesController < ApplicationController
  def partial_search
     page =params[:page]
     json_string = Muninn::CustomSearchAdapter.create_search_string( params[:q] )
-    @results= Muninn::CustomSearchAdapter.custom_query(json_string, params[:page], 15 )
+    @results= Muninn::CustomSearchAdapter.custom_query(json_string, params[:page], 15, session[:cas_user], session[:cas_pgt] )
     @results_count = @results.select { |k| "#{k[:type]}" =="count"}
     @results_count = @results_count[0][:totalcount]
     @results_hash = {}
