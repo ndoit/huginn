@@ -18,31 +18,54 @@ class Muninn::Adapter
 
 
   def self.post( resource_uri, cas_user, cas_pgt, body )
+    Rails.logger.debug(
+      "Muninn POST: resource_uri = #{resource_uri}, cas_user = #{cas_user.to_s}, cas_pgt = #{cas_pgt.to_s}, body = #{body.to_s}"
+      )
     req = Net::HTTP::Post.new( resource_uri + cas_proxy_params(cas_user, cas_pgt) )
     req["Content-Type"] = "application/json"
     req.body = body
 
-    return Muninn::Adapter.perform( req )
+    output = Muninn::Adapter.perform( req )
+    Rails.logger.debug("Muninn POST output: #{output}")
+    return output
   end
 
   def self.delete( resource_uri, cas_user, cas_pgt, body = nil )
+    Rails.logger.debug(
+      "Muninn DELETE: resource_uri = #{resource_uri}, cas_user = #{cas_user.to_s}, cas_pgt = #{cas_pgt.to_s}, body = #{body.to_s}"
+      )
     req = Net::HTTP::Delete.new( resource_uri + cas_proxy_params(cas_user, cas_pgt) )
     req.body = body
-    return Muninn::Adapter.perform( req )
+
+    output = Muninn::Adapter.perform( req )
+    Rails.logger.debug("Muninn DELETE output: #{output}")
+    return output
   end
 
   def self.put( resource_uri, cas_user, cas_pgt, body )
+    Rails.logger.debug(
+      "Muninn PUT: resource_uri = #{resource_uri}, cas_user = #{cas_user.to_s}, cas_pgt = #{cas_pgt.to_s}, body = #{body.to_s}"
+      )
     req = Net::HTTP::Put.new( resource_uri + cas_proxy_params(cas_user, cas_pgt) )
     req["Content-Type"] = "application/json"
     req.body = body
-    return Muninn::Adapter.perform( req )
+
+    output = Muninn::Adapter.perform( req )
+    Rails.logger.debug("Muninn PUT output: #{output}")
+    return output
   end
 
   def self.get( resource_uri, cas_user, cas_pgt, body = nil )
+    Rails.logger.debug(
+      "Muninn GET: resource_uri = #{resource_uri}, cas_user = #{cas_user.to_s}, cas_pgt = #{cas_pgt.to_s}, body = #{body.to_s}"
+      )
     req = Net::HTTP::Get.new( resource_uri + cas_proxy_params(cas_user, cas_pgt) )
     req["Content-Type"] = "application/json"
     req.body = body
-    return Muninn::Adapter.perform( req )
+
+    output = Muninn::Adapter.perform( req )
+    Rails.logger.debug("Muninn GET output: #{output}")
+    return output
   end
 
   private

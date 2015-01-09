@@ -152,7 +152,7 @@ private
   end
 
   def custom_query(json_string, page, per_page, cas_user, cas_pgt )
-    muninn_response = Muninn::Adapter.get( 'search/custom/query', cas_user, cas_pgt, json_string )
+    muninn_response = Muninn::Adapter.get( 'search/custom/query', cas_user, cas_pgt, JSON.parse(json_string) )
 
     output_string= ActiveSupport::JSON.decode(muninn_response.body.to_json)
 
