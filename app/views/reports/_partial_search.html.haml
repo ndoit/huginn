@@ -10,8 +10,8 @@
           %h4
             %a.do_highlight{:href => "../#{result["type"].pluralize}/#{result["data"]["name"]}"}
               = result["data"]["name"]
-        %p.created_line 
-          Created By: Registrar
+        / %p.created_line 
+        /   Created By: Registrar
 
       .do_highlight.result_body
         - if result["data"]["description"]  then
