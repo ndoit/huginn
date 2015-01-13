@@ -42,12 +42,12 @@ class ReportsController < ApplicationController
           term_report << {id: term["id"], text: term["name"]}
         end
         @term_reports = term_report.to_json
-        logger.debug("these are the report's terms: #{@report["terms"]}")
+        # logger.debug("these are the report's terms: #{@report["terms"]}")
       end
 
       ## GET Report's Associated Security Access
       roles_report_json = @report["allows_access_with"]
-      logger.debug("these are the associated report roles: #{@report["allows_access_with"]}")
+      # logger.debug("these are the associated report roles: #{@report["allows_access_with"]}")
       if roles_report_json  != nil
         roles_report = []
         roles_report_json.each do |role|
@@ -90,7 +90,7 @@ class ReportsController < ApplicationController
         end
       end
       @security_roles_json = roles.to_json
-      logger.debug("\n muninn's security_roles: #{@security_roles_json}")
+      # logger.debug("\n muninn's security_roles: #{@security_roles_json}")
     end
   end
 
@@ -102,6 +102,8 @@ class ReportsController < ApplicationController
     r = ReportPhoto.new( params[:id] )
     r.report_image = params[:image]
     r.save
+    logger.info("image upload method ran: #{r}")
+    logger.debug("image upload method ran: #{r}")
     redirect_to :back
     # render text: "hi"
   end

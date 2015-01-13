@@ -203,6 +203,32 @@
         .medium-2.columns.end
           %input#deleteReportButton.small.button.expand{"data-reveal-id" => "mytinyDelete", :type => "button", :value => "Delete Report"}
 
+  %br
+  %br
+  .row 
+    .large-12.columns
+      .page-title
+      / = @report
+  .row
+    .large-4.columns
+      Created By 
+      = @report["report"]["created_by"]
+      %br
+      On 
+      = @report["report"]["created_date"]
+      
+      %br
+      Office Owner
+      = @report["report"]["office_owner"]
+    .large-4.columns
+      Last Modified By  
+      = @report["report"]["modified_by"]
+      %br
+      On
+      = @report["report"]["modified_date"]
+  .row 
+    .large-12.columns
+      = @report
 
 - else
   .row
