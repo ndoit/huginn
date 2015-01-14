@@ -16,6 +16,9 @@ class ReportPhoto
   end
 
   def image_url( size )  
+    # xxxx/report_photo/xxxx is where the problem for getting was
+    # by having 'model.class.to_s' the file path is dependent on the model
+    # when GETting the images, they wont forever be a 'report'
     url = "/uploads/#{Rails.env}/report_photo/#{self.id.to_s}/#{filename(size)}"
     root + url
   end

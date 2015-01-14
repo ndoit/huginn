@@ -197,6 +197,12 @@
                 = @report_embed["tabs"]
               - else
                 NA
+
+      .row
+        .large-12.large-centered.columns
+          %h5.page-title Office Owner
+          #report_office{:class => ("editable" if current_user && current_user.can( :publish_report ) )}
+            = @report["report"]["office_owner"]
       .row
         .medium-2.medium-offset-4.columns
           %input#updateReportButton.small.button.expand{:type => "button", :value => "Update Report"}
@@ -216,19 +222,16 @@
       %br
       On 
       = @report["report"]["created_date"]
-      
-      %br
-      Office Owner
-      = @report["report"]["office_owner"]
+
     .large-4.columns
       Last Modified By  
       = @report["report"]["modified_by"]
       %br
       On
       = @report["report"]["modified_date"]
-  .row 
-    .large-12.columns
-      = @report
+  / .row 
+  /   .large-12.columns
+  /     = @report
 
 - else
   .row
