@@ -11,8 +11,8 @@ class Muninn::Adapter
       return "?service=#{URI::encode(ticket.service)}&ticket=#{ticket.ticket}"
 
     ### uncomment for impersonation ###
-    elsif cas_user != nil
-     return "?impersonate=#{cas_user}"
+    ##elsif cas_user != nil
+    ## return "?impersonate=#{cas_user}"
     ### impersonation ###
     else
       return ""
