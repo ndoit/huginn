@@ -5,6 +5,8 @@
   <ul><% @term["stakeholders"].each do |stakeholder| %>
 	 <li><a href="../offices/<%= stakeholder["name"] %>"><%= stakeholder["name"] %></a>: <%= stakeholder["stake"] %></li>
 <% end%></ul>
+<b>CAS User:</b> <%= @cas_user.to_s %><br />
+<b>CAS PGT:</b> <%= @cas_pgt.to_s %><br />
 <b>Muninn Thinks You Are:</b> <%= @term["validated_user"] %><br />
 <b>Huginn Thinks You Are:</b> <%= @term["huginn_user"] %><br />
 <% else %>

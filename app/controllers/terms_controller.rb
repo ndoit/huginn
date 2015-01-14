@@ -34,6 +34,9 @@ class TermsController < ApplicationController
       Rails.logger.info("PGT is nil.")
     end
 
+    @cas_user = session[:cas_user].to_s
+    @cas_pgt = session[:cas_pgt].to_s
+
     Rails.logger.info("CAS User: #{session[:cas_user].to_s}, CAS Pgt: #{session[:cas_pgt].to_s}")
     muninn_response = Muninn::Adapter.get( "/terms/" + URI::encode(params[:id]), session[:cas_user], session[:cas_pgt] )
     @term = JSON.parse(muninn_response.body)
@@ -47,7 +50,6 @@ class TermsController < ApplicationController
     @stakeholder_hash["Accountable"] = []
     @stakeholder_hash["Consult"] = []
     @stakeholder_hash["Inform"] = []
-
 
     stake_json = @term["stakeholders"]
     if stake_json != nil
