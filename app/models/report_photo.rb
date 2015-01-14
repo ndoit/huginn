@@ -16,7 +16,7 @@ class ReportPhoto
   end
 
   def image_url( size )  
-    url = "/uploads/#{Rails.env}/report/#{self.id.to_s}/#{filename(size)}"
+    url = "/uploads/#{Rails.env}/report_photo/#{self.id.to_s}/#{filename(size)}"
     root + url
   end
 
