@@ -302,7 +302,7 @@ function updateReportObject(report_object ) {
     id = $(this).attr('id');
     if ( id ) {
       p = tinymce.get(id).getContent()
-      if ((id == "name")  || (id =="t_height") || (id =="t_width") || (id =="t_tabs") ){
+      if ((id == "name")  || (id == "office_owner") || (id =="t_height") || (id =="t_width") || (id =="t_tabs") ){
         var StrippedString = p.replace(/(<([^>]+)>)/ig,"");
         p = StrippedString;
       }
