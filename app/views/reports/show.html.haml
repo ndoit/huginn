@@ -201,7 +201,7 @@
       .row
         .large-12.large-centered.columns
           %h5.page-title Office Owner
-          #report_office{:class => ("editable" if current_user && current_user.can( :publish_report ) )}
+          #office_owner{:class => ("editable" if current_user && current_user.can( :publish_report ) )}
             = @report["report"]["office_owner"]
       .row
         .medium-2.medium-offset-4.columns

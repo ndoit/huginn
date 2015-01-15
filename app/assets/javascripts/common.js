@@ -324,7 +324,7 @@ function updateReportObject(report_object ) {
          n = n.replace(/&amp;/g, '&');
          n = n.replace(/(")/g, "");
       }
-      if (id =='report_type' || id == 'datasource' ){
+      if (id =='report_type' || id == 'datasource' || id == 'office_owner' ){
 
         p = p.replace(/(<p>|<\/p>)/g, "");
 
