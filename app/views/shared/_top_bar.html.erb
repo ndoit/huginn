@@ -31,7 +31,8 @@
           <ul class="right">
             <!-- Divider -->
             <% if current_user %>
-              <li><%= link_to 'Report Gallery', "/browse/report", class: "disabled" %></a></li>
+              <li><%= link_to 'Report Gallery', "/browse/report" %></li>
+              <li><%= link_to 'Datasets', "/browse/datasets" %></li>
             <% end %>
             <li><%= link_to 'Glossary', "/browse/term" %></li>
             <li class="has-dropdown">      
