@@ -66,29 +66,30 @@
     .row
       .large-12.columns
         %h5.page-title Tabular Data
-        %table
-          %thead
-            %tr
-              %th{:width => "200"} Table Header
-              %th Table Header
-              %th{:width => "150"} Table Header
-              %th{:width => "150"} Table Header
-          %tbody
-            %tr
-              %td Content Goes Here
-              %td This is longer content Donec id elit non mi porta gravida at eget metus.
-              %td Content Goes Here
-              %td Content Goes Here
-            %tr
-              %td Content Goes Here
-              %td This is longer Content Goes Here Donec id elit non mi porta gravida at eget metus.
-              %td Content Goes Here
-              %td Content Goes Here
-            %tr
-              %td Content Goes Here
-              %td This is longer Content Goes Here Donec id elit non mi porta gravida at eget metus.
-              %td Content Goes Here
-              %td Content Goes Here
+        .large-8.large-centered.columns
+          %table
+            %thead
+              %tr
+                %th{:width => "200"} Banner Runtime
+                %th DW.up_time.last_3_weeks
+                %th{:width => "150"} Traffic Amount
+                %th{:width => "150"} Page Requests
+            %tbody
+              %tr
+                %td 4.hours
+                %td This is longer content Donec id elit non mi porta gravida at eget metus.
+                %td 14.455.234
+                %td 123456789
+              %tr
+                %td 5.hours
+                %td This is longer Content Goes Here Donec id elit non mi porta gravida at eget metus.
+                %td 13.543.864
+                %td 987654321
+              %tr
+                %td 4.hours
+                %td This is longer Content Goes Here Donec id elit non mi porta gravida at eget metus.
+                %td 12.365.765
+                %td 192837465
 
     - if @dataset["dataset"]["dataset_type"] !=  "External"  &&  @dataset["dataset"]["dataset_type"] != "Aggregation"
       - if current_user && current_user.can( :publish_dataset )
@@ -113,6 +114,8 @@
                       = result["name"]
             - else
               Data Governance Terms have not been yet registered with this dataset
+      %br
+      %br        
     - if current_user && current_user.can( :publish_dataset )
       .row
         .large-12.large-centered.columns
