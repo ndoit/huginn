@@ -1,0 +1,153 @@
+- if @dataset["success"]
+  :javascript
+    dataset_object = #{@dataset["dataset"].to_json.to_s.html_safe}
+    dataset_embed_object = #{@dataset_embed.to_json.to_s.html_safe}
+    term_datasets = #{@term_datasets.to_s.html_safe}
+    term_gov_json =#{@term_gov_json.to_s.html_safe}
+    role_datasets  = #{@role_datasets.to_s.html_safe}
+    allows_access_with_json =#{@allows_access_with_json.to_s.html_safe}
+  .row
+    .large-8.columns
+      .alert-box.alert.radius{"data-alert" => "", :style => "display:none"}
+        %ul.error_list
+        %a.close{:href => "#"} ×
+      .alert-box.warning.radius{"data-alert" => "", :style => "display:none"}
+        %ul.error_list
+        %a.close{:href => "#"} ×
+      .alert-box.success.radius{"data-alert" => "", :style => "display:none"}
+        %span.success_msg
+        %a.close{:href => "#"} ×
+  .row
+    .large-12.columns
+      #mytinyDelete.reveal-modal.tiny{"data-reveal" => ""}
+        %h2 Deleting dataset
+        %br/
+        %b
+          Are you sure?
+          %b
+            %br/
+            %br/
+            %input#deleteConfirm.tiny.button{:type => "button", :value => "Yes"}/
+            %input#deleteCancel.tiny.button{:type => "button", :value => "No"}/
+            %a.close-reveal-modal ×
+  #report_detail
+    .row
+      .large-12.columns
+        #name{:class => ("editable" if current_user) }
+          / && current_user.can( :publish_dataset
+          %h2.page-title
+            = @dataset["dataset"]["name"].html_safe
+
+        /- if current_user 
+        /   && current_user.can( :publish_dataset )
+        /  #name.editable
+        /    %h2.page-title
+        /      = @dataset["dataset"]["name"].html_safe
+        /- else
+        /  #name 
+        /    %h2.page-title
+        /      = @dataset["dataset"]["name"].html_safe
+    .row
+      .large-12.columns
+        - if current_user
+          / && current_user.can( :publish_dataset )
+          #description.editable
+            - if @dataset["dataset"]["description"]  then
+              = @dataset["dataset"]["description"].html_safe
+            - else
+              NA
+        - else
+          #description
+            - if @dataset["dataset"]["description"]  then
+              = @dataset["dataset"]["description"].html_safe
+            - else
+              NA
+    %br
+    .row
+      .large-12.columns
+        %h5.page-title Tabular Data
+        .large-8.large-centered.columns
+          %table
+            %thead
+              %tr
+                %th{:width => "200"} Banner Runtime
+                %th DW.up_time.last_3_weeks
+                %th{:width => "150"} Traffic Amount
+                %th{:width => "150"} Page Requests
+            %tbody
+              %tr
+                %td 4.hours
+                %td This is longer content Donec id elit non mi porta gravida at eget metus.
+                %td 14.455.234
+                %td 123456789
+              %tr
+                %td 5.hours
+                %td This is longer Content Goes Here Donec id elit non mi porta gravida at eget metus.
+                %td 13.543.864
+                %td 987654321
+              %tr
+                %td 4.hours
+                %td This is longer Content Goes Here Donec id elit non mi porta gravida at eget metus.
+                %td 12.365.765
+                %td 192837465
+
+    - if @dataset["dataset"]["dataset_type"] !=  "External"  &&  @dataset["dataset"]["dataset_type"] != "Aggregation"
+      - if current_user && current_user.can( :publish_dataset )
+        .row
+          .large-12.large-centered.columns
+            %h5.page-title Data Governance Terms
+            .row
+              %table.raci
+                %tbody.tbody
+                  %tr.term_row
+                    %td
+                      %input#term_input.term_input{"data-init" => @term_datasets.to_s, :type => "hidden"}/
+      - else
+        .row
+          .large-12.large-centered.columns
+            %h5.page-title Data Governance Terms
+            - if !@dataset["terms"].empty? then
+              - @dataset["terms"].each do |result|
+                - if result["name"]  then
+                  %a.do_highlight{:href => "../terms/#{result["name"]}"}
+                    %strong
+                      = result["name"]
+            - else
+              Data Governance Terms have not been yet registered with this dataset
+      %br
+      %br        
+    - if current_user && current_user.can( :publish_dataset )
+      .row
+        .large-12.large-centered.columns
+          %h5.page-title Security Roles Associated with datasets
+          .row
+            %table.raci
+              %tbody.tbody
+                %tr.security_row
+                  %td
+                    %input#role_input.role_input{"data-init" => @role_datasets.to_s, :type => "hidden"}/
+    - else
+      .row
+        .large-12.large-centered.columns
+          %h5.page-title Security Roles Associated with datasets
+          - if !@dataset["allows_access_with"].empty? then
+            - @dataset["allows_access_with"].each do |result|
+              - if result["name"]  then
+                %strong
+                  = result["name"]
+          - else
+            Security roles have not been yet registered with this dataset
+  %br
+  - if current_user 
+    / && current_user.can( :publish_dataset )
+    .row
+      .large-4.columns  
+      .large-6.columns
+        %input#updateReportButton.small.button{:type => "button", :value => "Update dataset"}/
+        %input#deleteReportButton.small.button{"data-reveal-id" => "mytinyDelete", :type => "button", :value => "Delete dataset"}/
+      .large-2.columns  
+- else
+  .row
+    .medium-12.large-12.columns
+      %h1 Unregistered dataset
+      This dataset is unregistered or the meta-data about the dataset has been lost.  Please send us feedback and we will get back to you within 1 business day.

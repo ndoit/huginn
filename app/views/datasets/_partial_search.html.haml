@@ -1,0 +1,23 @@
+.row{:id => "#{result["data"]["id"]}"}      
+  .medium-9.columns
+    .result_header
+      .result_title
+        %h4
+          %a.do_highlight{:href => "../#{result["type"].pluralize}/#{result["data"]["name"]}"}
+            = result["data"]["name"]
+      %p.created_line 
+        Created By: Registrar
+
+    .do_highlight.result_body
+      - if result["data"]["description"]  then
+        - @description = result["data"]["description"].truncate(300, separator: ' ')
+        = @description.html_safe        
+    %span.role_header 
+    - if result.has_key?("data")
+      - if result["data"].has_key?("security_roles")
+        %ul
+          - result["data"]["security_roles"].each do |role|
+            %li= role["name"]
+    .shape
+      %p= result["type"]
+%hr
