@@ -9,25 +9,25 @@ class ReportsController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def update
-    response = Muninn::Adapter.put( "/reports/#{URI.encode(params[:id])}", params[:reportJSON] )
+    response = Muninn::Adapter.put( "/reports/#{URI.encode(params[:id])}", session[:cas_user], session[:cas_pgt], params[:reportJSON] )
     render status: response.code, json: response.body
   end
 
   def create
 
-    response = Muninn::Adapter.post( '/reports/', params[:report])
+    response = Muninn::Adapter.post( '/reports/', session[:cas_user], session[:cas_pgt], params[:report])
     render status: response.code, json: response.body
   end
 
   def destroy
-    response = Muninn::Adapter.delete( "/reports/id/#{URI.encode(params[:id])}" )
+    response = Muninn::Adapter.delete( "/reports/id/#{URI.encode(params[:id])}", session[:cas_user], session[:cas_pgt] )
     render status: response.code, json: response.body
   end
 
   def show
 
     logger.debug("Querying Muninn...")
-    reports_resp = Muninn::Adapter.get( "/reports/" + URI::encode(params[:id]) )
+    reports_resp = Muninn::Adapter.get( "/reports/" + URI::encode(params[:id]), session[:cas_user], session[:cas_pgt]  )
     @report = JSON.parse(reports_resp.body)
     logger.debug("checking report success: #{@report["success"]}")
     if @report["success"] 
@@ -42,12 +42,12 @@ class ReportsController < ApplicationController
           term_report << {id: term["id"], text: term["name"]}
         end
         @term_reports = term_report.to_json
-        logger.debug("these are the report's terms: #{@report["terms"]}")
+        # logger.debug("these are the report's terms: #{@report["terms"]}")
       end
 
       ## GET Report's Associated Security Access
       roles_report_json = @report["allows_access_with"]
-      logger.debug("these are the associated report roles: #{@report["allows_access_with"]}")
+      # logger.debug("these are the associated report roles: #{@report["allows_access_with"]}")
       if roles_report_json  != nil
         roles_report = []
         roles_report_json.each do |role|
@@ -70,7 +70,7 @@ class ReportsController < ApplicationController
       end
 
        # GET All Terms
-      terms_resp = Muninn::Adapter.get( "/terms" )
+      terms_resp = Muninn::Adapter.get( "/terms", session[:cas_user], session[:cas_pgt])
       terms_json = JSON.parse(  terms_resp.body )["results"]
 
       terms= []
@@ -80,7 +80,7 @@ class ReportsController < ApplicationController
       @term_gov_json =terms.to_json
 
       # GET All Security Access
-      roles_resp = Muninn::Adapter.get( "/security_roles" )
+      roles_resp = Muninn::Adapter.get( "/security_roles", session[:cas_user], session[:cas_pgt])
       roles_json = JSON.parse(  roles_resp.body )["results"]
 
       roles= []
@@ -90,7 +90,7 @@ class ReportsController < ApplicationController
         end
       end
       @security_roles_json = roles.to_json
-      logger.debug("\n muninn's security_roles: #{@security_roles_json}")
+      # logger.debug("\n muninn's security_roles: #{@security_roles_json}")
     end
   end
 
@@ -102,6 +102,8 @@ class ReportsController < ApplicationController
     r = ReportPhoto.new( params[:id] )
     r.report_image = params[:image]
     r.save
+    logger.info("image upload method ran: #{r}")
+    logger.debug("image upload method ran: #{r}")
     redirect_to :back
     # render text: "hi"
   end

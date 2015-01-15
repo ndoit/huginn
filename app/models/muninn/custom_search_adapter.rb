@@ -8,9 +8,10 @@ class Muninn::CustomSearchAdapter
 
   attr_reader :selected_node_types, :results
 
-  def initialize(args)
+  def initialize(args, cas_user, cas_pgt)
+    Rails.logger.debug("CustomSearchAdapter initializing with args: " + args.to_s)
     @node_types = [  'report' ]
-    @muninn_result = query_muninn( args[:q], args[:page] )
+    @muninn_result = query_muninn( args[:q], args[:page], cas_user, cas_pgt )
     @page = args[:page]
     @selected_node_types = selected_resource_array( args )
     self
@@ -102,9 +103,9 @@ private
     json_string.map{ |a| a["name"] }
   end
 
-  def query_muninn( query_string, page_number )
+  def query_muninn( query_string, page_number, cas_user, cas_pgt )
     search_string = create_search_string( query_string )
-    custom_query(search_string, page_number, 15 )
+    custom_query(search_string, page_number, 15, cas_user, cas_pgt )
   end
 
 
@@ -150,12 +151,8 @@ private
 
   end
 
-  def custom_query(json_string, page, per_page )
-    muninn_host = ENV["muninn_host"]
-    muninn_port = ENV["muninn_port"]
-
-    muninn_response = HTTParty.get("http://#{muninn_host}:#{muninn_port}/search/custom/query", { :body => json_string,
-    :headers => { 'Content-Type' => 'application/json'} })
+  def custom_query(json_string, page, per_page, cas_user, cas_pgt )
+    muninn_response = Muninn::Adapter.get( '/search/custom/query', cas_user, cas_pgt, json_string )
 
     output_string= ActiveSupport::JSON.decode(muninn_response.body.to_json)
 

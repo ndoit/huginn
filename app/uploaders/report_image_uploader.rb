@@ -13,6 +13,8 @@ class ReportImageUploader < CarrierWave::Uploader::Base
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
+    # by having 'model.class.to_s' the file path is dependent on the model
+    # when GETting the images, they wont forever be a 'report'
     "uploads/#{Rails.env}/#{model.class.to_s.underscore}/#{model.id}"
   end
  

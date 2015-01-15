@@ -1,0 +1,240 @@
+- if @report["success"]
+  :javascript
+    report_object = #{@report["report"].to_json.to_s.html_safe}
+    report_embed_object = #{@report_embed.to_json.to_s.html_safe}
+    term_reports = #{@term_reports.to_s.html_safe}
+    term_gov_json =#{@term_gov_json.to_s.html_safe}
+    role_reports  = #{@role_reports.to_s.html_safe}
+    security_roles_json =#{@security_roles_json.to_s.html_safe}
+  .row
+    .large-8.columns
+      .alert-box.alert.radius{"data-alert" => "", :style => "display:none"}
+        %ul.error_list
+        %a.close{:href => "#"} ×
+      .alert-box.warning.radius{"data-alert" => "", :style => "display:none"}
+        %ul.error_list
+        %a.close{:href => "#"} ×
+      .alert-box.success.radius{"data-alert" => "", :style => "display:none"}
+        %span.success_msg
+        %a.close{:href => "#"} ×
+  .row
+    .large-12.columns
+      #mytinyDelete.reveal-modal.tiny{"data-reveal" => ""}
+        %h2 Deleting Report
+        %br
+        %b Are you sure?
+        %br
+        %br
+        %input#deleteConfirm.tiny.button{:type => "button", :value => "Yes"}/
+        %input#deleteCancel.tiny.button{:type => "button", :value => "No"}/
+        %a.close-reveal-modal ×
+  #report_detail
+    .row
+      .large-12.columns
+        #name{:class=> ("editable" if current_user && current_user.can( :publish_report ) )}
+          %h2.page-title
+            = @report["report"]["name"].html_safe
+
+    .row
+      .large-12.columns
+        #description{:class => ("editable" if current_user && current_user.can( :publish_report )) }
+          - if @report["report"]["description"]  then
+            = @report["report"]["description"].html_safe
+          - else
+            NA
+
+  - if @report["report"]["report_type"] == "External"
+    / External report
+    .row
+      .large-12.large-centered.columns
+        %iframe#reportframe{:frameborder => "0", :height => @report_embed["height"], :scrolling => "no", :src => @report_embed["external_uri"], :width => @report_embed["width"]}
+  - elsif @report["report"]["report_type"] == "Aggregation"
+    / Aggregation of sub-reports
+    .row
+      .large-12.columns
+        %ul{:class => "small-block-grid-1 medium-block-grid-2 large-block-grid-#{@report_embed["gridsize"].to_s}"}
+          - @subreports.each do |subreport|
+            %li
+              .row
+                .small-12.medium-12.large-12.columns
+                  %a{:href => subreport["name"]}
+                    %h5= subreport["name"]
+              .row
+                .small-12.medium-12.large-12.columns
+                  %a{:href => subreport["name"]}
+                    %img{:src => subreport["thumbnail_uri"]}
+
+  - else
+    / Tableau report
+    - if @report_embed["width"] != "" then
+      .row
+        .large-12.large-centered.columns
+          %script{:src => "https://tableau.nd.edu/javascripts/api/viz_v1.js", :type => "text/javascript"}
+          .tableauPlaceholder{:style => "width:#{@report_embed["width"]}; height:#{@report_embed["height"]};"}
+            %object.tableauViz{:height => @report_embed["height"], :style => "display:none;", :width => @report_embed["width"]}
+              %param{:name => "host_url", :value => "https%3A%2F%2Ftableau.nd.edu%2F"}
+              %param{:name => "site_root", :value => ""}
+              %param{:name => "name", :value => (@report_embed["name"].html_safe) }
+              %param{:name => "tabs", :value => (@report_embed["tabs"].html_safe) }
+              %param{:name => "linktarget", :value => "_self"}
+              %param{:name => "toolbar", :value => "yes"}
+      %br
+  .row
+    .large-12.large-centered.columns
+      %h5.page-title Sample Image
+      .medium-3.columns
+        %p= @report_photo.image_url(:small)
+        = image_tag @report_photo.image_url(:small), :onerror => "this.src = '/assets/chart-icon-07.svg';this.removeAttribute('onerror');"
+  .row
+    .large-12.large-centered.columns
+      .medium-3.columns
+        %span{:style => "font-weight:normal;font-size:.7em;font-style:italic"} Recently uploaded images may take a few moments to appear.
+        %br
+        = form_tag report_image_upload_path, :method => "post", :id => 'report_image_upload', :multipart => true do
+          = hidden_field_tag "id", @report["report"]["id"]
+          Upload/replace sample image:
+          = file_field_tag "image"
+
+  - if @report["report"]["report_type"] !=  "External"  &&  @report["report"]["report_type"] != "Aggregation"
+
+    / governance terms
+    - if current_user && current_user.can( :publish_report )
+      .row
+        .large-12.large-centered.columns
+          %h5.page-title Data Governance Terms
+          .row
+            %table.raci
+              %tbody.tbody
+                %tr.term_row
+                  %td
+                    %input#term_input.term_input{"data-init" => @term_reports.to_s, :type => "hidden"}/
+    - else
+      .row
+        .large-12.large-centered.columns
+          %h5.page-title Data Governance Terms
+          - if !@report["terms"].empty? then
+            - @report["terms"].each do |result|
+              - if result["name"]  then
+                %a.do_highlight{:href => "../terms/#{result["name"]}"}
+                  %strong= result["name"]
+                %br
+              %br
+          - else
+            Data Governance Terms have not been yet registered with this report
+
+    / security roles
+    - if current_user && current_user.can( :publish_report )
+      .row
+        .large-12.large-centered.columns
+          %h5.page-title Security Roles Associated with Reports
+          .row
+            %table.raci
+              %tbody.tbody
+                %tr.security_row
+                  %td
+                    %input#role_input.role_input{"data-init" => @role_reports.to_s, :type => "hidden"}
+    - else
+      .row
+        .large-12.large-centered.columns
+          %h5.page-title Security Roles Associated with Reports
+          - if !@report["security_roles"].empty? then
+            - @report["security_roles"].each do |result|
+              - if result["name"]  then
+                %strong
+                  = result["name"]
+                %br
+  .row
+    .large-12.columns
+      %h5.page-title Additional Information
+      
+      %dt Report Type
+      %dd
+        #report_type{:class => ("editable" if current_user && current_user.can( :publish_report ) )}
+          - if @report["report"]["report_type"]  then
+            = @report["report"]["report_type"].html_safe
+          - else
+            NA
+      
+      %dt Data Source
+      %dd
+        #datasource{:class => ("editable" if current_user && current_user.can( :publish_report ) )}
+          - if @report["report"]["datasource"]   then
+            = @report["report"]["datasource"]
+          - else
+            NA
+
+  - if @report["report"]["report_type"] !=  "External"  &&  @report["report"]["report_type"] != "Aggregation"
+    - if current_user && current_user.can( :publish_report )
+      .row
+        .large-12.large-centered.columns
+          %h5.page-title Report Parameters for Tableau
+          %br
+          %dt Report Width
+          %dd
+            #t_width.editable
+              - if @report_embed["width"] !=""  then
+                = @report_embed["width"]
+              - else
+                NA
+          %dt Report Height
+          %dd
+            #t_height.editable
+              - if @report_embed["height"] !="" then
+                = @report_embed["height"]
+              - else
+                NA
+          %dt Report Name
+          %dd
+            #t_name.editable
+              - if @report_embed["name"] !=""  then
+                = @report_embed["name"]
+              - else
+                NA
+          %dt Report Tabs
+          %dd
+            #t_tabs.editable
+              - if @report_embed["tabs"] !=""  then
+                = @report_embed["tabs"]
+              - else
+                NA
+
+      .row
+        .large-12.large-centered.columns
+          %h5.page-title Office Owner
+          #report_office{:class => ("editable" if current_user && current_user.can( :publish_report ) )}
+            = @report["report"]["office_owner"]
+      .row
+        .medium-2.medium-offset-4.columns
+          %input#updateReportButton.small.button.expand{:type => "button", :value => "Update Report"}
+        .medium-2.columns.end
+          %input#deleteReportButton.small.button.expand{"data-reveal-id" => "mytinyDelete", :type => "button", :value => "Delete Report"}
+
+  %br
+  %br
+  .row 
+    .large-12.columns
+      .page-title
+      / = @report
+  .row
+    .large-4.columns
+      Created By 
+      = @report["report"]["created_by"]
+      %br
+      On 
+      = @report["report"]["created_date"]
+
+    .large-4.columns
+      Last Modified By  
+      = @report["report"]["modified_by"]
+      %br
+      On
+      = @report["report"]["modified_date"]
+  / .row 
+  /   .large-12.columns
+  /     = @report
+
+- else
+  .row
+    .medium-12.large-12.columns
+      %h1 Unregistered Report
+      This report is unregistered or the meta-data about the report has been lost.  Please send us feedback and we will get back to you within 1 business day.

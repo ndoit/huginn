@@ -68,16 +68,16 @@ $(document).ready(function(){
    if(typeof report_object != 'undefined')  {
 
     $('#updateReportButton').click(function() {
-    //alert("updating term object")
+    //alert("updating report object")
       if (updateReportObject(report_object) == false)
         return false;
 
       updateReport(report_object)
     })
 
-    $('#showJSONButton').click( function() {
-      $('#json_container').toggle()
-    })
+    // $('#showJSONButton').click( function() {
+    //   $('#json_container').toggle()
+    // })
 
     $('#deleteConfirm').click( function() {
       $('a.close-reveal-modal').trigger('click')
