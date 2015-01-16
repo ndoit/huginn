@@ -45,6 +45,7 @@ class TermsController < ApplicationController
     muninn_response = Muninn::Adapter.get( "/terms/" + URI::encode(params[:id]), session[:cas_user], session[:cas_pgt] )
     @term = JSON.parse(muninn_response.body)
     logger.debug("These are the show terms: #{@term}")
+    @term["huginn_pgt"] = session[:cas_pgt].to_s
     @term["huginn_user"] = session[:cas_user].to_s
     @term["reports"] ||= []
 
