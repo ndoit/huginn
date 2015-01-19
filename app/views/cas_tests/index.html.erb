@@ -1,0 +1,15 @@
+<h1>CAS Proxy Test Results</h1>
+
+<h3>Sent from Huginn</h3>
+<b>CAS User:</b> <span id="CasUser"><%= @cas_user %></span><br />
+<b>CAS Proxy Granting Ticket:</b> <span id="CasPGT"><%= @cas_pgt %></span><br />
+<br />
+<h3>Returned from Muninn</h3>
+<% if @output["success"] %>
+<b>Validated CAS User:</b> <span id="ValidatedCasUser"><%= @output["user"]["net_id"] %></span><br />
+<% else %>
+<b>Error:</b> <span id="ErrorMessage"><%= @output["message"] %></span><br />
+<% end %>
+<b>Full Output:</b><br />
+<br />
+<span id="FullOutput"><%= @output.to_s %></span>
