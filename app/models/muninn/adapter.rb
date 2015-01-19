@@ -1,5 +1,5 @@
 class Muninn::Adapter
-  def self.cas_proxy_params(cas_user, cas_pgt)
+  def self.cas_proxy_params(cas_user, cas_pgt, allow_impersonate = true)
     Rails.logger.info("cas_user = #{cas_user.to_s}, cas_pgt = #{cas_pgt.to_s}; proxy callback uri = #{Huginn::Application.config.cas_proxy_callback_url}")
 
     if cas_user != nil && cas_pgt != nil
@@ -10,13 +10,24 @@ class Muninn::Adapter
       )
       return "?service=#{URI::encode(ticket.service)}&ticket=#{ticket.ticket}"
 
-    ### uncomment for impersonation ###
-    elsif cas_user != nil
+    elsif allow_impersonate && cas_user != nil
      return "?impersonate=#{cas_user}"
-    ### impersonation ###
     else
       return ""
     end
+  end
+
+
+  def self.cas_test(cas_user, cas_pgt)
+    resource_uri = '/my_access'
+
+    Rails.logger.debug(
+      "Muninn GET: resource_uri = #{resource_uri}, cas_user = #{cas_user.to_s}, cas_pgt = #{cas_pgt.to_s}"
+      )
+    response = HTTParty.get("http://" + ENV["muninn_host"] + ":" + ENV["muninn_port"] + resource_uri + cas_proxy_params(cas_user,cas_pgt,false))
+
+    Rails.logger.debug("Muninn GET output: #{response}")
+    return response
   end
 
 
