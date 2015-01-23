@@ -65,6 +65,7 @@ gem "select2-rails"
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
+  gem 'capybara'
 end
 
 # Use ActiveModel has_secure_password

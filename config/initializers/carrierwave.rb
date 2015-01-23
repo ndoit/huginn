@@ -37,6 +37,7 @@ CarrierWave.configure do |config|
   #   config.storage = :file
   #   config.enable_processing = false
   #   config.root = "#{Rails.root}/tmp"
+  #   config.fog_directory = "bucket_test"
   # else
   #   config.storage = :fog
   # end
