@@ -38,10 +38,17 @@
     .row
       .large-12.columns
         #description{:class => ("editable" if current_user && current_user.can( :publish_report )) }
-          - if @report["report"]["description"]  then
-            = @report["report"]["description"].html_safe
-          - else
-            NA
+          / - if @report["report"]["description"]  then
+          /  = @report["report"]["description"].html_safe
+          /- else
+          /  NA
+
+
+          //////////
+
+          = @report["report"].fetch("description", "NA")
+
+          /////////
 
   - if @report["report"]["report_type"] == "External"
     / External report

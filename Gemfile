@@ -9,7 +9,7 @@ source 'https://rubygems.org'
 # sudo yum install ImageMagick (case sensitive)
 # rails g uploader report_image
 # https://gist.github.com/cblunt/1303386
-gem 'fog', '~> 1.23.0' # for uploading to Amazon S3.  http://railscasts.com/episodes/383-uploading-to-amazon-s3
+gem 'fog', '~> 1.23.0', require: "fog/aws/storage" # for uploading to Amazon S3.  http://railscasts.com/episodes/383-uploading-to-amazon-s3
 gem 'mini_magick'
 gem 'carrierwave'
 # ---------------------------------------------------------------------
