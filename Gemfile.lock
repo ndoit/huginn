@@ -52,6 +52,11 @@ GEM
     erubis (2.7.0)
     excon (0.39.6)
     execjs (2.0.2)
+    factory_girl (4.5.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.5.0)
+      factory_girl (~> 4.5.0)
+      railties (>= 3.0.0)
     fog (1.23.0)
       fog-brightbox
       fog-core (~> 1.23)
@@ -207,6 +212,7 @@ DEPENDENCIES
   carrierwave
   coffee-rails (~> 4.0.0)
   dotenv
+  factory_girl_rails
   fog (~> 1.23.0)
   foundation-rails (~> 5.3.0.0)
   haml (~> 4.0.5)
