@@ -15,6 +15,7 @@ class CasTestsController < ApplicationController
     @output = JSON.parse(muninn_response.body)
     Rails.logger.debug("Output: #{@output}")
 
+
     @cas_pgt = session[:cas_pgt].to_s
     @cas_user = session[:cas_user].to_s
   end

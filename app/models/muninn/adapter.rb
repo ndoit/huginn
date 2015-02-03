@@ -1,5 +1,5 @@
 class Muninn::Adapter
-  def self.cas_proxy_params(cas_user, cas_pgt, allow_impersonate = true)
+  def self.cas_proxy_params(cas_user, cas_pgt, allow_non_proxy = true)
     Rails.logger.info("cas_user = #{cas_user.to_s}, cas_pgt = #{cas_pgt.to_s}; proxy callback uri = #{Huginn::Application.config.cas_proxy_callback_url}")
 
     if cas_user != nil && cas_pgt != nil
@@ -10,8 +10,8 @@ class Muninn::Adapter
       )
       return "?service=#{URI::encode(ticket.service)}&ticket=#{ticket.ticket}"
 
-    elsif allow_impersonate && cas_user != nil
-     return "?impersonate=#{cas_user}"
+    elsif cas_user != nil && allow_non_proxy
+     return "?cas_user=#{cas_user}"
     else
       return ""
     end
