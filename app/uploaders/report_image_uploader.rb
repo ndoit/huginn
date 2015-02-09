@@ -13,9 +13,11 @@ class ReportImageUploader < CarrierWave::Uploader::Base
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
+    # by having 'model.class.to_s' the file path is dependent on the model
+    # when GETting the images, they wont forever be a 'report'
     "uploads/#{Rails.env}/#{model.class.to_s.underscore}/#{model.id}"
   end
-
+ 
   def filename 
     "#{model.id}.png" if original_filename 
   end 
@@ -45,14 +47,11 @@ class ReportImageUploader < CarrierWave::Uploader::Base
   # For images you might use something like this:
   def extension_white_list
     %w(jpg jpeg gif png)
-  end  
+  end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url
-  #   # For Rails 3.1+ asset pipeline compatibility:
-  #   # ActionController::Base.helpers.asset_path("fallback/" + [version_name, "default.png"].compact.join('_'))
-  #
-  #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
+    
   # end
 
   # Process files as they are uploaded:

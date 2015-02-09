@@ -1,0 +1,23 @@
+<h1>CAS Proxy Test Results</h1>
+
+<h3>Sent from Huginn</h3>
+<b>CAS User:</b> <span id="CasUser"><%= @cas_user %></span><br />
+<b>CAS Proxy Granting Ticket:</b> <span id="CasPGT"><%= @cas_pgt %></span><br />
+<br />
+<h3>Returned from Muninn</h3>
+<% if @output["success"] %>
+<b>Validated CAS User:</b> <span id="ValidatedCasUser"><%= @output["user"]["net_id"] %></span><br />
+<% else %>
+<b>Error:</b> <span id="ErrorMessage"><%= @output["message"] %></span><br />
+<% end %>
+<br />
+<h3>Status</h3>
+<% if @cas_user == "" || @cas_user == nil %>
+  <b><span id="Status">ERROR_NO_LOGIN</span></b>: You are not logged in to CAS, or your login failed.
+<% elsif @output["user"]["net_id"] == @cas_user %>
+  <b><span id="Status">SUCCESS</span></b>: CAS proxy authentication is working.
+<% elsif @cas_pgt == "" || @cas_pgt == nil %>
+  <b><span id="Status">ERROR_MISSING_PGT</span></b>: You are logged in to CAS, but Huginn was unable to retrieve your proxy-granting ticket.
+<% else %>
+  <b><span id="Status">ERROR_VALIDATION_FAILED</span></b>: You are logged in to CAS and you have a proxy-granting ticket, but Muninn was unable to validate it.
+<% end %>

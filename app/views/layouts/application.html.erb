@@ -22,12 +22,12 @@
 
   <body>
 
-    <nav class="skip-links">
+<!--     <nav class="skip-links">
       <ul>
         <li><a href="#content" accesskey="C" title="Skip to content = C">Skip To Content</a></li>
         <li><a href="#nav" accesskey="S" title="Skip to navigation = S">Skip To Navigation</a></li>
       </ul>
-    </nav>
+    </nav> -->
 
     <header id="header" role="banner" class="site-header">
       <div class="beta_banner">
@@ -47,7 +47,37 @@
     </header>
 
     <main id="content" class="site-content" role="main">
-        <%= yield %>
+      <% if request.path == "/" %>
+        <div class="row">
+          <div class="large-5 large-centered columns splash">
+            <h2> Welcome To The BI Portal</h2>
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-7 large-centered columns splash">
+            <h2>At The University Of Notre Dame du Lac</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-5 medium-7 medium-centered columns">
+            <%= image_tag("dome_fullwidth.jpg", :class =>"th") %>
+          </div>
+        </div>
+        <br>
+        <% unless current_user %>
+          <div class="row">
+            <div class="large-5 medium-7 medium-centered columns">
+              <!-- <a href="#" class="button expand">LOG IN</a> -->
+              <%= link_to "LOG IN", login_path, class: "button expand" %>
+
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+
+      <%= yield %>
+
     </main>
 
     <footer id="footer" class="site-footer row" role="contentinfo">

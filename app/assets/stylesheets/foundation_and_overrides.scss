@@ -1757,16 +1757,16 @@ h6 {font-size:1em;}
   .result_header{
     height:auto;
     overflow:auto;
-
+    
     .result_title{
-      float:left;
+      // float:left;
     }
     .result_type{
       text-align:center;
-      float:right;
+      // float:right;
       color: black;
       width:10%;
-      background-color: #F0F0F0;
+      background-color: #8DA2BA;
       @include roundy-box;
     }
   }
@@ -1774,7 +1774,16 @@ h6 {font-size:1em;}
 
   }
 
+
 }
+
+.created_line {
+  display: initial; 
+  color: slategrey;
+  // margin-bottom: .25 rem;
+}
+
+
 
 
 /* 700px
@@ -1788,6 +1797,7 @@ h6 {font-size:1em;}
 	    }
 	    .result_type{
 	      width:20%;
+        background-color: #8DA2BA;
 	    }
 	  }
 	  .result_body{
@@ -1835,4 +1845,23 @@ h6 {font-size:1em;}
   background-color: navy;
   border-radius: 7.5px;
   padding: 2px;
+}
+
+.shape {
+    margin-left: 5px;
+    background: #5D7999;
+    height: 35px;
+    width: 100px;
+    transform: skew(-30deg);
+    -webkit-transform: skew(-30deg) ;
+    -moz-transform: skew(-30deg) ;
+}
+
+.shape p {
+    text-align: center;
+    color: ghostwhite;
+    transform: skew(30deg);
+    -webkit-transform: skew(30deg) ;
+    -moz-transform: skew(30deg);
+    padding: 5%;
 }

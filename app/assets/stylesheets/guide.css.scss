@@ -54,3 +54,20 @@
 	
 
 }
+
+.under_searchbar_types {
+	/*padding-bottom: 7px;*/
+	text-align: center;
+	color: lightgrey;
+
+}
+
+.active_searchbar_type {
+	color: black;
+	padding-bottom: 7px;
+	border-bottom: 3px solid rgb(51, 51, 51);
+}
+
+.inactive_searchbar_type {
+	border-bottom: 2px solid lightgrey;
+}

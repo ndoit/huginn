@@ -8,21 +8,19 @@ class Muninn::CustomSearchAdapter
 
   attr_reader :selected_node_types, :results
 
-  def initialize(args)
-    @node_types = [ 'report', 'term', 'office' ]
-    @muninn_result = query_muninn( args[:q], args[:page] )
+  def initialize(args, cas_user, cas_pgt)
+    Rails.logger.debug("CustomSearchAdapter initializing with args: " + args.to_s)
+    @node_types = [  'report' ]
+    @muninn_result = query_muninn( args[:q], args[:page], cas_user, cas_pgt )
     @page = args[:page]
     @selected_node_types = selected_resource_array( args )
     self
   end
 
 
-  def filter_results
-    @results = p_filter_results( @page, @selected_node_types )
-    self
-  end
 
- 
+
+
 
   def filter_reports( role_array )
     @results ||= raw_result
@@ -31,19 +29,19 @@ class Muninn::CustomSearchAdapter
     # if you're not a report, go on through.
     # if you are, you must match the provided security roles.
     # also, we'll keep a count of how many reports get through.
-    @results = @results.select { |k|  if k["type"] != "report" 
-                                        true
-                                      else
-                                        if k["type"] == "report" && 
-                                           Services::General.arrays_intersect?( security_roles_to_array(k["data"]["security_roles"]), role_array) 
-                                           @filtered_report_count += 1
-                                           true
-                                        else
-                                          false
-                                        end
-                                      end
-                                      
-                               }
+    @results = @results.select do |k|
+      if k["type"] != "report"
+        true
+      else
+        if k["type"] == "report" && current_user &&
+          Services::General.arrays_intersect?( security_roles_to_array(k["data"]["security_roles"]), role_array)
+          @filtered_report_count += 1
+          true
+        else
+          false
+        end
+      end
+    end
     @results
     self
   end
@@ -73,16 +71,21 @@ class Muninn::CustomSearchAdapter
   end
 
   def create_search_string(search_s)
-   if !search_s.blank?
-     json_string ='{ "query" : { "query_string" : {"query" :  "' + "#{search_s}" + '","default_operator": "and"}},"aggs" : {"type" : {"terms" : { "field" :  "_type" }}},"from":"0","size":"999" }'
-   else
-       json_string = '{ "query" : { "query_string" : {"query" : "*","default_operator": "and"}},"aggs" : {"type" : {"terms" : { "field" :  "_type" }}},"from":"0","size":"999" }'
+    # checks if you entered anything into the search box
+    if search_s.blank?
+      json_string = '{ "query" : { "query_string" : {"query" : "*","default_operator": "and"}},"aggs" : {"type" : {"terms" : { "field" :  "_type" }}},"from":"0","size":"999" }'
+    else
+      # if you did, saves it as part of the json_string
+      json_string ='{ "query" : { "query_string" : {"query" :  "' + "#{search_s}" + '","default_operator": "and"}},"aggs" : {"type" : {"terms" : { "field" :  "_type" }}},"from":"0","size":"999" }'
     end
-
-    puts "query string: " + json_string
+    #puts "query string: " + json_string
     json_string
   end
 
+  def filter_results
+    @results = p_filter_results( @page, @selected_node_types )
+    self
+  end
 
 private
 
@@ -94,15 +97,15 @@ private
     @results.select { |k| selected_types.include? k["type"] }
                          .sort_by { |k| k["sort_name"] }
                          .paginate(:page=> page, :per_page => 10)
-  end 
+  end
 
-  def security_roles_to_array( json_string ) 
+  def security_roles_to_array( json_string )
     json_string.map{ |a| a["name"] }
   end
 
-  def query_muninn( query_string, page_number )
+  def query_muninn( query_string, page_number, cas_user, cas_pgt )
     search_string = create_search_string( query_string )
-    custom_query(search_string, page_number, 15 )
+    custom_query(search_string, page_number, 15, cas_user, cas_pgt )
   end
 
 
@@ -148,12 +151,8 @@ private
 
   end
 
-  def custom_query(json_string, page, per_page )
-    muninn_host = ENV["muninn_host"]
-    muninn_port = ENV["muninn_port"]
-
-    muninn_response = HTTParty.get("http://#{muninn_host}:#{muninn_port}/search/custom/query", { :body => json_string,
-    :headers => { 'Content-Type' => 'application/json'} })
+  def custom_query(json_string, page, per_page, cas_user, cas_pgt )
+    muninn_response = Muninn::Adapter.get( '/search/custom/query', cas_user, cas_pgt, json_string )
 
     output_string= ActiveSupport::JSON.decode(muninn_response.body.to_json)
 

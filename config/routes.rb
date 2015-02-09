@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   
   root 'welcome#index'
 
+  
+
   get '/up' => 'reports#upload_test'
   post '/up' => 'reports#upload', as: :report_image_upload
 
@@ -22,10 +24,7 @@ Rails.application.routes.draw do
   delete "terms/:id" => 'terms#destroy'  #SMM
   post "terms" => 'terms#create' #SMM
 
-
- # get "terms/:search1" => 'terms#search_string'
-  #get "terms/auth/log/out" => 'session#logout'
-  get "terms/auth/:id" => 'terms#authenticated_show'
+  get "cas_test" => 'cas_tests#index'
 
 
   get "offices" => 'offices#index'
@@ -35,6 +34,12 @@ Rails.application.routes.draw do
   put "offices/:id" => 'offices#update'  #SMM
   delete "offices/:id" => 'offices#destroy'  #SMM
   post "offices" => 'offices#create' #SMM
+
+  get "datasets/partial_search" => 'datasets#partial_search'
+  get "datasets/:id" => 'datasets#show'
+  put "datasets/:id" => 'datasets#update'  #SMM
+  delete "datasets/:id" => 'datasets#destroy'  #SMM
+  post "datasets" => 'datasets#create' #SMM
 
   get "search/:search_for" => 'search#show'
   get "reports/:id" => 'reports#show'
@@ -51,6 +56,8 @@ Rails.application.routes.draw do
   post "cas_proxy_callback/receive_pgt" => 'cas_proxy_callback#receive_pgt'
   put "cas_proxy_callback/receive_pgt" => 'cas_proxy_callback#receive_pgt'
   get "cas_proxy_callback/retrieve_pgt" => 'cas_proxy_callback#retrieve_pgt'
+
+
 
 
 

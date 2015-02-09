@@ -1,37 +1,6 @@
 class Muninn::Adapter
-
-  def self.post( resource_uri, body )
-    req = Net::HTTP::Post.new( resource_uri )
-    req["Content-Type"] = "application/json"
-    req.body = body
-
-    Muninn::Adapter.perform( req )
-
-  end
-
-  def self.delete( resource_uri )
-    req = Net::HTTP::Delete.new( resource_uri )
-    req.body = nil
-    Muninn::Adapter.perform( req )
-  end
-
-  def self.put( resource_uri, body )
-    req = Net::HTTP::Put.new( resource_uri )
-    req["Content-Type"] = "application/json"
-    req.body = body
-    Muninn::Adapter.perform( req )
-  end
-
-
-
-  def self.get( resource_uri,cas_user = nil,cas_pgt = nil)
-
-    http = Muninn::Adapter.new_http_request
-
-    muninn_host = ENV["muninn_host"]
-    muninn_port = ENV["muninn_port"]
-
-    http.use_ssl = ENV["muninn_uses_ssl"]
+  def self.cas_proxy_params(cas_user, cas_pgt, allow_non_proxy = true)
+    Rails.logger.info("cas_user = #{cas_user.to_s}, cas_pgt = #{cas_pgt.to_s}; proxy callback uri = #{Huginn::Application.config.cas_proxy_callback_url}")
 
     if cas_user != nil && cas_pgt != nil
       cas_service_uri = "https://" + muninn_host.to_s + "/"
@@ -39,39 +8,90 @@ class Muninn::Adapter
       ticket = CASClient::Frameworks::Rails::Filter.client.request_proxy_ticket(
         proxy_granting_ticket, cas_service_uri
       )
-      cas_proxy_params = "?service=#{URI::encode(ticket.service)}&ticket=#{ticket.ticket}"
-    else
-      cas_proxy_params = ""
-    end
-    #cas_proxy_params = ""
-    if !ENV["validate_muninn_certificate"]
-      http.verify_mode = OpenSSL::SSL::VERIFY_NONE #for when Muninn is using a self-signed cert
-    end
-     Rails.logger.info("cas_proxy_params ********************* : #{cas_proxy_params}" );
-    if ENV["muninn_uses_ssl"]
-     muninn_response = HTTParty.get(
-      "https://#{muninn_host}:#{muninn_port}/#{resource_uri}#{cas_proxy_params}"
-      )
-    else
-      muninn_response = http.get("http://#{muninn_host}:#{muninn_port}/#{resource_uri}#{cas_proxy_params}")
-    end
+      return "?service=#{URI::encode(ticket.service)}&ticket=#{ticket.ticket}"
 
-    muninn_response
+    elsif cas_user != nil && allow_non_proxy
+     return "?cas_user=#{cas_user}"
+    else
+      return ""
+    end
   end
 
-  #def self.get( resource_uri,nil,nil )
-    #return self.get(resource_uri, nil, nil)
-  #end
+
+  def self.cas_test(cas_user, cas_pgt)
+    resource_uri = '/my_access'
+
+    Rails.logger.debug(
+      "Muninn GET: resource_uri = #{resource_uri}, cas_user = #{cas_user.to_s}, cas_pgt = #{cas_pgt.to_s}"
+      )
+    response = HTTParty.get("http://" + ENV["muninn_host"] + ":" + ENV["muninn_port"] + resource_uri + cas_proxy_params(cas_user,cas_pgt,false))
+
+    Rails.logger.debug("Muninn GET output: #{response}")
+    return response
+  end
+
+
+  def self.post( resource_uri, cas_user, cas_pgt, body )
+    Rails.logger.debug(
+      "Muninn POST: resource_uri = #{resource_uri}, cas_user = #{cas_user.to_s}, cas_pgt = #{cas_pgt.to_s}, body = #{body.to_s}"
+      )
+    req = Net::HTTP::Post.new( resource_uri + cas_proxy_params(cas_user, cas_pgt) )
+    req["Content-Type"] = "application/json"
+    req.body = body
+
+    output = Muninn::Adapter.perform( req )
+    Rails.logger.debug("Muninn POST output: #{output}")
+    return output
+  end
+
+  def self.delete( resource_uri, cas_user, cas_pgt, body = nil )
+    Rails.logger.debug(
+      "Muninn DELETE: resource_uri = #{resource_uri}, cas_user = #{cas_user.to_s}, cas_pgt = #{cas_pgt.to_s}, body = #{body.to_s}"
+      )
+    req = Net::HTTP::Delete.new( resource_uri + cas_proxy_params(cas_user, cas_pgt) )
+    req.body = body
+
+    output = Muninn::Adapter.perform( req )
+    Rails.logger.debug("Muninn DELETE output: #{output}")
+    return output
+  end
+
+  def self.put( resource_uri, cas_user, cas_pgt, body )
+    Rails.logger.debug(
+      "Muninn PUT: resource_uri = #{resource_uri}, cas_user = #{cas_user.to_s}, cas_pgt = #{cas_pgt.to_s}, body = #{body.to_s}"
+      )
+    req = Net::HTTP::Put.new( resource_uri + cas_proxy_params(cas_user, cas_pgt) )
+    req["Content-Type"] = "application/json"
+    req.body = body
+
+    output = Muninn::Adapter.perform( req )
+    Rails.logger.debug("Muninn PUT output: #{output}")
+    return output
+  end
+
+  def self.get( resource_uri, cas_user, cas_pgt, body = nil )
+    Rails.logger.debug(
+      "Muninn GET: resource_uri = #{resource_uri}, cas_user = #{cas_user.to_s}, cas_pgt = #{cas_pgt.to_s}, body = #{body.to_s}"
+      )
+    response = HTTParty.get("http://" + ENV["muninn_host"] + ":" + ENV["muninn_port"] + resource_uri + cas_proxy_params(cas_user,cas_pgt),
+      :body => (body == nil) ? nil : body,
+      :headers => {'Content-Type' => 'application/json'} )
+
+    Rails.logger.debug("Muninn GET output: #{response}")
+    return response
+  end
+
   private
+
   def self.new_http_request
-    Net::HTTP.new( ENV["muninn_host"], ENV["muninn_port"] )
+    return Net::HTTP.new( ENV["muninn_host"], ENV["muninn_port"] )
   end
 
   def self.perform( req )
     response = Muninn::Adapter.new_http_request.start do |http|
-      http.request(req)
+      http.request( req )
     end
+    return response
   end
-
 
 end

@@ -14,6 +14,31 @@ $(document).ready(function(){
 
   }
 
+ if (typeof term_gov_json != 'undefined')  {
+   $('.term_input').select2({
+        data:term_gov_json,
+        multiple: true,
+        width: "500px"
+    });
+
+    $('.term_input').val(function() {
+      $(this).data().select2.updateSelection( $(this).data('init') )
+    });
+
+  }
+  if (typeof security_roles_json != 'undefined')  {
+   $('.role_input').select2({
+        data:security_roles_json,
+        multiple: true,
+        width: "500px"
+    });
+
+    $('.role_input').val(function() {
+      $(this).data().select2.updateSelection( $(this).data('init') )
+    });
+
+  }
+
   if(typeof term_object != 'undefined')  {
 
 		$('#updateTermButton').click(function() {
@@ -43,16 +68,16 @@ $(document).ready(function(){
    if(typeof report_object != 'undefined')  {
 
     $('#updateReportButton').click(function() {
-    //alert("updating term object")
+    //alert("updating report object")
       if (updateReportObject(report_object) == false)
         return false;
 
       updateReport(report_object)
     })
 
-    $('#showJSONButton').click( function() {
-      $('#json_container').toggle()
-    })
+    // $('#showJSONButton').click( function() {
+    //   $('#json_container').toggle()
+    // })
 
     $('#deleteConfirm').click( function() {
       $('a.close-reveal-modal').trigger('click')
@@ -277,7 +302,7 @@ function updateReportObject(report_object ) {
     id = $(this).attr('id');
     if ( id ) {
       p = tinymce.get(id).getContent()
-      if ((id == "name")  || (id =="t_height") || (id =="t_width") || (id =="t_tabs") ){
+      if ((id == "name")  || (id == "office_owner") || (id =="t_height") || (id =="t_width") || (id =="t_tabs") ){
         var StrippedString = p.replace(/(<([^>]+)>)/ig,"");
         p = StrippedString;
       }
@@ -297,10 +322,11 @@ function updateReportObject(report_object ) {
 
          n = p.replace(/(<p>|<\/p>)/g, "");
          n = n.replace(/&amp;/g, '&');
+         n = n.replace(/(")/g, "");
       }
       if (id =='report_type' || id == 'datasource' ){
 
-         p = p.replace(/(<p>|<\/p>)/g, "");
+        p = p.replace(/(<p>|<\/p>)/g, "");
 
       }
 
@@ -312,7 +338,70 @@ function updateReportObject(report_object ) {
     }
   })
   report_object["embedJSON"] = "{\"width\": \""+w+"\", \"height\" : \"" + h+"\",\"name\":\""+ n+"\",\"tabs\":\""+t+"\"}"
+
+  report_object["terms"] = []
+  var term_array=[]
+
+  var term_text =null;
+  json_term_array = $('#term_input').select2('data')
+  console.log("This is the json_term_array: " + json_term_array);
+  for (var j = 0; j < json_term_array.length; j++ ) {
+    report_object["terms"].push( { name: json_term_array[j]["text"]} )
+    var term_exists = false;
+    if (term_array !=null )  {
+      for (var k=0; k<term_array.length; k++){
+        if (json_term_array[j]["text"] == term_array[k]["name"])  {
+          term_exists = true;
+          break;
+        }
+      }
+    }
+    if (!term_exists){
+      term_array.push({name: json_term_array[j]["text"]})
+    }
+    else{
+      if (!term_text)
+        term_text = json_term_array[j]["text"]
+      else if (term_text.search( json_term_array[j]["text"]) <0){
+        term_text  += " , "+ json_term_array[j]["text"]
+      }
+    }
+  }
+
+  // By default, we are setting write ability to true for all associated role nodes
+  report_object["allows_access_with"] = []
+  var access_array=[]
+
+  var access_text =null;
+  json_access_array = $('#role_input').select2('data')
+  console.log(json_access_array);
+  for (var j = 0; j < json_access_array.length; j++ ) {
+
+    report_object["allows_access_with"].push( { name: json_access_array[j]["text"], allow_update_and_delete: true} )
+    var access_exists = false;
+    if (access_array !=null )  {
+      for (var k=0; k<access_array.length; k++){
+        if (json_access_array[j]["text"] == access_array[k]["name"])  {
+          access_exists = true;
+          break;
+        }
+      }
+    }
+
+    if (!access_exists){
+      access_array.push({name: json_access_array[j]["text"]})
+    }
+    else{
+      if (!access_text){
+        access_text = json_access_array[j]["text"]
+      }
+      else if (access_text.search( json_access_array[j]["text"]) <0){
+        access_text  += " , "+ json_access_array[j]["text"]
+      }
+    }
+  }
 }
+
 
 function updateReport( report_object ) {
   
@@ -356,8 +445,8 @@ function deleteReport( reportid ) {
       success: function(data, status, xhr){
         addSuccessMessage("success", "<b>" + data.message + ". Please wait for Reports Page display.</br>" )
         showSuccessMessage();
-        var myHashLink = "reports";
-        window.location.href = '/' + "#" + myHashLink;
+        var myHashLink = "browse/reports";
+        window.location.href = '/' + myHashLink;
       },
       error: function(xhr, status, error) {
            //alert(xhr.responseText)
@@ -541,6 +630,7 @@ function deleteOffice( officeid ) {
 
 tinymce.init({
     selector: "div.editable",
+    relative_urls: false,
     inline: true,
     menubar: true,
     relative_urls: false,

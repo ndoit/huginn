@@ -35,6 +35,10 @@ gem 'coffee-rails', '~> 4.0.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+
+# Use haml for beautification and workflow
+gem 'haml', '~>4.0.5'
+
 #use this for html tag rendering in json data
 #gem 'angularjs-rails-resource', '~> 1.1.0'
 
@@ -59,13 +63,17 @@ gem 'httparty'
 
 gem "select2-rails"
 
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0.0'
+end
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
 # Use unicorn as the app server
 gem 'unicorn'
 gem 'dotenv'
-gem 'puma'
+#gem 'puma'
 #ND foundation
 gem 'nd_foundation'
 

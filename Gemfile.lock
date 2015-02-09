@@ -39,6 +39,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.7.0)
+    diff-lcs (1.2.5)
     dotenv (0.11.1)
       dotenv-deployment (~> 0.0.2)
     dotenv-deployment (0.0.2)
@@ -72,6 +73,8 @@ GEM
     foundation-rails (5.3.0.1)
       railties (>= 3.1.0)
       sass (>= 3.2.0)
+    haml (4.0.5)
+      tilt
     hike (1.2.3)
     httparty (0.13.1)
       json (~> 1.8)
@@ -110,8 +113,6 @@ GEM
     nokogiri (1.6.3.1-x86-mingw32)
       mini_portile (= 0.6.0)
     polyglot (0.3.4)
-    puma (2.8.2)
-      rack (>= 1.1, < 2.0)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -133,6 +134,22 @@ GEM
     rake (10.3.2)
     rdoc (4.1.1)
       json (~> 1.4)
+    rspec-core (3.0.0)
+      rspec-support (~> 3.0.0)
+    rspec-expectations (3.0.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.0.0)
+    rspec-mocks (3.0.1)
+      rspec-support (~> 3.0.0)
+    rspec-rails (3.0.1)
+      actionpack (>= 3.0)
+      activesupport (>= 3.0)
+      railties (>= 3.0)
+      rspec-core (~> 3.0.0)
+      rspec-expectations (~> 3.0.0)
+      rspec-mocks (~> 3.0.0)
+      rspec-support (~> 3.0.0)
+    rspec-support (3.0.0)
     rubycas-client (2.3.10.rc1)
       activesupport
     sass (3.2.19)
@@ -183,14 +200,15 @@ DEPENDENCIES
   dotenv
   fog (~> 1.23.0)
   foundation-rails (~> 5.3.0.0)
+  haml (~> 4.0.5)
   httparty
   jbuilder (~> 1.2)
   jquery-rails
   mini_magick
   nd_foundation
-  puma
   rails (= 4.0.2)
   rails-config
+  rspec-rails (~> 3.0.0)
   rubycas-client (= 2.3.10.rc1)
   sass-rails (~> 4.0.0)
   sdoc
