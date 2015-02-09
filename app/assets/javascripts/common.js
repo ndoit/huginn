@@ -633,6 +633,7 @@ tinymce.init({
     relative_urls: false,
     inline: true,
     menubar: true,
+    relative_urls: false,
     plugins: [
         "advlist autolink lists link image charmap print preview anchor",
         "searchreplace visualblocks code fullscreen",

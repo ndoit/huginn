@@ -34,39 +34,6 @@ class TermsController < ApplicationController
   end
 
 
-
-
-  def authenticated_show
-    if session[:cas_pgt] == nil
-      Rails.logger.info("PGT is nil.")
-    end
-
-    Rails.logger.info("CAS User: #{session[:cas_user].to_s}, CAS Pgt: #{session[:cas_pgt].to_s}")
-    muninn_response = Muninn::Adapter.get( "/terms/" + URI::encode(params[:id]), session[:cas_user], session[:cas_pgt] )
-    @term = JSON.parse(muninn_response.body)
-    logger.debug("These are the show terms: #{@term}")
-    @term["huginn_user"] = session[:cas_user].to_s
-    @term["reports"] ||= []
-
-    # GET STAKEHOLDERS FOR TERM
-    @stakeholder_hash = {}
-    @stakeholder_hash["Responsible"] = []
-    @stakeholder_hash["Accountable"] = []
-    @stakeholder_hash["Consult"] = []
-    @stakeholder_hash["Inform"] = []
-
-
-    stake_json = @term["stakeholders"]
-    if stake_json != nil
-     stake_json.each do |stake|
-          @stakeholder_hash[stake["stake"]] ||= []
-        @stakeholder_hash[stake["stake"]] << {id: stake["id"], text: stake["name"]}
-      end
-    end
-  end
-
-
-
  
   def show
 
