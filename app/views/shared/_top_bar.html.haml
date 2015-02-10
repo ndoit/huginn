@@ -44,7 +44,7 @@
                         %br/
                         .row
                           .large-4.columns
-                            %span  
+                            %span
                           .large-4.columns
                             %input#createReportButton.tiny.button{:type => "button", :value => "Save Report"}/
                             .large-4.columns
@@ -83,6 +83,6 @@
                                   %input#addOfficeButton{:type => "button", :value => "Save Office"}/
                                 .large-4.columns
                                 %a.close-reveal-modal ×
-                        - else
-                          %li
-                            = link_to "Log In", login_path
+              - else
+                %li
+                  = link_to "Log In", login_path
