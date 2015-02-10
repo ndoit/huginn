@@ -3,7 +3,7 @@ class Muninn::Adapter
     Rails.logger.info("cas_user = #{cas_user.to_s}, cas_pgt = #{cas_pgt.to_s}; proxy callback uri = #{Huginn::Application.config.cas_proxy_callback_url}")
 
     if cas_user != nil && cas_pgt != nil
-      cas_service_uri = "https://" + muninn_host.to_s + "/"
+      cas_service_uri = "https://" + ENV["muninn_host"] + "/"
       proxy_granting_ticket = cas_pgt
       ticket = CASClient::Frameworks::Rails::Filter.client.request_proxy_ticket(
         proxy_granting_ticket, cas_service_uri
