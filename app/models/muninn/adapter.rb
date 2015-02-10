@@ -8,7 +8,7 @@ class Muninn::Adapter
       ticket = CASClient::Frameworks::Rails::Filter.client.request_proxy_ticket(
         proxy_granting_ticket, cas_service_uri
       )
-      return "?service=#{URI::encode(ticket.service)}&ticket=#{ticket.ticket}"
+      return "?service=#{URI::encode(ticket.service)}&ticket=#{ticket.ticket}&cas_user=#{cas_user}"
 
     elsif cas_user != nil && allow_non_proxy
      return "?cas_user=#{cas_user}"
