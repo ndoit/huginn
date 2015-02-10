@@ -14,6 +14,8 @@
 <h3>Status</h3>
 <% if @cas_user == "" || @cas_user == nil %>
   <b><span id="Status">ERROR_NO_LOGIN</span></b>: You are not logged in to CAS, or your login failed.
+<% elsif !@output["success"] %>
+  <b><span id="Status">ERROR_MUNINN_FAIL</span></b>: Muninn encountered an error trying to determine your access level.
 <% elsif @output["user"]["net_id"] == @cas_user %>
   <b><span id="Status">SUCCESS</span></b>: CAS proxy authentication is working.
 <% elsif @cas_pgt == "" || @cas_pgt == nil %>
