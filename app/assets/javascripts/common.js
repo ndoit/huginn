@@ -464,8 +464,8 @@ function deleteTerm( termid ) {
 	    success: function(data, status, xhr){
 	      addSuccessMessage("success", "<b>" + data.message + ". Please wait for Glossary Page display.</br>" )
 	      showSuccessMessage();
-        var myHashLink = "terms";
-        window.location.href = '/' + "#" + myHashLink;
+        var myHashLink = "browse/terms";
+        window.location.href = '/' + myHashLink;
 	    },
 	    error: function(xhr, status, error) {
            //alert(xhr.responseText)
@@ -615,8 +615,8 @@ function deleteOffice( officeid ) {
       success: function(data, status, xhr){
         addSuccessMessage("success", "<b>" + data.message + ". Please wait for Offices display Page.</br>" )
         showSuccessMessage();
-        var myHashLink = "offices";
-        window.location.href = '/' + "#" + myHashLink;
+        var myHashLink = "browse/offices";
+        window.location.href = '/' + myHashLink;
       },
       error: function(xhr, status, error) {
            //alert(xhr.responseText)
