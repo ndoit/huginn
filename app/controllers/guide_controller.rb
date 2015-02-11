@@ -67,8 +67,8 @@ class GuideController < ApplicationController
     @results.each do |r|
       #for all results of type report
       if r["type"] == "report"
-        #create a new key/value pair with the ReportPhoto class
-        r["photo"] = ReportPhoto.new( r["id"] )
+        #create a new key/value pair with the PhotoMapper class
+        r["photo"] = PhotoMapper.new( r["id"] )
       end
     end
 

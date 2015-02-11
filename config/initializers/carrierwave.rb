@@ -27,7 +27,7 @@ CarrierWave.configure do |config|
     :aws_access_key_id     => ENV['S3_KEY'],
     :aws_secret_access_key => ENV['S3_SECRET'],
     :region                => ENV['S3_REGION'],
-    :path_style            => true   
+    :path_style            => true
   }
   # re: path_style and dot in bucket name
   # http://stackoverflow.com/questions/18340551/amazon-s3-hostname-does-not-match-the-server-certificate-opensslsslsslerr
@@ -35,13 +35,13 @@ CarrierWave.configure do |config|
   # For testing, upload files to local `tmp` folder.
   # if Rails.env.test? || Rails.env.cucumber?
   #   config.storage = :file
-  #   config.enable_processing = false
+  #   config.enable_processing = true
   #   config.root = "#{Rails.root}/tmp"
   # else
-  #   config.storage = :fog
+  #   # config.storage = :fog
   # end
  
-  config.cache_dir = "#{Rails.root}/tmp/uploads"                  # To let CarrierWave work on heroku
+  config.cache_dir = "#{Rails.root}/tmp/uploads/"                  # To let CarrierWave work on heroku
  
   config.fog_directory    = ENV['S3_BUCKET_NAME']
   #config.s3_access_policy = :public_read                          # Generate http:// urls. Defaults to :authenticated_read (https://)

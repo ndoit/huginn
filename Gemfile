@@ -7,9 +7,9 @@ source 'https://rubygems.org'
 # ---------------------------------------------------------------------
 # Setup
 # sudo yum install ImageMagick (case sensitive)
-# rails g uploader report_image
+# rails g uploader image_uploader
 # https://gist.github.com/cblunt/1303386
-gem 'fog', '~> 1.23.0' # for uploading to Amazon S3.  http://railscasts.com/episodes/383-uploading-to-amazon-s3
+gem 'fog', '~> 1.23.0', require: "fog/aws/storage" # for uploading to Amazon S3.  http://railscasts.com/episodes/383-uploading-to-amazon-s3
 gem 'mini_magick'
 gem 'carrierwave'
 # ---------------------------------------------------------------------
@@ -65,6 +65,8 @@ gem "select2-rails"
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
+  gem 'capybara'
+  gem 'factory_girl_rails'
 end
 
 # Use ActiveModel has_secure_password
