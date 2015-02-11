@@ -17,11 +17,6 @@ class Muninn::CustomSearchAdapter
     self
   end
 
-
-
-
-
-
   def filter_reports( role_array )
     @results ||= raw_result
     @filtered_report_count = 0
@@ -46,7 +41,6 @@ class Muninn::CustomSearchAdapter
     self
   end
 
-
   def resource_count_hash
     # get a hash of result count by node type
     results_count = @muninn_result.select { |k| "#{k["type"]}" =="doc_count"}
@@ -64,7 +58,6 @@ class Muninn::CustomSearchAdapter
 
     results_hash
   end
-
 
   def raw_result
     @muninn_result
@@ -108,7 +101,6 @@ private
     custom_query(search_string, page_number, 15, cas_user, cas_pgt )
   end
 
-
   # no key == get all.
   # empty key == get nothing!
   def selected_resource_array( args )
@@ -119,10 +111,6 @@ private
       @node_types
     end
   end
-
-
-
-
 
   def extract_results(search_response)
     response_hash = JSON.parse(search_response)
@@ -153,12 +141,8 @@ private
 
   def custom_query(json_string, page, per_page, cas_user, cas_pgt )
     muninn_response = Muninn::Adapter.get( '/search/custom/query', cas_user, cas_pgt, json_string )
-
     output_string= ActiveSupport::JSON.decode(muninn_response.body.to_json)
-
     results= extract_results(output_string)
-
    end
-
 
 end
