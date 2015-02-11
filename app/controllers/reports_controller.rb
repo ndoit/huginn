@@ -33,7 +33,7 @@ class ReportsController < ApplicationController
     if @report["success"] 
 
       ## GET Report's Associated Terms
-      @report_photo = ReportPhoto.new( @report["report"]["id"])
+      @report_photo = PhotoMapper.new( @report["report"]["id"])
       @report_embed = JSON.parse(@report["report"]["embedJSON"])
       term_report_json = @report["terms"]
       if term_report_json  != nil
@@ -99,11 +99,11 @@ class ReportsController < ApplicationController
   end
 
   def upload
-    r = ReportPhoto.new( params[:id] )
-    r.report_image = params[:image]
+    r = PhotoMapper.new( params[:id] )
+    r.uploader = params[:image]
     r.save
     logger.info("image upload method ran: #{r}")
-    logger.debug("image upload method ran: #{r}")
+    # logger.debug("image upload method ran: #{r}")
     redirect_to :back
     # render text: "hi"
   end

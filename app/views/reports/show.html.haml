@@ -38,11 +38,7 @@
     .row
       .large-12.columns
         #description{:class => ("editable" if current_user && current_user.can( :publish_report )) }
-          - if @report["report"]["description"]  then
-            = @report["report"]["description"].html_safe
-          - else
-            NA
-
+          = @report["report"].fetch("description", "NA").html_safe
   - if @report["report"]["report_type"] == "External"
     / External report
     .row
@@ -84,7 +80,7 @@
       %h5.page-title Sample Image
       .medium-3.columns
         / %p= @report_photo.image_url(:small)
-        = image_tag @report_photo.image_url(:small), :onerror => "this.src = '/assets/chart-icon-07.svg';this.removeAttribute('onerror');"
+        = image_tag @report_photo.image_url(:medium), :onerror => "this.src = '/assets/chart-icon-07.svg';this.removeAttribute('onerror');"
   .row
     .large-12.large-centered.columns
       .medium-3.columns
