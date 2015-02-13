@@ -1,0 +1,52 @@
+:javascript
+  office_detail_json = #{@office["office"].to_json.to_s.html_safe}
+.row
+  .large-8.columns
+    .alert-box.alert.radius{"data-alert" => "", :style => "display:none"}
+      %ul.error_list
+      %a.close{:href => "#"} ×
+    .alert-box.warning.radius{"data-alert" => "", :style => "display:none"}
+      %ul.error_list
+      %a.close{:href => "#"} ×
+    .alert-box.success.radius{"data-alert" => "", :style => "display:none"}
+      %span.success_msg
+      %a.close{:href => "#"} ×
+.row
+  .large-12.columns
+    #mytinyDelete.reveal-modal.tiny{"data-reveal" => ""}
+      %h2 Deleting Office
+      %br
+      %b
+        Are you sure?
+        %b
+          %br
+          %br
+          %input#deleteConfirm.tiny.button{:type => "button", :value => "Yes"}
+          %input#deleteCancel.tiny.button{:type => "button", :value => "No"}
+          %a.close-reveal-modal ×
+- if @office["success"]
+  #office_detail
+    .row
+      .large-12.columns
+        .small-12.large-12.columns
+          %input#updateOfficeButton.tiny.button{:type => "button", :value => "Update Office"}
+          %input#deleteOfficeButton.tiny.button{"data-reveal-id" => "mytinyDelete", :type => "button", :value => "Delete Office"}
+  .row
+    .large-12.columns
+      #name.editable
+        %h2.page-title
+          = @office["office"]["name"].html_safe
+  .row
+    .large-12.columns
+      %h5.page-title Stakeholder Information
+      %br
+      %ul
+        - @office["stakes"].each do |stakeholder|
+          %strong
+            %li
+              %a{:href => "../terms/#{stakeholder["name"]}"}= stakeholder["name"]
+              = stakeholder["stake"]
+          %br
+- else
+  Error: 
+  = @office["message"]

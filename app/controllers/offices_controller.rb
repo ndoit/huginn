@@ -45,7 +45,7 @@ class OfficesController < ApplicationController
 
 
   def destroy
-    response = Muninn::Adapter.delete( "/offices/id/#{URI.encode(params[:id])}" )
+    response = Muninn::Adapter.delete( "/offices/id/#{URI.encode(params[:id])}", session[:cas_user], session[:cas_pgt] )
     render status: response.code, json: response.body
   end
 

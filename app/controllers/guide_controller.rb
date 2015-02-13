@@ -5,7 +5,6 @@ class GuideController < ApplicationController
   # before_filter :authorize, :except => [:index, :show]
   # before_filter :authorize, :only => :delete
 
-
   def node_types
     @node_types = [ 'report', 'term' ]
     # if current_user
@@ -22,8 +21,6 @@ class GuideController < ApplicationController
     end
   end
 
-
-
   def index
     #checks whether any search params have been entered
     if params.has_key?(:selected_resources)
@@ -32,33 +29,35 @@ class GuideController < ApplicationController
   end
 
   def search
-
- 
-
     logger.debug("Querying Muninn...")
     logger.debug("Params: " + params.to_s)
 
     params[:page] ||= 1
 
     @query = params[:selected_resources]
-    @full_query = params
-    logger.debug("these are the full params sent to muninn: #{@full_query}")
+    logger.debug("This is the params :selected_resources= #{@query}")
     mcsa = Muninn::CustomSearchAdapter.new( params, session[:cas_user], session[:cas_pgt] )
 
     # because we are going to do security down on the muninn side of things,
     # we no longer need to filter reports on huginn side.
-    
-    #mcsa.filter_reports( role_filter_array )
+    # mcsa.filter_reports( role_filter_array )
 
-    params[:selected_resources] ||= @query 
-    logger.debug("These are the returning params: #{params}")
+    # why is this here? this is redundant in the lines above.
+    # params[:selected_resources] ||= @query 
+
+    logger.debug("These are the returning params: #{mcsa.to_s}")
     
+    # This needs to return @results
     mcsa.filter_results
-
     @results = mcsa.results
 
-
-    # Right now the results are coming in and only getting parsed at the view layer. If I want to add authentication on certain terms and reports, I would need to parse out the terms and reports here at the controller/model level BEFORE sending it to the view. 
+    # Right now the results are coming in and only getting parsed at the view layer. 
+    # If I want to add authentication on certain terms and reports, 
+    # I would need to parse out the terms and reports here at the controller/model level 
+    # BEFORE sending it to the view. 
+    ###
+    # This is no longer true
+    # Muninn now handles all security for us
 
     # each time the user hits muninn, muninn retrieves everything and then sends it back
 
@@ -72,15 +71,11 @@ class GuideController < ApplicationController
       end
     end
 
-    # logger.debug("@results is a :#{@results.singleton_class}")
-    #= > @results is a :#<Class:#<WillPaginate::Collection:0x00000006a8bc80>>
-
-
-    @muninn_result = mcsa.raw_result
+    # Why do I need the raw result?
+    # @muninn_result = mcsa.raw_result
 
     @selected_node_types = mcsa.selected_node_types  # should the mcsa do this
     @resource_count_hash = mcsa.resource_count_hash
-
 
     # render "filter_count_nav_bar.html.erb"
     if ( params[:page].to_i > 1 )

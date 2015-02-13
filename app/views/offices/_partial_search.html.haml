@@ -1,0 +1,7 @@
+.result_row
+  .result_header
+    .result_title
+      %h4
+        %a.do_highlight{:href => "../#{result["type"].pluralize}/#{result["data"]["name"]}"}
+          = result["data"]["name"]
+%hr

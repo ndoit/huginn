@@ -22,8 +22,10 @@
             - if current_user
               %li
                 = link_to 'Report Gallery', "/browse/report", :style => ("background: #666666;" if url == "/browse/reports")
+              / %li
+              /   = link_to 'Datasets', "/browse/datasets", :style => ("background: #666666;" if url == "/browse/datasets")
               %li
-                = link_to 'Datasets', "/browse/datasets", :style => ("background: #666666;" if url == "/browse/datasets")
+                = link_to 'Offices', "/browse/offices", :style => ("background: #666666;" if url == "/browse/offices")
             %li
               = link_to 'Glossary', "/browse/term", :style => ("background: #666666;" if url == "/browse/terms")
             %li.has-dropdown
@@ -40,14 +42,14 @@
                       #reporttiny.reveal-modal.tiny{"data-reveal" => ""}
                         %h2 Add New Report
                         Name:
-                        %input#rname{:name => "rname", :type => "text"}/
-                        %br/
+                        %input#rname{:name => "rname", :type => "text"}
+                        %br
                         .row
-                          .large-4.columns
-                            %span
-                          .large-4.columns
-                            %input#createReportButton.tiny.button{:type => "button", :value => "Save Report"}/
-                            .large-4.columns
+                          / .large-4.columns
+                          /   %span
+                          .large-5.large-centered.columns
+                            %input#createReportButton.expand.button{:type => "button", :value => "Save Report"}/
+                            / .large-4.columns
                           %a.close-reveal-modal ×
                         - if current_user && current_user.can(:edit_term)
                           / <li class="divider"></li>
@@ -58,14 +60,14 @@
                             #mytiny.reveal-modal.tiny{"data-reveal" => ""}
                               %h2 Add a New Term
                               Name:
-                              %input#tname{:name => "tname", :type => "text"}/
-                              %br/
+                              %input#tname{:name => "tname", :type => "text"}
+                              %br
                               .row
-                                .large-4.columns
-                                  %span  
-                                .large-4.columns
-                                  %input#createTermButton.tiny.button{:type => "button", :value => "Save Term"}/
-                                .large-4.columns
+                                / .large-4.columns
+                                /   %span  
+                                .large-5.large-centered.columns
+                                  %input#createTermButton.expand.button{:type => "button", :value => "Save Term"}
+                                / .large-4.columns
                               %a.close-reveal-modal ×
                           / <li class="divider"></li>
                           %li
@@ -74,14 +76,14 @@
                             #officetiny.reveal-modal.tiny{"data-reveal" => ""}
                               %h2 Add New Office
                               Name:
-                              %input#oname{:name => "oname", :type => "text"}/
-                              %br/
+                              %input#oname{:name => "oname", :type => "text"}
+                              %br
                               .row
-                                .large-4.columns
-                                  %span
-                                .large-4.columns
-                                  %input#addOfficeButton{:type => "button", :value => "Save Office"}/
-                                .large-4.columns
+                                / .large-4.columns
+                                /   %span
+                                .large-5.large-centered.columns
+                                  %input#addOfficeButton.expand.button{:type => "button", :value => "Save Office"}
+                                / .large-4.columns
                                 %a.close-reveal-modal ×
               - else
                 %li

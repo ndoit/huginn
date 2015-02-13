@@ -26,7 +26,7 @@ class Muninn::Adapter
       )
     response = HTTParty.get("http://" + ENV["muninn_host"] + ":" + ENV["muninn_port"] + resource_uri + cas_proxy_params(cas_user,cas_pgt,false))
 
-    Rails.logger.debug("Muninn GET output: #{response}")
+    # Rails.logger.debug("Muninn GET output: #{response}")
     return response
   end
 
@@ -77,7 +77,7 @@ class Muninn::Adapter
       :body => (body == nil) ? nil : body,
       :headers => {'Content-Type' => 'application/json'} )
 
-    Rails.logger.debug("Muninn GET output: #{response}")
+    # Rails.logger.debug("Muninn GET output: #{response}")
     return response
   end
 
