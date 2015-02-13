@@ -4,8 +4,10 @@
     report_embed_object = #{@report_embed.to_json.to_s.html_safe}
     term_reports = #{@term_reports.to_s.html_safe}
     term_gov_json =#{@term_gov_json.to_s.html_safe}
+    // office_gov_json =#{@office_gov_json.to_s.html_safe}
     role_reports  = #{@role_reports.to_s.html_safe}
     security_roles_json =#{@security_roles_json.to_s.html_safe}
+
   .row
     .large-8.columns
       .alert-box.alert.radius{"data-alert" => "", :style => "display:none"}
@@ -103,7 +105,7 @@
               %tbody.tbody
                 %tr.term_row
                   %td
-                    %input#term_input.term_input{"data-init" => @term_reports.to_s, :type => "hidden"}/
+                    %input#term_input.term_input{"data-init" => @term_reports.to_s, :type => "hidden"}
     - else
       .row
         .large-12.large-centered.columns
@@ -139,6 +141,7 @@
                 %strong
                   = result["name"]
                 %br
+
   .row
     .large-12.columns
       %h5.page-title Additional Information
@@ -146,7 +149,7 @@
       %dt Report Type
       %dd
         #report_type{:class => ("editable" if current_user && current_user.can( :publish_report ) )}
-          - if @report["report"]["report_type"]  then
+          - if @report["report"]["report_type"]
             = @report["report"]["report_type"].html_safe
           - else
             NA
@@ -154,7 +157,7 @@
       %dt Data Source
       %dd
         #datasource{:class => ("editable" if current_user && current_user.can( :publish_report ) )}
-          - if @report["report"]["datasource"]   then
+          - if @report["report"]["datasource"]
             = @report["report"]["datasource"]
           - else
             NA
@@ -197,8 +200,13 @@
       .row
         .large-12.large-centered.columns
           %h5.page-title Office Owner
-          #office_owner{:class => ("editable" if current_user && current_user.can( :publish_report ) )}
-            = @report["report"]["office_owner"]
+          #office_owner
+            - if current_user.can(:publish_report)
+              = select_tag 'office_id', options_for_select(@offices.collect{ |o| [o[:text], o[:id]] }, [@report["offices"].first["name"], @report["offices"].first["id"]])
+            - else
+              = @report["offices"].first["name"]  
+              
+
       .row
         .medium-2.medium-offset-4.columns
           %input#updateReportButton.small.button.expand{:type => "button", :value => "Update Report"}

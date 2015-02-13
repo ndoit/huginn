@@ -9,6 +9,7 @@ class ReportsController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def update
+    logger.debug("JSON sent to muninn: #{params[:reportJSON]}")
     response = Muninn::Adapter.put( "/reports/#{URI.encode(params[:id])}", session[:cas_user], session[:cas_pgt], params[:reportJSON] )
     render status: response.code, json: response.body
   end
@@ -27,13 +28,18 @@ class ReportsController < ApplicationController
   def show
 
     logger.debug("Querying Muninn...")
-    reports_resp = Muninn::Adapter.get( "/reports/" + URI::encode(params[:id]), session[:cas_user], session[:cas_pgt]  )
+    reports_resp = Muninn::Adapter.get( 
+      "/reports/" + URI::encode(params[:id]),
+      session[:cas_user], session[:cas_pgt]
+    )
     @report = JSON.parse(reports_resp.body)
     logger.debug("checking report success: #{@report["success"]}")
+    logger.debug("full report hash: #{@report}")
     if @report["success"] 
 
-      ## GET Report's Associated Terms
       @report_photo = PhotoMapper.new( @report["report"]["id"])
+
+      ## GET Report's Associated Terms
       @report_embed = JSON.parse(@report["report"]["embedJSON"])
       term_report_json = @report["terms"]
       if term_report_json  != nil
@@ -75,9 +81,9 @@ class ReportsController < ApplicationController
 
       terms= []
       terms_json.each do |term|
-            terms << {id: term["data"]["id"], text: term["data"]["name"]}
+        terms << {id: term["data"]["id"], text: term["data"]["name"]}
       end
-      @term_gov_json =terms.to_json
+      @term_gov_json = terms.to_json
 
       # GET All Security Access
       roles_resp = Muninn::Adapter.get( "/security_roles", session[:cas_user], session[:cas_pgt])
@@ -91,6 +97,17 @@ class ReportsController < ApplicationController
       end
       @security_roles_json = roles.to_json
       # logger.debug("\n muninn's security_roles: #{@security_roles_json}")
+
+      ## GET all offices
+      offices_resp = Muninn::Adapter.get( "/offices", session[:cas_user], session[:cas_pgt])
+      offices_json = JSON.parse(  offices_resp.body )["results"]
+
+      @offices = []
+      offices_json.each do |office|
+        @offices << {id: office["data"]["id"], text: office["data"]["name"]}
+      end
+      # @offices_gov_json = @offices.to_json
+      @offices
     end
   end
 
@@ -103,9 +120,7 @@ class ReportsController < ApplicationController
     r.uploader = params[:image]
     r.save
     logger.info("image upload method ran: #{r}")
-    # logger.debug("image upload method ran: #{r}")
     redirect_to :back
-    # render text: "hi"
   end
   # TEST TEST TEST
 
