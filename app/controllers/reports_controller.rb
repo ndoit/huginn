@@ -107,7 +107,12 @@ class ReportsController < ApplicationController
         @offices << {id: office["data"]["id"], text: office["data"]["name"]}
       end
       # @offices_gov_json = @offices.to_json
-      @offices
+      if @report["offices"].first then
+          @report_office_owner_name = @report["offices"].first["name"]
+          @report_office_owner_stake =  @report["offices"].first["stake"]
+      else
+          @report_office_owner = nil
+      end
     end
   end
 

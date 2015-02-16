@@ -200,13 +200,13 @@
       .row
         .large-12.large-centered.columns
           %h5.page-title Office Owner
-          #office_owner
-            - if current_user.can(:publish_report)
-              = select_tag 'office_id', options_for_select(@offices.collect{ |o| [o[:text], o[:id]] }, [@report["offices"].first["name"], @report["offices"].first["id"]])
-            - else
-              = @report["offices"].first["name"]  
+          - if current_user.can(:publish_report)
+            = select_tag 'office_id', options_for_select(@offices.collect{ |o| o[:text] }, @report_office_owner_name), :id => 'office_owner'
+          / - else
+          /   = @report_office_owner
+          = @report_office_owner_name
+          = @report_office_owner_stake
               
-
       .row
         .medium-2.medium-offset-4.columns
           %input#updateReportButton.small.button.expand{:type => "button", :value => "Update Report"}
