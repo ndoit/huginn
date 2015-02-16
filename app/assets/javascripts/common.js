@@ -302,7 +302,7 @@ function updateReportObject(report_object ) {
     id = $(this).attr('id');
     if ( id ) {
       p = tinymce.get(id).getContent()
-      if ((id == "name")  || (id == "office_owner") || (id =="t_height") || (id =="t_width") || (id =="t_tabs") ){
+      if ((id == "name") || (id =="t_height") || (id =="t_width") || (id =="t_tabs") ){
         var StrippedString = p.replace(/(<([^>]+)>)/ig,"");
         p = StrippedString;
       }
@@ -340,15 +340,15 @@ function updateReportObject(report_object ) {
   report_object["embedJSON"] = "{\"width\": \""+w+"\", \"height\" : \"" + h+"\",\"name\":\""+ n+"\",\"tabs\":\""+t+"\"}"
 
   report_object["terms"] = []
-  var term_array=[]
+  var term_array = []
 
-  var term_text =null;
+  var term_text = null;
   json_term_array = $('#term_input').select2('data')
   console.log("This is the json_term_array: " + json_term_array);
   for (var j = 0; j < json_term_array.length; j++ ) {
     report_object["terms"].push( { name: json_term_array[j]["text"]} )
     var term_exists = false;
-    if (term_array !=null )  {
+    if (term_array != null )  {
       for (var k=0; k<term_array.length; k++){
         if (json_term_array[j]["text"] == term_array[k]["name"])  {
           term_exists = true;
@@ -362,11 +362,29 @@ function updateReportObject(report_object ) {
     else{
       if (!term_text)
         term_text = json_term_array[j]["text"]
-      else if (term_text.search( json_term_array[j]["text"]) <0){
+      else if (term_text.search( json_term_array[j]["text"]) < 0 ){
         term_text  += " , "+ json_term_array[j]["text"]
       }
     }
   }
+
+
+
+
+  // report office owner
+  report_object["offices"] = []
+  selected_office = $('#office_owner').val();
+
+  console.log('grabbed offices from dom' + selected_office)
+  // office_object = { "name" : office,
+  //   "stake" : "Responsible"
+  // }
+  // report_object["offices"].push << office_object
+  report_object["offices"].push( { name: selected_office, stake: "Responsible"} )
+  console.log('report object json with officeoffice' + report_object);
+
+
+
 
   // By default, we are setting write ability to true for all associated role nodes
   report_object["allows_access_with"] = []

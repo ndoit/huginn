@@ -46,3 +46,10 @@ body {
 		color: lightGray;
 	}
 }
+
+.editable {
+	border-radius: 2px 2px 2px 2px;
+	-moz-border-radius: 2px 2px 2px 2px;
+	-webkit-border-radius: 2px 2px 2px 2px;
+	border: 2px inset #ebebeb;
+}

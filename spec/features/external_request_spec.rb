@@ -1,19 +1,22 @@
 require 'spec_helper'
 
-describe 'External request' do
-  it 'has access to muninn api' do
-    uri = URI('http://localhost:3000/')
+describe 'External request', :type => :feature do
+  
+  # before do
+  #   Capybara.current_driver = :selenium
+  # end
 
-    response = Net::HTTP.get(uri)
-
-    expect(response).to be_an_instance_of(String)
+  it 'finds muninn api is running' do
+    session = Capybara::Session.new(:webkit)
+    session.visit('http://www.google.com')
+    # session.visit('http://localhost:3000/')
+    # page.has_content?('Ruby on Rails: Welcome aboard')
   end
 
-  it 'can grab datasets from muninn' do
+  xit 'can grab datasets from muninn' do
     uri = URI('http://localhost:3000/datasets')
     response = Net::HTTP.get(uri)
     expect(response).to be_an_instance_of(String)
   end
-
 
 end
