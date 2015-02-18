@@ -1,0 +1,11 @@
+.row
+  .large-12.columns
+    %h1.page-title Reports
+  .row
+    .large-8.columns
+      .alert-box.success.radius{"data-alert" => "", :style => "display:none"}
+        %span.success_msg
+        %a.close{:href => "#"} ×
+  .row
+    #reports.large-12.columns
+      = render partial: 'partial_search'

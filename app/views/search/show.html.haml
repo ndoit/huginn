@@ -1,0 +1,15 @@
+- if @results["Success"]
+  %h1 Search Results
+  %ul
+    - @results["Results"].each do |result|
+      - case result["Type"]
+      - when "Term"
+        %li
+          %a{:href => "../terms/#{result["Data"]["Id"]}"}
+            Term: #{result["Data"]["Name"]}
+      - when "Office"
+        %li
+          Office: #{result["Data"]["Name"]}
+      - when "Person"
+        %li
+          Person: #{result["Data"]["NetId"]}

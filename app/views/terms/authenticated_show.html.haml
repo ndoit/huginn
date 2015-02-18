@@ -1,0 +1,26 @@
+- if @term["success"]
+  %h1= @term["term"]["name"]
+  %b Definition:
+  %br/
+  %br/
+  = @term["term"]["definition"]
+  %br/
+  %br/
+  %b Stakeholders:
+  %br/
+  %ul
+    - @term["stakeholders"].each do |stakeholder|
+      %li
+        %a{:href => "../offices/#{stakeholder["name"]}"}>= stakeholder["name"]
+        \: #{stakeholder["stake"]}
+  %b Muninn Thinks You Are:
+  = @term["validated_user"]
+  %br/
+  %b Huginn Thinks You Are:
+  = @term["huginn_user"]
+  %br/
+  %b Huginn Thinks Your PGT Is:
+  = @term["huginn_pgt"]
+  %br/
+- else
+  Error: #{@term["message"]}

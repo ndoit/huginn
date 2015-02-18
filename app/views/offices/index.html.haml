@@ -1,0 +1,17 @@
+.row
+  .large-12.columns
+    %h1.page-title Offices
+.row
+  .large-8.columns
+    .alert-box.alert.radius{"data-alert" => "", :style => "display:none"}
+      %ul.error_list
+      %a.close{:href => "#"} ×
+    .alert-box.warning.radius{"data-alert" => "", :style => "display:none"}
+      %ul.error_list
+      %a.close{:href => "#"} ×
+    .alert-box.success.radius{"data-alert" => "", :style => "display:none"}
+      %span.success_msg
+      %a.close{:href => "#"} ×
+.row
+  #offices.large-12.columns
+    = render partial: 'partial_search'

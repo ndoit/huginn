@@ -1,0 +1,44 @@
+.row
+  .large-12.columns
+    %h1.page-title Access Denied
+.row
+  .large-12.columns
+    .large-7.columns
+      %p
+        %strong Hi Chris,
+      %p Unfortunatly, you do not have the proper permissions to access this content.  In order to view this file you'll need to request the following security roles:
+      %p
+        %span.alert.round.radius.label HR Analyst Sensitive
+        %span.alert.round.radius.label Org Security
+    .row
+      .large-12.columns
+        %aside.large-7.columns
+          %h5 Request for Access:
+          %form
+            .row
+              .large-12.columns
+                .panel
+                  .row
+                    .large-12.columns
+                      %label Enter Netid:
+                      %input{:placeholder => "Ex: cfreder2", :type => "text"}/
+                  .row
+                    .large-12.columns
+                      %label Check all that apply:
+                      %input#checkbox1{:type => "checkbox"}/
+                      %label{:for => "checkbox1"} HR Analyst Sensitive
+                      %input#checkbox2{:type => "checkbox"}/
+                      %label{:for => "checkbox2"} Org Security
+                  .row
+                    .large-12.columns
+                      %label Reason for Access Request:
+                      %textarea{:placeholder => ""}
+                  .center
+                    %a.button.tiny{:href => "#"} Submit Security Request
+    .row
+      .large-12.columns
+        %p
+        %h5 Your currently hold the following access roles:
+        .success.round.radius.label Public
+        .success.round.radius.label Provost Analyst
+        .success.round.radius.label Student Analyst

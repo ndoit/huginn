@@ -1,0 +1,40 @@
+%h1 CAS Proxy Test Results
+%h3 Sent from Huginn
+%b CAS User:
+%span#CasUser= @cas_user
+%br/
+%b CAS Proxy Granting Ticket:
+%span#CasPGT= @cas_pgt
+%br/
+%br/
+%h3 Returned from Muninn
+- if @output["success"]
+  %b Validated CAS User:
+  %span#ValidatedCasUser= @output["user"]["net_id"]
+  %br/
+- else
+  %b Error:
+  %span#ErrorMessage= @output["message"]
+  %br/
+%br/
+%h3 Status
+- if @cas_user == "" || @cas_user == nil
+  %b>
+    %span#Status ERROR_NO_LOGIN
+  \: You are not logged in to CAS, or your login failed.
+- elsif !@output["success"]
+  %b>
+    %span#Status ERROR_MUNINN_FAIL
+  \: Muninn encountered an error trying to determine your access level.
+- elsif @output["user"]["net_id"] == @cas_user
+  %b>
+    %span#Status SUCCESS
+  \: CAS proxy authentication is working.
+- elsif @cas_pgt == "" || @cas_pgt == nil
+  %b>
+    %span#Status ERROR_MISSING_PGT
+  \: You are logged in to CAS, but Huginn was unable to retrieve your proxy-granting ticket.
+- else
+  %b>
+    %span#Status ERROR_VALIDATION_FAILED
+  \: You are logged in to CAS and you have a proxy-granting ticket, but Muninn was unable to validate it.

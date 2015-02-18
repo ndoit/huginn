@@ -1,0 +1,89 @@
+!!!
+/[if lt IE 8] <html class="no-js lt-ie9 lt-ie8">
+/[if IE 8] <html class="no-js lt-ie9">
+/ [if gt IE 8]><!
+%html.no-js{:ng_app => ""}
+  / <![endif]
+  %head
+    %meta{:charset => "utf-8"}/
+    %title= content_for?(:title) ? yield(:title) : "Find your data"
+    %meta{:content => "This is the Meta Description", :name => "description"}/
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
+    %meta{:content => "Short Name", :name => "apple-mobile-web-app-title"}/
+    %meta{:content => "Short Name", :name => "application-name"}/
+    %link{:href => "/favicon.ico", :rel => "shortcut icon"}/
+    %link{:href => "/images/webclips/nd-webclip-57.png", :rel => "apple-touch-icon-precomposed"}/
+    %link{:href => "/images/webclips/nd-webclip-72.png", :rel => "apple-touch-icon-precomposed", :sizes => "72x72"}/
+    %link{:href => "/images/webclips/nd-webclip-114.png", :rel => "apple-touch-icon-precomposed", :sizes => "114x114"}/
+    %link{:href => "/images/webclips/nd-webclip-144.png", :rel => "apple-touch-icon-precomposed", :sizes => "144x144"}/
+    = stylesheet_link_tag    "application"
+    = javascript_include_tag "vendor/modernizr"
+    = csrf_meta_tags
+    %script{:src => "//tinymce.cachefly.net/4.1/tinymce.min.js"}
+  %body
+    /
+      <nav class="skip-links">
+      <ul>
+      <li><a href="#content" accesskey="C" title="Skip to content = C">Skip To Content</a></li>
+      <li><a href="#nav" accesskey="S" title="Skip to navigation = S">Skip To Navigation</a></li>
+      </ul>
+      </nav>
+    %header#header.site-header{:role => "banner"}
+      .beta_banner
+        = image_tag "beta_corner_banner.png"
+      %nav.brandbar.theme-bb-lightgray
+        .row
+          %ul.large-12.columns
+            %li.dept-nd
+              %a{:href => "http://www.nd.edu"}
+                University
+                %i of
+                Notre Dame
+            %li.dept.dept-ooit
+              %a{:href => "http://oit.nd.edu"}
+                Office
+                %i of
+                Information Technologies
+      = render "shared/top_bar"
+    %main#content.site-content{:role => "main"}
+      - if request.path == "/"
+        .row
+          .large-5.large-centered.columns.splash
+            %h2 Welcome To The BI Portal
+        .row
+          .large-7.large-centered.columns.splash
+            %h2 At The University Of Notre Dame du Lac
+        .row
+          .large-5.medium-7.medium-centered.columns
+            = image_tag("dome_fullwidth.jpg", :class =>"th")
+        %br/
+        - unless current_user
+          .row
+            .large-5.medium-7.medium-centered.columns
+              / <a href="#" class="button expand">LOG IN</a>
+              = link_to "LOG IN", login_path, class: "button expand"
+      = yield
+    %footer#footer.site-footer.row{:role => "contentinfo"}
+      .large-12.columns
+        .footer-inner
+          .vcard
+            %p.copyright.url.fn.org
+              %a{:href => "http://www.nd.edu/copyright/"} Copyright
+              \© #{Time.now.year}
+              %a.org{:href => "http://www.nd.edu"} University of Notre Dame
+            %p.contact-info.adr
+              %span.address
+                %span.street-address> 200 OIT Center
+                ,
+                = succeed "," do
+                  %span.locality Notre Dame
+                %span.region{:title => "Indiana"} IN
+                %span.postal-code 46556
+              %span.tel
+                %span.type Phone
+                574-631-7770
+              %span.email
+                %a{:href => "mailto:ES-DECISION-SUPPORT@LISTSERV.ND.EDU"} ES-DECISION-SUPPORT@LISTSERV.ND.EDU
+            %a.ndmark{:href => "http://www.nd.edu"}
+              %img{:alt => "University of Notre Dame", :src => "//www.nd.edu/assets/images/marks/blue/ndmark300.png"}/
+    = javascript_include_tag "application"
