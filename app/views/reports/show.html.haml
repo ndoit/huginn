@@ -30,12 +30,24 @@
         %input#deleteConfirm.tiny.button{:type => "button", :value => "Yes"}/
         %input#deleteCancel.tiny.button{:type => "button", :value => "No"}/
         %a.close-reveal-modal ×
+
+  .row
+    .large-1.large-offset-11.columns
+      Edit
+      .switch.radius
+        %input#editmode{:type => "checkbox"}/
+        %label{:for => "editmode"}
+
   #report_detail
     .row
+      .large-6.columns
+        / #name{:class=> ("editable" if current_user && current_user.can( :publish_report ) )}
+
+        %input#name{:value => "#{@report["report"]["name"]}", :type => "text"}
+          
       .large-12.columns
-        #name{:class=> ("editable" if current_user && current_user.can( :publish_report ) )}
-          %h2.page-title
-            = @report["report"]["name"].html_safe
+        %h2.page-title
+          = @report["report"]["name"].html_safe
 
     .row
       .large-12.columns
@@ -50,33 +62,44 @@
     / Aggregation of sub-reports
     .row
       .large-12.columns
-        %ul{:class => "small-block-grid-1 medium-block-grid-2 large-block-grid-#{@report_embed["gridsize"].to_s}"}
-          - @subreports.each do |subreport|
-            %li
-              .row
-                .small-12.medium-12.large-12.columns
-                  %a{:href => subreport["name"]}
-                    %h5= subreport["name"]
-              .row
-                .small-12.medium-12.large-12.columns
-                  %a{:href => subreport["name"]}
-                    %img{:src => subreport["thumbnail_uri"]}
+      /       %ul{:class => "small-block-grid-1 medium-block-grid-2 large-block-grid-#{@report_embed["gridsize"].to_s}"}
+      /         - @subreports.each do |subreport|
+      /           %li
+      /             .row
+      /               .small-12.medium-12.large-12.columns
+      /                 %a{:href => subreport["name"]}
+      /                   %h5= subreport["name"]
+      /             .row
+      /               .small-12.medium-12.large-12.columns
+      /                 %a{:href => subreport["name"]}
+      /                   %img{:src => subreport["thumbnail_uri"]}
 
-  - else
-    / Tableau report
-    - if @report_embed["width"] != "" then
-      .row
-        .large-12.large-centered.columns
-          %script{:src => "https://tableau.nd.edu/javascripts/api/viz_v1.js", :type => "text/javascript"}
-          #tableauPlaceholderId.tableauPlaceholder{:style => "width:#{@report_embed["width"]}; height:#{@report_embed["height"]};"}
-            %object.tableauViz{:height => @report_embed["height"], :style => "display:none;", :width => @report_embed["width"]}
-              %param{:name => "host_url", :value => "https%3A%2F%2Ftableau.nd.edu%2F"}
-              %param{:name => "site_root", :value => ""}
-              %param{:name => "name", :value => (@report_embed["name"].html_safe) }
-              %param{:name => "tabs", :value => (@report_embed["tabs"].html_safe) }
-              %param{:name => "linktarget", :value => "_self"}
-              %param{:name => "toolbar", :value => "yes"}
-      %br
+      / - else
+      /   / Tableau report
+      /   - if @report_embed["width"] != "" then
+      /     .row
+      /       .large-12.large-centered.columns
+      /         %script{:src => "https://tableau.nd.edu/javascripts/api/viz_v1.js", :type => "text/javascript"}
+      /         #tableauPlaceholderId.tableauPlaceholder{:style => "width:#{@report_embed["width"]}; height:#{@report_embed["height"]};"}
+      /           %object.tableauViz{:height => @report_embed["height"], :style => "display:none;", :width => @report_embed["width"]}
+      /             %param{:name => "host_url", :value => "https%3A%2F%2Ftableau.nd.edu%2F"}
+      /             %param{:name => "site_root", :value => ""}
+      /             %param{:name => "name", :value => (@report_embed["name"].html_safe) }
+      /             %param{:name => "tabs", :value => (@report_embed["tabs"].html_safe) }
+      /             %param{:name => "linktarget", :value => "_self"}
+      /             %param{:name => "toolbar", :value => "yes"}
+
+
+
+  %br
+  .row
+    .large-12.columns
+      %input#tableauembed{:placeholder => "tableau embed", :type => "text"}
+      / %iframe{:src => "@report["}
+      %iframe{:src => "https://tableau.nd.edu/views/11-24-14FieldStory/1-ChooseFieldNDOverview?:embed=y&:display_count=no", :width => "100%", :height => "1000px"}
+
+
+  %br
   .row
     .large-12.large-centered.columns
       %h5.page-title Sample Image
@@ -166,36 +189,36 @@
     - if current_user && current_user.can( :publish_report )
       .row
         .large-12.large-centered.columns
-          %h5.page-title Report Parameters for Tableau
-          %br
-          %dt Report Width
-          %dd
-            #t_width.editable
-              - if @report_embed["width"] !=""  then
-                = @report_embed["width"]
-              - else
-                NA
-          %dt Report Height
-          %dd
-            #t_height.editable
-              - if @report_embed["height"] !="" then
-                = @report_embed["height"]
-              - else
-                NA
-          %dt Report Name
-          %dd
-            #t_name.editable
-              - if @report_embed["name"] !=""  then
-                = @report_embed["name"]
-              - else
-                NA
-          %dt Report Tabs
-          %dd
-            #t_tabs.editable
-              - if @report_embed["tabs"] !=""  then
-                = @report_embed["tabs"]
-              - else
-                NA
+          %h5#tableauparameters.page-title Report Parameters for Tableau
+          / %br
+          / %dt Report Width
+          / %dd
+          /   #t_width.editable
+          /     - if @report_embed["width"] !=""  then
+          /       = @report_embed["width"]
+          /     - else
+          /       NA
+          / %dt Report Height
+          / %dd
+          /   #t_height.editable
+          /     - if @report_embed["height"] !="" then
+          /       = @report_embed["height"]
+          /     - else
+          /       NA
+          / %dt Report Name
+          / %dd
+          /   #t_name.editable
+          /     - if @report_embed["name"] !=""  then
+          /       = @report_embed["name"]
+          /     - else
+          /       NA
+          / %dt Report Tabs
+          / %dd
+          /   #t_tabs.editable
+          /     - if @report_embed["tabs"] !=""  then
+          /       = @report_embed["tabs"]
+          /     - else
+          /       NA
 
       .row
         .large-12.large-centered.columns
@@ -258,17 +281,22 @@
       %ol
         %li
           You must be logged into
-          = link_to 'Tableau', 'http://tableau.nd.edu', :target => "_blank"
+          = link_to 'tableau.nd.edu', 'http://tableau.nd.edu', :target => "_blank"
         %li
-          Lorem Ipsum  
+          You must define the parameters for the Tableau report. We'll go over this next
+    %li{"data-id" => "tableauparameters", "data-prev-text" => "Prev", "data-text" => "Next"}
+      %h4 Tableau Parameters
+      %p This is the trickiest part of the Report creation process.
+      %p On the show page of your report at tableau.nd.edu is a share link in the top left
+      = image_tag("share_link.png")
     %li{"data-button" => "End", "data-prev-text" => "Prev"}
       %h4 Stop #3
       %p It works as a modal too!
 
-  :javascript
-    $(window).load(function() {
-      $(document).foundation('joyride', 'start');
-    });
+  / :javascript
+  /   $(window).load(function() {
+  /     $(document).foundation('joyride', 'start');
+  /   });
 - else
   .row
     .medium-12.large-12.columns

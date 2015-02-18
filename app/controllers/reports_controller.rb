@@ -40,7 +40,7 @@ class ReportsController < ApplicationController
       @report_photo = PhotoMapper.new( @report["report"]["id"])
 
       ## GET Report's Associated Terms
-      @report_embed = JSON.parse(@report["report"]["embedJSON"])
+      @report_embed = @report["report"]["tableau_link"]
       term_report_json = @report["terms"]
       if term_report_json  != nil
         term_report = []
