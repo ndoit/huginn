@@ -68,7 +68,7 @@
       .row
         .large-12.large-centered.columns
           %script{:src => "https://tableau.nd.edu/javascripts/api/viz_v1.js", :type => "text/javascript"}
-          .tableauPlaceholder{:style => "width:#{@report_embed["width"]}; height:#{@report_embed["height"]};"}
+          #tableauPlaceholderId.tableauPlaceholder{:style => "width:#{@report_embed["width"]}; height:#{@report_embed["height"]};"}
             %object.tableauViz{:height => @report_embed["height"], :style => "display:none;", :width => @report_embed["width"]}
               %param{:name => "host_url", :value => "https%3A%2F%2Ftableau.nd.edu%2F"}
               %param{:name => "site_root", :value => ""}
@@ -235,7 +235,40 @@
   / .row 
   /   .large-12.columns
   /     = @report
+  %ol.joyride-list{"data-joyride" => ""}
+    %li{"data-text" => "Next"}
+      %p
+        This is the report registration page. All text seen on the page can be edited by clicking on it.
+    %li{"data-prev-text" => "Prev", "data-text" => "Next"}
+      %p
+        Don't worry about the guide boxes around the text. Only you, the report editor, can see them.
+    %li{"data-prev-text" => "Prev", "data-text" => "Next"}
+      %p
+        To exit editing mode, just click outside of the text boxes.
+    %li{"data-id" => "name", "data-prev-text" => "Prev", "data-text" => "Next"}
+      %h4 Name of the report
+      / %p You can edit the name.
+    %li{"data-button" => "Next", "data-id" => "description", "data-options" => "tip_location:top;tip_animation:fade", "data-prev-text" => "Prev"}
+      %h4 Description
+      %p The description area has a rather powerful editing suite with bullet lists, indenting, alignment, paragraphs, and even tables.
+    %li{"data-button" => "Next", "data-id" => "tableauPlaceholderId", "data-options" => "tip_location:bottom", "data-prev-text" => "Prev"}
+      %h4 Tableau Window
+      %p 
+        Here you will see the Tableau Report. There are 2 requirements to make the Tableau report show
+      %ol
+        %li
+          You must be logged into
+          = link_to 'Tableau', 'http://tableau.nd.edu', :target => "_blank"
+        %li
+          Lorem Ipsum  
+    %li{"data-button" => "End", "data-prev-text" => "Prev"}
+      %h4 Stop #3
+      %p It works as a modal too!
 
+  :javascript
+    $(window).load(function() {
+      $(document).foundation('joyride', 'start');
+    });
 - else
   .row
     .medium-12.large-12.columns
