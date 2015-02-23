@@ -33,7 +33,7 @@
 
   .row
     .large-1.large-offset-11.columns
-      Edit
+      Mode
       .switch.radius
         %input#editmode{:type => "checkbox"}/
         %label{:for => "editmode"}
@@ -95,7 +95,7 @@
   %br
   .row
     .large-12.columns
-      %input#tableaulink{:placeholder => "tableau embed", :type => "text"}
+      %input#tableaulink{:value => "#{@report["report"]["tableau_link"]}", :placeholder => "Tableau Embed", :type => "text"}
       / %iframe{:src => "@report["}
       %iframe{:src => "#{@report["report"]["tableau_link"]}", :width => "100%", :height => "1000px"}
 
@@ -169,22 +169,34 @@
   .row
     .large-12.columns
       %h5.page-title Additional Information
+
+      - if current_user && current_user.can( :publish_report )
+        %dt Report Type
+        %dd
+          %input#reporttype{:value => "#{@report["report"]["report_type"]}", :type => "text"}
+        %dt Data Source
+        %dd
+          %input#datasource{:value => "#{@report["report"]["datasource"]}", :type => "text"}
+      - else
+        %dt Report Type
+        %dd
+          = @report["report"]["report_type"].html_safe
+        %dt Data Source
+        %dd
+          = @report["report"]["datasource"]
+        
+        
+      /   #report_type{:class => ("editable" if current_user && current_user.can( :publish_report ) )}
+      /     
       
-      %dt Report Type
-      %dd
-        #report_type{:class => ("editable" if current_user && current_user.can( :publish_report ) )}
-          - if @report["report"]["report_type"]
-            = @report["report"]["report_type"].html_safe
-          - else
-            NA
       
-      %dt Data Source
-      %dd
-        #datasource{:class => ("editable" if current_user && current_user.can( :publish_report ) )}
-          - if @report["report"]["datasource"]
-            = @report["report"]["datasource"]
-          - else
-            NA
+      / %dt Data Source
+      / %dd
+      /   #datasource{:class => ("editable" if current_user && current_user.can( :publish_report ) )}
+      /     - if @report["report"]["datasource"]
+      /       = @report["report"]["datasource"]
+      /     - else
+      /       NA
 
   - if @report["report"]["report_type"] !=  "External"  &&  @report["report"]["report_type"] != "Aggregation"
     - if current_user && current_user.can( :publish_report )

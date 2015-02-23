@@ -324,20 +324,21 @@ function updateReportObject(report_object ) {
       //    n = n.replace(/&amp;/g, '&');
       //    n = n.replace(/(")/g, "");
       // }
-      if (id =='report_type' || id == 'datasource' ){
+      // if (id =='report_type' || id == 'datasource' ){
 
-        p = p.replace(/(<p>|<\/p>)/g, "");
+      //   p = p.replace(/(<p>|<\/p>)/g, "");
 
-      }
+      // }
 
-     console.log(id);
-	   if (id !='t_width' && id !='t_height'  && id !='t_name'&& id !='t_tabs') {
-         report_object[id] = p;
-	   }
-       console.log(report_object);
+      console.log(id);
+	   // if (id !='t_width' && id !='t_height'  && id !='t_name'&& id !='t_tabs') {
+    //      report_object[id] = p;
+	   // }
+      console.log(report_object);
     }
   })
   // report_object["embedJSON"] = "{\"width\": \""+w+"\", \"height\" : \"" + h+"\",\"name\":\""+ n+"\",\"tabs\":\""+t+"\"}"
+
 
   report_object["terms"] = []
   var term_array = []
@@ -372,15 +373,13 @@ function updateReportObject(report_object ) {
   report_object["name"] = $('#name').val();
   report_object["tableau_link"] = $('#tableaulink').val();
 
+  report_object["report_type"] = $('#reporttype').val();
+  report_object["datasource"] = $('#datasource').val();
+
   // report office owner
   report_object["offices"] = []
   selected_office = $('#office_owner').val();
-
   console.log('grabbed offices from dom' + selected_office)
-  // office_object = { "name" : office,
-  //   "stake" : "Responsible"
-  // }
-  // report_object["offices"].push << office_object
   report_object["offices"].push( { name: selected_office, stake: "Responsible"} )
   console.log('report object json with officeoffice' + report_object);
 
