@@ -370,6 +370,7 @@ function updateReportObject(report_object ) {
 
 
   report_object["name"] = $('#name').val();
+  report_object["tableau_link"] = $('#tableaulink').val();
 
   // report office owner
   report_object["offices"] = []
