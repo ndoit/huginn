@@ -302,6 +302,11 @@ function updateReportObject(report_object ) {
     id = $(this).attr('id');
     if ( id ) {
       p = tinymce.get(id).getContent()
+      console.log(id);
+      // if (id !='t_width' && id !='t_height'  && id !='t_name'&& id !='t_tabs') {
+      report_object[id] = p;
+      // }
+      console.log(report_object);
       // if ( (id =="t_height") || (id =="t_width") || (id =="t_tabs") ){
       //   var StrippedString = p.replace(/(<([^>]+)>)/ig,"");
       //   p = StrippedString;
@@ -330,11 +335,7 @@ function updateReportObject(report_object ) {
 
       // }
 
-      console.log(id);
-	   // if (id !='t_width' && id !='t_height'  && id !='t_name'&& id !='t_tabs') {
-    //      report_object[id] = p;
-	   // }
-      console.log(report_object);
+      
     }
   })
   // report_object["embedJSON"] = "{\"width\": \""+w+"\", \"height\" : \"" + h+"\",\"name\":\""+ n+"\",\"tabs\":\""+t+"\"}"

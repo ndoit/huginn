@@ -46,7 +46,8 @@
         .large-6.columns
           Name:
           %input#name-edit{:value => "#{@report["report"]["name"]}", :type => "text"}
-    
+        .large-12.columns
+          .page-title
     .row.view  
       / $('#name-view').text().trim();    
       .large-12.columns
@@ -58,6 +59,8 @@
     .row
       .large-12.columns
         Description:
+        %br
+        %br
         #description{:class => ("editable" if current_user && current_user.can( :publish_report )) }
           = @report["report"].fetch("description", "NA").html_safe
   - if @report["report"]["report_type"] == "External"
@@ -207,20 +210,23 @@
         .large-8.columns
           %input#tableaulink{:value => "#{@report["report"]["tableau_link"]}", :placeholder => "Tableau Embed", :type => "text"}
 
+
       .row
         .large-12.large-centered.columns
           %h5.page-title Office Owner
-      - if current_user.can(:publish_report)
-        .row
-          .large-6.columns
-            = select_tag 'office_id', options_for_select(@offices.collect{ |o| o[:text] }, @report_office_owner_name), :id => 'office_owner'
+      .row
+        .large-6.columns
+          - if current_user.can(:publish_report)
+            .edit
+              = select_tag 'office_id', options_for_select(@offices.collect{ |o| o[:text] }, @report_office_owner_name), :id => 'office_owner'
+          .view
             %p= "#{@report_office_owner_name}"
-                
-        .row
-          .medium-2.medium-offset-4.columns
-            %input#updateReportButton.small.button.expand{:type => "button", :value => "Update Report"}
-          .medium-2.columns.end
-            %input#deleteReportButton.small.button.expand{"data-reveal-id" => "mytinyDelete", :type => "button", :value => "Delete Report"}
+                    
+  .row.edit
+    .medium-2.medium-offset-4.columns
+      %input#updateReportButton.small.button.expand{:type => "button", :value => "Update Report"}
+    .medium-2.columns.end
+      %input#deleteReportButton.small.button.expand{"data-reveal-id" => "mytinyDelete", :type => "button", :value => "Delete Report"}
 
   %br
   %br
