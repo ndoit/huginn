@@ -143,11 +143,11 @@ $('#addOfficeButton').click(function() {
 })
 
 $('#createReportButton').click(function() {
-var report = $('#rname').val();
+var rname = $('#rname').val();
 report_new = {
-   "name": report,
+   "name": rname,
    "description": "",
-   "report_type": "",
+   "report_type": "Tableau",
    "embedJSON" : "{\"width\": \"\",\"height\": \"\" ,\"name\": \"\"}"
   };
   $('a.close-reveal-modal').trigger('click');
@@ -370,7 +370,7 @@ function updateReportObject(report_object ) {
   }
 
 
-  report_object["name"] = $('#name').val();
+  report_object["name"] = $('#name-edit').val();
   report_object["tableau_link"] = $('#tableaulink').val();
 
   report_object["report_type"] = $('#reporttype').val();
@@ -536,7 +536,7 @@ function createTerm( term_object ) {
 
 }
 
-function createReport(report_object ) {
+function createReport( report_object ) {
   report_object_string = JSON.stringify(report_object)
   $.ajax({
      url : '/reports',
@@ -558,7 +558,7 @@ function createReport(report_object ) {
 }
 
 
-function addOffice(office_object ) {
+function addOffice( office_object ) {
   $.ajax({
      url : '/offices',
      type: 'POST',
@@ -579,7 +579,7 @@ function addOffice(office_object ) {
 }
 
 
-function updateOfficeObject(office_object ) {
+function updateOfficeObject( office_object ) {
   clearValidationErrors()
   tinymce.triggerSave();
   console.log(office_object);
@@ -603,7 +603,7 @@ function updateOfficeObject(office_object ) {
 
 
 
-function updateOffice(office_object  ) {
+function updateOffice( office_object ) {
 
   $.ajax({
       url: office_object.id,
