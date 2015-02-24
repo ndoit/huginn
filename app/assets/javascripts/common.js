@@ -126,52 +126,54 @@ $(document).ready(function(){
     $('#deleteConfirm').click( function() {
       $('a.close-reveal-modal').trigger('click')
       deleteOffice(office_detail_json.id)
-    })
+    });
     $('#deleteCancel').click( function() {
       $('a.close-reveal-modal').trigger('click')
-    })
+    });
 
- }
-
-
+  }
 
 
-$('#createTermButton').click(function() {
-var term = $('#tname').val();
-term_new = {
-   "name": term,
-   "definition": "",
-   "source_system": "",
-   "data_sensitivity": "",
-   "possible_values": "",
-   "data_availability": "",
-   "notes": ""};
-  $('a.close-reveal-modal').trigger('click');
-  createTerm(term_new);
-})
 
-$('#addOfficeButton').click(function() {
-  clearValidationErrors()
-  var office = $('#oname').val();
-  office_new = {"name": office};
+
+  $('#createTermButton').click(function() {
+  var term = $('#tname').val();
+  term_new = {
+     "name": term,
+     "definition": "",
+     "source_system": "",
+     "data_sensitivity": "",
+     "possible_values": "",
+     "data_availability": "",
+     "notes": ""};
+    $('a.close-reveal-modal').trigger('click');
+    createTerm(term_new);
+  })
+
+  $('#addOfficeButton').click(function() {
+    clearValidationErrors()
+    var office = $('#oname').val();
+    office_new = {"name": office};
     $('a.close-reveal-modal').trigger('click');
     addOffice(office_new);
   })
+
+
+  $('#createReportButton').click(function() {
+    alert("save button has been clicked");
+    console.log("still trying to find the save button")
+  var rname = $('#rname').val();
+  report_new = {
+     "name": rname,
+     "description": "",
+     "report_type": "Tableau",
+     "embedJSON" : "{\"width\": \"\",\"height\": \"\" ,\"name\": \"\"}"
+    };
+    $('a.close-reveal-modal').trigger('click');
+
+    createReport(report_new);
+  })
 })
-
-$('#createReportButton').click(function() {
-var rname = $('#rname').val();
-report_new = {
-   "name": rname,
-   "description": "",
-   "report_type": "Tableau",
-   "embedJSON" : "{\"width\": \"\",\"height\": \"\" ,\"name\": \"\"}"
-  };
-  $('a.close-reveal-modal').trigger('click');
-
-  createReport(report_new);
-})
-
 
 function clearValidationErrors() {
 $('.alert-box').each( function() {
