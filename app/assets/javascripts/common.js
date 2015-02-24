@@ -1,11 +1,5 @@
 
 $(document).ready(function(){
-  // if ( $( "#editmode" ).length ) {
-    // $("#editmode").change(function () {    
-    //   if( $( "#editmode :checkbox:checked") ) {
-    //     alert("box has been checked");
-    //   }
-    // });
 
     $('#editmode').change(function(){
       if ( this.checked ) {
@@ -20,13 +14,8 @@ $(document).ready(function(){
         $( "#description" ).attr( "contenteditable", "true" );
         $("#description").addClass("editable");
       }
-      // var current_mode = this.checked ? '.edit' : '.view';
-      // $(current_mode).css("display", "none");
+      
     });
-
-    // $( '.view' ).css( "display", "none" );
-    // $("#editmode").onchange
-  // }
 
 
   if (typeof office_json != 'undefined')  {
