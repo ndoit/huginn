@@ -7,12 +7,15 @@ $(document).ready(function(){
         $( '.view' ).css( "display", "inherit" );
         $( "#description" ).attr( "contenteditable", "false" );
         $("#description").removeClass("editable");
+        $("#currentmode").text('View Mode');
+        
       }
       else {
         $( '.view' ).css( "display", "none" );
         $( '.edit' ).css( "display", "inherit" );
         $( "#description" ).attr( "contenteditable", "true" );
         $("#description").addClass("editable");
+        $("#currentmode").text('Edit Mode');
       }
       
     });
