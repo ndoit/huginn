@@ -35,7 +35,7 @@
     .row
       .large-1.large-offset-11.columns
         #currentmode Edit Mode
-        .switch.radius
+        #edittoggle.switch.radius
           %input#editmode{:type => "checkbox"}
           %label{:for => "editmode"}
 
@@ -46,7 +46,7 @@
       .edit
         .row
           .large-12.columns
-            %h3#name-view.page-title Name    
+            %h3.page-title Name    
         .row  
           .large-6.columns
             %input#name-edit{:value => "#{@report["report"]["name"]}", :type => "text"}
@@ -111,8 +111,9 @@
 
   %br
   .row
-    .large-12.columns
+    #tableauiframe.large-12.columns
       / %input#tableaulink{:value => "#{@report["report"]["tableau_link"]}", :placeholder => "Tableau Embed", :type => "text"}
+      
       %iframe{:src => "#{@report["report"]["tableau_link"]}", :width => "100%", :height => "1000px"}
 
 
@@ -264,20 +265,27 @@
   %ol.joyride-list{"data-joyride" => ""}
     %li{"data-text" => "Next"}
       %p
-        This is the report registration page. All text seen on the page can be edited by clicking on it.
-    %li{"data-prev-text" => "Prev", "data-text" => "Next"}
+        This is the report registration page. We've added some new features so take a look!
+    %li{"data-prev-text" => "Prev", "data-id" => "edittoggle", "data-options" => "tip_location:left;", "data-text" => "Next"}
+      %h4 Edit/PreView Toggle
+      %p The thing we're most excited about is the Mode Toggle. With it you can toggle between the Edit mode(which is default) and the PreView mode so you can see what the report will look like for your users!
+    %li{"data-prev-text" => "Prev", "data-id" => "edittoggle", "data-options" => "tip_location:left;", "data-text" => "Next"}
       %p
-        Don't worry about the guide boxes around the text. Only you, the report editor, can see them.
-    %li{"data-prev-text" => "Prev", "data-text" => "Next"}
+        Click it, and the input text boxes, grey guide lines, and other things an end user won't see will disappear.
       %p
-        To exit editing mode, just click outside of the text boxes.
-    %li{"data-id" => "name", "data-prev-text" => "Prev", "data-text" => "Next"}
+        Keep in mind that any changes made in edit mode will not reflect in preview mode until you click to update the report.
+    %li{"data-id" => "name-edit", "data-prev-text" => "Prev", "data-text" => "Next"}
       %h4 Name of the report
-      / %p You can edit the name.
+      %p When people search for the report, this is what is desplayed along with the first line of the description.
     %li{"data-button" => "Next", "data-id" => "description", "data-options" => "tip_location:top;tip_animation:fade", "data-prev-text" => "Prev"}
       %h4 Description
-      %p The description area has a rather powerful editing suite with bullet lists, indenting, alignment, paragraphs, and even tables.
-    %li{"data-button" => "Next", "data-id" => "tableauPlaceholderId", "data-options" => "tip_location:bottom", "data-prev-text" => "Prev"}
+      %p The description area is a powerful editing suite enabling bullet lists, indentation, alignment, headings, and even tables.
+    %li{"data-prev-text" => "Prev", "data-id" => "description", "data-text" => "Next"}
+      %p
+        To start editing the text, click in the text area indicated by the 2 grey lines. 
+      %p
+        To stop editing the text, just click outside of the text area.
+    %li{"data-button" => "Next", "data-id" => "tableauiframe", "data-options" => "tip_location:top", "data-prev-text" => "Prev"}
       %h4 Tableau Window
       %p 
         Here you will see the Tableau Report. There are 2 requirements to make the Tableau report show

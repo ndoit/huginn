@@ -7,7 +7,7 @@ $(document).ready(function(){
         $( '.view' ).css( "display", "inherit" );
         $( "#description" ).attr( "contenteditable", "false" );
         $("#description").removeClass("editable");
-        $("#currentmode").text('View Mode');
+        $("#currentmode").text('PreView Mode');
         
       }
       else {
@@ -170,17 +170,17 @@ $(document).ready(function(){
       "report_type": "Tableau",
       "embedJSON" : "{\"width\": \"\",\"height\": \"\" ,\"name\": \"\"}"
     };
-    $('a.close-reveal-modal').trigger('click');
+    $('a.close-reveal-modal').trigger('click'); 
     createReport(report_new);
   })
 })
 
 function clearValidationErrors() {
-$('.alert-box').each( function() {
-	$(this).find('.error_list').html('');
-	$(this).find('.success_msg').html('');
-	$(this).hide()
- })
+  $('.alert-box').each( function() {
+  	$(this).find('.error_list').html('');
+  	$(this).find('.success_msg').html('');
+  	$(this).hide()
+  })
 }
 
 function addValidationError( type, message ) {
