@@ -163,17 +163,14 @@ $(document).ready(function(){
 
 
   $('#createReportButton').click(function() {
-    alert("save button has been clicked");
-    console.log("still trying to find the save button")
-  var rname = $('#rname').val();
-  report_new = {
-     "name": rname,
-     "description": "",
-     "report_type": "Tableau",
-     "embedJSON" : "{\"width\": \"\",\"height\": \"\" ,\"name\": \"\"}"
+    var rname = $('#rname').val();
+    report_new = {
+      "name": rname,
+      "description": "",
+      "report_type": "Tableau",
+      "embedJSON" : "{\"width\": \"\",\"height\": \"\" ,\"name\": \"\"}"
     };
     $('a.close-reveal-modal').trigger('click');
-
     createReport(report_new);
   })
 })
