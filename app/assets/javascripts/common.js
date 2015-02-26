@@ -1,24 +1,17 @@
 
 $(document).ready(function(){
 
-    $('#editmode').change(function(){
-      if ( this.checked ) {
-        $( '.edit' ).css( "display", "none" );
-        $( '.view' ).css( "display", "inherit" );
-        $( "#description" ).attr( "contenteditable", "false" );
-        $("#description").removeClass("editable");
-        $("#currentmode").text('PreView Mode');
-        
-      }
-      else {
-        $( '.view' ).css( "display", "none" );
-        $( '.edit' ).css( "display", "inherit" );
-        $( "#description" ).attr( "contenteditable", "true" );
-        $("#description").addClass("editable");
-        $("#currentmode").text('Edit Mode');
-      }
-      
-    });
+  // if (window.location.pathname.substring(0, 9) == "/reports/") {
+  //   $( "#description" ).attr( "contenteditable", "false" );
+  // };
+  $('#editmode').change(function(){
+    if ( this.checked ) {
+      changetoeditmode();
+    }
+    else {
+      changetoviewmode();
+    }
+  });
 
 
   if (typeof office_json != 'undefined')  {
@@ -174,6 +167,42 @@ $(document).ready(function(){
     createReport(report_new);
   })
 })
+
+function changetoeditmode() {
+  $( '.view' ).css( "display", "none" );
+  $( '.edit' ).css( "display", "inherit" );
+  // $( "#description" ).attr({
+  //   "contenteditable": "true",
+  //   "spellcheck": "false",
+  //   "style": "position: relative;"
+  // });
+  $("#description").addClass("editable free-text");
+  // $("#description").addClass("free-text");
+  tinymce.init({
+    selector: "div.editable",
+    relative_urls: false,
+    inline: true,
+    menubar: true,
+    relative_urls: false,
+    plugins: [
+        "advlist autolink lists link image charmap print preview anchor",
+        "searchreplace visualblocks code fullscreen",
+        "insertdatetime media table contextmenu paste "
+    ],
+    toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image|anchor"
+
+  });  
+  $("#currentmode").text('Edit Mode');
+}
+
+function changetoviewmode() {
+  $( '.edit' ).css( "display", "none" );
+  $( '.view' ).css( "display", "inherit" );
+  $( "#description" ).attr( "contenteditable", "false" );
+  $("#description").removeClass("editable");
+  $("#description").removeClass("free-text");
+  $("#currentmode").text('Preview Mode');
+}
 
 function clearValidationErrors() {
   $('.alert-box').each( function() {
@@ -663,7 +692,6 @@ function deleteOffice( officeid ) {
       }
   });
 }
-
 
 
 tinymce.init({
