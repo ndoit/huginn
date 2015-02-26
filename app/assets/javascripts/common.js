@@ -171,27 +171,14 @@ $(document).ready(function(){
 function changetoeditmode() {
   $( '.view' ).css( "display", "none" );
   $( '.edit' ).css( "display", "inherit" );
-  // $( "#description" ).attr({
-  //   "contenteditable": "true",
-  //   "spellcheck": "false",
-  //   "style": "position: relative;"
-  // });
+  $( "#description" ).attr({
+    "contenteditable": "true"  
+    // "spellcheck": "false",
+    // "style": "position: relative;"
+  });
   $("#description").addClass("editable free-text");
   // $("#description").addClass("free-text");
-  tinymce.init({
-    selector: "div.editable",
-    relative_urls: false,
-    inline: true,
-    menubar: true,
-    relative_urls: false,
-    plugins: [
-        "advlist autolink lists link image charmap print preview anchor",
-        "searchreplace visualblocks code fullscreen",
-        "insertdatetime media table contextmenu paste "
-    ],
-    toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image|anchor"
-
-  });  
+  initializetinymce(".editable");
   $("#currentmode").text('Edit Mode');
 }
 
@@ -693,9 +680,11 @@ function deleteOffice( officeid ) {
   });
 }
 
+initializetinymce(".editable");
 
-tinymce.init({
-    selector: "div.editable",
+function initializetinymce(the_textarea_div_class) {
+  tinymce.init({
+    selector: "div" + the_textarea_div_class,
     relative_urls: false,
     inline: true,
     menubar: true,
@@ -706,5 +695,5 @@ tinymce.init({
         "insertdatetime media table contextmenu paste "
     ],
     toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image|anchor"
-
-});
+  });
+}
