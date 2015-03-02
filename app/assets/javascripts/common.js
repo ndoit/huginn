@@ -1,9 +1,10 @@
-
 $(document).ready(function(){
 
-  // if (window.location.pathname.substring(0, 9) == "/reports/") {
-  //   $( "#description" ).attr( "contenteditable", "false" );
+  // if (new_report == true) {
+  //   alert('new report');
   // };
+    
+
   $('#editmode').change(function(){
     if ( this.checked ) {
       changetoeditmode();
@@ -152,7 +153,7 @@ $(document).ready(function(){
     office_new = {"name": office};
     $('a.close-reveal-modal').trigger('click');
     addOffice(office_new);
-  })
+  });
 
 
   $('#createReportButton').click(function() {
@@ -165,8 +166,9 @@ $(document).ready(function(){
     };
     $('a.close-reveal-modal').trigger('click'); 
     createReport(report_new);
-  })
-})
+    // new_report = true
+  });
+});
 
 function changetoeditmode() {
   $( '.view' ).css( "display", "none" );
@@ -295,7 +297,7 @@ function updateTermObject(term_object ) {
 
       }
       i++;
-	})
+	});
 
   if (office_text !=null)
     addValidationError( "alert", "<b>" +  office_text + "</b>" +  " has repeated in the RACI entry. Each office is assigned for one role per term.");
@@ -318,14 +320,15 @@ function createReport(report_object ) {
      success: function (data) {
       addSuccessMessage("success", "<b>Report " + report_object.name +   " successfully. Please wait for report Detail page display.</b>")
       showSuccessMessage();
+      var new_report = true;
       var url = escape('/reports/'+ report_object.name)
       window.location = url;
    },
      error: function( xhr, ajaxOptions, thrownError) {
      addValidationError( "alert", "Added Report, " +report_object.name+ ", has error: " + xhr.responseText)
-     showValidationErrors()
+     showValidationErrors();
    }
-  })
+  });
 
 }
 

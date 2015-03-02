@@ -257,25 +257,23 @@
       On
       - m_date = DateTime.iso8601(@report["report"]["modified_date"])
       = m_date.strftime("%B %d at %I:%M %p")
-  / .row 
-  /   .large-12.columns
-  /     = @report
   %ol.joyride-list{"data-joyride" => ""}
     %li{"data-text" => "Next"}
       %p
-        This is the report registration page. We've added some new features so take a look!
+        This is the Report View page. We've added some new features so take a look!
     %li{"data-prev-text" => "Prev", "data-id" => "edittoggle", "data-options" => "tip_location:left;", "data-text" => "Next"}
-      %h4 Edit/PreView Toggle
-      %p The thing we're most excited about is the Mode Toggle. With it you can toggle between the Edit mode(which is default) and the PreView mode so you can see what the report will look like for your users!
+      %h4 Edit/View Toggle
+      %p The thing we're most excited about is the Mode Toggle. With it you can toggle between the View mode(which is default) and the Edit mode!
+      %p Click "Next" on me then click the Mode Toggle to continue the tour!
     %li{"data-prev-text" => "Prev", "data-id" => "edittoggle", "data-options" => "tip_location:left;", "data-text" => "Next"}
       %p
-        Click it, and the input text boxes, grey guide lines, and other things an end user won't see will disappear.
+        Click it, and input text boxes, grey guide lines, and other things for editing will appear!
       %p
-        Keep in mind that any changes made in edit mode will not reflect in preview mode until you click to update the report.
-    %li{"data-id" => "name-edit", "data-prev-text" => "Prev", "data-text" => "Next"}
+        Keep in mind that any changes made in edit mode will not reflect in View mode until after you update the report.
+    %li{"data-id" => "name-view", "data-prev-text" => "Prev", "data-text" => "Next"}
       %h4 Name of the report
       %p When people search for the report, this is what is desplayed along with the first line of the description.
-    %li{"data-button" => "Next", "data-id" => "description", "data-options" => "tip_location:top;tip_animation:fade", "data-prev-text" => "Prev"}
+    %li{"data-button" => "Next", "data-id" => "description", "data-options" => "tip_location:top;tip_animation:fade", "data-prev-text"=> "Prev"}
       %h4 Description
       %p The description area is a powerful editing suite enabling bullet lists, indentation, alignment, headings, and even tables.
     %li{"data-prev-text" => "Prev", "data-id" => "description", "data-text" => "Next"}
@@ -286,7 +284,10 @@
     %li{"data-button" => "Next", "data-id" => "tableauiframe", "data-options" => "tip_location:top", "data-prev-text" => "Prev"}
       %h4 Tableau Window
       %p 
-        Here you will see the Tableau Report. There are 2 requirements to make the Tableau report show
+        Here the Tableau report is pulled directly from Tableau
+    %li{"data-button" => "Next", "data-id" => "tableauiframe", "data-options" => "tip_location:top", "data-prev-text" => "Prev"}
+      %p
+        There are 2 requirements to make the Tableau report show:
       %ol
         %li
           You must be logged into
@@ -302,8 +303,31 @@
       %h4 Stop #3
       %p It works as a modal too!
 
+  // I'm keeping this function as inline script(which is not the rails way, I know)
+  // The reason is I only want thi script to run on this specific page for now
+  // Eventually I'm going to have this joyride function on all the node pages
   / :javascript
   /   $(window).load(function() {
+
+  /   if ( determine_if_new_report("#{@report["report"]["created_date"]}", 3000000) ) {
+  /     alert("hey you have a new report");
+  /   }
+  /   else {
+  /     alert("not a new report");
+  /   };
+
+  /   function determine_if_new_report( node_created_date, time_threshold_in_ms ) {
+  /     created_date_js = new Date(node_created_date);
+  /     var current_timeInMs = Date.now();
+  /     var time_difference = current_timeInMs - created_date_js;
+      
+  /     if ( time_difference < time_threshold_in_ms ) {
+  /       return true;
+  /     }
+  /     else {
+  /       return false;
+  /     }
+  /   };
   /     $(document).foundation('joyride', 'start');
   /   });
 - else
