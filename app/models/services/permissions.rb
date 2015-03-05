@@ -8,5 +8,5 @@ class Services::Permissions
       role_array.include? "Term Editor"
     end
   end
-
+  
 end

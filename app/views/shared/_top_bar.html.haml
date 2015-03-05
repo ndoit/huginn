@@ -20,6 +20,9 @@
             / Divider
             - url = request.path.pluralize
             - if current_user
+              
+              %li
+              = current_user.user_obj
               %li
                 = link_to 'Report Gallery', "/browse/report", :style => ("background: #666666;" if url == "/browse/reports")
               / %li
