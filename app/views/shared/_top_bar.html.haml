@@ -21,8 +21,9 @@
             - url = request.path.pluralize
             - if current_user
               
-              %li
-              = current_user.user_obj
+              / %li
+              / = current_user.user_obj
+
               %li
                 = link_to 'Report Gallery', "/browse/report", :style => ("background: #666666;" if url == "/browse/reports")
               / %li
@@ -36,7 +37,8 @@
                 %a{:href => "#"}= current_user.name
                 %ul.dropdown
                   %li
-                    %a{:href => "#"}= link_to "Log Out", logout_path
+                    = link_to 'My Security Roles', "/users/myprofile"
+
                   - if current_user && current_user.can( :publish_report )
                     %li.divider
                     %li
@@ -88,6 +90,9 @@
                             %input#addOfficeButton.expand.button{:type => "button", :value => "Save Office"}
                           / .large-4.columns
                           %a.close-reveal-modal ×
+                  %li.divider
+                  %li
+                    %a{:href => "#"}= link_to "Log Out", logout_path        
               - else
                 %li
                   = link_to "Log In", login_path

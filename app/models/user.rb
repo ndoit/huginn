@@ -1,6 +1,7 @@
 class User
 
-  attr_accessor :name, :security_roles
+  attr_accessor :name, :old_security_roles
+  attr_reader :user_obj, :admin_emeritus, :user_name, :security_roles
 
   def initialize( netid, cas_user, cas_pgt )
     @name = netid
@@ -9,19 +10,27 @@ class User
   end
 
   def security_roles
-    @roles ||= get_security_roles
-  end
-
-  def user_obj
-    @user_obj
+    @user_obj["security_roles"]
   end
 
   def has_role?( role )
     security_roles.include? role
   end
 
+  def admin_emeritus?
+    @user_obj["user"]["admin_emeritus"]
+  end
+
+  def user_name
+    @user_obj["user"]["net_id"]
+  end
+
+  def old_security_roles
+    @roles ||= get_security_roles
+  end
+
   def can( action )
-    Services::Permissions.can( security_roles, action )
+    Services::Permissions.can( old_security_roles, action )
   end
 
   private
