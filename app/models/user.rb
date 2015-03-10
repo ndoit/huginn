@@ -1,3 +1,4 @@
+require 'json'
 class User
 
   attr_accessor :name, :old_security_roles
@@ -11,6 +12,11 @@ class User
 
   def security_roles
     @user_obj["security_roles"]
+  end
+
+  def default_admin_roles
+    @default_admin_roles = JSON.parse(File.read('public/assets/base_user_roles.json'))
+    @default_admin_roles.to_s
   end
 
   def has_role?( role )
