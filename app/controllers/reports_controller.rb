@@ -40,7 +40,7 @@ class ReportsController < ApplicationController
       @report_photo = PhotoMapper.new( @report["report"]["id"])
 
       ## GET Report's Associated Terms
-      @report_embed = JSON.parse(@report["report"]["embedJSON"])
+      @report_embed = @report["report"]["tableau_link"]
       term_report_json = @report["terms"]
       if term_report_json  != nil
         term_report = []
@@ -52,15 +52,14 @@ class ReportsController < ApplicationController
       end
 
       ## GET Report's Associated Security Access
-      roles_report_json = @report["allows_access_with"]
-      # logger.debug("these are the associated report roles: #{@report["allows_access_with"]}")
-      if roles_report_json  != nil
-        roles_report = []
-        roles_report_json.each do |role|
-
-          roles_report << {id: role["id"], text: role["name"]}
+      roles_report_origin = @report["allows_access_with"]
+      
+      if roles_report_origin != nil
+        @report_roles = []
+        roles_report_origin.each do |role|
+          @report_roles << {id: role["id"], text: role["name"]}
         end
-        @role_reports = roles_report.to_json
+        @report_roles_json = @report_roles.to_json
       end
 
       ## GET subreport?

@@ -13,6 +13,7 @@
  *= require_self
  *= require_tree .
  *= require foundation_and_overrides
+ *= require joyride
  *= require select2
  */
 
@@ -47,9 +48,19 @@ body {
 	}
 }
 
-.editable {
-	border-radius: 2px 2px 2px 2px;
-	-moz-border-radius: 2px 2px 2px 2px;
-	-webkit-border-radius: 2px 2px 2px 2px;
-	border: 2px inset #ebebeb;
+.free-text {
+	border-right: 3px solid slategray;
+	border-left: 3px solid slategray;
+	padding: 4px;
+}
+
+.edit{
+	display: none;
+}
+.view {
+	// display: none;
+}
+
+.explanation{ 
+	font-weight: lighter;
 }

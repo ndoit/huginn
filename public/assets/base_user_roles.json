@@ -1,0 +1,21 @@
+{
+  "user": {
+
+    "net_id": "",
+    "admin_emeritus": true,
+    "security_roles": [
+      {
+
+        "name": "Public"
+      },
+      {
+
+        "name": "SecurityDisabler"
+      },
+      {
+
+        "name":"Administrator"
+      }
+    ]
+  }
+}

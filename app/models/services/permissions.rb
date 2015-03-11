@@ -1,11 +1,11 @@
 class Services::Permissions
 
-  def self.can( role_array, action )
+  def self.can( user_role_access, action )
     case action
     when :publish_report
-      role_array.include? "Report Publisher"
+      user_role_access.include? "Report Publisher"
     when :edit_term
-      role_array.include? "Term Editor"
+      user_role_access.include? "Term Editor"
     end
   end
 

@@ -20,6 +20,10 @@
             / Divider
             - url = request.path.pluralize
             - if current_user
+              
+              / %li
+              / = current_user.user_obj
+
               %li
                 = link_to 'Report Gallery', "/browse/report", :style => ("background: #666666;" if url == "/browse/reports")
               / %li
@@ -33,7 +37,8 @@
                 %a{:href => "#"}= current_user.name
                 %ul.dropdown
                   %li
-                    %a{:href => "#"}= link_to "Log Out", logout_path
+                    = link_to 'My Security Roles', "/users/myprofile"
+
                   - if current_user && current_user.can( :publish_report )
                     %li.divider
                     %li
@@ -51,40 +56,43 @@
                             %input#createReportButton.expand.button{:type => "button", :value => "Save Report"}/
                             / .large-4.columns
                           %a.close-reveal-modal ×
-                        - if current_user && current_user.can(:edit_term)
-                          / <li class="divider"></li>
-                          %li.title.back.js-generated
-                          %li
-                            %a{"data-reveal-id" => "mytiny", :href => "#"}
-                              %strong Add New Term
-                            #mytiny.reveal-modal.tiny{"data-reveal" => ""}
-                              %h2 Add a New Term
-                              Name:
-                              %input#tname{:name => "tname", :type => "text"}
-                              %br
-                              .row
-                                / .large-4.columns
-                                /   %span  
-                                .large-5.large-centered.columns
-                                  %input#createTermButton.expand.button{:type => "button", :value => "Save Term"}
-                                / .large-4.columns
-                              %a.close-reveal-modal ×
-                          / <li class="divider"></li>
-                          %li
-                            %a{"data-reveal-id" => "officetiny", :href => "#"}
-                              %strong Add New Office
-                            #officetiny.reveal-modal.tiny{"data-reveal" => ""}
-                              %h2 Add New Office
-                              Name:
-                              %input#oname{:name => "oname", :type => "text"}
-                              %br
-                              .row
-                                / .large-4.columns
-                                /   %span
-                                .large-5.large-centered.columns
-                                  %input#addOfficeButton.expand.button{:type => "button", :value => "Save Office"}
-                                / .large-4.columns
-                                %a.close-reveal-modal ×
+                  - if current_user && current_user.can(:edit_term)
+                    / <li class="divider"></li>
+                    %li.title.back.js-generated
+                    %li
+                      %a{"data-reveal-id" => "mytiny", :href => "#"}
+                        %strong Add New Term
+                      #mytiny.reveal-modal.tiny{"data-reveal" => ""}
+                        %h2 Add a New Term
+                        Name:
+                        %input#tname{:name => "tname", :type => "text"}
+                        %br
+                        .row
+                          / .large-4.columns
+                          /   %span  
+                          .large-5.large-centered.columns
+                            %input#createTermButton.expand.button{:type => "button", :value => "Save Term"}
+                          / .large-4.columns
+                        %a.close-reveal-modal ×
+                    / <li class="divider"></li>
+                    %li
+                      %a{"data-reveal-id" => "officetiny", :href => "#"}
+                        %strong Add New Office
+                      #officetiny.reveal-modal.tiny{"data-reveal" => ""}
+                        %h2 Add New Office
+                        Name:
+                        %input#oname{:name => "oname", :type => "text"}
+                        %br
+                        .row
+                          / .large-4.columns
+                          /   %span
+                          .large-5.large-centered.columns
+                            %input#addOfficeButton.expand.button{:type => "button", :value => "Save Office"}
+                          / .large-4.columns
+                          %a.close-reveal-modal ×
+                  %li.divider
+                  %li
+                    %a{:href => "#"}= link_to "Log Out", logout_path        
               - else
                 %li
                   = link_to "Log In", login_path

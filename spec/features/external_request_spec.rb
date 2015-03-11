@@ -6,11 +6,11 @@ describe 'External request', :type => :feature do
   #   Capybara.current_driver = :selenium
   # end
 
-  it 'finds muninn api is running' do
-    session = Capybara::Session.new(:webkit)
-    session.visit('http://www.google.com')
-    # session.visit('http://localhost:3000/')
-    # page.has_content?('Ruby on Rails: Welcome aboard')
+  xit 'finds muninn api is running' do
+    session = Capybara::Session.new(:selenium)
+    # session.visit('http://www.google.com')
+    session.visit('http://localhost:3000/')
+    page.has_content?('Ruby on Rails: Welcome aboard')
   end
 
   xit 'can grab datasets from muninn' do
@@ -18,5 +18,9 @@ describe 'External request', :type => :feature do
     response = Net::HTTP.get(uri)
     expect(response).to be_an_instance_of(String)
   end
+
+  it 'logs in from huginn' do
+    visit '/'
+    
 
 end

@@ -58,7 +58,7 @@ Rails.application.routes.draw do
   get "cas_proxy_callback/retrieve_pgt" => 'cas_proxy_callback#retrieve_pgt'
 
 
-
+  get 'users/myprofile' => 'users#show', as: :myprofile
 
 
   resources :results, only: [:index]

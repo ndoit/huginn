@@ -1,5 +1,19 @@
-
 $(document).ready(function(){
+
+  // if (new_report == true) {
+  //   alert('new report');
+  // };
+    
+
+  $('#editmode').change(function(){
+    if ( this.checked ) {
+      changetoeditmode();
+    }
+    else {
+      changetoviewmode();
+    }
+  });
+
 
   if (typeof office_json != 'undefined')  {
    $('.raci_input').select2({
@@ -109,59 +123,82 @@ $(document).ready(function(){
     $('#deleteConfirm').click( function() {
       $('a.close-reveal-modal').trigger('click')
       deleteOffice(office_detail_json.id)
-    })
+    });
     $('#deleteCancel').click( function() {
       $('a.close-reveal-modal').trigger('click')
-    })
+    });
 
- }
-
-
+  }
 
 
-$('#createTermButton').click(function() {
-var term = $('#tname').val();
-term_new = {
-   "name": term,
-   "definition": "",
-   "source_system": "",
-   "data_sensitivity": "",
-   "possible_values": "",
-   "data_availability": "",
-   "notes": ""};
-  $('a.close-reveal-modal').trigger('click');
-  createTerm(term_new);
-})
 
-$('#addOfficeButton').click(function() {
-  clearValidationErrors()
-  var office = $('#oname').val();
-  office_new = {"name": office};
+
+  $('#createTermButton').click(function() {
+  var term = $('#tname').val();
+  term_new = {
+     "name": term,
+     "definition": "",
+     "source_system": "",
+     "data_sensitivity": "",
+     "possible_values": "",
+     "data_availability": "",
+     "notes": ""};
+    $('a.close-reveal-modal').trigger('click');
+    createTerm(term_new);
+  })
+
+  $('#addOfficeButton').click(function() {
+    clearValidationErrors()
+    var office = $('#oname').val();
+    office_new = {"name": office};
     $('a.close-reveal-modal').trigger('click');
     addOffice(office_new);
-  })
-})
+  });
 
-$('#createReportButton').click(function() {
-var report = $('#rname').val();
-report_new = {
-   "name": report,
-   "description": "",
-   "report_type": "",
-   "embedJSON" : "{\"width\": \"\",\"height\": \"\" ,\"name\": \"\"}"
-  };
-  $('a.close-reveal-modal').trigger('click');
 
-  createReport(report_new);
-})
+  $('#createReportButton').click(function() {
+    var rname = $('#rname').val();
+    report_new = {
+      "name": rname,
+      "description": "",
+      "report_type": "Tableau",
+      "embedJSON" : "{\"width\": \"\",\"height\": \"\" ,\"name\": \"\"}"
+    };
+    $('a.close-reveal-modal').trigger('click'); 
+    createReport(report_new);
+    // new_report = true
+  });
+});
 
+function changetoeditmode() {
+  $( '.view' ).css( "display", "none" );
+  $( '.edit' ).css( "display", "inherit" );
+  $( "#description" ).attr({
+    "contenteditable": "true"  
+    // "spellcheck": "false",
+    // "style": "position: relative;"
+  });
+  $("#description").addClass("editable free-text");
+  // $("#description").addClass("free-text");
+  initializetinymce(".editable");
+  $("#currentmode").text('Edit Mode');
+}
+
+function changetoviewmode() {
+  $( '.edit' ).css( "display", "none" );
+  $( '.view' ).css( "display", "inherit" );
+  $( "#description" ).attr( "contenteditable", "false" );
+  $("#description").removeClass("editable");
+  $("#description").removeClass("free-text");
+  $("#currentmode").text('Preview Mode');
+}
 
 function clearValidationErrors() {
-$('.alert-box').each( function() {
-	$(this).find('.error_list').html('');
-	$(this).find('.success_msg').html('');
-	$(this).hide()
- })
+  $('.alert-box').each( function() {
+  	$(this).find('.error_list').html('');
+  	$(this).find('.success_msg').html('');
+  	$(this).hide()
+  })
 }
 
 function addValidationError( type, message ) {
@@ -260,7 +297,7 @@ function updateTermObject(term_object ) {
 
       }
       i++;
-	})
+	});
 
   if (office_text !=null)
     addValidationError( "alert", "<b>" +  office_text + "</b>" +  " has repeated in the RACI entry. Each office is assigned for one role per term.");
@@ -283,14 +320,15 @@ function createReport(report_object ) {
      success: function (data) {
       addSuccessMessage("success", "<b>Report " + report_object.name +   " successfully. Please wait for report Detail page display.</b>")
       showSuccessMessage();
+      var new_report = true;
       var url = escape('/reports/'+ report_object.name)
       window.location = url;
    },
      error: function( xhr, ajaxOptions, thrownError) {
      addValidationError( "alert", "Added Report, " +report_object.name+ ", has error: " + xhr.responseText)
-     showValidationErrors()
+     showValidationErrors();
    }
-  })
+  });
 
 }
 
@@ -302,42 +340,44 @@ function updateReportObject(report_object ) {
     id = $(this).attr('id');
     if ( id ) {
       p = tinymce.get(id).getContent()
-      if ((id == "name") || (id =="t_height") || (id =="t_width") || (id =="t_tabs") ){
-        var StrippedString = p.replace(/(<([^>]+)>)/ig,"");
-        p = StrippedString;
-      }
-      if (id =='t_width'){
-         w = p
+      console.log(id);
+      // if (id !='t_width' && id !='t_height'  && id !='t_name'&& id !='t_tabs') {
+      report_object[id] = p;
+      // }
+      console.log(report_object);
+      // if ( (id =="t_height") || (id =="t_width") || (id =="t_tabs") ){
+      //   var StrippedString = p.replace(/(<([^>]+)>)/ig,"");
+      //   p = StrippedString;
+      // }
+      // if (id =='t_width'){
+      //    w = p
 
-      }
-      if (id =='t_height'){
-         h =p
+      // }
+      // if (id =='t_height'){
+      //    h =p
 
-      }
-      if (id =='t_tabs'){
-         t =p
+      // }
+      // if (id =='t_tabs'){
+      //    t =p
 
-      }
-      if (id =='t_name'){
+      // }
+      // if (id =='t_name'){
 
-         n = p.replace(/(<p>|<\/p>)/g, "");
-         n = n.replace(/&amp;/g, '&');
-         n = n.replace(/(")/g, "");
-      }
-      if (id =='report_type' || id == 'datasource' ){
+      //    n = p.replace(/(<p>|<\/p>)/g, "");
+      //    n = n.replace(/&amp;/g, '&');
+      //    n = n.replace(/(")/g, "");
+      // }
+      // if (id =='report_type' || id == 'datasource' ){
 
-        p = p.replace(/(<p>|<\/p>)/g, "");
+      //   p = p.replace(/(<p>|<\/p>)/g, "");
 
-      }
+      // }
 
-     console.log(id);
-	   if (id !='t_width' && id !='t_height'  && id !='t_name'&& id !='t_tabs') {
-         report_object[id] = p;
-	   }
-       console.log(report_object);
+      
     }
   })
-  report_object["embedJSON"] = "{\"width\": \""+w+"\", \"height\" : \"" + h+"\",\"name\":\""+ n+"\",\"tabs\":\""+t+"\"}"
+  // report_object["embedJSON"] = "{\"width\": \""+w+"\", \"height\" : \"" + h+"\",\"name\":\""+ n+"\",\"tabs\":\""+t+"\"}"
+
 
   report_object["terms"] = []
   var term_array = []
@@ -369,17 +409,16 @@ function updateReportObject(report_object ) {
   }
 
 
+  report_object["name"] = $('#name-edit').val();
+  report_object["tableau_link"] = $('#tableaulink').val();
 
+  report_object["report_type"] = $('#reporttype').val();
+  report_object["datasource"] = $('#datasource').val();
 
   // report office owner
   report_object["offices"] = []
   selected_office = $('#office_owner').val();
-
   console.log('grabbed offices from dom' + selected_office)
-  // office_object = { "name" : office,
-  //   "stake" : "Responsible"
-  // }
-  // report_object["offices"].push << office_object
   report_object["offices"].push( { name: selected_office, stake: "Responsible"} )
   console.log('report object json with officeoffice' + report_object);
 
@@ -536,7 +575,7 @@ function createTerm( term_object ) {
 
 }
 
-function createReport(report_object ) {
+function createReport( report_object ) {
   report_object_string = JSON.stringify(report_object)
   $.ajax({
      url : '/reports',
@@ -558,7 +597,7 @@ function createReport(report_object ) {
 }
 
 
-function addOffice(office_object ) {
+function addOffice( office_object ) {
   $.ajax({
      url : '/offices',
      type: 'POST',
@@ -579,7 +618,7 @@ function addOffice(office_object ) {
 }
 
 
-function updateOfficeObject(office_object ) {
+function updateOfficeObject( office_object ) {
   clearValidationErrors()
   tinymce.triggerSave();
   console.log(office_object);
@@ -603,7 +642,7 @@ function updateOfficeObject(office_object ) {
 
 
 
-function updateOffice(office_object  ) {
+function updateOffice( office_object ) {
 
   $.ajax({
       url: office_object.id,
@@ -644,10 +683,11 @@ function deleteOffice( officeid ) {
   });
 }
 
+initializetinymce(".editable");
 
-
-tinymce.init({
-    selector: "div.editable",
+function initializetinymce(the_textarea_div_class) {
+  tinymce.init({
+    selector: "div" + the_textarea_div_class,
     relative_urls: false,
     inline: true,
     menubar: true,
@@ -658,5 +698,5 @@ tinymce.init({
         "insertdatetime media table contextmenu paste "
     ],
     toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image|anchor"
-
-});
+  });
+}
