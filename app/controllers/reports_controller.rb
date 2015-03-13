@@ -40,7 +40,6 @@ class ReportsController < ApplicationController
       @report_photo = PhotoMapper.new( @report["report"]["id"])
 
       ## GET Report's Associated Terms
-      @report_embed = @report["report"]["tableau_link"]
       term_report_json = @report["terms"]
       if term_report_json  != nil
         term_report = []
@@ -63,6 +62,7 @@ class ReportsController < ApplicationController
       end
 
       ## GET subreport?
+      @report_embed = @report["report"]["tableau_link"]
       if @report["report"]["report_type"] == "Aggregation"
         logger.debug("Aggregation report requested, querying sub-reports...")
         @subreports = []
