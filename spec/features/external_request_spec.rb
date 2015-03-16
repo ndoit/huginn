@@ -17,15 +17,12 @@ describe 'some stuff which requires js', :js => true do
     visit('/')
     expect(page).to have_content("Welcome To The BI Portal")
     page.driver.reset!
-
   end
 
   it 'will visit a second website with ssl and not raise timeout errors' do
     visit("https://github.com/")
     expect(page).to have_content("2015 GitHub, Inc.")
     page.driver.reset!
-
-
     # This worked last time I did it. Was very pleased
     # it's saved in the parent 'apps' folder holding huginn and muninn
     # save_screenshot('../test/tmp/cache/assets/test/file.png')
@@ -34,9 +31,11 @@ describe 'some stuff which requires js', :js => true do
   it 'will visit a third website with ssl and not raise timeout errors', :js => true do
     visit("https://www.creditkarma.com/")
     expect(page).to have_content("Credit Karma")
+  end
 
-    # This worked last time I did it. Was very pleased
-    # it's saved in the parent 'apps' folder holding huginn and muninn
-    # save_screenshot('../test/tmp/cache/assets/test/file.png')
+  it 'finds muninn api is running' do
+    muninn_url = 'http://' + ENV["muninn_host"] + ':' + ENV["muninn_port"]+ '/'
+    visit(muninn_url)
+    expect(page).to have_content('Welcome aboard You’re riding Ruby on Rails!')
   end
 end
