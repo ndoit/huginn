@@ -9,4 +9,9 @@ class Services::Permissions
     end
   end
 
+  # def self.can( node_security_role, node_action )
+  #   case node_action
+  #   when :
+  # end
+
 end

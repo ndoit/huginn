@@ -1,3 +1,5 @@
+%p role_json
+= @roles_json
 - if @report["success"]
   :javascript
     report_object = #{@report["report"].to_json.to_s.html_safe}
@@ -27,8 +29,8 @@
         %b Are you sure?
         %br
         %br
-        %input#deleteConfirm.tiny.button{:type => "button", :value => "Yes"}/
-        %input#deleteCancel.tiny.button{:type => "button", :value => "No"}/
+        %input#deleteConfirm.tiny.button{:type => "button", :value => "Yes"}
+        %input#deleteCancel.tiny.button{:type => "button", :value => "No"}
         %a.close-reveal-modal ×
 
   - if current_user && current_user.can( :publish_report )

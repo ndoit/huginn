@@ -35,6 +35,16 @@ class User
     @roles ||= get_security_roles
   end
 
+  def can_edit_any?
+    @can_edit_any = false
+    security_roles.each do |r|
+      if r["create_access_to"] || r["update_access_to"] == true
+        @can_edit_any = true
+      end
+    end
+    @can_edit_any
+  end
+
   def can( action )
     Services::Permissions.can( old_security_roles, action )
   end
