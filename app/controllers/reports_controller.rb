@@ -88,13 +88,17 @@ class ReportsController < ApplicationController
       roles_resp = Muninn::Adapter.get( "/security_roles", session[:cas_user], session[:cas_pgt])
       @roles_json = JSON.parse( roles_resp.body )["results"]
 
-      roles= []
+      @roles= []
       @roles_json.each do |role|
-        if role["data"]["name"] != "Term Editor" && role["data"]["report_role"] == "Y"
-          roles << {id: role["data"]["id"], text: role["data"]["name"]}
+        unless role["data"]["name"] == "Term Editor"
+          unless role["data"]["name"] == "Report Publisher"
+            unless role["data"]["name"] == "Administrator"
+              @roles << {id: role["data"]["id"], text: role["data"]["name"]}
+            end
+          end
         end
       end
-      @security_roles_json = roles.to_json
+      @security_roles_json = @roles.to_json
       # logger.debug("\n muninn's security_roles: #{@security_roles_json}")
 
       ## GET all offices

@@ -1,14 +1,12 @@
-%p role_json
-= @roles_json
 - if @report["success"]
   :javascript
-    report_object = #{@report["report"].to_json.to_s.html_safe}
+    report_object =       #{@report["report"].to_json.to_s.html_safe}
     report_embed_object = #{@report_embed.to_json.to_s.html_safe}
-    term_reports = #{@term_reports.to_s.html_safe}
-    term_gov_json =#{@term_gov_json.to_s.html_safe}
-    // office_gov_json =#{@office_gov_json.to_s.html_safe}
-    role_reports  = #{@role_reports.to_s.html_safe}
-    security_roles_json =#{@security_roles_json.to_s.html_safe}
+    term_reports =        #{@term_reports.to_s.html_safe}
+    term_gov_json =       #{@term_gov_json.to_s.html_safe}
+    // office_gov_json =  #{@office_gov_json.to_s.html_safe}
+    role_reports  =       #{@role_reports.to_s.html_safe}
+    security_roles_json = #{@security_roles_json.to_s.html_safe}
 
   .row
     .large-8.columns
