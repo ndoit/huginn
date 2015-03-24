@@ -52,6 +52,7 @@ class ReportsController < ApplicationController
 
       ## GET Report's Associated Security Access
       roles_report_origin = @report["allows_access_with"]
+      @roles_report_origin = roles_report_origin
       
       if roles_report_origin != nil
         @report_roles = []
