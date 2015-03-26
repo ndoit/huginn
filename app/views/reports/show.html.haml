@@ -1,12 +1,12 @@
 - if @report["success"]
   :javascript
-    report_object = #{@report["report"].to_json.to_s.html_safe}
+    report_object =       #{@report["report"].to_json.to_s.html_safe}
     report_embed_object = #{@report_embed.to_json.to_s.html_safe}
-    term_reports = #{@term_reports.to_s.html_safe}
-    term_gov_json =#{@term_gov_json.to_s.html_safe}
-    // office_gov_json =#{@office_gov_json.to_s.html_safe}
-    role_reports  = #{@role_reports.to_s.html_safe}
-    security_roles_json =#{@security_roles_json.to_s.html_safe}
+    term_reports =        #{@term_reports.to_s.html_safe}
+    term_gov_json =       #{@term_gov_json.to_s.html_safe}
+    // office_gov_json =  #{@office_gov_json.to_s.html_safe}
+    role_reports  =       #{@role_reports.to_s.html_safe}
+    security_roles_json = #{@security_roles_json.to_s.html_safe}
 
   .row
     .large-8.columns
@@ -27,10 +27,9 @@
         %b Are you sure?
         %br
         %br
-        %input#deleteConfirm.tiny.button{:type => "button", :value => "Yes"}/
-        %input#deleteCancel.tiny.button{:type => "button", :value => "No"}/
+        %input#deleteConfirm.tiny.button{:type => "button", :value => "Yes"}
+        %input#deleteCancel.tiny.button{:type => "button", :value => "No"}
         %a.close-reveal-modal ×
-
   - if current_user && current_user.can( :publish_report )
     .row
       .large-1.large-offset-11.columns
@@ -225,7 +224,7 @@
         .large-6.columns
           - if current_user.can(:publish_report)
             .edit
-              = select_tag 'office_id', options_for_select(@offices.collect{ |o| o[:text] }, @report_office_owner_name), :id => 'office_owner'
+              = select_tag 'office_id', options_for_select(@offices.collect{ |o| o[:text] }, @report_office_owner_name), {:id => 'office_owner', :include_blank => true, :prompt => "Please Choose Office"}
           .view
             %p= "#{@report_office_owner_name}"
                     

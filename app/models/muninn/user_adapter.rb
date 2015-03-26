@@ -7,7 +7,6 @@ require "httparty"
 class Muninn::UserAdapter
 
   def self.security_roles( netid )
-    
     uri = URI.parse("http://#{ENV['muninn_host']}:#{ENV['muninn_port']}/users/#{netid}/roles")
     json = net_http_parse( uri )
     json["roles"]

@@ -34,7 +34,8 @@ class OfficesController < ApplicationController
   end
 
   def update
-    response = Muninn::Adapter.put( "/offices/#{URI.encode(params[:id])}", session[:cas_user], session[:cas_pgt], params[:officeJSON] )
+    logger.debug("/offices/id/#{URI.encode(params[:id])}")
+    response = Muninn::Adapter.put( "/offices/id/#{URI.encode(params[:id])}", session[:cas_user], session[:cas_pgt], params[:officeJSON] )
     render status: response.code, json: response.body
   end
 

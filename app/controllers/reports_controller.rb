@@ -10,9 +10,36 @@ class ReportsController < ApplicationController
 
   def update
     logger.debug("JSON sent to muninn: #{params[:reportJSON]}")
-    response = Muninn::Adapter.put( "/reports/#{URI.encode(params[:id])}", session[:cas_user], session[:cas_pgt], params[:reportJSON] )
+    logger.debug("#####################################")
+    logger.debug("params sent to Muninn Again + #{params}")
+    response = Muninn::Adapter.put( "/reports/params[:name]", session[:cas_user], session[:cas_pgt], params[:reportJSON] )
+
     render status: response.code, json: response.body
   end
+
+# Routing Error
+# No route matches [PUT] "/reports"
+# Rails.root: /vagrant/apps/muninn
+
+# Application Trace | Framework Trace | Full Trace
+# Routes
+# Routes match in priority from top to bottom
+
+# Helper  HTTP Verb Path  Controller#Action
+# Path / Url      
+# bulk_path GET /bulk(.:format) bulk#export
+# GET /bulk/:target(.:format) bulk#export
+# POST  /bulk(.:format) bulk#load
+# DELETE  /bulk/:confirmation(.:format) bulk#wipe
+# GET /terms/:unique_property(.:format) terms#show
+# GET /terms/id/:id(.:format) terms#show
+# terms_path  POST  /terms(.:format)  terms#create
+# PUT /terms/:unique_property(.:format) terms#update
+# PUT /terms/id/:id(.:format) terms#update
+# DELETE  /terms/:unique_property(.:format) terms#destroy
+# DELETE  /terms/id/:id(.:format) terms#destroy
+
+
 
   def create
 
@@ -21,7 +48,9 @@ class ReportsController < ApplicationController
   end
 
   def destroy
-    response = Muninn::Adapter.delete( "/reports/id/#{URI.encode(params[:id])}", session[:cas_user], session[:cas_pgt] )
+    logger.debug("#####################################")
+    logger.debug("params sent to Muninn Again + #{params}")
+    response = Muninn::Adapter.delete( "/reports/id/" + params[:id], session[:cas_user], session[:cas_pgt] )
     render status: response.code, json: response.body
   end
 
@@ -40,7 +69,6 @@ class ReportsController < ApplicationController
       @report_photo = PhotoMapper.new( @report["report"]["id"])
 
       ## GET Report's Associated Terms
-      @report_embed = @report["report"]["tableau_link"]
       term_report_json = @report["terms"]
       if term_report_json  != nil
         term_report = []
@@ -53,6 +81,7 @@ class ReportsController < ApplicationController
 
       ## GET Report's Associated Security Access
       roles_report_origin = @report["allows_access_with"]
+      @roles_report_origin = roles_report_origin
       
       if roles_report_origin != nil
         @report_roles = []
@@ -63,6 +92,7 @@ class ReportsController < ApplicationController
       end
 
       ## GET subreport?
+      @report_embed = @report["report"]["tableau_link"]
       if @report["report"]["report_type"] == "Aggregation"
         logger.debug("Aggregation report requested, querying sub-reports...")
         @subreports = []
@@ -86,15 +116,19 @@ class ReportsController < ApplicationController
 
       # GET All Security Access
       roles_resp = Muninn::Adapter.get( "/security_roles", session[:cas_user], session[:cas_pgt])
-      roles_json = JSON.parse(  roles_resp.body )["results"]
+      @roles_json = JSON.parse( roles_resp.body )["results"]
 
-      roles= []
-      roles_json.each do |role|
-        if role["data"]["name"] != "Term Editor" && role["data"]["report_role"] == "Y"
-          roles << {id: role["data"]["id"], text: role["data"]["name"]}
+      @roles= []
+      @roles_json.each do |role|
+        unless role["data"]["name"] == "Term Editor"
+          unless role["data"]["name"] == "Report Publisher"
+            unless role["data"]["name"] == "Administrator"
+              @roles << {id: role["data"]["id"], text: role["data"]["name"]}
+            end
+          end
         end
       end
-      @security_roles_json = roles.to_json
+      @security_roles_json = @roles.to_json
       # logger.debug("\n muninn's security_roles: #{@security_roles_json}")
 
       ## GET all offices
