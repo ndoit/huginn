@@ -10,9 +10,36 @@ class ReportsController < ApplicationController
 
   def update
     logger.debug("JSON sent to muninn: #{params[:reportJSON]}")
-    response = Muninn::Adapter.put( "/reports/#{URI.encode(params[:id])}", session[:cas_user], session[:cas_pgt], params[:reportJSON] )
+    logger.debug("#####################################")
+    logger.debug("params sent to Muninn Again + #{params}")
+    response = Muninn::Adapter.put( "/reports/params[:name]", session[:cas_user], session[:cas_pgt], params[:reportJSON] )
+
     render status: response.code, json: response.body
   end
+
+# Routing Error
+# No route matches [PUT] "/reports"
+# Rails.root: /vagrant/apps/muninn
+
+# Application Trace | Framework Trace | Full Trace
+# Routes
+# Routes match in priority from top to bottom
+
+# Helper  HTTP Verb Path  Controller#Action
+# Path / Url      
+# bulk_path GET /bulk(.:format) bulk#export
+# GET /bulk/:target(.:format) bulk#export
+# POST  /bulk(.:format) bulk#load
+# DELETE  /bulk/:confirmation(.:format) bulk#wipe
+# GET /terms/:unique_property(.:format) terms#show
+# GET /terms/id/:id(.:format) terms#show
+# terms_path  POST  /terms(.:format)  terms#create
+# PUT /terms/:unique_property(.:format) terms#update
+# PUT /terms/id/:id(.:format) terms#update
+# DELETE  /terms/:unique_property(.:format) terms#destroy
+# DELETE  /terms/id/:id(.:format) terms#destroy
+
+
 
   def create
 
@@ -21,7 +48,9 @@ class ReportsController < ApplicationController
   end
 
   def destroy
-    response = Muninn::Adapter.delete( "/reports/id/#{URI.encode(params[:id])}", session[:cas_user], session[:cas_pgt] )
+    logger.debug("#####################################")
+    logger.debug("params sent to Muninn Again + #{params}")
+    response = Muninn::Adapter.delete( "/reports/id/" + params[:id], session[:cas_user], session[:cas_pgt] )
     render status: response.code, json: response.body
   end
 

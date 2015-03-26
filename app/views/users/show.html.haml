@@ -1,8 +1,8 @@
 
-:javascript
-  role_reports  = #{@user_roles_json.to_s.html_safe}
-  security_roles_json = #{@security_roles_json.to_s.html_safe}
-  console.log('default admin roles' + '#{current_user.default_admin_roles.to_s}')
+/ :javascript
+/   role_reports  = #{@user_roles_json.to_s.html_safe}
+/   security_roles_json = #{@security_roles_json.to_s.html_safe}
+/   console.log('default admin roles' + '#{current_user.default_admin_roles.to_s}')
 
 .row
   .large-12.columns
@@ -71,6 +71,13 @@
     / %br
 .row
   .large-12.columns
-    %h3.page-title I Have Create Access To
+    %h3.page-title Create Ability
+    - current_user.list_create_access.each do |createaccess|
+      %h5= createaccess
+.row
+  .large-12.columns
+    %h3.page-title Read Ability
+    - current_user.list_read_access.each do |readaccess|
+      %h5= readaccess
 
 

@@ -30,7 +30,6 @@
         %input#deleteConfirm.tiny.button{:type => "button", :value => "Yes"}
         %input#deleteCancel.tiny.button{:type => "button", :value => "No"}
         %a.close-reveal-modal ×
-  = @roles_report_origin
   - if current_user && current_user.can( :publish_report )
     .row
       .large-1.large-offset-11.columns

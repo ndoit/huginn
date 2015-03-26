@@ -57,34 +57,17 @@ class User
     @my_access["user"]["net_id"]
   end
 
-  # def old_security_roles
-  #   @roles ||= get_security_roles
-  # end
-
-  def can_edit_any?
-    @can_edit_any = false
-    security_roles.each do |r|
-      if r["create_access_to"] || r["update_access_to"] == true
-        @can_edit_any = true
+  def can( action )
+    if is_admin?
+      return true
+    else
+      case action
+      when :publish_report
+        has_create_access_to( "report" ) 
+      when :edit_term
+        has_create_access_to( "term" )
       end
     end
-    @can_edit_any
   end
-
-  def can( action )
-    case action
-    when :publish_report
-      has_create_access_to( "report" ) 
-    when :edit_term
-      has_create_access_to( "term" )
-    end
-  end
-
-  # private
-
-  # def get_security_roles
-  #   # call web service
-  #   Muninn::UserAdapter.security_roles( self.name )
-  # end
 
 end
