@@ -162,7 +162,14 @@ $(document).ready(function(){
       "name": rname,
       "description": "",
       "report_type": "Tableau",
-      "embedJSON" : "{\"width\": \"\",\"height\": \"\" ,\"name\": \"\"}"
+      "embedJSON" : "{\"width\": \"\",\"height\": \"\" ,\"name\": \"\"}",
+      "allows_access_with" : [
+        {
+        "name" : "General Analyst",
+        "allow_update_and_delete" : true
+        }
+      ]
+
     };
     $('a.close-reveal-modal').trigger('click'); 
     createReport(report_new);
