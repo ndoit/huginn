@@ -51,12 +51,13 @@
                 %a{:href => "../terms/#{stakeholder["name"]}"}= stakeholder["name"]
                 = stakeholder["stake"]
             %br
-  #office_detail
-    .row
-      .medium-2.medium-offset-4.columns
-        %input#updateOfficeButton.small.button.expand{:type => "button", :value => "Update Office"}
-      .medium-2.columns.end
-        %input#deleteOfficeButton.small.button.expand{"data-reveal-id" => "mytinyDelete", :type => "button", :value => "Delete Office"}
+  - if current_user && current_user.can( :edit_term )
+    #office_detail
+      .row
+        .medium-2.medium-offset-4.columns
+          %input#updateOfficeButton.small.button.expand{:type => "button", :value => "Update Office"}
+        .medium-2.columns.end
+          %input#deleteOfficeButton.small.button.expand{"data-reveal-id" => "mytinyDelete", :type => "button", :value => "Delete Office"}
 - else
   Error: 
   = @office["message"]
