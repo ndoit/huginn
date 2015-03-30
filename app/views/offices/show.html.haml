@@ -40,14 +40,17 @@
   .row
     .large-12.columns
       %h5.page-title Stakeholder Information
-      %br
-      %ul
-        - @office["stakes"].each do |stakeholder|
-          %strong
-            %li
-              %a{:href => "../terms/#{stakeholder["name"]}"}= stakeholder["name"]
-              = stakeholder["stake"]
-          %br
+      - if @office["stakes"].empty?
+        %p This office has no stakeholder items
+      -else
+        %br
+        %ul
+          - @office["stakes"].each do |stakeholder|
+            %strong
+              %li
+                %a{:href => "../terms/#{stakeholder["name"]}"}= stakeholder["name"]
+                = stakeholder["stake"]
+            %br
   #office_detail
     .row
       .medium-2.medium-offset-4.columns
