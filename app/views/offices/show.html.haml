@@ -2,9 +2,10 @@
   office_detail_json = #{@office["office"].to_json.to_s.html_safe}
 .row
   .large-8.columns
-    .alert-box.alert.radius{"data-alert" => "", :style => "display:none"}
-      %ul.error_list
-      %a.close{:href => "#"} ×
+    %ul#error_list{:style => "display:none"}
+    / .alert-box.alert.radius{"data-alert" => "", :style => "display:none"}
+    /   %ul.error_list
+    /   %a.close{:href => "#"} ×
     .alert-box.warning.radius{"data-alert" => "", :style => "display:none"}
       %ul.error_list
       %a.close{:href => "#"} ×
@@ -25,12 +26,12 @@
           %input#deleteCancel.tiny.button{:type => "button", :value => "No"}
           %a.close-reveal-modal ×
 - if @office["success"]
-  #office_detail
-    .row
-      .large-12.columns
-        .small-12.large-12.columns
-          %input#updateOfficeButton.tiny.button{:type => "button", :value => "Update Office"}
-          %input#deleteOfficeButton.tiny.button{"data-reveal-id" => "mytinyDelete", :type => "button", :value => "Delete Office"}
+  / #office_detail
+  /   .row
+  /     .large-12.columns
+  /       .small-12.large-12.columns
+  /         %input#updateOfficeButton.tiny.button{:type => "button", :value => "Update Office"}
+  /         %input#deleteOfficeButton.tiny.button{"data-reveal-id" => "mytinyDelete", :type => "button", :value => "Delete Office"}
   .row
     .large-12.columns
       #name.editable
@@ -39,14 +40,24 @@
   .row
     .large-12.columns
       %h5.page-title Stakeholder Information
-      %br
-      %ul
-        - @office["stakes"].each do |stakeholder|
-          %strong
-            %li
-              %a{:href => "../terms/#{stakeholder["name"]}"}= stakeholder["name"]
-              = stakeholder["stake"]
-          %br
+      - if @office["stakes"].empty?
+        %p This office has no stakeholder items
+      -else
+        %br
+        %ul
+          - @office["stakes"].each do |stakeholder|
+            %strong
+              %li
+                %a{:href => "../terms/#{stakeholder["name"]}"}= stakeholder["name"]
+                = stakeholder["stake"]
+            %br
+  - if current_user && current_user.can( :edit_term )
+    #office_detail
+      .row
+        .medium-2.medium-offset-4.columns
+          %input#updateOfficeButton.small.button.expand{:type => "button", :value => "Update Office"}
+        .medium-2.columns.end
+          %input#deleteOfficeButton.small.button.expand{"data-reveal-id" => "mytinyDelete", :type => "button", :value => "Delete Office"}
 - else
   Error: 
   = @office["message"]
