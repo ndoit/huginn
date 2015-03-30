@@ -10,12 +10,19 @@
 
   .row
     .large-8.columns
-      .alert-box.alert.radius{"data-alert" => "", :style => "display:none"}
-        %ul.error_list
-        %a.close{:href => "#"} ×
+      %ul#error_list{:style => "display:none"}
+        / %li.alert-box.alert.radius{"data-alert" => ""}
+        /   Your content goes here
+        /   %a.close{:href => "#"} ×
+        / %li.alert-box.alert.radius{"data-alert" => ""}
+        /   Additional Content here
+        /   %a.close{:href => "#"} ×
+      / .alert-box.alert.radius{"data-alert" => "", :style => "display:none"}
+      /   %ul.error_list
+      /   %a.close{:href => "#"} ×
       .alert-box.warning.radius{"data-alert" => "", :style => "display:none"}
         %ul.error_list
-        %a.close{:href => "#"} ×
+        %a.close.close-alert-box{:href => "#"} ×
       .alert-box.success.radius{"data-alert" => "", :style => "display:none"}
         %span.success_msg
         %a.close{:href => "#"} ×

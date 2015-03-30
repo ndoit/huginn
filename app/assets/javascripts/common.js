@@ -79,31 +79,39 @@ $(document).ready(function(){
   }
 
 
-   if(typeof report_object != 'undefined')  {
-
-    $('#updateReportButton').click(function() {
-    //alert("updating report object")
-      if (updateReportObject(report_object) == false)
+  if(typeof report_object != 'undefined')  {
+    error_exist = false;
+    $('#updateReportButton').click( function() {
+      $('a.close-alert-box').trigger('click');
+      // alert("updating report object");
+      json_access_array = $('#role_input').select2('data');
+      selected_office = $('#office_owner').val();
+      error_text = "";
+      if (jQuery.isEmptyObject(json_access_array)){
+        // alert('addValidationError for json_access_array');
+        addValidationError( "alert", "You Must Select a Security Role");
+        error_exist = true;
+      }
+      if(jQuery.isEmptyObject( selected_office )) {
+        error_exist = true;
+        // alert('addValidationError for selected_office');
+        addValidationError( "alert", "You Must Select an Office That Owns This Report");
+      }
+      if( error_exist ) {
+        showValidationErrors();
         return false;
-
-      updateReport(report_object)
-    })
-
-    // $('#showJSONButton').click( function() {
-    //   $('#json_container').toggle()
-    // })
-
+      }
+      // alert("before update report object")
+      updateReportObject( report_object );
+      updateReport( report_object );
+    });
     $('#deleteConfirm').click( function() {
-      $('a.close-reveal-modal').trigger('click')
-      deleteReport(report_object.id)
-    })
+      $('a.close-reveal-modal').trigger('click');
+      deleteReport(report_object.id);
+    });
     $('#deleteCancel').click( function() {
-      $('a.close-reveal-modal').trigger('click')
-    })
-
-
-
-
+      $('a.close-reveal-modal').trigger('click');
+    });
   }
 
   if(typeof office_detail_json != 'undefined')  {
@@ -204,26 +212,24 @@ function clearValidationErrors() {
   $('.alert-box').each( function() {
   	$(this).find('.error_list').html('');
   	$(this).find('.success_msg').html('');
-  	$(this).hide()
-  })
+  	$(this).hide();
+  });
 }
 
 function addValidationError( type, message ) {
-  error_list = $('.alert-box.' + type ).find('ul.error_list')
-  error_list.append( '<li>' + message + '</li>')
+  error_list = $('#error_list')
+  error_list.append( '<li class="alert-box alert radius" data-alert>' + message + '<a class="close close-alert-box" href="#">x</a></li>'
+  );
 }
 
 function showValidationErrors() {
  	errors_exist = false
- 	$('.alert-box').each( function() {
- 		if ( $(this).find('li').length != 0 ){
- 			type = $(this).find('alert','warning')
- 		   $('.alert-box.' + type.selector).show().html_safe;
- 		   errors_exist = true
- 		}
-	})
+  if (error_list.length > 0) {
+    error_list.show();
+    errors_exist = true
+  }
   if ( errors_exist ) {
-	window.scrollTo(0,0)
+	  window.scrollTo(0,0)
   }
  	return errors_exist
 }
@@ -340,8 +346,9 @@ function createReport(report_object ) {
 }
 
 function updateReportObject(report_object ) {
-  clearValidationErrors()
+  clearValidationErrors();
   tinymce.triggerSave();
+
   console.log(report_object );
    $('.editable').each(function() {
     id = $(this).attr('id');
@@ -424,10 +431,10 @@ function updateReportObject(report_object ) {
 
   // report office owner
   report_object["offices"] = []
-  selected_office = $('#office_owner').val();
+
   console.log('grabbed offices from dom' + selected_office)
   report_object["offices"].push( { name: selected_office, stake: "Responsible"} )
-  console.log('report object json with officeoffice' + report_object);
+  console.log('report object json with office' + report_object);
 
 
 
@@ -437,9 +444,12 @@ function updateReportObject(report_object ) {
   var access_array=[]
 
   var access_text =null;
-  json_access_array = $('#role_input').select2('data')
+
+
+
+
   console.log(json_access_array);
-  for (var j = 0; j < json_access_array.length; j++ ) {
+  for ( var j = 0; j < json_access_array.length; j++ ) {
 
     report_object["allows_access_with"].push( { name: json_access_array[j]["text"], allow_update_and_delete: true} )
     var access_exists = false;
@@ -464,38 +474,38 @@ function updateReportObject(report_object ) {
       }
     }
   }
+  return true;
 }
 
 
 function updateReport( report_object ) {
-  
-$('form#report_image_upload').submit()
 
-  $.ajax({
-      url: report_object.id,
-      type: 'PUT',
-      data: {"reportJSON": JSON.stringify(report_object) },
-     // data: { "termJSON": term_object },
-      dataType: 'json',
-      success: function (data) {
-         console.log("succcess block")
-         var url = escape(report_object.name);
-         window.location.href = url;
-         addSuccessMessage("success", "<b>" + report_object.name + "</b>" +  " updated successfully. " );
-         showSuccessMessage();  
-      },
-      error: function( xhr, ajaxOptions, thrownError) {
-         addValidationError( "alert", "Update Report has errors: " + xhr.responseText);
-           showValidationErrors()
-      }
-  })
-  /*.done(function(data) {
-    console.log("done block")
-    //$('form#report_image_upload').submit()  // silently submit the image upload.  how to validate??    
-    var url = escape(report_object.name)
-    window.location.href = url
-  });
-*/
+  $('form#report_image_upload').submit()
+
+    $.ajax({
+        url: report_object.id,
+        type: 'PUT',
+        data: {"reportJSON": JSON.stringify(report_object) },
+        dataType: 'json',
+        success: function (data) {
+           console.log("succcess block")
+           var url = escape(report_object.name);
+           window.location.href = url;
+           addSuccessMessage("success", "<b>" + report_object.name + "</b>" +  " updated successfully. " );
+           showSuccessMessage();  
+        },
+        error: function( xhr, ajaxOptions, thrownError) {
+           addValidationError( "alert", "Update Report has errors: " + xhr.responseText);
+             showValidationErrors()
+        }
+    })
+    /*.done(function(data) {
+      console.log("done block")
+      //$('form#report_image_upload').submit()  // silently submit the image upload.  how to validate??    
+      var url = escape(report_object.name)
+      window.location.href = url
+    });
+  */
 
 
   
