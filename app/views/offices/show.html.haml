@@ -26,12 +26,12 @@
           %input#deleteCancel.tiny.button{:type => "button", :value => "No"}
           %a.close-reveal-modal ×
 - if @office["success"]
-  #office_detail
-    .row
-      .large-12.columns
-        .small-12.large-12.columns
-          %input#updateOfficeButton.tiny.button{:type => "button", :value => "Update Office"}
-          %input#deleteOfficeButton.tiny.button{"data-reveal-id" => "mytinyDelete", :type => "button", :value => "Delete Office"}
+  / #office_detail
+  /   .row
+  /     .large-12.columns
+  /       .small-12.large-12.columns
+  /         %input#updateOfficeButton.tiny.button{:type => "button", :value => "Update Office"}
+  /         %input#deleteOfficeButton.tiny.button{"data-reveal-id" => "mytinyDelete", :type => "button", :value => "Delete Office"}
   .row
     .large-12.columns
       #name.editable
@@ -48,6 +48,12 @@
               %a{:href => "../terms/#{stakeholder["name"]}"}= stakeholder["name"]
               = stakeholder["stake"]
           %br
+  #office_detail
+    .row
+      .medium-2.medium-offset-4.columns
+        %input#updateOfficeButton.small.button.expand{:type => "button", :value => "Update Office"}
+      .medium-2.columns.end
+        %input#deleteOfficeButton.small.button.expand{"data-reveal-id" => "mytinyDelete", :type => "button", :value => "Delete Office"}
 - else
   Error: 
   = @office["message"]
