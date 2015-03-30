@@ -2,9 +2,10 @@
   office_detail_json = #{@office["office"].to_json.to_s.html_safe}
 .row
   .large-8.columns
-    .alert-box.alert.radius{"data-alert" => "", :style => "display:none"}
-      %ul.error_list
-      %a.close{:href => "#"} ×
+    %ul#error_list{:style => "display:none"}
+    / .alert-box.alert.radius{"data-alert" => "", :style => "display:none"}
+    /   %ul.error_list
+    /   %a.close{:href => "#"} ×
     .alert-box.warning.radius{"data-alert" => "", :style => "display:none"}
       %ul.error_list
       %a.close{:href => "#"} ×

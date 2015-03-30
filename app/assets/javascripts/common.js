@@ -675,7 +675,7 @@ function updateOffice( office_object ) {
       },
       error: function( xhr, ajaxOptions, thrownError) {
          addValidationError( "alert", "Update Office, <b>" + office_object.name + "</b>  has errors: " + jQuery.parseJSON(xhr.responseText).message);
-         showValidationErrors()
+         showValidationErrors();
       }
   });
 
