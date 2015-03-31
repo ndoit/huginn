@@ -69,25 +69,27 @@
           = @report["report"].fetch("description", "NA").html_safe
 
   - if @report["report"]["report_type"] == "External"
-    / / External report
-    / .row
-    /   .large-12.large-centered.columns
-    /     %iframe#reportframe{:frameborder => "0", :height => @report_embed["height"], :scrolling => "no", :src => @report_embed["external_uri"], :width => @report_embed["width"]}
+    / External report
+    .row
+      .large-12.large-centered.columns
+        %iframe#reportframe{:frameborder => "0", :height => @report_embed["height"], :scrolling => "no", :src => @report_embed["external_uri"], :width => @report_embed["width"]}
   - elsif @report["report"]["report_type"] == "Aggregation"
-    / Aggregation of sub-reports
-    / .row
-    /   .large-12.columns
-    /         %ul{:class => "small-block-grid-1 medium-block-grid-2 large-block-grid-#{@report_embed["gridsize"].to_s}"}
-    /           - @subreports.each do |subreport|
-    /             %li
-    /               .row
-    /                 .small-12.medium-12.large-12.columns
-    /                   %a{:href => subreport["name"]}
-    /                     %h5= subreport["name"]
-    /               .row
-    /                 .small-12.medium-12.large-12.columns
-    /                   %a{:href => subreport["name"]}
-    /                     %img{:src => subreport["thumbnail_uri"]}
+    .row
+      .large-12.columns
+        Aggregation of sub-reports
+    .row
+      .large-12.columns
+        %ul{:class => "small-block-grid-1 medium-block-grid-2 large-block-grid-#{@report_embed["gridsize"].to_s}"}
+          - @subreports.each do |subreport|
+            %li
+              .row
+                .small-12.medium-12.large-12.columns
+                  %a{:href => subreport["name"]}
+                    %h5= subreport["name"]
+              .row
+                .small-12.medium-12.large-12.columns
+                  %a{:href => subreport["name"]}
+                    %img{:src => subreport["thumbnail_uri"]}
 
     /   - else
     /     / Tableau report
@@ -106,12 +108,13 @@
 
 
 
-  %br
-  .row
-    #tableauiframe.large-12.columns
-      / %input#tableaulink{:value => "#{@report["report"]["tableau_link"]}", :placeholder => "Tableau Embed", :type => "text"}
-      
-      %iframe{:src => "#{@report["report"]["tableau_link"]}", :width => "100%", :height => "1000px"}
+  - if @report["report"]["report_type"] == "Tableau"
+    %br
+    .row
+      #tableauiframe.large-12.columns
+        / %input#tableaulink{:value => "#{@report["report"]["tableau_link"]}", :placeholder => "Tableau Embed", :type => "text"}
+        
+        %iframe{:src => "#{@report["report"]["tableau_link"]}", :width => "100%", :height => "1000px"}
 
 
   %br
