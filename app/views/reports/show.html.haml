@@ -106,14 +106,14 @@
     /               %param{:name => "linktarget", :value => "_self"}
     /               %param{:name => "toolbar", :value => "yes"}
 
-
-
+  %p @report["report"]["report_type"]
+  = @report["report"]["report_type"]
   - if @report["report"]["report_type"] == "Tableau"
+
     %br
     .row
       #tableauiframe.large-12.columns
         / %input#tableaulink{:value => "#{@report["report"]["tableau_link"]}", :placeholder => "Tableau Embed", :type => "text"}
-        
         %iframe{:src => "#{@report["report"]["tableau_link"]}", :width => "100%", :height => "1000px"}
 
 
@@ -232,6 +232,9 @@
           .view
             %p= "#{@report_office_owner_name}"
                     
+  .row.edit
+    .large-6.columns
+      = select_tag 'type', options_for_select(["Tableau", "Aggregation", "External"], @report["report"]["report_type"]), { :include_blank => true, :prompt => "Please Choose Type"}
   .row.edit
     .medium-2.medium-offset-4.columns
       %input#updateReportButton.small.button.expand{:type => "button", :value => "Update Report"}
