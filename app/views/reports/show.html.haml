@@ -74,6 +74,10 @@
       .row
         .large-12.large-centered.columns
           %iframe#reportframe{:frameborder => "0", :height => @report_embed["height"], :scrolling => "no", :src => @report_embed["external_uri"], :width => @report_embed["width"]}
+    - else
+      .row
+        .large-12.large-centered.columns
+          %p There is currently no embedded reports for this report
   - elsif @report["report"]["report_type"] == "Aggregation"
     - if @report_embed.present?
       .row
@@ -166,25 +170,25 @@
 
     / security roles
     
-    .row
-      .large-12.large-centered.columns
-        %h5.page-title Security Roles Associated with this Report
+  .row
+    .large-12.large-centered.columns
+      %h5.page-title Security Roles Associated with this Report
 
-        .view
-          - unless @report_roles.empty?
-            - @report_roles.each do |result|
-              %strong
-                = result[:text]
-              %br
-              %br
-        .edit
-          - if current_user && current_user.can( :publish_report )
-            .row
-              %table.raci
-                %tbody.tbody
-                  %tr.security_row
-                    %td
-                      %input#role_input.role_input{"data-init" => @report_roles_json.to_s, :type => "hidden"}
+      .view
+        - unless @report_roles.empty?
+          - @report_roles.each do |result|
+            %strong
+              = result[:text]
+            %br
+            %br
+      .edit
+        - if current_user && current_user.can( :publish_report )
+          .row
+            %table.raci
+              %tbody.tbody
+                %tr.security_row
+                  %td
+                    %input#role_input.role_input{"data-init" => @report_roles_json.to_s, :type => "hidden"}
 
 
 

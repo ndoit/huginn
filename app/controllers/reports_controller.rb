@@ -83,7 +83,7 @@ class ReportsController < ApplicationController
       roles_report_origin = @report["allows_access_with"]
       @roles_report_origin = roles_report_origin
       
-      if roles_report_origin != nil
+      if roles_report_origin.present?
         @report_roles = []
         roles_report_origin.each do |role|
           @report_roles << {id: role["id"], text: role["name"]}
@@ -93,18 +93,21 @@ class ReportsController < ApplicationController
 
       ## GET subreport?
       if @report["report"]["report_type"] == "Aggregation" || @report["report"]["report_type"] == "External" then
-        @report_embed = JSON.parse @report["report"]["embedJSON"]
-        if @report["report"]["report_type"] == "Aggregation"
-          logger.debug("Aggregation report requested, querying sub-reports...")
-          @subreports = []
-          @report_embed["subreports"].each do |subreport_name|
-            logger.debug("Querying for " + subreport_name + "...")
-            subreport_response = Muninn::Adapter.get("/reports/" + URI::encode(subreport_name), session[:cas_user], session[:cas_pgt])
-            subreport_json = JSON.parse(subreport_response.body)
-            @subreports << { "name" => subreport_json["report"]["name"], "thumbnail_uri" => subreport_json["report"]["thumbnail_uri"] }
+        if @report["report"]["embedJSON"].present?
+          @report_embed = JSON.parse @report["report"]["embedJSON"]
+          if @report["report"]["report_type"] == "Aggregation"
+            logger.debug("Aggregation report requested, querying sub-reports...")
+            @subreports = []
+            if @report_embed["subreports"].present?
+              @report_embed["subreports"].each do |subreport_name|
+                logger.debug("Querying for " + subreport_name + "...")
+                subreport_response = Muninn::Adapter.get("/reports/" + URI::encode(subreport_name), session[:cas_user], session[:cas_pgt])
+                subreport_json = JSON.parse(subreport_response.body)
+                @subreports << { "name" => subreport_json["report"]["name"], "thumbnail_uri" => subreport_json["report"]["thumbnail_uri"] }
+              end
+            end
           end
         end
-
       end
 
        # GET All Terms
