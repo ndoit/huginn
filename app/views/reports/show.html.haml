@@ -175,7 +175,7 @@
       %h5.page-title Security Roles Associated with this Report
 
       .view
-        - unless @report_roles.empty?
+        - if @report_roles.present?
           - @report_roles.each do |result|
             %strong
               = result[:text]
