@@ -237,6 +237,9 @@
         %p= "#{@report_office_owner_name}"
                     
   .row.edit
+    .large-12.large-centered.columns
+      %h5.page-title Report Type
+  .row.edit    
     .large-6.columns
       = select_tag 'type', options_for_select(["Tableau", "Aggregation", "External"], @report["report"]["report_type"]), { :include_blank => true, :prompt => "Please Choose Type"}
   .row.edit
