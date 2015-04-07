@@ -86,6 +86,7 @@ $(document).ready(function(){
       // alert("updating report object");
       json_access_array = $('#role_input').select2('data');
       selected_office = $('#office_owner').val();
+      selected_type = $('#type').val();
       error_text = "";
       if (jQuery.isEmptyObject(json_access_array)){
         // alert('addValidationError for json_access_array');
@@ -96,6 +97,10 @@ $(document).ready(function(){
         error_exist = true;
         // alert('addValidationError for selected_office');
         addValidationError( "alert", "You Must Select an Office That Owns This Report");
+      }
+      if(jQuery.isEmptyObject( selected_type )) {
+        error_exist = true;
+        addValidationError( "alert", "You Must Select the Report Type");
       }
       if( error_exist ) {
         
@@ -404,6 +409,7 @@ function updateReportObject(report_object ) {
   report_object["terms"] = []
   var term_array = []
 
+
   var term_text = null;
   json_term_array = $('#term_input').select2('data')
   console.log("This is the json_term_array: " + json_term_array);
@@ -430,11 +436,9 @@ function updateReportObject(report_object ) {
     }
   }
 
-
+  report_object["report_type"] = $('#type').val();
   report_object["name"] = $('#name-edit').val();
   report_object["tableau_link"] = $('#tableaulink').val();
-
-  report_object["report_type"] = $('#reporttype').val();
   report_object["datasource"] = $('#datasource').val();
 
   // report office owner

@@ -70,50 +70,54 @@
 
   - if @report["report"]["report_type"] == "External"
     / External report
-    .row
-      .large-12.large-centered.columns
-        %iframe#reportframe{:frameborder => "0", :height => @report_embed["height"], :scrolling => "no", :src => @report_embed["external_uri"], :width => @report_embed["width"]}
+    - if @report_embed.present?
+      .row
+        .large-12.large-centered.columns
+          %iframe#reportframe{:frameborder => "0", :height => @report_embed["height"], :scrolling => "no", :src => @report_embed["external_uri"], :width => @report_embed["width"]}
+    - else
+      .row
+        .large-12.large-centered.columns
+          %p There is currently no embedded reports for this report
   - elsif @report["report"]["report_type"] == "Aggregation"
-    .row
-      .large-12.columns
-        Aggregation of sub-reports
-    .row
-      .large-12.columns
-        %ul{:class => "small-block-grid-1 medium-block-grid-2 large-block-grid-#{@report_embed["gridsize"].to_s}"}
-          - @subreports.each do |subreport|
-            %li
-              .row
-                .small-12.medium-12.large-12.columns
-                  %a{:href => subreport["name"]}
-                    %h5= subreport["name"]
-              .row
-                .small-12.medium-12.large-12.columns
-                  %a{:href => subreport["name"]}
-                    %img{:src => subreport["thumbnail_uri"]}
+    - if @report_embed.present?
+      .row
+        .large-12.columns
+          Aggregation of sub-reports
+      .row
+        .large-12.columns
+          %ul{:class => "small-block-grid-1 medium-block-grid-2 large-block-grid-#{@report_embed["gridsize"].to_s}"}
+            - @subreports.each do |subreport|
+              %li
+                .row
+                  .small-12.medium-12.large-12.columns
+                    %a{:href => subreport["name"]}
+                      %h5= subreport["name"]
+                .row
+                  .small-12.medium-12.large-12.columns
+                    %a{:href => subreport["name"]}
+                      %img{:src => subreport["thumbnail_uri"]}
 
-    /   - else
-    /     / Tableau report
-    /     - if @report_embed["width"] != "" then
-    /       .row
-    /         .large-12.large-centered.columns
-    /           %script{:src => "https://tableau.nd.edu/javascripts/api/viz_v1.js", :type => "text/javascript"}
-    /           #tableauPlaceholderId.tableauPlaceholder{:style => "width:#{@report_embed["width"]}; height:#{@report_embed["height"]};"}
-    /             %object.tableauViz{:height => @report_embed["height"], :style => "display:none;", :width => @report_embed["width"]}
-    /               %param{:name => "host_url", :value => "https%3A%2F%2Ftableau.nd.edu%2F"}
-    /               %param{:name => "site_root", :value => ""}
-    /               %param{:name => "name", :value => (@report_embed["name"].html_safe) }
-    /               %param{:name => "tabs", :value => (@report_embed["tabs"].html_safe) }
-    /               %param{:name => "linktarget", :value => "_self"}
-    /               %param{:name => "toolbar", :value => "yes"}
-
-
+      /   - else
+      /     / Tableau report
+      /     - if @report_embed["width"] != "" then
+      /       .row
+      /         .large-12.large-centered.columns
+      /           %script{:src => "https://tableau.nd.edu/javascripts/api/viz_v1.js", :type => "text/javascript"}
+      /           #tableauPlaceholderId.tableauPlaceholder{:style => "width:#{@report_embed["width"]}; height:#{@report_embed["height"]};"}
+      /             %object.tableauViz{:height => @report_embed["height"], :style => "display:none;", :width => @report_embed["width"]}
+      /               %param{:name => "host_url", :value => "https%3A%2F%2Ftableau.nd.edu%2F"}
+      /               %param{:name => "site_root", :value => ""}
+      /               %param{:name => "name", :value => (@report_embed["name"].html_safe) }
+      /               %param{:name => "tabs", :value => (@report_embed["tabs"].html_safe) }
+      /               %param{:name => "linktarget", :value => "_self"}
+      /               %param{:name => "toolbar", :value => "yes"}
 
   - if @report["report"]["report_type"] == "Tableau"
+
     %br
     .row
       #tableauiframe.large-12.columns
         / %input#tableaulink{:value => "#{@report["report"]["tableau_link"]}", :placeholder => "Tableau Embed", :type => "text"}
-        
         %iframe{:src => "#{@report["report"]["tableau_link"]}", :width => "100%", :height => "1000px"}
 
 
@@ -166,25 +170,25 @@
 
     / security roles
     
-    .row
-      .large-12.large-centered.columns
-        %h5.page-title Security Roles Associated with this Report
+  .row
+    .large-12.large-centered.columns
+      %h5.page-title Security Roles Associated with this Report
 
-        .view
-          - unless @report_roles.empty?
-            - @report_roles.each do |result|
-              %strong
-                = result[:text]
-              %br
-              %br
-        .edit
-          - if current_user && current_user.can( :publish_report )
-            .row
-              %table.raci
-                %tbody.tbody
-                  %tr.security_row
-                    %td
-                      %input#role_input.role_input{"data-init" => @report_roles_json.to_s, :type => "hidden"}
+      .view
+        - if @report_roles.present?
+          - @report_roles.each do |result|
+            %strong
+              = result[:text]
+            %br
+            %br
+      .edit
+        - if current_user && current_user.can( :publish_report )
+          .row
+            %table.raci
+              %tbody.tbody
+                %tr.security_row
+                  %td
+                    %input#role_input.role_input{"data-init" => @report_roles_json.to_s, :type => "hidden"}
 
 
 
@@ -211,7 +215,7 @@
         
 
 
-  - if @report["report"]["report_type"] !=  "External"  &&  @report["report"]["report_type"] != "Aggregation"
+  - if @report["report"]["report_type"] ==  "Tableau"
     - if current_user && current_user.can( :publish_report )
       .row.edit
         .large-12.large-centered.columns
@@ -221,17 +225,23 @@
           %input#tableaulink{:value => "#{@report["report"]["tableau_link"]}", :placeholder => "Tableau Embed", :type => "text"}
 
 
-      .row
-        .large-12.large-centered.columns
-          %h5.page-title Office Owner
-      .row
-        .large-6.columns
-          - if current_user.can(:publish_report)
-            .edit
-              = select_tag 'office_id', options_for_select(@offices.collect{ |o| o[:text] }, @report_office_owner_name), {:id => 'office_owner', :include_blank => true, :prompt => "Please Choose Office"}
-          .view
-            %p= "#{@report_office_owner_name}"
+  .row
+    .large-12.large-centered.columns
+      %h5.page-title Office Owner
+  .row
+    .large-6.columns
+      - if current_user.can(:publish_report)
+        .edit
+          = select_tag 'office_id', options_for_select(@offices.collect{ |o| o[:text] }, @report_office_owner_name), {:id => 'office_owner', :include_blank => true, :prompt => "Please Choose Office"}
+      .view
+        %p= "#{@report_office_owner_name}"
                     
+  .row.edit
+    .large-12.large-centered.columns
+      %h5.page-title Report Type
+  .row.edit    
+    .large-6.columns
+      = select_tag 'type', options_for_select(["Tableau", "Aggregation", "External"], @report["report"]["report_type"]), { :include_blank => true, :prompt => "Please Choose Type"}
   .row.edit
     .medium-2.medium-offset-4.columns
       %input#updateReportButton.small.button.expand{:type => "button", :value => "Update Report"}
