@@ -92,7 +92,7 @@ class ReportsController < ApplicationController
       end
 
       ## GET subreport?
-      if @report["report"]["report_type"] == "aggregation" || @report["report"]["report_type"] == "external" then
+      if @report["report"]["report_type"] == "Aggregation" || @report["report"]["report_type"] == "External" then
         @report_embed = JSON.parse @report["report"]["embedJSON"]
         if @report["report"]["report_type"] == "Aggregation"
           logger.debug("Aggregation report requested, querying sub-reports...")
@@ -104,6 +104,7 @@ class ReportsController < ApplicationController
             @subreports << { "name" => subreport_json["report"]["name"], "thumbnail_uri" => subreport_json["report"]["thumbnail_uri"] }
           end
         end
+
       end
 
        # GET All Terms
