@@ -45,24 +45,24 @@
                 %i of
                 Information Technologies
       = render "shared/top_bar"
-    %main#content.site-content{:role => "main"}
-      - if request.path == "/"
-        .row
-          .large-5.large-centered.columns.splash
-            %h2 Welcome To The BI Portal
-        .row
-          .large-7.large-centered.columns.splash
-            %h2 At The University Of Notre Dame du Lac
-        .row
-          .large-5.medium-7.medium-centered.columns
-            = image_tag("dome_fullwidth.jpg", :class =>"th")
-        %br/
-        - unless current_user
-          .row
-            .large-5.medium-7.medium-centered.columns
-              / <a href="#" class="button expand">LOG IN</a>
-              = link_to "LOG IN", login_path, class: "button expand"
-      = yield
+    -# %main#content.site-content{:role => "main"}
+    -#   - if request.path == "/"
+    -#     .row
+    -#       .large-5.large-centered.columns.splash
+    -#         %h2 Welcome To The BI Portal
+    -#     .row
+    -#       .large-7.large-centered.columns.splash
+    -#         %h2 At The University Of Notre Dame du Lac
+    -#     .row
+    -#       .large-5.medium-7.medium-centered.columns
+    -#         = image_tag("dome_fullwidth.jpg", :class =>"th")
+    -#     %br/
+    -#     - unless current_user
+    -#       .row
+    -#         .large-5.medium-7.medium-centered.columns
+    -#           / <a href="#" class="button expand">LOG IN</a>
+    -#           = link_to "LOG IN", login_path, class: "button expand"
+    -#   = yield
     %footer#footer.site-footer.row{:role => "contentinfo"}
       .large-12.columns
         .footer-inner
