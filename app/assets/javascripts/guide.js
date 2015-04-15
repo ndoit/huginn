@@ -1,6 +1,6 @@
 $(document).ready(
   function() {
-    executeFilter()
+    executeFilter();
 
     // bindFilterToggleBehavior()
 
@@ -33,7 +33,7 @@ function bindTypeaheadSearchBehavior() {
   // typeahead binding
   var pendingPartialSearch;
   var delay = 200;
-  $("#search1").bind('input', function() {
+  $('#search1').bind('input', function() {
       search_val = $("#search1").val()
       if ( search_val.length == 0 || search_val.length >= 3 ) {
         // if the user is still typing, cancel the pending search
@@ -91,7 +91,7 @@ function selectedResources() {
   // if ( sidebarExists() ) {
   //   url = 'selected_resources=' + getSelectedResourceList()
   // } else {
-  if ( $('#initial_selected_resources').length != 0 ) {
+  if ( $('#initial_selected_resources').length !== 0 ) {
     url = 'selected_resources=' + $('#initial_selected_resources').val()
   }
   return url
@@ -122,11 +122,11 @@ function selectedResources() {
 // the live version of this event didn't seem to work correctly,
 // so it is manually bound after  the dynamic content loads.
 function bindInfiniteScrollBehavior() {
-  console.log('binding')
-  $('.more_results').unbind('inview')
+  console.log('binding');
+  $('.more_results').unbind('inview');
   if ( results_size == 10 ) {
     $('.more_results').bind('inview', function(event, isInView, visiblePartX, visiblePartY) {
-      console.log('hit')
+      console.log('hit');
       if (isInView) {
         // element is now visible in the viewport
         if (visiblePartY == 'top') {
@@ -135,7 +135,7 @@ function bindInfiniteScrollBehavior() {
           // bottom part of element is visible
         } else {
           // whole part of element is visible
-          loadMoreResults( $(this) )
+          loadMoreResults( $(this) );
         }
       } else {
         // element has gone out of viewport
