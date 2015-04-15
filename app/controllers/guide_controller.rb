@@ -35,31 +35,14 @@ class GuideController < ApplicationController
     params[:page] ||= 1
 
     @query = params[:selected_resources]
-    logger.debug("This is the params :selected_resources= #{@query}")
+    # logger.debug("This is the params :selected_resources= #{@query}")
     mcsa = Muninn::CustomSearchAdapter.new( params, session[:cas_user], session[:cas_pgt] )
 
-    # because we are going to do security down on the muninn side of things,
-    # we no longer need to filter reports on huginn side.
-    # mcsa.filter_reports( role_filter_array )
-
-    # why is this here? this is redundant in the lines above.
-    # params[:selected_resources] ||= @query 
-
-    logger.debug("These are the returning params: #{mcsa.to_s}")
+    # logger.debug("These are the returning params: #{mcsa.to_s}")
     
     # This needs to return @results
     mcsa.filter_results
     @results = mcsa.results
-
-    # Right now the results are coming in and only getting parsed at the view layer. 
-    # If I want to add authentication on certain terms and reports, 
-    # I would need to parse out the terms and reports here at the controller/model level 
-    # BEFORE sending it to the view. 
-    ###
-    # This is no longer true
-    # Muninn now handles all security for us
-
-    # each time the user hits muninn, muninn retrieves everything and then sends it back
 
     logger.debug("Ok, These are the results: '#{@results}'")
 
@@ -85,14 +68,16 @@ class GuideController < ApplicationController
     end
   end
 
-  private
+  # I can't find this being used anywhere else.
+  # It might be old dead code.
+  # private
 
-  def role_filter_array
-    if current_user
-      current_user.security_roles
-    else
-      []
-    end
-  end
+  # def role_filter_array
+  #   if current_user
+  #     current_user.security_roles
+  #   else
+  #     []
+  #   end
+  # end
 
 end 

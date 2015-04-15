@@ -21,7 +21,12 @@
     <%= javascript_include_tag "application" %>
   </head>
 
-  <body>
+  <body> 
+    <script>
+      <% if @results_length.present? %>
+        results_length = <%= @results_length %>
+      <% end %>
+    </script>
 
 <!--     <nav class="skip-links">
       <ul>

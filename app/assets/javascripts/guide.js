@@ -1,10 +1,10 @@
 $(document).ready(
   function() {
-  	executeFilter()
+    executeFilter()
 
     // bindFilterToggleBehavior()
 
-    bindTypeaheadSearchBehavior()
+    bindTypeaheadSearchBehavior();
 
 // When the user clicks on the banner, redirects to root
     $('.dddm-header').click( function() {
@@ -12,48 +12,43 @@ $(document).ready(
     })
 
 // Puts the default greyed out text in the search box
-    $('#search1').watermark('Search')
-
-
-
+    $('#search1').watermark('Search');
   }
 )
 
 // On click of the left bar filters,
 // Switch the checkbox to different styling,
 // and perform the executFilter funcion
-function bindFilterToggleBehavior() {
-    $('#content').on( 'click', '.data-type-label-container', function() {
-      // I'm using a different partial now. this wont be needed anymore
-      $(this).find('.toggle_light').toggleClass('toggle_off')
-      executeFilter()
-    })
-}
+// function bindFilterToggleBehavior() {
+//     $('#content').on( 'click', '.data-type-label-container', function() {
+//       // I'm using a different partial now. this wont be needed anymore
+//       $(this).find('.toggle_light').toggleClass('toggle_off')
+//       executeFilter()
+//     })
+// }
 
 function bindTypeaheadSearchBehavior() {
-    // every keyup event starts a search that will
-    // execute in 200ms unless another key is pressed!
-    // typeahead binding
-    var pendingPartialSearch
-    var delay = 200
-    $("#search1").bind("keyup",function() {
-
+  // every keyup event starts a search that will
+  // execute in 200ms unless another key is pressed!
+  // typeahead binding
+  var pendingPartialSearch;
+  var delay = 200;
+  $("#search1").bind('input', function() {
       search_val = $("#search1").val()
       if ( search_val.length == 0 || search_val.length >= 3 ) {
         // if the user is still typing, cancel the pending search
         if ( pendingPartialSearch != null ) {
-           clearTimeout( pendingPartialSearch )  // stop the pending one
+           clearTimeout( pendingPartialSearch );  // stop the pending one
         }
-        console.log( search_val )
-
-         // set a new search to execute in 200ms
+        console.log( search_val );
+        // set a new search to execute in 200ms  
         pendingPartialSearch = setTimeout( function() {
-          console.log(search_val)
-          executeFilter()
+          // console.log(search_val);
+          executeFilter();
         }, delay )
-      }
-
-    })
+      
+    }
+  });
 }
 
 // console logs what was input into search box
@@ -64,6 +59,8 @@ function executeFilter() {
   console.log(searchURL)
   displayLoading()
 
+  // this is where the actual load function comes in
+  // ( url to go, then functions to run when complete )
   $('#search_results').load( searchURL, function() {
     highlightSearchString()
     bindInfiniteScrollBehavior()
@@ -92,34 +89,32 @@ function getSearchURL( page ) {
 //This is what's determining what results get displayed.
 function selectedResources() {
   var url = ''
-  if ( sidebarExists() ) {
-    url = 'selected_resources=' + getSelectedResourceList()
-  } else {
-    if ( $('#initial_selected_resources').length != 0 ) {
-      url = 'selected_resources=' + $('#initial_selected_resources').val()
-    }
+  // if ( sidebarExists() ) {
+  //   url = 'selected_resources=' + getSelectedResourceList()
+  // } else {
+  if ( $('#initial_selected_resources').length != 0 ) {
+    url = 'selected_resources=' + $('#initial_selected_resources').val()
   }
   return url
-
 }
 
 // checks which side bar items are checked,
 // stores those names as a variable with a string
-function getSelectedResourceList() {
-  var resources = []
-  userSelectedResources().each( function() {
-    resources.push( $(this).data('resource-name') )
-  })
-  return resources.join(",")
-}
+// function getSelectedResourceList() {
+//   var resources = []
+//   userSelectedResources().each( function() {
+//     resources.push( $(this).data('resource-name') )
+//   })
+//   return resources.join(",")
+// }
 
-function sidebarExists() {
-  return $('.toggle_light').length != 0
-}
+// function sidebarExists() {
+//   return $('.toggle_light').length != 0
+// }
 
-function userSelectedResources() {
-  return $('.toggle_light').not('.toggle_off')
-}
+// function userSelectedResources() {
+//   return $('.toggle_light').not('.toggle_off')
+// }
 
 //////////bindinfinitescrollbehavior//////////
 
@@ -131,23 +126,24 @@ function userSelectedResources() {
 function bindInfiniteScrollBehavior() {
   console.log('binding')
   $('.more_results').unbind('inview')
-  $('.more_results').bind('inview', function(event, isInView, visiblePartX, visiblePartY) {
-    console.log('hit')
-    if (isInView) {
-      // element is now visible in the viewport
-      if (visiblePartY == 'top') {
-        // top part of element is visible
-      } else if (visiblePartY == 'bottom') {
-        // bottom part of element is visible
+  if ( results_size == 10 ) {
+    $('.more_results').bind('inview', function(event, isInView, visiblePartX, visiblePartY) {
+      console.log('hit')
+      if (isInView) {
+        // element is now visible in the viewport
+        if (visiblePartY == 'top') {
+          // top part of element is visible
+        } else if (visiblePartY == 'bottom') {
+          // bottom part of element is visible
+        } else {
+          // whole part of element is visible
+          loadMoreResults( $(this) )
+        }
       } else {
-        // whole part of element is visible
-        //console.log('else')
-        loadMoreResults( $(this) )
+        // element has gone out of viewport
       }
-    } else {
-      // element has gone out of viewport
-    }
-  });
+    });
+  }
 }
 
 function loadMoreResults( more_button ) {
@@ -158,7 +154,7 @@ function loadMoreResults( more_button ) {
     // replace the current "more" button with the new content, which
     // will contain another "more" button
     $.get(url, function(data) {
-         more_button.replaceWith(data)
+         more_button.replaceWith( data )
          bindInfiniteScrollBehavior()
          highlightSearchString()
     });
