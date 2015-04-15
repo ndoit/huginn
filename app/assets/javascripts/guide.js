@@ -6,12 +6,12 @@ $(document).ready(
 
     bindTypeaheadSearchBehavior();
 
-// When the user clicks on the banner, redirects to root
+    // When the user clicks on the banner, redirects to root
     $('.dddm-header').click( function() {
       window.location = "/"
     })
 
-// Puts the default greyed out text in the search box
+    // Puts the default greyed out text in the search box
     $('#search1').watermark('Search');
   }
 )
@@ -59,8 +59,8 @@ function executeFilter() {
   console.log(searchURL)
   displayLoading()
 
-  // this is where the actual load function comes in
-  // ( url to go, then functions to run when complete )
+  // this is where the actual load function happens
+  // .load( url to go, then functions to run when complete )
   $('#search_results').load( searchURL, function() {
     highlightSearchString()
     bindInfiniteScrollBehavior()
@@ -78,15 +78,14 @@ function getSearchURL( page ) {
   if ( page != 1 ) {
     url += "&page=" + page
   }
-
   return url
 }
 
 // sets url as an empty string
 // sidebarExists() checks if the side bar is displayed
 // then sets url as get selected resources
-
-//This is what's determining what results get displayed.
+// // We're not using sidebar() anymore
+// This is what's determining what results get displayed.
 function selectedResources() {
   var url = ''
   // if ( sidebarExists() ) {
@@ -116,9 +115,8 @@ function selectedResources() {
 //   return $('.toggle_light').not('.toggle_off')
 // }
 
+
 //////////bindinfinitescrollbehavior//////////
-
-
 
 
 // the live version of this event didn't seem to work correctly,
@@ -164,9 +162,6 @@ function highlightSearchString() {
   search_string = $('#search1').val()
   $(".do_highlight").highlight( search_string )
 }
-
-
-
 
 function displayLoading() {
   $('#search_results_right').html("<div class='search_results_msg'><img src='/assets/ajax-loader.gif'></div>")

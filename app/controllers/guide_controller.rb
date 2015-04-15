@@ -61,7 +61,7 @@ class GuideController < ApplicationController
     @resource_count_hash = mcsa.resource_count_hash
 
     # render "filter_count_nav_bar.html.erb"
-    if ( params[:page].to_i > 1 )
+    if params[:page].to_i > 1
       render partial: "partial_search", locals: { results: @results || [] }, layout: false
     else
       render html: "search", layout: false
