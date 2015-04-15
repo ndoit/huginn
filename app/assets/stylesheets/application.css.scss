@@ -20,6 +20,7 @@
 $department: ooit;
 
 @import 'nd_foundation';
+@import url(http://fonts.googleapis.com/css?family=Droid+Sans:400,700);
 
 .content-hightlight-bar {
 	background: #f0f0f0
@@ -30,6 +31,37 @@ body {
 }
 .splash {
 	text-align: center;
+}
+
+//=====================Home Page==============================
+.main-image {
+	height: 600px;
+	display: block;
+	position:relative;
+	margin: 0;
+	padding: 0;
+	background:
+		url('images/without_tri.svg') center center no-repeat,
+		url('images/10.12.12 Dome Sunrise.JPG') center center no-repeat;
+	background-size: contain, cover;
+	background-attachment: scroll, fixed;
+}
+
+.making-data-friendly {
+	font-size: 4em;
+}
+
+#content {
+	margin: 0;
+	padding: 0;
+}
+
+.loginButton {
+/* 	margin-top: 50% !important;
+margin-left: 37% !important; */
+	position: relative !important;
+	top: 50% !important;
+	left: 50% !important;
 }
 
 .welcome{
@@ -61,6 +93,6 @@ body {
 	// display: none;
 }
 
-.explanation{ 
+.explanation{
 	font-weight: lighter;
 }

@@ -20,7 +20,7 @@
             / Divider
             - url = request.path.pluralize
             - if current_user
-              
+
               / %li
               / = current_user.user_obj
 
@@ -43,7 +43,7 @@
                     %li.divider
                     %li
                       %a{"data-reveal-id" => "reporttiny", :href => "#"}
-                        %strong Register New Report
+                        Register New Report
                       #reporttiny.reveal-modal.tiny{"data-reveal" => ""}
                         %h2 Add New Report
                         Name:
@@ -61,7 +61,7 @@
                     %li.title.back.js-generated
                     %li
                       %a{"data-reveal-id" => "mytiny", :href => "#"}
-                        %strong Add New Term
+                        Add New Term
                       #mytiny.reveal-modal.tiny{"data-reveal" => ""}
                         %h2 Add a New Term
                         Name:
@@ -77,7 +77,7 @@
                     / <li class="divider"></li>
                     %li
                       %a{"data-reveal-id" => "officetiny", :href => "#"}
-                        %strong Add New Office
+                        Add New Office
                       #officetiny.reveal-modal.tiny{"data-reveal" => ""}
                         %h2 Add New Office
                         Name:
@@ -92,7 +92,7 @@
                           %a.close-reveal-modal ×
                   %li.divider
                   %li
-                    %a{:href => "#"}= link_to "Log Out", logout_path        
+                    %a{:href => "#"}= link_to "Log Out", logout_path
               - else
                 %li
                   = link_to "Log In", login_path

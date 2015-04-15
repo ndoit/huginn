@@ -50,6 +50,31 @@
     <main id="content" class="site-content" role="main">
       <% if request.path == "/" %>
         <div class="row">
+          <div class="full main-image">
+
+            <% unless current_user %>
+              <div class="row">
+                <div class="large-5 medium-7 medium-centered columns">
+                  <%= link_to "LOG IN", login_path, class: "button round large secondary loginButton" %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+      <%= yield %>
+    </main>
+    
+      <div class="row">
+        <div class="full content-block-1">
+          <h1 class="making-data-friendly">MAKING DATA FRIENDLY</h1>
+        </div>
+      </div>
+
+
+    <!-- <main id="content" class="site-content" role="main">
+      <% if request.path == "/" %>
+        <div class="row">
           <div class="large-5 large-centered columns splash">
             <h2> Welcome To The BI Portal</h2>
 
@@ -69,7 +94,7 @@
         <% unless current_user %>
           <div class="row">
             <div class="large-5 medium-7 medium-centered columns">
-              <!-- <a href="#" class="button expand">LOG IN</a> -->
+              <a href="#" class="button expand">LOG IN</a>
               <%= link_to "LOG IN", login_path, class: "button expand" %>
 
             </div>
@@ -79,7 +104,7 @@
 
       <%= yield %>
 
-    </main>
+    </main> -->
 
     <footer id="footer" class="site-footer row" role="contentinfo">
       <div class="large-12 columns">
