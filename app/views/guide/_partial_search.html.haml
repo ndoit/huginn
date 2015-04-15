@@ -1,7 +1,9 @@
+:javascript
+  results_size = #{@results.size}
 - if results.size == 0
   - if params[:page] == 1
     .search_results_msg No results match your current criteria
 - else
   - results.each do |result|
     = render partial: "#{result['type'].pluralize}/partial_search", locals: { result: result }, layout: false
-  .more_results{"data-next-page" => params[:page].to_i + 1, :foo => params[:page].to_i + 1, :id => Time.now.getutc.to_s} More Results
+  .more_results{"data-next-page" => params[:page].to_i + 1, :foo => params[:page].to_i + 1, :id => Time.now.getutc.to_s}
