@@ -64,51 +64,13 @@
       <% end %>
       <%= yield %>
     </main>
-    
-      <div class="row">
-        <div class="full content-block-1">
-          <h1 class="making-data-friendly">MAKING DATA FRIENDLY</h1>
-        </div>
-      </div>
 
-
-    <!-- <main id="content" class="site-content" role="main">
-      <% if request.path == "/" %>
-        <div class="row">
-          <div class="large-5 large-centered columns splash">
-            <h2> Welcome To The BI Portal</h2>
-
-          </div>
-        </div>
-        <div class="row">
-          <div class="large-7 large-centered columns splash">
-            <h2>At The University Of Notre Dame du Lac</h2>
-          </div>
-        </div>
-        <div class="row">
-          <div class="large-5 medium-7 medium-centered columns">
-            <%= image_tag("dome_fullwidth.jpg", :class =>"th") %>
-          </div>
-        </div>
-        <br>
-        <% unless current_user %>
-          <div class="row">
-            <div class="large-5 medium-7 medium-centered columns">
-              <a href="#" class="button expand">LOG IN</a>
-              <%= link_to "LOG IN", login_path, class: "button expand" %>
-
-            </div>
-          </div>
-        <% end %>
-      <% end %>
-
-      <%= yield %>
-
-    </main> -->
 
     <footer id="footer" class="site-footer row" role="contentinfo">
       <div class="large-12 columns">
+
         <div class="footer-inner">
+          <a href="http://www.oit.nd.edu" class="oitmark"><img src="/assets/images/OIT.logo.white.svg" alt="Office of Information Technologies"></a>
           <div class="vcard">
             <p class="copyright url fn org">
               <a href="http://www.nd.edu/copyright/">Copyright</a> &copy; <%= Time.now.year %>
@@ -119,7 +81,7 @@
               <span class="tel"><span class="type">Phone</span> 574-631-7770</span>
               <span class="email"><a href="mailto:ES-DECISION-SUPPORT@LISTSERV.ND.EDU">ES-DECISION-SUPPORT@LISTSERV.ND.EDU</a></span>
             </p>
-            <a href="http://www.nd.edu" class="ndmark"><img src="//www.nd.edu/assets/images/marks/blue/ndmark300.png" alt="University of Notre Dame"></a>
+            <a href="http://www.nd.edu" class="ndmark"><img src="//www.nd.edu/assets/images/marks/white/ndmark300.png" alt="University of Notre Dame"></a>
           </div>
         </div>
       </div>

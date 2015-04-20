@@ -2,9 +2,13 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@import url(http://fonts.googleapis.com/css?family=Droid+Sans:400,700);
+
+
 .A-Z-Links {
 	font-size: .8EM;
-	font-family:Georgia, "Times New Roman", Times, serif; color:#555;
+	font-family: 'Droid Sans', sans-serif !important;
+	font-weight: 400 !important;
 }
 
 .term-glossary-row {
@@ -42,7 +46,7 @@
     -moz-border-radius: 1em;
     -webkit-border-radius: 1em;
     border-radius: 1em;
-    text-shadow: rgba(255, 255, 255, 0.8) 1px 1px 1px; }
+	}
   .apple_pagination a {
     text-decoration: none;
     color: #002b5b;
@@ -52,38 +56,117 @@
 
 
 table.raci {
-  background: white;
+  background: transparent;
   margin-bottom: 1.25rem;
-  border-style: none; }
-  raci_table raci_thead,
-  raci_table raci_tfoot {
-    background: whitesmoke; }
-    table.raci thead tr th,
-    table.raci thead tr td,
-    table.raci tfoot tr th,
-    table.raci tfoot tr td {
+  border-style: none;
+}
+
+/* raci_table raci_thead,
+raci_table raci_tfoot {
+	background: whitesmoke;
+} */
+
+table.raci thead tr th,
+table.raci thead tr td,
+table.raci tfoot tr th,
+table.raci tfoot tr td {
       padding: 0.5rem 0.625rem 0.625rem;
       font-size: 0.875rem;
       font-weight: bold;
       color: #222222;
       text-align: left; }
-  table.raci tr th,
-  table.raci tr td {
+
+table.raci tr th,
+table.raci tr td {
     font-size: 0.875rem;
-    color: #222222; }
-  table.raci tr.td, table.raci td:first-child {
+    color: #222222;
+}
+
+table.raci tr.td, table.raci td:first-child {
     background: #dae1e8;
     border-radius: 2rem;
     font-weight: bold;
     font-size: 1.500rem;
     color: #002b5b;
     text-align: center;}
-  table.raci tr.even, table.raci tr.alt, table.raci tr:nth-of-type(even) {
-  background: white; }
-  table.raci thead tr th,
-  table.raci tfoot tr th,
-  table.raci tbody tr td,
-  table.raci tr td,
-  table.raci tfoot tr td {
-    display: table-cell;
-    line-height: 1.125rem; }
+
+table.raci tr.even,
+table.raci tr.alt,
+table.raci tr:nth-of-type(even) {
+	background: white;
+}
+
+table.raci thead tr th,
+table.raci tfoot tr th,
+table.raci tbody tr td,
+table.raci tr td,
+table.raci tfoot tr td {
+  display: table-cell;
+  line-height: 1.125rem;
+}
+
+
+
+
+//================================Term Display==============================//
+
+
+.term_result {
+	padding-bottom: 10px;
+	background:linear-gradient(to right, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.2) 100%), url('images/dome_lake.jpg') center 15% no-repeat;
+	background-size: cover;
+	z-index: -1;
+	border: 2px solid white;
+	border-radius: 10px;
+}
+
+.result_row,
+.result_title {
+	color: white !important;
+}
+
+.term_result_header{
+	text-decoration: none;
+	color: white;
+	text-shadow: none !important;
+}
+
+.term_result_header:visited {
+	color: white !important;
+}
+
+.term_result_header:hover {
+	color: rgba(181,132,46,1) !important;
+}
+
+.term_result_content {
+	text-align: left;
+
+}
+
+.term_result_body {
+	height: 100px;
+	overflow: scroll;
+	border-radius: 10px;
+//	background-color: rgba(26, 26, 26, 0.5);
+	padding: 10px 10px 10px 30px;
+}
+
+.mce-content-body {
+	background: transparent !important;
+}
+
+#term-header {
+	color: rgba(63, 141, 217, 1) !important;
+}
+
+.term_detail {
+	background: url('images/data-gov-icon-19.svg') center center no-repeat;
+	background-size: cover;
+}
+
+/* .image-right-terms-wrapper {
+	height: 100%;
+	background: url('images/data-gov-icon-19.svg') center center no-repeat;
+	background-size: cover;
+} */

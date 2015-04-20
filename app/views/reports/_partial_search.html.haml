@@ -1,30 +1,31 @@
-.row{:id => "#{result["data"]["id"]}"}
-  
-  .result_row
-    .medium-3.columns
-      = image_tag result["photo"].image_url(:medium), :onerror => "this.src = '/assets/chart-icon-07.svg';this.removeAttribute('onerror');"
-      / # = result["photo"].report_image.medium
+.row.report_result{:id => "#{result["data"]["id"]}"}
 
-    .medium-9.columns
+  .result_row
+
+    .medium-10.columns.report_result_content
+
       .result_header
 
         .result_title
-          %h4
-            %a.do_highlight{:href => "../#{result["type"].pluralize}/#{result["data"]["name"]}"}
+          %h1
+            %a.do_highlight.report_result_header{:href => "../#{result["type"].pluralize}/#{result["data"]["name"]}"}
               = result["data"]["name"]
-        / %p.created_line 
-        /   Created By: Registrar
 
-      .do_highlight.result_body
+      .do_highlight.report_result_body
         - if result["data"]["description"]  then
-          - @description = result["data"]["description"].truncate(300, separator: ' ')
-          = @description.html_safe        
-      %span.role_header 
+          - @description = result["data"]["description"]
+          = @description.html_safe
+
+
+      %span.role_header
       - if result.has_key?("data")
         - if result["data"].has_key?("security_roles")
           %ul
             - result["data"]["security_roles"].each do |role|
               %li= role["name"]
-      / .shape
-      /   %p= result["type"]
+    .medium-2.columns
+      %a{:href => "../#{result["type"].pluralize}/#{result["data"]["name"]}"}
+        = image_tag result["photo"].image_url(:medium), :onerror => "this.src = '/assets/chart-icon-07.svg';this.removeAttribute('onerror');"
+        / # = result["photo"].report_image.medium
+
 %hr

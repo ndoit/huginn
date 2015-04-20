@@ -1,13 +1,23 @@
-.row
+.row.term_result
+
   .result_row
-    .result_header
-      .result_title
-        %h4
-          %a.do_highlight{:href => "../#{result["type"].pluralize}/#{result["data"]["name"]}"}
-            = result["data"]["name"]
-    / .shape
-    /   %p= result["type"]
-    .do_highlight.result_body
-      - if result["data"]["definition"]  then
-        = result["data"]["definition"].html_safe
+
+    .medium-2.columns
+      %a{:href => "../#{result["type"].pluralize}/#{result["data"]["name"]}"}
+        %img{:src => '/assets/images/data-gov-icon-19.svg'}
+
+
+    .medium-10.columns.term_result_content
+      .result_header
+
+        .result_title
+          %h4
+            %a.do_highlight.term_result_header{:href => "../#{result["type"].pluralize}/#{result["data"]["name"]}"}
+              = result["data"]["name"]
+
+
+
+      .do_highlight.term_result_body
+        - if result["data"]["definition"]  then
+          = result["data"]["definition"].html_safe
 %hr

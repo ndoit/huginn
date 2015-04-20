@@ -5,8 +5,12 @@
 
  </script>
 
+ <!-- <div class="row image-right-terms-wrapper">
+   <div class="large-5, offset-7"></div>
+ </div> -->
+
 <div class="row">
-  <div class="large-8 columns">
+  <div class="large-7 columns">
     <ul id="error_list" style="display:none"></ul>
     <!-- <div data-alert class="alert-box alert radius" style="display:none">
       <ul class="error_list"></ul>
@@ -24,33 +28,33 @@
 </div>
 
 <div class="row">
-  <div class="large-12 columns">
+  <div class="large-7 columns">
      <div class="reveal-modal tiny" id="mytinyDelete" data-reveal="">
        <h2>Deleting Term</h2> <br>
        <b> Are you sure? <b> <br> <br>
        <input type="button" class ="tiny button" value="Yes" id="deleteConfirm" />
        <input type="button" class ="tiny button" value="No" id="deleteCancel" />
        <a class="close-reveal-modal">×</a>
-      </div>   
+      </div>
    </div>
 </div>
- 
+
 
 
 <div id ="term_detail">
 
   <% if @term["success"] %>
     <div class="row">
-      <div class="large-12 columns">
+      <div class="large-7 columns">
         <div id="name" class="<%= 'editable' if current_user && current_user.can( :edit_term ) %>">
-          <h2 class="page-title">
+          <h2 id="term-header" class="page-title">
             <%= @term["term"]["name"].html_safe %>
           </h2>
         </div>
       </div>
     </div>
     <div class="row">
-      <div class="large-12 columns">
+      <div class="large-7 columns">
         <div id="definition" class="<%= 'editable' if current_user && current_user.can( :edit_term ) %>">
           <% if @term["term"]["definition"]  then %>
             <%= @term["term"]["definition"].html_safe %>
@@ -62,9 +66,9 @@
     </div>
     <dl>
       <div class="row">
-        <div class="large-12 columns">
-          <h5 class="page-title">General Information</h5>
-          <dt>Data Availability</dt>
+        <div class="large-7 columns">
+          <h5 id="term-header" class="page-title">General Information</h5>
+          <dt>Data Availability:</dt>
           <dd>
             <div id="data_availability" class="<%= 'editable' if current_user && current_user.can( :edit_term ) %>">
               <% if @term["term"]["data_availability"]  then %>
@@ -77,8 +81,8 @@
         </div>
       </div>
       <div class="row">
-        <div class="large-12 columns">      
-          <dt>Possible Values</dt>
+        <div class="large-7 columns">
+          <dt>Possible Values:</dt>
           <dd>
             <div id="possible_values" class="<%= 'editable' if current_user && current_user.can( :edit_term ) %>">
               <% if @term["term"]["possible_values"] then %>
@@ -88,12 +92,12 @@
               <%end%>
             </div>
           </dd>
-          
+
         </div>
       </div>
       <div class="row">
-        <div class="large-12 columns">  
-          <dt>Notes</dt>
+        <div class="large-7 columns">
+          <dt>Notes:</dt>
           <dd>
             <div id="notes" class="<%= 'editable' if current_user && current_user.can( :edit_term ) %>">
               <% if @term["term"]["notes"]  then %>
@@ -101,14 +105,14 @@
               <%else%>
                 NA
               <%end%>
-            </div>      
+            </div>
           </dd>
         </div>
       </div>
-    </dl>  
+    </dl>
     <div class="row">
-      <div class="large-12 columns">
-        <h5 class="page-title">Campus Stakeholders</h5>
+      <div class="large-7 columns">
+        <h5 id="term-header" class="page-title">Campus Stakeholders</h5>
         <% if current_user && current_user.can( :edit_term ) %>
 
           <table class="raci">
@@ -123,30 +127,30 @@
               <% end %>
             </tbody>
           </table>
-    
+
         <%else%>
-  
+
           <table>
             <% @stakeholder_hash.keys.each_with_index do |key, index|%>
               <tr class="raci_row">
-                <td><h5> <%=key%></h5></td>
+                <td><h5 id="term-header"> <%=key%></h5></td>
                 <td>
                   <%@stakeholder_hash[key].each do |stake|%>
                     <%=stake[:text].to_s %>  </br>
-                  <% end %> 
-                  </br> 
+                  <% end %>
+                  </br>
                 </td>
               </tr>
             <% end %>
-         
+
           </table>
-  
+
         <% end %>
       </div>
     </div>
     <div class="row">
-      <div class="large-12 large-centered columns">
-      <h5 class="page-title">Reports Associated with this Term </h5>
+      <div class="large-7 large-centered columns">
+      <h5 id="term-header" class="page-title">Reports Associated with this Term </h5>
         <% if current_user %>
           <% unless @term["reports"].empty? then %>
             <% @term["reports"].each do |result| %>
@@ -157,13 +161,13 @@
                   </strong>
                 </a>
                 <br>
-              <% end %>  
+              <% end %>
               <br>
             <% end %>
-          <%else%> 
+          <%else%>
             <br>
-            Reports are not registered with this data governance term 
-            <br> 
+            Reports are not registered with this data governance term
+            <br>
             <br>
           <% end %>
         <% else %>
@@ -171,7 +175,7 @@
         <% end %>
       </div>
     </div>
-    
+
     <% if current_user && current_user.can( :edit_term ) %>
       <div class="row">
         <div class="medium-2 medium-offset-4 columns">
@@ -182,19 +186,19 @@
         </div>
       </div>
     <% end %>
-  
-      
+
+
     <div class="right">
       <dfn>
         Last Updated: <%= @term["term"]["modified_date"].to_datetime.strftime("%a, %d %b %Y %I:%M %p") %>
       </dfn>
     </div>
- 
-  
+
+
   <% else %>
     <div class="row">
       <div class="medium-9 large-9 columns">
-        <h1>Nonexistant Term</h1>
+        <h1 id="term-header">Nonexistant Term</h1>
         We are sorry to inform you that the term you are currently looking for does not exist in our database.  If you feel that the following term should be added to Notre Dame's data dictionary, please proceed as follows:
       </div>
     </div>

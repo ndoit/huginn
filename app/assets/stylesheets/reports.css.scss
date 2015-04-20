@@ -1,3 +1,93 @@
 // Place all the styles related to the reports controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+//==============================Report Results============================//
+/* .report_result {
+	padding-bottom: 10px;
+	background:linear-gradient(to right, rgba(63, 141, 217, 1) 0%, rgba(63, 141, 217, 0.6) 100%), url('images/dome_lake.jpg') center 15% no-repeat;
+	background-size: cover;
+	z-index: -1;
+	border-radius: 10px;
+} */
+
+.result_row,
+.result_title {
+	color: white !important;
+	
+}
+
+.report_result_header{
+	text-decoration: none;
+	color: white;
+	text-shadow: none !important;
+}
+
+.report_result_header:visited {
+	color: white !important;
+}
+
+.report_result_header:hover {
+	color: rgba(181,132,46,1) !important;
+}
+
+.report_result_content {
+	text-align: left;
+
+}
+
+.report_result_body {
+	height: 100px;
+	overflow: scroll;
+	border-radius: 10px;
+	background-color: rgba(26, 26, 26, 0.5);
+	padding: 10px 10px 10px 30px;
+}
+
+/* ul.report-left-menu li:nth-child:odd {
+	background-color: white !important !important;
+} */
+
+.create-date {
+	font-size: 0.8em;
+}
+
+
+
+//=======================Report View========================//
+
+.page-title {
+	color: white;
+	text-decoration: none !important;
+	text-shadow: none !important;
+}
+
+.report-left-menu {
+	padding: 5% !important;
+}
+
+.report_display {
+	height: 600px;
+}
+
+.edit-mode {
+	display: inline-block;
+
+	p {
+		display: inline-block;
+	}
+
+	.switch {
+		display: inline-block;
+	}
+}
+
+.editable {
+	background-color: white;
+}
+
+.report-list-headers {
+	color: rgba(181,132,46,1) !important;
+	text-decoration: none !important;
+	text-shadow: none !important;
+}

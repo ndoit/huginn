@@ -2,6 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@import url(http://fonts.googleapis.com/css?family=Droid+Sans:400,700);
 
 .onebox-shadow {
 -moz-box-shadow: 0 0 3px #888;
@@ -17,11 +18,12 @@ box-shadow: 0 0 3px #888;
 .definition-title {
 	font-size: 1.5EM;
 	font-style: bold;
-	font-family:Georgia, "Times New Roman", Times, serif; color:#000;
+	font-family: 'Droid Sans', sans-serif !important;
+	font-weight: 400 !important;
 }
 
 .definition-body {
 	font-size: .813EM;
-	font-family:Georgia, "Times New Roman", Times, serif; color:#555;
+	font-family: 'Droid Sans', sans-serif !important;
+	font-weight: 400 !important;
 }
-
