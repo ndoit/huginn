@@ -25,17 +25,18 @@
               / = current_user.user_obj
 
               %li
-                = link_to 'Report Gallery', "/browse/report", :style => ("background: #666666;" if url == "/browse/reports")
-              / %li
-              /   = link_to 'Datasets', "/browse/datasets", :style => ("background: #666666;" if url == "/browse/datasets")
+                = link_to 'Reports', "/browse/report", :style => ("background: #666666;" if url == "/browse/reports")
               %li
-                = link_to 'Offices', "/browse/offices", :style => ("background: #666666;" if url == "/browse/offices")
+                = link_to 'Datasets', "/browse/datasets", :style => ("background: #666666;" if url == "/browse/datasets")
+              - if current_user.can(:edit_term)
+                -# %li
+                -#   = link_to 'Offices', "/browse/offices", :style => ("background: #666666;" if url == "/browse/offices")
             %li
               = link_to 'Glossary', "/browse/term", :style => ("background: #666666;" if url == "/browse/terms")
             %li.has-dropdown
               - if current_user
                 %a{:href => "#"}= current_user.name
-                %ul.dropdown
+                %ul.dropdown.user-drop-down
                   %li
                     = link_to 'My Security Roles', "/users/myprofile"
 

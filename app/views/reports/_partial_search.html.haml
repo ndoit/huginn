@@ -23,6 +23,7 @@
           %ul
             - result["data"]["security_roles"].each do |role|
               %li= role["name"]
+              
     .medium-2.columns
       %a{:href => "../#{result["type"].pluralize}/#{result["data"]["name"]}"}
         = image_tag result["photo"].image_url(:medium), :onerror => "this.src = '/assets/chart-icon-07.svg';this.removeAttribute('onerror');"

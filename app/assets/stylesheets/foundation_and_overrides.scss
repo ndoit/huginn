@@ -39,7 +39,7 @@
 // We use these to control various global styles
 // $body-bg: #fff;
 // $body-font-color: #222;
-$body-font-family: 'Droid Sans', sans-serif !important;
+$body-font-family: Georgia, serif !important;
 $font-weight: 400 !important;
 
 // $body-font-weight: normal;
@@ -1067,7 +1067,7 @@ h6 {font-size:1em;}
   .vcard {margin:0 auto; padding:0; border:none;
     .fn {font-weight:normal;}
   }
-  .top-bar-wrap {background:$topbar-bg-color;}
+  .top-bar-wrap {background-color: rbga(26,26,26,1);}
   .top-bar h1,
   .top-bar h2,
   .top-bar h3,

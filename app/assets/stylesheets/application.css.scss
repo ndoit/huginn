@@ -20,14 +20,13 @@
 $department: ooit;
 
 @import 'nd_foundation';
-@import url(http://fonts.googleapis.com/css?family=Droid+Sans:400,700);
 
 .content-hightlight-bar {
 	background: #f0f0f0
 }
 
 html, body {
-	font-family: 'Droid Sans', sans-serif !important;
+	font-family: Georgia, serif;
 	font-weight: 400 !important;
 	background-color: rgb(26, 26, 26) !important;
 	text-shadow: none !important;
@@ -37,9 +36,21 @@ html, body {
 	text-align: center;
 }
 
-//=====================Home Page==============================
+.top-bar,
+.top-bar ul,
+.top-bar li,
+.top-bar a {
+	background-color: rgba(26,26,26,1) !important;
+}
+
+.user-drop-down {
+	border-left: 1px solid white;
+	border-bottom: 1px solid white;
+}
+
+//=====================Home Page==============================//
 .main-image {
-	height: 600px;
+	height: 500px;
 	display: block;
 	position:relative;
 	margin: 0;
@@ -101,6 +112,81 @@ margin-left: 37% !important; */
 .explanation{
 	font-weight: lighter;
 }
+
+
+
+//=====================Home Page==============================//
+
+
+.main-link-menu {
+	height: 400px;
+	position: relative;
+	padding: 1%;
+}
+
+
+.dataset-icon,
+.report-icon,
+.data-gov-icon {
+	height: 200px;
+	padding-top: 5%;
+	background-size: contain;
+}
+
+.dataset-icon {
+	background: url('images/table-icon-06.svg') center center no-repeat;
+}
+
+.report-icon {
+	background: url('images/chart-icon-07.svg') center center no-repeat;
+}
+
+.data-gov-icon {
+	background: url('images/data-gov-icon-19.svg') center center no-repeat;
+}
+
+.main-page-search-links {
+	border-top: 2px solid white;
+	text-shadow: none !important;
+	text-decoration: none !important;
+	color: white !important;
+}
+
+.main-page-search-links-header {
+	text-shadow: none !important;
+	text-decoration: none !important;
+	color: white !important;
+	text-align: center;
+	padding-top: 1%;
+}
+
+
+
+
+//=======================Search Bar=======================//
+
+
+.search-bar {
+	font-size: xx-large !important;
+	height: 60px !important;
+	background-color: transparent !important;
+	border-radius: 10px !important;
+	color: white !important;
+	margin-top: 13px !important;
+}
+
+
+
+//=======================Fx=======================//
+
+
+.blink {
+  -webkit-animation-name: blink;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: cubic-bezier(1.0,0,0,1.0);
+  -webkit-animation-duration: 1.5s;
+}
+
 
 
 

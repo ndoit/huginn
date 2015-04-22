@@ -31,9 +31,9 @@
     </nav> -->
 
     <header id="header" role="banner" class="site-header">
-      <div class="beta_banner">
+      <!-- <div class="beta_banner">
         <%= image_tag "beta_corner_banner.png" %>
-      </div>
+      </div> -->
       <nav class="brandbar theme-bb-lightgray">
         <div class="row">
           <ul class="large-12 columns">
@@ -61,6 +61,24 @@
             <% end %>
           </div>
         </div>
+
+        <div class="row">
+          <div class="large-12 columns main-link-menu">
+            <div class="large-12 columns main-page-search-links">
+              <h1 class="main-page-search-links-header">What are you searching for?</h1>
+            </div>
+
+            <a href="/browse/report"><div class="medium-4 columns report-icon"></div></a>
+            <a href="/browse/dataset"><div class="medium-4 columns dataset-icon"></div></a>
+            <a href="/browse/term"><div class="medium-4 columns data-gov-icon"></div></a>
+
+            <div class="small-4 columns"><h2 class="main-page-search-links-header">Reports</h1></div>
+            <div class="small-4 columns"><h2 class="main-page-search-links-header">Datasets</h1></div>
+            <div class="small-4 columns"><h2 class="main-page-search-links-header">Glossary</h1></div>
+          </div>
+        </div>
+
+
       <% end %>
       <%= yield %>
     </main>
@@ -70,7 +88,6 @@
       <div class="large-12 columns">
 
         <div class="footer-inner">
-          <a href="http://www.oit.nd.edu" class="oitmark"><img src="/assets/images/OIT.logo.white.svg" alt="Office of Information Technologies"></a>
           <div class="vcard">
             <p class="copyright url fn org">
               <a href="http://www.nd.edu/copyright/">Copyright</a> &copy; <%= Time.now.year %>
