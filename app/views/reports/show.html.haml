@@ -103,17 +103,15 @@
     .row
       #tableauiframe.large-12.columns
         - if @tableau_parse["width"].present? then
-          .row
-            .large-12.large-centered.columns
-              %script{:src => "https://tableau.nd.edu/javascripts/api/viz_v1.js", :type => "text/javascript"}
-              #tableauPlaceholderId.tableauPlaceholder{:style => "width:#{@tableau_parse["width"]}; height:#{@tableau_parse["height"]};"}
-                %object.tableauViz{:height => @tableau_parse["height"], :style => "display:none;", :width => @tableau_parse["width"]}
-                  %param{:name => "host_url", :value => "https%3A%2F%2Ftableau.nd.edu%2F"}
-                  %param{:name => "site_root", :value => ""}
-                  %param{:name => "name", :value => (@tableau_parse["name"].html_safe) }
-                  %param{:name => "tabs", :value => (@tableau_parse["tabs"].html_safe) }
-                  %param{:name => "linktarget", :value => "_self"}
-                  %param{:name => "toolbar", :value => "yes"}
+          %script{:src => "https://tableau.nd.edu/javascripts/api/viz_v1.js", :type => "text/javascript"}
+          #tableauPlaceholderId.tableauPlaceholder{:style => "width:#{@tableau_parse["width"]}; height:#{@tableau_parse["height"]};"}
+            %object.tableauViz{:height => @tableau_parse["height"], :style => "display:none;", :width => @tableau_parse["width"]}
+              %param{:name => "host_url", :value => "https%3A%2F%2Ftableau.nd.edu%2F"}
+              %param{:name => "site_root", :value => ""}
+              %param{:name => "name", :value => (@tableau_parse["name"].html_safe) }
+              %param{:name => "tabs", :value => (@tableau_parse["tabs"].html_safe) }
+              %param{:name => "linktarget", :value => "_self"}
+              %param{:name => "toolbar", :value => "yes"}
         / / %input#tableaulink{:value => "#{@report["report"]["tableau_link"]}", :placeholder => "Tableau Embed", :type => "text"}
         / %iframe{:src => "#{@report["report"]["tableau_link"]}", :width => "100%", :height => "1000px"}
 
