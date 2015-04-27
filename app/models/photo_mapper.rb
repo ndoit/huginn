@@ -1,19 +1,14 @@
 # for now, this class only exists to contain the CarrierWave uploader
 
-
 class PhotoMapper
-
   extend CarrierWave::Mount
-  attr_accessor :id, :uploader
+  attr_accessor :name, :uploader
   mount_uploader :uploader, ImageUploader
-  ## should probably rename :report_image to something that describes its behavior
-  ## perhaps something like :accept_image
-  ## because in the console to get the image into the ReportPhoto class =>
-    ## 2.0.0-p353 :003 > r.report_image = File.open('app/assets/images/thug_dog.jpg')
-    ##   => #<File:app/assets/images/thug_dog.jpg>
+  ## 2.0.0-p353 :003 > r.report_image = File.open('app/assets/images/thug_dog.jpg')
+  ##   => #<File:app/assets/images/thug_dog.jpg>
 
-  def initialize( id )
-    @id = id
+  def initialize( name )
+    @name = name
   end
 
   def save
@@ -25,12 +20,12 @@ class PhotoMapper
     # by having 'model.class.to_s' the file path is dependent on the model
     # when GETting the images, they wont forever be a 'report'
     # so might want to refactor this in the future
-    url = "/uploads/#{Rails.env}/photo_mapper/#{self.id.to_s}/#{filename(size)}"
+    url = "/uploads/#{Rails.env}/photo_mapper/#{URI.escape(self.name.to_s)}/#{filename(size)}"
     root + url
   end
 
   def filename(size)
-    size.to_s + "_" + self.id.to_s + ".png"
+    size.to_s + "_" + Time.now.to_i.to_s + "_" + URI.escape(self.name.to_s) + ".png"
   end
 
   def root

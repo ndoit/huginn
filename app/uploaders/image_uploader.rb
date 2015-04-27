@@ -16,11 +16,11 @@ class ImageUploader < CarrierWave::Uploader::Base
   def store_dir
     # by having 'model.class.to_s' the file path is dependent on the model
     # when GETting the images, they wont forever be a 'report'
-    "uploads/#{Rails.env}/#{model.class.to_s.underscore}/#{model.id}"
+    "uploads/#{Rails.env}/#{model.class.to_s.underscore}/#{model.name}"
   end
  
   def filename 
-    "#{model.id}.png" if original_filename 
+    "#{model.name}.png" if original_filename 
   end 
 
   # Create different versions of your uploaded files:
