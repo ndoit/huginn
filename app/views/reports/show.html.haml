@@ -31,13 +31,16 @@
         %input#deleteConfirm.tiny.button{:type => "button", :value => "Yes"}
         %input#deleteCancel.tiny.button{:type => "button", :value => "No"}
         %a.close-reveal-modal ×
-  - if current_user && current_user.can( :publish_report )
-    .row
-      .large-1.large-offset-11.columns
-        #currentmode Preview Mode
-        #edittoggle.switch.radius
-          %input#editmode{:type => "checkbox"}
-          %label{:for => "editmode"}
+  - if @report["report"]["report_type"] != "Aggregation"
+    - if @report["report"]["report_type"] != "External"
+    
+      - if current_user && current_user.can( :publish_report )
+        .row
+          .large-1.large-offset-11.columns
+            #currentmode Preview Mode
+            #edittoggle.switch.radius
+              %input#editmode{:type => "checkbox"}
+              %label{:for => "editmode"}
 
 
   #report_detail
@@ -82,9 +85,6 @@
     - if @report_embed.present?
       .row
         .large-12.columns
-          Aggregation of sub-reports
-      .row
-        .large-12.columns
           %ul{:class => "small-block-grid-1 medium-block-grid-2 large-block-grid-#{@report_embed["gridsize"].to_s}"}
             - @subreports.each do |subreport|
               %li
@@ -97,28 +97,23 @@
                     %a{:href => subreport["name"]}
                       %img{:src => subreport["thumbnail_uri"]}
 
-      /   - else
-      /     / Tableau report
-      /     - if @report_embed["width"] != "" then
-      /       .row
-      /         .large-12.large-centered.columns
-      /           %script{:src => "https://tableau.nd.edu/javascripts/api/viz_v1.js", :type => "text/javascript"}
-      /           #tableauPlaceholderId.tableauPlaceholder{:style => "width:#{@report_embed["width"]}; height:#{@report_embed["height"]};"}
-      /             %object.tableauViz{:height => @report_embed["height"], :style => "display:none;", :width => @report_embed["width"]}
-      /               %param{:name => "host_url", :value => "https%3A%2F%2Ftableau.nd.edu%2F"}
-      /               %param{:name => "site_root", :value => ""}
-      /               %param{:name => "name", :value => (@report_embed["name"].html_safe) }
-      /               %param{:name => "tabs", :value => (@report_embed["tabs"].html_safe) }
-      /               %param{:name => "linktarget", :value => "_self"}
-      /               %param{:name => "toolbar", :value => "yes"}
-
   - if @report["report"]["report_type"] == "Tableau"
 
     %br
     .row
       #tableauiframe.large-12.columns
-        / %input#tableaulink{:value => "#{@report["report"]["tableau_link"]}", :placeholder => "Tableau Embed", :type => "text"}
-        %iframe{:src => "#{@report["report"]["tableau_link"]}", :width => "100%", :height => "1000px"}
+        - if @tableau_parse["width"].present? then
+          %script{:src => "https://tableau.nd.edu/javascripts/api/viz_v1.js", :type => "text/javascript"}
+          #tableauPlaceholderId.tableauPlaceholder{:style => "width:#{@tableau_parse["width"]}; height:#{@tableau_parse["height"]};"}
+            %object.tableauViz{:height => @tableau_parse["height"], :style => "display:none;", :width => @tableau_parse["width"]}
+              %param{:name => "host_url", :value => "https%3A%2F%2Ftableau.nd.edu%2F"}
+              %param{:name => "site_root", :value => ""}
+              %param{:name => "name", :value => (@tableau_parse["name"].html_safe) }
+              %param{:name => "tabs", :value => (@tableau_parse["tabs"].html_safe) }
+              %param{:name => "linktarget", :value => "_self"}
+              %param{:name => "toolbar", :value => "yes"}
+        / / %input#tableaulink{:value => "#{@report["report"]["tableau_link"]}", :placeholder => "Tableau Embed", :type => "text"}
+        / %iframe{:src => "#{@report["report"]["tableau_link"]}", :width => "100%", :height => "1000px"}
 
 
   %br

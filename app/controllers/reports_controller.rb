@@ -17,32 +17,23 @@ class ReportsController < ApplicationController
     render status: response.code, json: response.body
   end
 
-# Routing Error
-# No route matches [PUT] "/reports"
-# Rails.root: /vagrant/apps/muninn
-
-# Application Trace | Framework Trace | Full Trace
-# Routes
-# Routes match in priority from top to bottom
-
-# Helper  HTTP Verb Path  Controller#Action
-# Path / Url      
-# bulk_path GET /bulk(.:format) bulk#export
-# GET /bulk/:target(.:format) bulk#export
-# POST  /bulk(.:format) bulk#load
-# DELETE  /bulk/:confirmation(.:format) bulk#wipe
-# GET /terms/:unique_property(.:format) terms#show
-# GET /terms/id/:id(.:format) terms#show
-# terms_path  POST  /terms(.:format)  terms#create
-# PUT /terms/:unique_property(.:format) terms#update
-# PUT /terms/id/:id(.:format) terms#update
-# DELETE  /terms/:unique_property(.:format) terms#destroy
-# DELETE  /terms/id/:id(.:format) terms#destroy
-
+  def tableau_parse( text )
+    @tableau_parse = {}
+    if text.present?
+      a = text.match(/width=\'([^"]*?)\'/)
+      @tableau_parse["width"] = a.try{ |p| p[1] }
+      b = text.match(/height=\'([^"]*?)\'/)
+      @tableau_parse["height"] = b.try{ |p| p[1] }
+      c = text.match(/'name' value=\'([^"]*?)\'/)
+      @tableau_parse["name"] = c.try{ |p| p[1] }
+      d = text.match(/'tabs' value=\'([^"]*?)\'/)
+      @tableau_parse["tabs"] = d.try{ |p| p[1] }
+    end
+    return @tableau_parse
+  end
 
 
   def create
-
     response = Muninn::Adapter.post( '/reports/', session[:cas_user], session[:cas_pgt], params[:report])
     render status: response.code, json: response.body
   end
@@ -152,7 +143,10 @@ class ReportsController < ApplicationController
       else
           @report_office_owner = nil
       end
+      # tableau parsing
+      @tableau_parse = tableau_parse(@report["report"]["tableau_link"])
     end
+
   end
 
   # TEST TEST TEST
@@ -167,38 +161,5 @@ class ReportsController < ApplicationController
     redirect_to :back
   end
   # TEST TEST TEST
-
-
-  # def authenticated_show
-
-  #  muninn_response = Muninn::Adapter.get( "/reports/" + URI::encode(params[:id]), session[:cas_user], session[:cas_pgt] )
-  #  @report = JSON.parse(muninn_response.body)
-  #  @report["huginn_user"] = session[:cas_user].to_s
-
-  # end
-
-  # def partial_search
-
-  #   debug
-  #   page =params[:page]
-  #   json_string = Muninn::CustomSearchAdapter.create_search_string( params[:q] )
-  #   @results  = Muninn::CustomSearchAdapter.custom_query(json_string, params[:page], 15 )
-  #   @results_count = @results.select { |k| "#{k[:type]}" =="count"}
-  #   @results_count = @results_count[0][:totalcount]
-  #   @results_hash = {}
-  #   @results_count.each do |hash|
-  #      @results_hash[hash["term"]] = hash["count"]
-  #   end
-
-  #   @results = @results.select { |k| "#{k[:type]}" =="report"}
-  #   @results = @results.sort_by { |k| "#{k[:sort_name]}"}
-  #   @results =@results.paginate(:page=> page, :per_page => 15)
-  #   respond_to do |format|
-  #     format.json {render :json => @results, layout: false}
-  #     format.html {render partial: "partial_search", layout: false }
-  #   end
-  # end
-
-
 
 end
