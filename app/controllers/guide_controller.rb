@@ -36,31 +36,26 @@ class GuideController < ApplicationController
 
     @query = params[:selected_resources]
     # logger.debug("This is the params :selected_resources= #{@query}")
-    mcsa = Muninn::CustomSearchAdapter.new( params, session[:cas_user], session[:cas_pgt] )
+    query_output = Muninn::CustomSearchAdapter.typeahead(params, session[:cas_user], session[:cas_pgt])
+    @results = query_output["result"]
 
     # logger.debug("These are the returning params: #{mcsa.to_s}")
     
-    # This needs to return @results
-    mcsa.filter_results
-    @results = mcsa.results
 
     logger.debug("Ok, These are the results: '#{@results}'")
 
+    @selected_node_types = []
     @results.each do |r|
+      unless @selected_node_types.include?(r["&type"])
+        @selected_node_types << r["&type"]
+      end
       #for all results of type report
-      if r["type"] == "report"
+      if r["&type"] == "report"
         #create a new key/value pair with the PhotoMapper class
         r["photo"] = PhotoMapper.new( r["id"] )
       end
     end
 
-    # Why do I need the raw result?
-    # @muninn_result = mcsa.raw_result
-
-    @selected_node_types = mcsa.selected_node_types  # should the mcsa do this
-    @resource_count_hash = mcsa.resource_count_hash
-
-    # render "filter_count_nav_bar.html.erb"
     if params[:page].to_i > 1
       render partial: "partial_search", locals: { results: @results || [] }, layout: false
     else

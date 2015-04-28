@@ -69,6 +69,13 @@ class Muninn::Adapter
     return output
   end
 
+  def self.new_search(cas_user, cas_pgt, params)
+    search_url = "http://" + ENV["muninn_host"] + ":" + ENV["muninn_port"] + "/new_search" +
+      (cas_user != nil ? cas_proxy_params(cas_user, cas_pgt) + "&" : "?") +
+      URI.encode_www_form(params)
+    return HTTParty.get(search_url)
+  end
+
   def self.get( resource_uri, cas_user, cas_pgt, body = nil )
     Rails.logger.debug(
       "Muninn GET: resource_uri = #{resource_uri}, cas_user = #{cas_user.to_s}, cas_pgt = #{cas_pgt.to_s}, body = #{body.to_s}"
