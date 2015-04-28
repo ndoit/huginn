@@ -28,7 +28,6 @@ describe PhotoMapper do
       @saved_photo.save
       @url = URI(@saved_photo.image_url(:thumb))
       expect(@saved_photo).to be_instance_of(PhotoMapper)
-
     end
   end
 
@@ -55,6 +54,14 @@ describe PhotoMapper do
     end
   end
 
+  context 'current_time is same between both files' do
+    it 'current_time is in ImageUploader class' do
+      @saved_photo = PhotoMapper.new(1)
+      @saved_photo.uploader = File.open('app/assets/images/thug_dog2.jpg')
+      expect(@saved_photo.uploader.filename).to include(Time.now.to_i.to_s)
+    end
+  end
+
 
 
   context 'The GET image_url' do
@@ -71,14 +78,14 @@ describe PhotoMapper do
       current_time = Time.now.to_i
       expect(@saved_photo.filename(:small)).to include(current_time.to_s)
     end
-    it 'should explicitly match this line with a name as a string' do
+    xit 'should explicitly match this line with a name as a string' do
       @saved_photo = PhotoMapper.new("Cool Report")
       @saved_photo.uploader = File.open('app/assets/images/thug_dog2.jpg')
       @saved_photo.save
       current_time = Time.now.to_i
       expect(@saved_photo.image_url(:thumb)).to match("https://s3.amazonaws.com/bi-portal.dcnd/uploads/#{Rails.env}/photo_mapper/Cool%20Report/thumb_#{current_time}_Cool%20Report.png")
     end
-    it 'should explicitly match this line with a name as an integer' do
+    xit 'should explicitly match this line with a name as an integer' do
       @saved_photo = PhotoMapper.new(1)
       @saved_photo.uploader = File.open('app/assets/images/thug_dog2.jpg')
       @saved_photo.save

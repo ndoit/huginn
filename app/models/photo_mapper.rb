@@ -1,9 +1,10 @@
 # for now, this class only exists to contain the CarrierWave uploader
 
-class PhotoMapper
+class PhotoMapper < ImageUploader
   extend CarrierWave::Mount
   attr_accessor :name, :uploader
   mount_uploader :uploader, ImageUploader
+
   ## 2.0.0-p353 :003 > r.report_image = File.open('app/assets/images/thug_dog.jpg')
   ##   => #<File:app/assets/images/thug_dog.jpg>
 
@@ -15,7 +16,7 @@ class PhotoMapper
       self.store_uploader!
   end
 
-  def image_url( size )  
+  def image_url( size )
     # xxxx/report_photo/xxxx is where the problem for getting was
     # by having 'model.class.to_s' the file path is dependent on the model
     # when GETting the images, they wont forever be a 'report'
@@ -25,7 +26,7 @@ class PhotoMapper
   end
 
   def filename(size)
-    size.to_s + "_" + Time.now.to_i.to_s + "_" + URI.escape(self.name.to_s) + ".png"
+    size.to_s + "_" + URI.escape(self.name.to_s) + "_#{current_time}.png"
   end
 
   def root

@@ -57,7 +57,7 @@ class ReportsController < ApplicationController
     logger.debug("full report hash: #{@report}")
     if @report["success"] 
 
-      @report_photo = PhotoMapper.new( @report["report"]["id"])
+      @report_photo = PhotoMapper.new( @report["report"]["name"])
 
       ## GET Report's Associated Terms
       term_report_json = @report["terms"]
