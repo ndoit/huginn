@@ -21,8 +21,6 @@ class ApplicationController < ActionController::Base
   end
 
   def cas_user
-    # hack for testing
-    return User.new('egrantha', 'egrantha', nil)
     
     if ( session.has_key?(:cas_user) )
       User.new( session[:cas_user ], session[:cas_user ], session[:cas_pgt])
