@@ -1,5 +1,6 @@
 class Muninn::Adapter
   def self.cas_proxy_params(cas_user, cas_pgt, allow_non_proxy = true)
+
     Rails.logger.info("cas_user = #{cas_user.to_s}, cas_pgt = #{cas_pgt.to_s}; proxy callback uri = #{Huginn::Application.config.cas_proxy_callback_url}")
 
     if cas_user != nil && cas_pgt != nil
