@@ -57,7 +57,7 @@ class ReportsController < ApplicationController
     logger.debug("full report hash: #{@report}")
     if @report["success"] 
 
-      @report_photo = PhotoMapper.new( @report["report"]["name"])
+      @report_photo = PhotoMapper.new( @report["report"]["id"])
 
       ## GET Report's Associated Terms
       term_report_json = @report["terms"]
@@ -155,9 +155,12 @@ class ReportsController < ApplicationController
 
   def upload
     r = PhotoMapper.new( params[:id] )
-    r.uploader = params[:image]
-    r.save
-    logger.info("image upload method ran: #{r}")
+    if params[:image].present?
+      r.uploader = params[:image]
+      logger.info("before image upload: " + r.image_url)
+      r.save
+      logger.info("image upload method ran: " + r.image_url)
+    end
     redirect_to :back
   end
   # TEST TEST TEST

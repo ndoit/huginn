@@ -17,29 +17,29 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
  
   def filename
-    "#{model.name}_#{current_time}.png" if original_filename
+    "#{model.name}.png" if original_filename
   end 
 
   # Create different versions of your uploaded files:
-  version :thumb do
-    process :resize_to_fit => [75, 75]
-    process :convert => 'png' 
-  end
+  # version :thumb do
+  #   process :resize_to_fit => [75, 75]
+  #   process :convert => 'png'
+  # end
 
-  version :small do
-    process :resize_to_fit => [150, 150]
-    process :convert => 'png' 
-  end
+  # version :small do
+  #   process :resize_to_fit => [150, 150]
+  #   process :convert => 'png'
+  # end
 
-  version :medium do
-    process :resize_to_fit => [350, 350]
-    process :convert => 'png' 
-  end
+  # version :medium do
+  #   process :resize_to_fit => [350, 350]
+  #   process :convert => 'png'
+  # end
 
-  version :large do
-    process :resize_to_fit => [500, 500]
-    process :convert => 'png' 
-  end
+  # version :large do
+  #   process :resize_to_fit => [500, 500]
+  #   process :convert => 'png'
+  # end
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:

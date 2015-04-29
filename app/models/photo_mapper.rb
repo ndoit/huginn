@@ -1,6 +1,6 @@
 # for now, this class only exists to contain the CarrierWave uploader
 
-class PhotoMapper < ImageUploader
+class PhotoMapper
   extend CarrierWave::Mount
   attr_accessor :name, :uploader
   mount_uploader :uploader, ImageUploader
@@ -16,17 +16,17 @@ class PhotoMapper < ImageUploader
       self.store_uploader!
   end
 
-  def image_url( size )
+  def image_url
     # xxxx/report_photo/xxxx is where the problem for getting was
     # by having 'model.class.to_s' the file path is dependent on the model
     # when GETting the images, they wont forever be a 'report'
     # so might want to refactor this in the future
-    url = "/uploads/#{Rails.env}/photo_mapper/#{URI.escape(self.name.to_s)}/#{filename(size)}"
+    url = "/uploads/#{Rails.env}/photo_mapper/#{URI.escape(self.name.to_s)}/#{filename}"
     root + url
   end
 
-  def filename(size)
-    size.to_s + "_" + URI.escape(self.name.to_s) + "_#{current_time}.png"
+  def filename
+    URI.escape(self.name.to_s) + ".png"
   end
 
   def root
