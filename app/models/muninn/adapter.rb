@@ -1,5 +1,6 @@
 class Muninn::Adapter
   def self.cas_proxy_params(cas_user, cas_pgt, allow_non_proxy = true)
+
     Rails.logger.info("cas_user = #{cas_user.to_s}, cas_pgt = #{cas_pgt.to_s}; proxy callback uri = #{Huginn::Application.config.cas_proxy_callback_url}")
 
     if cas_user != nil && cas_pgt != nil
@@ -67,6 +68,13 @@ class Muninn::Adapter
     output = Muninn::Adapter.perform( req )
     Rails.logger.debug("Muninn PUT output: #{output}")
     return output
+  end
+
+  def self.new_search(cas_user, cas_pgt, params)
+    search_url = "http://" + ENV["muninn_host"] + ":" + ENV["muninn_port"] + "/new_search" +
+      (cas_user != nil ? cas_proxy_params(cas_user, cas_pgt) + "&" : "?") +
+      URI.encode_www_form(params)
+    return HTTParty.get(search_url)
   end
 
   def self.get( resource_uri, cas_user, cas_pgt, body = nil )
