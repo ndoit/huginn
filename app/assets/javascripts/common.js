@@ -14,6 +14,11 @@ $(document).ready(function(){
     }
   });
 
+  $('#image').change( function() {
+    alert('image');
+    $('form#report_image_upload').submit()
+  });
+
 
   if (typeof office_json != 'undefined')  {
    $('.raci_input').select2({
@@ -494,22 +499,22 @@ function updateReport( report_object ) {
 
   $('form#report_image_upload').submit()
 
-    $.ajax({
-        url: report_object.id,
-        type: 'PUT',
-        data: {"reportJSON": JSON.stringify(report_object) },
-        dataType: 'json',
-        success: function (data) {
-           console.log("succcess block")
-           var url = escape(report_object.name);
-           window.location.href = url;
-           addSuccessMessage("success", "<b>" + report_object.name + "</b>" +  " updated successfully. " );
-           showSuccessMessage();
-        },
-        error: function( xhr, ajaxOptions, thrownError) {
-           addValidationError( "alert", "Update Report has errors: " + xhr.responseText);
-             showValidationErrors();
-        }
+  $.ajax({
+      url: report_object.id,
+      type: 'PUT',
+      data: {"reportJSON": JSON.stringify(report_object) },
+      dataType: 'json',
+      success: function (data) {
+         console.log("succcess block")
+         var url = escape(report_object.name);
+         window.location.href = url;
+         addSuccessMessage("success", "<b>" + report_object.name + "</b>" +  " updated successfully. " );
+         showSuccessMessage();
+      },
+      error: function( xhr, ajaxOptions, thrownError) {
+         addValidationError( "alert", "Update Report has errors: " + xhr.responseText);
+           showValidationErrors();
+      }
     })
     /*.done(function(data) {
       console.log("done block")
