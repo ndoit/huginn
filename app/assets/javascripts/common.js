@@ -15,7 +15,6 @@ $(document).ready(function(){
   });
 
   $('#image').change( function() {
-    alert('image');
     $('form#report_image_upload').submit()
   });
 
@@ -200,7 +199,7 @@ function changetoeditmode() {
   $( '.view' ).css( "display", "none" );
   $( '.edit' ).css( "display", "inherit" );
   $( "#description" ).attr({
-    "contenteditable": "true"  
+    "contenteditable": "true"
     // "spellcheck": "false",
     // "style": "position: relative;"
   });
@@ -497,6 +496,7 @@ function updateReportObject(report_object ) {
 
 function updateReport( report_object ) {
 
+  // commenting out as the image upload process happens on click now
   $('form#report_image_upload').submit()
 
   $.ajax({

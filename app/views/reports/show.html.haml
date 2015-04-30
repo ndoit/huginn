@@ -44,7 +44,9 @@
 
   = @report_photo.image_url
   %br
-  = image_tag @report_photo.image_url
+  .row
+
+    = image_tag @report_photo.image_url
   #report_detail
 
     - if current_user && current_user.can( :publish_report )
