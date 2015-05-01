@@ -121,11 +121,12 @@
         .large-6.columns
           %dt Permission Group
           %dd
-            #permission_group{:class => ('editable' if current_user && current_user.can( :edit_term ))}
-              - if @term["term"]["permission_group"]  then
-                = @term["term"]["data_availability"].html_safe
-              - else
-                NA
+            = select_tag 'permission-group', options_for_select(@permission_groups.collect{ |o| o[:text]}, @term_group ), {:prompt => "Please Choose Permission Group"}
+            / #permission_group{:class => ('editable' if current_user && current_user.can( :edit_term ))}
+            /   - if @term["term"]["permission_groups"]  then
+            /     = @term["term"]["permission_groups"].html_safe
+            /   - else
+            /     NA
       .row
         .large-6.columns                
           %dt Sensitivity Classification

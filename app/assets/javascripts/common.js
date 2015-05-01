@@ -316,6 +316,10 @@ function updateTermObject(term_object ) {
   term_object["sensitivity_classification"] = $('#sensitivity_classification').val();
   term_object["access_designation"] = $('#access_designation').val();
 
+  term_object["permission_groups"] = []
+  group_name = $('#permission-group').val();
+  term_object["permission_groups"].push( {name: group_name})
+
   term_object["stakeholders"] = []
   var office_array=[]
 
