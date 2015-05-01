@@ -152,8 +152,11 @@ $(document).ready(function(){
     if(typeof permission_group_detail_json != 'undefined')  {
 
       $('#update-permission-group').click(function() {
-        if (updatePermissionGroup(permission_group_detail_json) == false) {
+        // permission_group_object
+        if (updatePermissionGroupObject(permission_group_detail_json) == false) {
           return false;
+        }
+        else {
           updatePermissionGroup(permission_group_detail_json)
         }
       });
@@ -695,6 +698,44 @@ function addPermissionGroup( permission_group_object ) {
   })
 }
 
+function updatePermissionGroupObject( permission_group_object ) {
+  clearValidationErrors()
+  tinymce.triggerSave();
+  console.log(permission_group_object);
+  $('.editable').each( function() {
+    id = $(this).attr('id');
+    if ( id ) {
+      p = tinymce.get(id).getContent()
+      if (id == "name") {
+        var StrippedString = p.replace(/(<([^>]+)>)/ig,"")
+        p = StrippedString;
+      }
+      console.log(p);
+      console.log(id);
+      permission_group_object[id] = p;
+    }
+  });
+  return permission_group_object;
+}
+
+function updatePermissionGroup( permission_group_object ) {
+  $.ajax({
+      url: permission_group_object.id,
+      type: 'PUT',
+      data: {"permissiongroupJSON": JSON.stringify(permission_group_object)},
+      dataType: 'json',
+      success: function (data) {
+        var url = escape(permission_group_object.name);
+        window.location = url;
+        addSuccessMessage("success", "<b>" + permission_group_object.name + "</b>" +  " updated successfully. " );
+        showSuccessMessage();
+      },
+      error: function( xhr, ajaxOptions, thrownError) {
+         addValidationError( "alert", "Update Office, <b>" + permission_group_object.name + "</b>  has errors: " + jQuery.parseJSON(xhr.responseText).message);
+         showValidationErrors();
+      }
+  });
+}
 
 function updateOfficeObject( office_object ) {
   clearValidationErrors()
@@ -712,16 +753,11 @@ function updateOfficeObject( office_object ) {
       console.log(id);
       office_object[id] = p;
     }
-
   });
-
   return office_object;
 }
 
-
-
 function updateOffice( office_object ) {
-
   $.ajax({
       url: office_object.id,
       type: 'PUT',
@@ -732,14 +768,12 @@ function updateOffice( office_object ) {
         window.location = url;
         addSuccessMessage("success", "<b>" + office_object.name + "</b>" +  " updated successfully. " );
         showSuccessMessage();
-
       },
       error: function( xhr, ajaxOptions, thrownError) {
          addValidationError( "alert", "Update Office, <b>" + office_object.name + "</b>  has errors: " + jQuery.parseJSON(xhr.responseText).message);
          showValidationErrors();
       }
   });
-
 }
 
 
