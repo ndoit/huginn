@@ -676,6 +676,26 @@ function addOffice( office_object ) {
 
 }
 
+function addPermissionGroup( permission_group_object ) {
+  $.ajax({
+     url : '/permission_groups',
+     type: 'POST',
+     data: { "permission_group": JSON.stringify(permission_group_object)},
+     dataType: 'json',
+     success: function (data) {
+      var url = escape('/permission_groups/'+ permission_group_object.name);
+      window.location = url;
+      addSuccessMessage("success", "<b>Office " + permission_group_object.name +   " successfully. Please wait for Permission Group Detail page display.</b>");
+      showSuccessMessage();
+     },
+     error: function( xhr, ajaxOptions, thrownError) {
+      addValidationError( "alert", "Added office, "+ permission_group_object.name+ ", has error: " + jQuery.parseJSON(xhr.responseText).message);
+      showValidationErrors()
+    }
+  })
+
+}
+
 
 function updateOfficeObject( office_object ) {
   clearValidationErrors()
