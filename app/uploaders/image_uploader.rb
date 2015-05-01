@@ -17,29 +17,8 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
  
   def filename
-    "#{model.name}.png" if original_filename
-  end 
-
-  # Create different versions of your uploaded files:
-  # version :thumb do
-  #   process :resize_to_fit => [75, 75]
-  #   process :convert => 'png'
-  # end
-
-  # version :small do
-  #   process :resize_to_fit => [150, 150]
-  #   process :convert => 'png'
-  # end
-
-  # version :medium do
-  #   process :resize_to_fit => [350, 350]
-  #   process :convert => 'png'
-  # end
-
-  # version :large do
-  #   process :resize_to_fit => [500, 500]
-  #   process :convert => 'png'
-  # end
+    "#{model.name}_#{model.timestamp}.png" if original_filename
+  end
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
@@ -47,15 +26,15 @@ class ImageUploader < CarrierWave::Uploader::Base
     %w(jpg jpeg gif png)
   end
 
-  def current_time
-    @@current_time ||= calculate_time
-  end
+  # def current_time
+  #   @current_time ||= calculate_time
+  # end
+
+  # private
   
-  private
-  
-  def calculate_time
-    Time.now.to_i
-  end
+  # def calculate_time
+  #   Time.now.to_i
+  # end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url

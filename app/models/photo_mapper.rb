@@ -5,11 +5,13 @@ class PhotoMapper
   attr_accessor :name, :uploader
   mount_uploader :uploader, ImageUploader
 
-  ## 2.0.0-p353 :003 > r.report_image = File.open('app/assets/images/thug_dog.jpg')
-  ##   => #<File:app/assets/images/thug_dog.jpg>
-
-  def initialize( name )
+  def initialize( name, timestamp = nil)
     @name = name
+    unless timestamp.present?
+      @timestamp ||= Time.now.to_i.to_s
+    else
+      @timestamp = timestamp.to_s
+    end
   end
 
   def save
@@ -25,8 +27,13 @@ class PhotoMapper
     root + url
   end
 
+  def timestamp
+    @timestamp
+  end
+
   def filename
-    URI.escape(self.name.to_s) + ".png"
+    # @timestamp = Time.now.to_i.to_s
+    URI.escape(self.name.to_s) + "_" + @timestamp + ".png"
   end
 
   def root

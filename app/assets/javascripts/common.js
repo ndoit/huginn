@@ -15,7 +15,8 @@ $(document).ready(function(){
   });
 
   $('#image').change( function() {
-    $('form#report_image_upload').submit()
+    alert('yolo')
+    $('form#report_image_upload').submit();
   });
 
 

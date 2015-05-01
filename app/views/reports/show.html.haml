@@ -73,7 +73,8 @@
     .row
       .large-12.columns
         #description
-          = @report["report"].fetch("description", "NA").html_safe
+          - if @report["report"]["description"].present?
+            = @report["report"].fetch("description", "NA").html_safe
 
   - if @report["report"]["report_type"] == "External"
     / External report
@@ -133,6 +134,7 @@
           %br
           = form_tag report_image_upload_path, :method => "post", :id => 'report_image_upload', :multipart => true do
             = hidden_field_tag "id", @report["report"]["id"]
+            = hidden_field_tag "timestamp", @report["report"]["timestamp"]
             Upload/replace sample image:
             = file_field_tag "image"
 
