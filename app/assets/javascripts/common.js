@@ -693,7 +693,6 @@ function addPermissionGroup( permission_group_object ) {
       showValidationErrors()
     }
   })
-
 }
 
 
@@ -756,7 +755,25 @@ function deleteOffice( officeid ) {
       },
       error: function(xhr, status, error) {
            //alert(xhr.responseText)
-        addValidationError( "alert", "Delete term has errors: " + jQuery.parseJSON(xhr.responseText).message);
+        addValidationError( "alert", "Delete Permission Groups has errors: " + jQuery.parseJSON(xhr.responseText).message);
+        showValidationErrors()
+      }
+  });
+}
+
+function deletePermissionGroup( permissiongroupid ) {
+    $.ajax({
+      url:   permissiongroupid,
+      type: 'DELETE',
+      success: function(data, status, xhr){
+        addSuccessMessage("success", "<b>" + data.message + ". Please wait for Permission Groups display Page.</br>" )
+        showSuccessMessage();
+        var myHashLink = "browse/permission_groups";
+        window.location.href = '/' + myHashLink;
+      },
+      error: function(xhr, status, error) {
+           //alert(xhr.responseText)
+        addValidationError( "alert", "Delete Permission Groups has errors: " + jQuery.parseJSON(xhr.responseText).message);
         showValidationErrors()
       }
   });
