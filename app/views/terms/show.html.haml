@@ -110,12 +110,56 @@
             %br/
         - else
           You must be logged in to see any reports associated with this term
+    
+
+
+    .row
+      .large-12.large-centered.columns
+        %h5.page-title Sensitivity Classification
+    %dl
+      .row
+        .large-6.columns
+          %dt Permission Group
+          %dd
+            #permission_group{:class => ('editable' if current_user && current_user.can( :edit_term ))}
+              - if @term["term"]["permission_group"]  then
+                = @term["term"]["data_availability"].html_safe
+              - else
+                NA
+      .row
+        .large-6.columns                
+          %dt Sensitivity Classification
+          %dd
+            - if current_user.can(:edit_term)
+              = select_tag 'sensitivity_classification', options_for_select(["Highly Sensitive", "Sensitive", "Internal", "Public"], @term["term"]["sensitivity_classification"]), {:prompt => "Please Choose Classification"}
+            - else
+              = @term["term"]["sensitivity_classification"]
+      .row
+        .large-6.columns
+          %dt Access Designation
+          %dd
+            - if current_user.can(:edit_term)
+              = select_tag 'access_designation', options_for_select(["Limited", "Unlimited"], @term["term"]["access_designation"]), {:prompt => "Please Choose access designation"}
+            - else
+              = @term["term"]["access_designation"]
+      .row
+        .large-6.columns
+          %dt Sensitivity and Access Notes
+          %dd
+            #sensitivity_access_notes{:class => ('editable' if current_user && current_user.can( :edit_term ))}
+              - if @term["term"]["sensitivity_access_notes"]  then
+                = @term["term"]["sensitivity_access_notes"].html_safe
+              - else
+                Currently no notes so far
+
+
+
     - if current_user && current_user.can( :edit_term )
       .row
         .medium-2.medium-offset-4.columns
           %input#updateTermButton.small.button.expand{:type => "button", :value => "Update Term"}/
         .medium-2.columns.end
-          %input#deleteTermButton.small.button.expand{"data-reveal-id" => "mytinyDelete", :type => "button", :value => "Delete Term"}/
+          %input#deleteTermButton.small.button.expand{"data-reveal-id" => "mytinyDelete", :type => "button", :value => "Delete Term"}
     .right
       %dfn
         Last Updated: #{@term["term"]["modified_date"].to_datetime.strftime("%a, %d %b %Y %I:%M %p")}

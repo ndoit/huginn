@@ -268,8 +268,6 @@ function showSuccessMessage() {
 }
 
 function updateTermObject(term_object ) {
-  
-
   clearValidationErrors()
   tinymce.triggerSave();
   console.log(term_object);
@@ -288,6 +286,8 @@ function updateTermObject(term_object ) {
     }
 
   })
+  term_object["sensitivity_classification"] = $('#sensitivity_classification').val();
+  term_object["access_designation"] = $('#access_designation').val();
 
   term_object["stakeholders"] = []
   var office_array=[]
