@@ -1,5 +1,5 @@
 :javascript
-  office_detail_json = #{@office["office"].to_json.to_s.html_safe}
+  permission_group_detail_json = #{@permission_group["permission_group"].to_json.to_s.html_safe}
 .row
   .large-8.columns
     %ul#error_list{:style => "display:none"}
@@ -15,7 +15,7 @@
 .row
   .large-12.columns
     #mytinyDelete.reveal-modal.tiny{"data-reveal" => ""}
-      %h2 Deleting Office
+      %h2 Deleting Permission Group
       %br
       %b
         Are you sure?
@@ -25,25 +25,30 @@
           %input#deleteConfirm.tiny.button{:type => "button", :value => "Yes"}
           %input#deleteCancel.tiny.button{:type => "button", :value => "No"}
           %a.close-reveal-modal ×
-- if @office["success"]
+- if @permission_group["success"]
+  / #permission_group_detail
+  /   .row
+  /     .large-12.columns
+  /       .small-12.large-12.columns
+  /         %input#updatepermission_groupButton.tiny.button{:type => "button", :value => "Update permission_group"}
+  /         %input#deletepermission_groupButton.tiny.button{"data-reveal-id" => "mytinyDelete", :type => "button", :value => "Delete permission_group"}
   .row
     .large-12.columns
       #name{:class => ('editable' if current_user.can(:edit_term))}
         %h2.page-title
-          = @office["office"]["name"].html_safe
+          = @permission_group["permission_group"]["name"].html_safe
   .row
     .large-12.columns
       %h5.page-title Stakeholder Information
-      - if @office["stakes"].empty?
-        %p This office has no stakeholder items
+      - if @permission_group["terms"].empty?
+        %p This permission group has no terms
       -else
         %br
         %ul
-          - @office["stakes"].each do |stakeholder|
+          - @permission_group["terms"].each do |stakeholder|
             %strong
               %li
                 %a{:href => "../terms/#{stakeholder["name"]}"}= stakeholder["name"]
-                = stakeholder["stake"]
             %br
   - if current_user && current_user.can( :edit_term )
     #office_detail
