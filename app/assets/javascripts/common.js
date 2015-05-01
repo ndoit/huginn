@@ -149,6 +149,22 @@ $(document).ready(function(){
 
   }
 
+    if(typeof permission_group_detail_json != 'undefined')  {
+
+      $('#update-permission-group').click(function() {
+        if (updatePermissionGroup(permission_group_detail_json) == false) {
+          return false;
+          updatePermissionGroup(permission_group_detail_json)
+        }
+      });
+      $('#deleteConfirm').click( function() {
+        $('a.close-reveal-modal').trigger('click')
+        deletePermissionGroup(permission_group_detail_json.id)
+      });
+      $('#deleteCancel').click( function() {
+        $('a.close-reveal-modal').trigger('click')
+      });
+  }
 
 
 
@@ -172,6 +188,14 @@ $(document).ready(function(){
     office_new = {"name": office};
     $('a.close-reveal-modal').trigger('click');
     addOffice(office_new);
+  });
+
+  $('#addPermissionGroupButton').click(function() {
+    clearValidationErrors()
+    var permission_group = $('#pgname').val();
+    permission_group_new = {"name": permission_group};
+    $('a.close-reveal-modal').trigger('click');
+    addPermissionGroup(permission_group_new);
   });
 
 

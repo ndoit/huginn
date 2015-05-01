@@ -51,12 +51,12 @@
                 %a{:href => "../terms/#{stakeholder["name"]}"}= stakeholder["name"]
             %br
   - if current_user && current_user.can( :edit_term )
-    #office_detail
+    #permission-group-detail
       .row
         .medium-2.medium-offset-4.columns
-          %input#updateOfficeButton.small.button.expand{:type => "button", :value => "Update Office"}
+          %input#update-permission-group.small.button.expand{:type => "button", :value => "Update Permission Group"}
         .medium-2.columns.end
-          %input#deleteOfficeButton.small.button.expand{"data-reveal-id" => "mytinyDelete", :type => "button", :value => "Delete Office"}
+          %input#delete-permission-group.small.button.expand{"data-reveal-id" => "mytinyDelete", :type => "button", :value => "Delete Permission Group"}
 - else
   Error: 
-  = @office["message"]
+  = @permission_group["message"]

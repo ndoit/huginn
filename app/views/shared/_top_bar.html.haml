@@ -90,6 +90,21 @@
                             %input#addOfficeButton.expand.button{:type => "button", :value => "Save Office"}
                           / .large-4.columns
                           %a.close-reveal-modal ×
+                    %li
+                      %a{"data-reveal-id" => "permissiongrouptiny", :href => "#"}
+                        %strong Add New Permission Group
+                      #permissiongrouptiny.reveal-modal.tiny{"data-reveal" => ""}
+                        %h2 Add New Permission Group
+                        Name:
+                        %input#oname{:name => "pgname", :type => "text"}
+                        %br
+                        .row
+                          / .large-4.columns
+                          /   %span
+                          .large-9.large-centered.columns
+                            %input#addPermissionGroupButton.expand.button{:type => "button", :value => "Save Permission Group"}
+                          / .large-4.columns
+                          %a.close-reveal-modal ×
                   %li.divider
                   %li
                     %a{:href => "#"}= link_to "Log Out", logout_path        

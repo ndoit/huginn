@@ -80,7 +80,7 @@
                 %tr.raci_row{"data-raci-stake" => key}
                   %td= key[0].upcase
                   %td
-                    %input.raci_input{"data-init" => @stakeholder_hash[key].to_json, :id => "raci#{index}", :type => "hidden"}/
+                    %input.raci_input{"data-init" => @stakeholder_hash[key].to_json, :id => "raci#{index}", :type => "hidden"}
         - else
           %table
             - @stakeholder_hash.keys.each_with_index do |key, index|
