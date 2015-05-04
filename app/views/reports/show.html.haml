@@ -123,7 +123,7 @@
     .row.edit
       .large-12.large-centered.columns
         %h5.page-title Sample Image
-        .medium-3.columns
+        .medium-2.columns
           / %p= @report_photo.image_url(:small)
           = image_tag @report_photo.image_url, :onerror => "this.src = '/assets/chart-icon-07.svg';this.removeAttribute('onerror');"
         %br
@@ -134,6 +134,7 @@
           %br
           = form_tag report_image_upload_path, :method => "post", :id => 'report_image_upload', :multipart => true do
             = hidden_field_tag "id", @report["report"]["id"]
+            = hidden_field_tag "name", @report["report"]["name"]
             = hidden_field_tag "timestamp", @report["report"]["timestamp"]
             Upload/replace sample image:
             = file_field_tag "image"
@@ -151,9 +152,10 @@
             - @report["terms"].each do |result|
               - if result["name"]  then
                 %a.do_highlight{:href => "../terms/#{result["name"]}"}
-                  %strong= result["name"]
-                %br
-              %br
+                  .large-12.columns
+                    = result["name"]
+                    %br
+                    %br
           - else
             Data Governance Terms have not been yet registered with this report
         
@@ -175,10 +177,10 @@
       .view
         - if @report_roles.present?
           - @report_roles.each do |result|
-            %strong
+            .large-12.columns
               = result[:text]
-            %br
-            %br
+              %br
+              %br
       .edit
         - if current_user && current_user.can( :publish_report )
           .row
@@ -232,7 +234,8 @@
         .edit
           = select_tag 'office_id', options_for_select(@offices.collect{ |o| o[:text] }, @report_office_owner_name), {:id => 'office_owner', :include_blank => true, :prompt => "Please Choose Office"}
       .view
-        %p= "#{@report_office_owner_name}"
+        .large-12.columns
+          %p= "#{@report_office_owner_name}"
                     
   .row.edit
     .large-12.large-centered.columns

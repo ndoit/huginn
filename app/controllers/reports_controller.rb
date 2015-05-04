@@ -154,17 +154,18 @@ class ReportsController < ApplicationController
   end
 
   def upload
-    r = PhotoMapper.new( params[:id], params["timestamp"].present? ? params["timestamp"] : nil )
+    r = PhotoMapper.new( params[:id] )
     update_body = {
       "report" => {
-        "timestamp" => params["timestamp"]
+        "name" => params["name"],
+        "timestamp" => r.timestamp.to_i
       }
     }
     if params[:image].present?
       r.uploader = params[:image]
       logger.info("before image upload: " + r.image_url)
       r.save
-      Muninn::Adapter.put( "/reports/id/params[:id]", session[:cas_user], session[:cas_pgt], update_body.to_json )
+      Muninn::Adapter.put( "/reports/id/#{params[:id]}", session[:cas_user], session[:cas_pgt], update_body.to_json )
     end
     redirect_to :back
   end
