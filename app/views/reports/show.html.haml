@@ -42,11 +42,6 @@
               %input#editmode{:type => "checkbox"}
               %label{:for => "editmode"}
 
-  = @report_photo.image_url
-  %br
-  .row
-
-    = image_tag @report_photo.image_url
   #report_detail
 
     - if current_user && current_user.can( :publish_report )
