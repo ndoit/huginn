@@ -37,7 +37,7 @@
     .row
       .large-12.columns
         #definition{:class => ('editable' if current_user && current_user.can( :edit_term ))}
-          - if @term["term"]["definition"]  then
+          - if @term["term"]["definition"] then
             = @term["term"]["definition"].html_safe
           - else
             NA
@@ -48,7 +48,7 @@
           %dt Data Availability
           %dd
             #data_availability{:class => ('editable' if current_user && current_user.can( :edit_term ))}
-              - if @term["term"]["data_availability"]  then
+              - if @term["term"]["data_availability"] then
                 = @term["term"]["data_availability"].html_safe
               - else
                 NA
@@ -66,7 +66,7 @@
           %dt Notes
           %dd
             #notes{:class => ('editable' if current_user && current_user.can( :edit_term ))}
-              - if @term["term"]["notes"]  then
+              - if @term["term"]["notes"] then
                 = @term["term"]["notes"].html_safe
               - else
                 NA
