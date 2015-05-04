@@ -121,17 +121,15 @@
         .large-6.columns
           %dt Permission Group
           %dd
-            = select_tag 'permission-group', options_for_select(@permission_groups.collect{ |o| o[:text]}, @term_group ), {:prompt => "Please Choose Permission Group"}
-            / #permission_group{:class => ('editable' if current_user && current_user.can( :edit_term ))}
-            /   - if @term["term"]["permission_groups"]  then
-            /     = @term["term"]["permission_groups"].html_safe
-            /   - else
-            /     NA
+            - if current_user && current_user.can(:edit_term)
+              = select_tag 'permission-group', options_for_select(@permission_groups.collect{ |o| o[:text]}, @term_group ), {:prompt => "Please Choose Permission Group"}
+            - else
+              = @term_group
       .row
         .large-6.columns                
           %dt Sensitivity Classification
           %dd
-            - if current_user.can(:edit_term)
+            - if current_user && current_user.can(:edit_term)
               = select_tag 'sensitivity_classification', options_for_select(["Highly Sensitive", "Sensitive", "Internal", "Public"], @term["term"]["sensitivity_classification"]), {:prompt => "Please Choose Classification"}
             - else
               = @term["term"]["sensitivity_classification"]
@@ -139,7 +137,7 @@
         .large-6.columns
           %dt Access Designation
           %dd
-            - if current_user.can(:edit_term)
+            - if current_user && current_user.can(:edit_term)
               = select_tag 'access_designation', options_for_select(["Limited", "Unlimited"], @term["term"]["access_designation"]), {:prompt => "Please Choose access designation"}
             - else
               = @term["term"]["access_designation"]
@@ -148,7 +146,7 @@
           %dt Sensitivity and Access Notes
           %dd
             #sensitivity_access_notes{:class => ('editable' if current_user && current_user.can( :edit_term ))}
-              - if @term["term"]["sensitivity_access_notes"]  then
+              - if @term["term"]["sensitivity_access_notes"].present?  then
                 = @term["term"]["sensitivity_access_notes"].html_safe
               - else
                 Currently no notes so far
