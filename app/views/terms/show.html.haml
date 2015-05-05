@@ -1,0 +1,169 @@
+:javascript
+  term_object = #{@term["term"].to_json.to_s.html_safe}
+  office_json = #{@office_json.to_s.html_safe}
+  stakeholder_hash = #{@stakeholder_hash.to_json.to_s.html_safe}
+.row
+  .large-8.columns
+    %ul#error_list{:style => "display:none"}
+    /
+    /  <div data-alert class="alert-box alert radius" style="display:none">
+    /  <ul class="error_list"></ul>
+    /  <a href="#" class="close">×</a>
+    /  </div>
+    .alert-box.warning.radius{"data-alert" => "", :style => "display:none"}
+      %ul.error_list
+      %a.close{:href => "#"} ×
+    .alert-box.success.radius{"data-alert" => "", :style => "display:none"}
+      %span.success_msg
+      %a.close{:href => "#"} ×
+.row
+  .large-12.columns
+    #mytinyDelete.reveal-modal.tiny{"data-reveal" => ""}
+      %h2 Deleting Term
+      %br
+      %b Are you sure?
+      %br
+      %br
+      %input#deleteConfirm.tiny.button{:type => "button", :value => "Yes"}/
+      %input#deleteCancel.tiny.button{:type => "button", :value => "No"}/
+      %a.close-reveal-modal ×
+#term_detail
+  - if @term["success"]
+    .row
+      .large-12.columns
+        #name{:class => ('editable' if current_user && current_user.can( :edit_term ))}
+          %h2.page-title
+            = @term["term"]["name"].html_safe
+    .row
+      .large-12.columns
+        #definition{:class => ('editable' if current_user && current_user.can( :edit_term ))}
+          - if @term["term"]["definition"] then
+            = @term["term"]["definition"].html_safe
+          - else
+            NA
+    %dl
+      .row
+        .large-12.columns
+          %h5.page-title General Information
+          %dt Data Availability
+          %dd
+            #data_availability{:class => ('editable' if current_user && current_user.can( :edit_term ))}
+              - if @term["term"]["data_availability"] then
+                = @term["term"]["data_availability"].html_safe
+              - else
+                NA
+      .row
+        .large-12.columns
+          %dt Possible Values
+          %dd
+            #possible_values{:class => ('editable' if current_user && current_user.can( :edit_term ))}
+              - if @term["term"]["possible_values"] then
+                = @term["term"]["possible_values"].html_safe
+              - else
+                NA
+      .row
+        .large-12.columns
+          %dt Notes
+          %dd
+            #notes{:class => ('editable' if current_user && current_user.can( :edit_term ))}
+              - if @term["term"]["notes"] then
+                = @term["term"]["notes"].html_safe
+              - else
+                NA
+    .row
+      .large-12.columns
+        %h5.page-title Campus Stakeholders
+        - if current_user && current_user.can( :edit_term )
+          %table.raci
+            %tbody.tbody
+              - @stakeholder_hash.keys.each_with_index do |key, index|
+                %tr.raci_row{"data-raci-stake" => key}
+                  %td= key[0].upcase
+                  %td
+                    %input.raci_input{"data-init" => @stakeholder_hash[key].to_json, :id => "raci#{index}", :type => "hidden"}
+        - else
+          %table
+            - @stakeholder_hash.keys.each_with_index do |key, index|
+              %tr.raci_row
+                %td
+                  %h5
+                    = key
+                %td
+                  - @stakeholder_hash[key].each do |stake|
+                    = stake[:text].to_s
+    .row
+      .large-12.large-centered.columns
+        %h5.page-title Reports Associated with this Term
+        - if current_user
+          - unless @term["reports"].empty? then
+            - @term["reports"].each do |result|
+              - if result["name"]  then
+                %a.do_highlight{:href => "../reports/#{result["name"].html_safe}"}
+                  %strong
+                    = result["name"]
+                %br/
+              %br/
+          - else
+            %br/
+            Reports are not registered with this data governance term
+            %br/
+            %br/
+        - else
+          You must be logged in to see any reports associated with this term
+    
+
+
+    .row
+      .large-12.large-centered.columns
+        %h5.page-title Sensitivity Classification
+    %dl
+      .row
+        .large-6.columns
+          %dt Permission Group
+          %dd
+            - if current_user && current_user.can(:edit_term)
+              = select_tag 'permission-group', options_for_select(@permission_groups.collect{ |o| o[:text]}, @term_group ), {:prompt => "Please Choose Permission Group"}
+            - else
+              = @term_group
+      .row
+        .large-6.columns                
+          %dt Sensitivity Classification
+          %dd
+            - if current_user && current_user.can(:edit_term)
+              = select_tag 'sensitivity_classification', options_for_select(["Highly Sensitive", "Sensitive", "Internal", "Public"], @term["term"]["sensitivity_classification"]), {:prompt => "Please Choose Classification"}
+            - else
+              = @term["term"]["sensitivity_classification"]
+      .row
+        .large-6.columns
+          %dt Access Designation
+          %dd
+            - if current_user && current_user.can(:edit_term)
+              = select_tag 'access_designation', options_for_select(["Limited", "Unlimited"], @term["term"]["access_designation"]), {:prompt => "Please Choose access designation"}
+            - else
+              = @term["term"]["access_designation"]
+      .row
+        .large-6.columns
+          %dt Sensitivity and Access Notes
+          %dd
+            #sensitivity_access_notes{:class => ('editable' if current_user && current_user.can( :edit_term ))}
+              - if @term["term"]["sensitivity_access_notes"].present?  then
+                = @term["term"]["sensitivity_access_notes"].html_safe
+              - else
+                Currently no notes so far
+
+
+
+    - if current_user && current_user.can( :edit_term )
+      .row
+        .medium-2.medium-offset-4.columns
+          %input#updateTermButton.small.button.expand{:type => "button", :value => "Update Term"}/
+        .medium-2.columns.end
+          %input#deleteTermButton.small.button.expand{"data-reveal-id" => "mytinyDelete", :type => "button", :value => "Delete Term"}
+    .right
+      %dfn
+        Last Updated: #{@term["term"]["modified_date"].to_datetime.strftime("%a, %d %b %Y %I:%M %p")}
+  - else
+    .row
+      .medium-9.large-9.columns
+        %h1 Nonexistant Term
+        We are sorry to inform you that the term you are currently looking for does not exist in our database.  If you feel that the following term should be added to Notre Dame's data dictionary, please proceed as follows:

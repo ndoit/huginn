@@ -23,6 +23,8 @@
 
               %li
                 = link_to 'Report Gallery', "/browse/report", :style => ("background: #666666;" if url == "/browse/reports")
+              %li  
+                = link_to 'Permission Groups', "/browse/permission_groups", :style => ("background: #666666;" if url == "/browse/permission_groups")
               / %li
               /   = link_to 'Datasets', "/browse/datasets", :style => ("background: #666666;" if url == "/browse/datasets")
               - if current_user.can( :edit_term )
@@ -86,6 +88,21 @@
                           /   %span
                           .large-5.large-centered.columns
                             %input#addOfficeButton.expand.button{:type => "button", :value => "Save Office"}
+                          / .large-4.columns
+                          %a.close-reveal-modal ×
+                    %li
+                      %a{"data-reveal-id" => "permissiongrouptiny", :href => "#"}
+                        %strong Add New Permission Group
+                      #permissiongrouptiny.reveal-modal.tiny{"data-reveal" => ""}
+                        %h2 Add New Permission Group
+                        Name:
+                        %input#pgname{:name => "pgname", :type => "text"}
+                        %br
+                        .row
+                          / .large-4.columns
+                          /   %span
+                          .large-9.large-centered.columns
+                            %input#addPermissionGroupButton.expand.button{:type => "button", :value => "Save Permission Group"}
                           / .large-4.columns
                           %a.close-reveal-modal ×
                   %li.divider

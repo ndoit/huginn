@@ -47,11 +47,24 @@ class TermsController < ApplicationController
     end
     @office_json = offices.to_json
 
+    permission_group_resp = Muninn::Adapter.get( "/permission_groups", session[:cas_user], session[:cas_pgt] )
+    permission_group_json = JSON.parse( permission_group_resp.body )["results"]
+    logger.debug("These are the show groups: #{permission_group_json}")
+    groups = []
+    permission_group_json.each do |group|
+      groups << {id: group["data"]["id"], text: group["data"]["name"]}
+    end
+    @permission_groups = groups
+
+
       # GET TERM
     muninn_response = Muninn::Adapter.get( "/terms/" + URI::encode(params[:id]), session[:cas_user], session[:cas_pgt] )
     @term = JSON.parse(muninn_response.body)
     @term["reports"] ||= []
-
+    @term_group = {}
+    if @term["permission_groups"].present?
+      @term_group = @term["permission_groups"].first["name"]
+    end
       # GET STAKEHOLDERS FOR TERM
     @stakeholder_hash = {}
     @stakeholder_hash["Responsible"] = []
