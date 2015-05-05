@@ -10,3 +10,7 @@
 *.md text eol=lf
 *.gitattributes text eol=lf
 *.gitignore text eol=lf
+*.rspec text eol=lf
+Rakefile text eol=lf
+Gemfile text eol=lf
+Gemfile.lock text eol=lf
