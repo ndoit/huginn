@@ -57,7 +57,7 @@ class ReportsController < ApplicationController
     logger.debug("full report hash: #{@report}")
     if @report["success"] 
 
-      @report_photo = PhotoMapper.new( @report["report"]["id"])
+      @report_photo = PhotoMapper.new( @report["report"]["id"], @report["report"]["timestamp"].present? ? @report["report"]["timestamp"] : nil )
 
       ## GET Report's Associated Terms
       term_report_json = @report["terms"]
@@ -155,9 +155,18 @@ class ReportsController < ApplicationController
 
   def upload
     r = PhotoMapper.new( params[:id] )
-    r.uploader = params[:image]
-    r.save
-    logger.info("image upload method ran: #{r}")
+    update_body = {
+      "report" => {
+        "name" => params["name"],
+        "timestamp" => r.timestamp.to_i
+      }
+    }
+    if params[:image].present?
+      r.uploader = params[:image]
+      logger.info("before image upload: " + r.image_url)
+      r.save
+      Muninn::Adapter.put( "/reports/id/#{params[:id]}", session[:cas_user], session[:cas_pgt], update_body.to_json )
+    end
     redirect_to :back
   end
   # TEST TEST TEST
