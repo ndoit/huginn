@@ -14,6 +14,10 @@ $(document).ready(function(){
     }
   });
 
+  $('#image').change( function() {
+    $('form#report_image_upload').submit();
+  });
+
 
   if (typeof office_json != 'undefined')  {
    $('.raci_input').select2({
@@ -144,6 +148,25 @@ $(document).ready(function(){
 
   }
 
+    if(typeof permission_group_detail_json != 'undefined')  {
+
+      $('#update-permission-group').click(function() {
+        // permission_group_object
+        if (updatePermissionGroupObject(permission_group_detail_json) == false) {
+          return false;
+        }
+        else {
+          updatePermissionGroup(permission_group_detail_json)
+        }
+      });
+      $('#deleteConfirm').click( function() {
+        $('a.close-reveal-modal').trigger('click')
+        deletePermissionGroup(permission_group_detail_json.id)
+      });
+      $('#deleteCancel').click( function() {
+        $('a.close-reveal-modal').trigger('click')
+      });
+  }
 
 
 
@@ -167,6 +190,14 @@ $(document).ready(function(){
     office_new = {"name": office};
     $('a.close-reveal-modal').trigger('click');
     addOffice(office_new);
+  });
+
+  $('#addPermissionGroupButton').click(function() {
+    clearValidationErrors()
+    var permission_group = $('#pgname').val();
+    permission_group_new = {"name": permission_group};
+    $('a.close-reveal-modal').trigger('click');
+    addPermissionGroup(permission_group_new);
   });
 
 
@@ -195,7 +226,7 @@ function changetoeditmode() {
   $( '.view' ).css( "display", "none" );
   $( '.edit' ).css( "display", "inherit" );
   $( "#description" ).attr({
-    "contenteditable": "true"  
+    "contenteditable": "true"
     // "spellcheck": "false",
     // "style": "position: relative;"
   });
@@ -263,8 +294,6 @@ function showSuccessMessage() {
 }
 
 function updateTermObject(term_object ) {
-  
-
   clearValidationErrors()
   tinymce.triggerSave();
   console.log(term_object);
@@ -283,6 +312,12 @@ function updateTermObject(term_object ) {
     }
 
   })
+  term_object["sensitivity_classification"] = $('#sensitivity_classification').val();
+  term_object["access_designation"] = $('#access_designation').val();
+
+  term_object["permission_groups"] = []
+  group_name = $('#permission-group').val();
+  term_object["permission_groups"].push( {name: group_name})
 
   term_object["stakeholders"] = []
   var office_array=[]
@@ -492,24 +527,25 @@ function updateReportObject(report_object ) {
 
 function updateReport( report_object ) {
 
+  // commenting out as the image upload process happens on click now
   $('form#report_image_upload').submit()
 
-    $.ajax({
-        url: report_object.id,
-        type: 'PUT',
-        data: {"reportJSON": JSON.stringify(report_object) },
-        dataType: 'json',
-        success: function (data) {
-           console.log("succcess block")
-           var url = escape(report_object.name);
-           window.location.href = url;
-           addSuccessMessage("success", "<b>" + report_object.name + "</b>" +  " updated successfully. " );
-           showSuccessMessage();  
-        },
-        error: function( xhr, ajaxOptions, thrownError) {
-           addValidationError( "alert", "Update Report has errors: " + xhr.responseText);
-             showValidationErrors()
-        }
+  $.ajax({
+      url: report_object.id,
+      type: 'PUT',
+      data: {"reportJSON": JSON.stringify(report_object) },
+      dataType: 'json',
+      success: function (data) {
+         console.log("succcess block")
+         var url = escape(report_object.name);
+         window.location.href = url;
+         addSuccessMessage("success", "<b>" + report_object.name + "</b>" +  " updated successfully. " );
+         showSuccessMessage();
+      },
+      error: function( xhr, ajaxOptions, thrownError) {
+         addValidationError( "alert", "Update Report has errors: " + xhr.responseText);
+           showValidationErrors();
+      }
     })
     /*.done(function(data) {
       console.log("done block")
@@ -646,6 +682,63 @@ function addOffice( office_object ) {
 
 }
 
+function addPermissionGroup( permission_group_object ) {
+  $.ajax({
+     url : '/permission_groups',
+     type: 'POST',
+     data: { "permission_group": JSON.stringify(permission_group_object)},
+     dataType: 'json',
+     success: function (data) {
+      var url = escape('/permission_groups/'+ permission_group_object.name);
+      window.location = url;
+      addSuccessMessage("success", "<b>Office " + permission_group_object.name +   " successfully. Please wait for Permission Group Detail page display.</b>");
+      showSuccessMessage();
+     },
+     error: function( xhr, ajaxOptions, thrownError) {
+      addValidationError( "alert", "Added office, "+ permission_group_object.name+ ", has error: " + jQuery.parseJSON(xhr.responseText).message);
+      showValidationErrors()
+    }
+  })
+}
+
+function updatePermissionGroupObject( permission_group_object ) {
+  clearValidationErrors()
+  tinymce.triggerSave();
+  console.log(permission_group_object);
+  $('.editable').each( function() {
+    id = $(this).attr('id');
+    if ( id ) {
+      p = tinymce.get(id).getContent()
+      if (id == "name") {
+        var StrippedString = p.replace(/(<([^>]+)>)/ig,"")
+        p = StrippedString;
+      }
+      console.log(p);
+      console.log(id);
+      permission_group_object[id] = p;
+    }
+  });
+  return permission_group_object;
+}
+
+function updatePermissionGroup( permission_group_object ) {
+  $.ajax({
+      url: permission_group_object.id,
+      type: 'PUT',
+      data: {"permissiongroupJSON": JSON.stringify(permission_group_object)},
+      dataType: 'json',
+      success: function (data) {
+        var url = escape(permission_group_object.name);
+        window.location = url;
+        addSuccessMessage("success", "<b>" + permission_group_object.name + "</b>" +  " updated successfully. " );
+        showSuccessMessage();
+      },
+      error: function( xhr, ajaxOptions, thrownError) {
+         addValidationError( "alert", "Update Office, <b>" + permission_group_object.name + "</b>  has errors: " + jQuery.parseJSON(xhr.responseText).message);
+         showValidationErrors();
+      }
+  });
+}
 
 function updateOfficeObject( office_object ) {
   clearValidationErrors()
@@ -663,16 +756,11 @@ function updateOfficeObject( office_object ) {
       console.log(id);
       office_object[id] = p;
     }
-
   });
-
   return office_object;
 }
 
-
-
 function updateOffice( office_object ) {
-
   $.ajax({
       url: office_object.id,
       type: 'PUT',
@@ -683,14 +771,12 @@ function updateOffice( office_object ) {
         window.location = url;
         addSuccessMessage("success", "<b>" + office_object.name + "</b>" +  " updated successfully. " );
         showSuccessMessage();
-
       },
       error: function( xhr, ajaxOptions, thrownError) {
          addValidationError( "alert", "Update Office, <b>" + office_object.name + "</b>  has errors: " + jQuery.parseJSON(xhr.responseText).message);
          showValidationErrors();
       }
   });
-
 }
 
 
@@ -706,7 +792,25 @@ function deleteOffice( officeid ) {
       },
       error: function(xhr, status, error) {
            //alert(xhr.responseText)
-        addValidationError( "alert", "Delete term has errors: " + jQuery.parseJSON(xhr.responseText).message);
+        addValidationError( "alert", "Delete Permission Groups has errors: " + jQuery.parseJSON(xhr.responseText).message);
+        showValidationErrors()
+      }
+  });
+}
+
+function deletePermissionGroup( permissiongroupid ) {
+    $.ajax({
+      url:   permissiongroupid,
+      type: 'DELETE',
+      success: function(data, status, xhr){
+        addSuccessMessage("success", "<b>" + data.message + ". Please wait for Permission Groups display Page.</br>" )
+        showSuccessMessage();
+        var myHashLink = "browse/permission_groups";
+        window.location.href = '/' + myHashLink;
+      },
+      error: function(xhr, status, error) {
+           //alert(xhr.responseText)
+        addValidationError( "alert", "Delete Permission Groups has errors: " + jQuery.parseJSON(xhr.responseText).message);
         showValidationErrors()
       }
   });
