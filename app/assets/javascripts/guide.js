@@ -94,7 +94,7 @@ function selectedResources() {
 function bindInfiniteScrollBehavior() {
   console.log('binding');
   $('.more_results').unbind('inview');
-  if ( results_size == 10 ) {
+  if ( results.size == 10 ) {
     $('.more_results').bind('inview', function(event, isInView, visiblePartX, visiblePartY) {
       console.log('hit');
       if (isInView) {
