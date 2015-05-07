@@ -2,8 +2,6 @@ $(document).ready(
   function() {
     executeFilter();
 
-    // bindFilterToggleBehavior()
-
     bindTypeaheadSearchBehavior();
 
     // When the user clicks on the banner, redirects to root
@@ -13,19 +11,9 @@ $(document).ready(
 
     // Puts the default greyed out text in the search box
     $('#search1').watermark('Search');
-  }
-)
 
-// On click of the left bar filters,
-// Switch the checkbox to different styling,
-// and perform the executFilter funcion
-// function bindFilterToggleBehavior() {
-//     $('#content').on( 'click', '.data-type-label-container', function() {
-//       // I'm using a different partial now. this wont be needed anymore
-//       $(this).find('.toggle_light').toggleClass('toggle_off')
-//       executeFilter()
-//     })
-// }
+  }
+);
 
 function bindTypeaheadSearchBehavior() {
   // every keyup event starts a search that will
@@ -96,24 +84,6 @@ function selectedResources() {
   }
   return url
 }
-
-// checks which side bar items are checked,
-// stores those names as a variable with a string
-// function getSelectedResourceList() {
-//   var resources = []
-//   userSelectedResources().each( function() {
-//     resources.push( $(this).data('resource-name') )
-//   })
-//   return resources.join(",")
-// }
-
-// function sidebarExists() {
-//   return $('.toggle_light').length != 0
-// }
-
-// function userSelectedResources() {
-//   return $('.toggle_light').not('.toggle_off')
-// }
 
 
 //////////bindinfinitescrollbehavior//////////
