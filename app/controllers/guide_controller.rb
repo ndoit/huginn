@@ -33,7 +33,7 @@ class GuideController < ApplicationController
     logger.debug("Params: " + params.to_s)
 
     params[:page] ||= 1
-
+    params[:fields] = [ "name", "description", "definition", "timestamp", "id"]
     @query = params[:selected_resources]
     # logger.debug("This is the params :selected_resources= #{@query}")
     query_output = Muninn::CustomSearchAdapter.typeahead(params, session[:cas_user], session[:cas_pgt])
@@ -53,6 +53,7 @@ class GuideController < ApplicationController
       if r["&type"] == "report"
         #create a new key/value pair with the PhotoMapper class
         r["photo"] = PhotoMapper.new( r["id"], r["timestamp"].present? ? r["timestamp"] : nil )
+        r["my_photo"] = r["photo"].image_url
       end
     end
 
