@@ -52,7 +52,7 @@ class GuideController < ApplicationController
       #for all results of type report
       if r["&type"] == "report"
         #create a new key/value pair with the PhotoMapper class
-        r["photo"] = PhotoMapper.new( r["id"] )
+        r["photo"] = PhotoMapper.new( r["report"]["id"], r["report"]["timestamp"].present? ? r["report"]["timestamp"] : nil )
       end
     end
 
