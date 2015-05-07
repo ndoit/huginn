@@ -23,6 +23,9 @@ class Muninn::CustomSearchAdapter
       "search_string" => params[:q],
       "page" => params[:page]
     }
+    if params.has_key?(:fields)
+      search_params["fields[]"] = params[:fields]
+    end
     if params.has_key?(:selected_resources)
       search_params["types"] = [ params[:selected_resources] ]
     end

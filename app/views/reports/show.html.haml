@@ -237,7 +237,7 @@
       %h5.page-title Report Type
   .row.edit    
     .large-6.columns
-      = select_tag 'type', options_for_select(["Tableau", "Aggregation", "External"], @report["report"]["report_type"]), { :include_blank => true, :prompt => "Please Choose Type"}
+      = select_tag 'type', options_for_select(["Tableau"], @report["report"]["report_type"]), { :include_blank => true, :prompt => "Please Choose Type"}
   .row.edit
     .medium-2.medium-offset-4.columns
       %input#updateReportButton.small.button.expand{:type => "button", :value => "Update Report"}
