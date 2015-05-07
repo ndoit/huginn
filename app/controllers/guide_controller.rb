@@ -52,11 +52,11 @@ class GuideController < ApplicationController
       #for all results of type report
       if r["&type"] == "report"
         #create a new key/value pair with the PhotoMapper class
-        r["photo"] = PhotoMapper.new( r["report"]["id"], r["report"]["timestamp"].present? ? r["report"]["timestamp"] : nil )
+        r["photo"] = PhotoMapper.new( r["id"], r["timestamp"].present? ? r["timestamp"] : nil )
       end
     end
 
-    if params[:page].to_i > 1
+    if params[:page].to_i > 1    
       render partial: "partial_search", locals: { results: @results || [] }, layout: false
     else
       render html: "search", layout: false
