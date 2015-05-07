@@ -1,16 +1,14 @@
-<% if @results["Success"] %>
+<% if @results["success"] %>
 
 <h1>Search Results</h1>
-<ul><% @results["Results"].each do |result| %>
-	<% case result["Type"] %>
-      <% when "Term" %>
-        <li><a href="../terms/<%= result["Data"]["Id"] %>">
-        	Term: <%= result["Data"]["Name"] %>
+<ul><% @results["result"].each do |result| %>
+	<% case result["&type"] %>
+      <% when "term" %>
+        <li><a href="../terms/<%= result["name"] %>">
+        	Term: <%= result["name"] %>
         </a></li>
-      <% when "Office" %>
-        <li>Office: <%= result["Data"]["Name"] %></li>
-      <% when "Person" %>
-        <li>Person: <%= result["Data"]["NetId"] %></li>
+      <% when "office" %>
+        <li>Office: <%= result["name"] %></li>
 	<% end %>
 <% end %></ul>
 

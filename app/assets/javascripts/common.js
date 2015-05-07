@@ -294,6 +294,8 @@ function showSuccessMessage() {
 }
 
 function updateTermObject(term_object ) {
+
+
   clearValidationErrors()
   tinymce.triggerSave();
   console.log(term_object);
@@ -530,6 +532,7 @@ function updateReport( report_object ) {
   // commenting out as the image upload process happens on click now
   $('form#report_image_upload').submit()
 
+
   $.ajax({
       url: report_object.id,
       type: 'PUT',
@@ -541,10 +544,12 @@ function updateReport( report_object ) {
          window.location.href = url;
          addSuccessMessage("success", "<b>" + report_object.name + "</b>" +  " updated successfully. " );
          showSuccessMessage();
+
       },
       error: function( xhr, ajaxOptions, thrownError) {
          addValidationError( "alert", "Update Report has errors: " + xhr.responseText);
            showValidationErrors();
+
       }
     })
     /*.done(function(data) {
@@ -756,11 +761,16 @@ function updateOfficeObject( office_object ) {
       console.log(id);
       office_object[id] = p;
     }
+
   });
+
   return office_object;
 }
 
+
+
 function updateOffice( office_object ) {
+
   $.ajax({
       url: office_object.id,
       type: 'PUT',
@@ -771,12 +781,14 @@ function updateOffice( office_object ) {
         window.location = url;
         addSuccessMessage("success", "<b>" + office_object.name + "</b>" +  " updated successfully. " );
         showSuccessMessage();
+
       },
       error: function( xhr, ajaxOptions, thrownError) {
          addValidationError( "alert", "Update Office, <b>" + office_object.name + "</b>  has errors: " + jQuery.parseJSON(xhr.responseText).message);
          showValidationErrors();
       }
   });
+
 }
 
 
