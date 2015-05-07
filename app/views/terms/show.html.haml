@@ -148,8 +148,8 @@
             #sensitivity_access_notes{:class => ('editable' if current_user && current_user.can( :edit_term ))}
               - if @term["term"]["sensitivity_access_notes"].present?  then
                 = @term["term"]["sensitivity_access_notes"].html_safe
-              - else
-                Currently no notes so far
+              
+                
 
 
 
