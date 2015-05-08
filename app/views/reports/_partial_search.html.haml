@@ -2,6 +2,7 @@
   
   .result_row
     .medium-3.columns
+      = result
       = image_tag result["photo"].image_url, :onerror => "this.src = '/assets/chart-icon-07.svg';this.removeAttribute('onerror');"
     .medium-3.columns
       / = result
