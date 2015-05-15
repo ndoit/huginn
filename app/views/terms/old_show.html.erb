@@ -1,0 +1,202 @@
+<script>
+    term_object = <%= @term["term"].to_json.to_s.html_safe %>
+    office_json = <%= @office_json.to_s.html_safe %>
+    stakeholder_hash = <%= @stakeholder_hash.to_json.to_s.html_safe %>
+
+ </script>
+
+<div class="row">
+  <div class="large-8 columns">
+    <ul id="error_list" style="display:none"></ul>
+    <!-- <div data-alert class="alert-box alert radius" style="display:none">
+      <ul class="error_list"></ul>
+      <a href="#" class="close">&times;</a>
+    </div> -->
+    <div data-alert class="alert-box warning radius" style="display:none">
+      <ul class="error_list"></ul>
+      <a href="#" class="close">&times;</a>
+    </div>
+    <div data-alert class="alert-box success radius" style="display:none">
+      <span class="success_msg"></span>
+      <a href="#" class="close">&times;</a>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="large-12 columns">
+     <div class="reveal-modal tiny" id="mytinyDelete" data-reveal="">
+       <h2>Deleting Term</h2> <br>
+       <b> Are you sure? <b> <br> <br>
+       <input type="button" class ="tiny button" value="Yes" id="deleteConfirm" />
+       <input type="button" class ="tiny button" value="No" id="deleteCancel" />
+       <a class="close-reveal-modal">×</a>
+      </div>   
+   </div>
+</div>
+ 
+
+
+<div id ="term_detail">
+
+  <% if @term["success"] %>
+    <div class="row">
+      <div class="large-12 columns">
+        <div id="name" class="<%= 'editable' if current_user && current_user.can( :edit_term ) %>">
+          <h2 class="page-title">
+            <%= @term["term"]["name"].html_safe %>
+          </h2>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-12 columns">
+        <div id="definition" class="<%= 'editable' if current_user && current_user.can( :edit_term ) %>">
+          <% if @term["term"]["definition"]  then %>
+            <%= @term["term"]["definition"].html_safe %>
+          <%else%>
+            NA
+          <%end%>
+        </div>
+      </div>
+    </div>
+    <dl>
+      <div class="row">
+        <div class="large-12 columns">
+          <h5 class="page-title">General Information</h5>
+          <dt>Data Availability</dt>
+          <dd>
+            <div id="data_availability" class="<%= 'editable' if current_user && current_user.can( :edit_term ) %>">
+              <% if @term["term"]["data_availability"]  then %>
+                <%= @term["term"]["data_availability"].html_safe %>
+              <%else%>
+                NA
+              <%end%>
+            </div>
+          </dd>
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-12 columns">      
+          <dt>Possible Values</dt>
+          <dd>
+            <div id="possible_values" class="<%= 'editable' if current_user && current_user.can( :edit_term ) %>">
+              <% if @term["term"]["possible_values"] then %>
+                <%= @term["term"]["possible_values"].html_safe %>
+              <%else%>
+                NA
+              <%end%>
+            </div>
+          </dd>
+          
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-12 columns">  
+          <dt>Notes</dt>
+          <dd>
+            <div id="notes" class="<%= 'editable' if current_user && current_user.can( :edit_term ) %>">
+              <% if @term["term"]["notes"]  then %>
+                <%= @term["term"]["notes"].html_safe %>
+              <%else%>
+                NA
+              <%end%>
+            </div>      
+          </dd>
+        </div>
+      </div>
+    </dl>  
+    <div class="row">
+      <div class="large-12 columns">
+        <h5 class="page-title">Campus Stakeholders</h5>
+        <% if current_user && current_user.can( :edit_term ) %>
+
+          <table class="raci">
+            <tbody class="tbody">
+              <% @stakeholder_hash.keys.each_with_index do |key, index|%>
+                <tr class="raci_row" data-raci-stake="<%= key %>">
+                  <td><%= key[0].upcase %></td>
+                  <td>
+                    <input type="hidden" class="raci_input" id="raci<%= index %>" data-init="<%= @stakeholder_hash[key].to_json %>" >
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+    
+        <%else%>
+  
+          <table>
+            <% @stakeholder_hash.keys.each_with_index do |key, index|%>
+              <tr class="raci_row">
+                <td><h5> <%=key%></h5></td>
+                <td>
+                  <%@stakeholder_hash[key].each do |stake|%>
+                    <%=stake[:text].to_s %>  </br>
+                  <% end %> 
+                  </br> 
+                </td>
+              </tr>
+            <% end %>
+         
+          </table>
+  
+        <% end %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-12 large-centered columns">
+      <h5 class="page-title">Reports Associated with this Term </h5>
+        <% if current_user %>
+          <% unless @term["reports"].empty? then %>
+            <% @term["reports"].each do |result| %>
+              <% if result["name"]  then %>
+                <a class="do_highlight" href="../reports/<%=result["name"].html_safe %>">
+                  <strong>
+                    <%= result["name"] %>
+                  </strong>
+                </a>
+                <br>
+              <% end %>  
+              <br>
+            <% end %>
+          <%else%> 
+            <br>
+            Reports are not registered with this data governance term 
+            <br> 
+            <br>
+          <% end %>
+        <% else %>
+          You must be logged in to see any reports associated with this term
+        <% end %>
+      </div>
+    </div>
+    
+    <% if current_user && current_user.can( :edit_term ) %>
+      <div class="row">
+        <div class="medium-2 medium-offset-4 columns">
+          <input class="small button expand" id="updateTermButton" type="button" value="Update Term"></input>
+        </div>
+        <div class="medium-2 columns end">
+          <input class="small button expand" data-reveal-id="mytinyDelete" id="deleteTermButton" type="button" value="Delete Term"></input>
+        </div>
+      </div>
+    <% end %>
+  
+      
+    <div class="right">
+      <dfn>
+        Last Updated: <%= @term["term"]["modified_date"].to_datetime.strftime("%a, %d %b %Y %I:%M %p") %>
+      </dfn>
+    </div>
+ 
+  
+  <% else %>
+    <div class="row">
+      <div class="medium-9 large-9 columns">
+        <h1>Nonexistant Term</h1>
+        We are sorry to inform you that the term you are currently looking for does not exist in our database.  If you feel that the following term should be added to Notre Dame's data dictionary, please proceed as follows:
+      </div>
+    </div>
+  <% end %>
+</div>

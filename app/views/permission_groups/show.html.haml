@@ -1,0 +1,62 @@
+:javascript
+  permission_group_detail_json = #{@permission_group["permission_group"].to_json.to_s.html_safe}
+.row
+  .large-8.columns
+    %ul#error_list{:style => "display:none"}
+    / .alert-box.alert.radius{"data-alert" => "", :style => "display:none"}
+    /   %ul.error_list
+    /   %a.close{:href => "#"} ×
+    .alert-box.warning.radius{"data-alert" => "", :style => "display:none"}
+      %ul.error_list
+      %a.close{:href => "#"} ×
+    .alert-box.success.radius{"data-alert" => "", :style => "display:none"}
+      %span.success_msg
+      %a.close{:href => "#"} ×
+.row
+  .large-12.columns
+    #mytinyDelete.reveal-modal.tiny{"data-reveal" => ""}
+      %h2 Deleting Permission Group
+      %br
+      %b
+        Are you sure?
+        %b
+          %br
+          %br
+          %input#deleteConfirm.tiny.button{:type => "button", :value => "Yes"}
+          %input#deleteCancel.tiny.button{:type => "button", :value => "No"}
+          %a.close-reveal-modal ×
+- if @permission_group["success"]
+  / #permission_group_detail
+  /   .row
+  /     .large-12.columns
+  /       .small-12.large-12.columns
+  /         %input#updatepermission_groupButton.tiny.button{:type => "button", :value => "Update permission_group"}
+  /         %input#deletepermission_groupButton.tiny.button{"data-reveal-id" => "mytinyDelete", :type => "button", :value => "Delete permission_group"}
+  .row
+    .large-12.columns
+      #name{:class => ('editable' if current_user.can(:edit_term))}
+        %h2.page-title
+          = @permission_group["permission_group"]["name"].html_safe
+  .row
+    .large-12.columns
+      %h5.page-title Term List
+      - if @permission_group["terms"].empty?
+        %p This permission group has no terms
+      -else
+        %br
+        %ul
+          - @permission_group["terms"].each do |stakeholder|
+            %strong
+              %li
+                %a{:href => "../terms/#{stakeholder["name"]}"}= stakeholder["name"]
+            %br
+  - if current_user && current_user.can( :edit_term )
+    #permission-group-detail
+      .row
+        .medium-2.medium-offset-4.columns
+          %input#update-permission-group.small.button.expand{:type => "button", :value => "Update Permission Group"}
+        .medium-2.columns.end
+          %input#delete-permission-group.small.button.expand{"data-reveal-id" => "mytinyDelete", :type => "button", :value => "Delete Permission Group"}
+- else
+  Error: 
+  = @permission_group["message"]

@@ -2,7 +2,8 @@ class Muninn::SecurityRoleAdapter
 
   # MUNINN RESPONSE IS VERY DIFFERENT WHEN ASKING FOR ONE RECORD VS ALL
 
-
+  # attr_reader :my_access
+  
   def self.one( id, cas_user, cas_pgt )
     resp = Muninn::Adapter.get( "/security_roles/id/" + id.to_s, cas_user, cas_pgt )
     if ( resp.code == "200" )
@@ -17,7 +18,10 @@ class Muninn::SecurityRoleAdapter
     Muninn::SecurityRoleAdapter.convert_to_security_roles( j["results"] )
   end
 
-
+  def self.my_access(cas_user)
+    response = HTTParty.get("http://" + ENV["muninn_host"] + ":" + ENV["muninn_port"] + "/my_access?cas_user=" + cas_user )
+    @my_access = JSON.parse(response.body)
+  end
 
   def self.convert_to_security_roles( result_hash )
     #result_hash = Array(result_hash)

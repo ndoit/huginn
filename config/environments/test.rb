@@ -13,6 +13,9 @@ Huginn::Application.configure do
   # preloads Rails for running tests, you may have to set it to true.
   config.eager_load = false
 
+  # suggested action to solve capybara conflicts with rails 4.x
+  config.allow_concurrency = false
+
   # Configure static asset server for tests with Cache-Control for performance.
   config.serve_static_assets  = true
   config.static_cache_control = "public, max-age=3600"
@@ -36,6 +39,6 @@ Huginn::Application.configure do
   config.active_support.deprecation = :stderr
 
   # CAS proxy settings
-  config.cas_base_url = "https://login.nd.edu/cas/"
+  config.cas_base_url = "https://login-test.cc.nd.edu/cas/"
   config.cas_proxy_callback_url = "https://data-test.cc.nd.edu/cas_proxy_callback/receive_pgt"
 end

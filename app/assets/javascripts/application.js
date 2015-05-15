@@ -15,6 +15,8 @@
 //= require jquery.highlight
 //= require jquery.watermark.min
 //= require jquery.inview.min
+//= require jquery.joyride
+//= require jquery.cookie
 //= require select2
 //= require_tree .
 

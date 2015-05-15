@@ -51,15 +51,12 @@
 	height:auto;
 	overflow:auto;
 	text-decoration:underline;
-	
-
 }
 
 .under_searchbar_types {
 	/*padding-bottom: 7px;*/
 	text-align: center;
 	color: lightgrey;
-
 }
 
 .active_searchbar_type {
@@ -70,4 +67,8 @@
 
 .inactive_searchbar_type {
 	border-bottom: 2px solid lightgrey;
+}
+
+.nav_crumb {
+	background: #66666;
 }

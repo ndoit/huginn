@@ -11,16 +11,32 @@ class Muninn::CustomSearchAdapter
   def initialize(args, cas_user, cas_pgt)
     Rails.logger.debug("CustomSearchAdapter initializing with args: " + args.to_s)
     @node_types = [  'report' ]
-    @muninn_result = query_muninn( args[:q], args[:page], cas_user, cas_pgt )
+    #@muninn_result = query_muninn( args[:q], args[:page], cas_user, cas_pgt )
     @page = args[:page]
     @selected_node_types = selected_resource_array( args )
+    @muninn_result = typeahead(args[:q], cas_user, cas_pgt)
     self
   end
 
+  def self.typeahead(params, cas_user, cas_pgt)
+    search_params = {
+      "search_string" => params[:q],
+      "page" => params[:page]
+    }
+    if params.has_key?(:fields)
+      search_params["fields[]"] = params[:fields]
+    end
+    if params.has_key?(:selected_resources)
+      search_params["types"] = [ params[:selected_resources] ]
+    end
+    return JSON.parse(Muninn::Adapter.new_search(cas_user, cas_pgt, search_params).body)
+  end
 
-
-
-
+  def custom_query(json_string, page, per_page, cas_user, cas_pgt )
+    muninn_response = Muninn::Adapter.get('/search/custom/query', cas_user, cas_pgt, json_string )
+    output_string= ActiveSupport::JSON.decode(muninn_response.body.to_json)
+    results= extract_results(output_string)
+   end
 
   def filter_reports( role_array )
     @results ||= raw_result
@@ -46,7 +62,6 @@ class Muninn::CustomSearchAdapter
     self
   end
 
-
   def resource_count_hash
     # get a hash of result count by node type
     results_count = @muninn_result.select { |k| "#{k["type"]}" =="doc_count"}
@@ -64,7 +79,6 @@ class Muninn::CustomSearchAdapter
 
     results_hash
   end
-
 
   def raw_result
     @muninn_result
@@ -108,7 +122,6 @@ private
     custom_query(search_string, page_number, 15, cas_user, cas_pgt )
   end
 
-
   # no key == get all.
   # empty key == get nothing!
   def selected_resource_array( args )
@@ -119,10 +132,6 @@ private
       @node_types
     end
   end
-
-
-
-
 
   def extract_results(search_response)
     response_hash = JSON.parse(search_response)
@@ -145,20 +154,14 @@ private
 
     end
 
-     totalcount = { "type" => "doc_count","totalcount" => response_hash["result"]["aggregations"]["type"]["buckets"]}
+    if response_hash["result"].has_key?("aggregations")
+      totalcount = { "type" => "doc_count","totalcount" => response_hash["result"]["aggregations"]["type"]["buckets"]}
+    else
+      totalcount = { "type" => "doc_count","totalcount" => response_hash["result"]["hits"]["total"] }
+    end
+    output << totalcount
 
-     output << totalcount
-
+    output
   end
-
-  def custom_query(json_string, page, per_page, cas_user, cas_pgt )
-    muninn_response = Muninn::Adapter.get( '/search/custom/query', cas_user, cas_pgt, json_string )
-
-    output_string= ActiveSupport::JSON.decode(muninn_response.body.to_json)
-
-    results= extract_results(output_string)
-
-   end
-
 
 end

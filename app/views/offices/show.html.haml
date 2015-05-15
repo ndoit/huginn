@@ -1,0 +1,57 @@
+:javascript
+  office_detail_json = #{@office["office"].to_json.to_s.html_safe}
+.row
+  .large-8.columns
+    %ul#error_list{:style => "display:none"}
+    / .alert-box.alert.radius{"data-alert" => "", :style => "display:none"}
+    /   %ul.error_list
+    /   %a.close{:href => "#"} ×
+    .alert-box.warning.radius{"data-alert" => "", :style => "display:none"}
+      %ul.error_list
+      %a.close{:href => "#"} ×
+    .alert-box.success.radius{"data-alert" => "", :style => "display:none"}
+      %span.success_msg
+      %a.close{:href => "#"} ×
+.row
+  .large-12.columns
+    #mytinyDelete.reveal-modal.tiny{"data-reveal" => ""}
+      %h2 Deleting Office
+      %br
+      %b
+        Are you sure?
+        %b
+          %br
+          %br
+          %input#deleteConfirm.tiny.button{:type => "button", :value => "Yes"}
+          %input#deleteCancel.tiny.button{:type => "button", :value => "No"}
+          %a.close-reveal-modal ×
+- if @office["success"]
+  .row
+    .large-12.columns
+      #name{:class => ('editable' if current_user.can(:edit_term))}
+        %h2.page-title
+          = @office["office"]["name"].html_safe
+  .row
+    .large-12.columns
+      %h5.page-title Stakeholder Information
+      - if @office["stakes"].empty?
+        %p This office has no stakeholder items
+      -else
+        %br
+        %ul
+          - @office["stakes"].each do |stakeholder|
+            %strong
+              %li
+                %a{:href => "../terms/#{stakeholder["name"]}"}= stakeholder["name"]
+                = stakeholder["stake"]
+            %br
+  - if current_user && current_user.can( :edit_term )
+    #office_detail
+      .row
+        .medium-2.medium-offset-4.columns
+          %input#updateOfficeButton.small.button.expand{:type => "button", :value => "Update Office"}
+        .medium-2.columns.end
+          %input#deleteOfficeButton.small.button.expand{"data-reveal-id" => "mytinyDelete", :type => "button", :value => "Delete Office"}
+- else
+  Error: 
+  = @office["message"]

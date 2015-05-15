@@ -1,14 +1,15 @@
 class Muninn::Adapter
   def self.cas_proxy_params(cas_user, cas_pgt, allow_non_proxy = true)
+
     Rails.logger.info("cas_user = #{cas_user.to_s}, cas_pgt = #{cas_pgt.to_s}; proxy callback uri = #{Huginn::Application.config.cas_proxy_callback_url}")
 
     if cas_user != nil && cas_pgt != nil
-      cas_service_uri = "https://" + muninn_host.to_s + "/"
+      cas_service_uri = "https://" + ENV["muninn_host"] + "/"
       proxy_granting_ticket = cas_pgt
       ticket = CASClient::Frameworks::Rails::Filter.client.request_proxy_ticket(
         proxy_granting_ticket, cas_service_uri
       )
-      return "?service=#{URI::encode(ticket.service)}&ticket=#{ticket.ticket}"
+      return "?service=#{URI::encode(ticket.service)}&ticket=#{ticket.ticket}&cas_user=#{cas_user}"
 
     elsif cas_user != nil && allow_non_proxy
      return "?cas_user=#{cas_user}"
@@ -26,7 +27,7 @@ class Muninn::Adapter
       )
     response = HTTParty.get("http://" + ENV["muninn_host"] + ":" + ENV["muninn_port"] + resource_uri + cas_proxy_params(cas_user,cas_pgt,false))
 
-    Rails.logger.debug("Muninn GET output: #{response}")
+    # Rails.logger.debug("Muninn GET output: #{response}")
     return response
   end
 
@@ -69,6 +70,13 @@ class Muninn::Adapter
     return output
   end
 
+  def self.new_search(cas_user, cas_pgt, params)
+    search_url = "http://" + ENV["muninn_host"] + ":" + ENV["muninn_port"] + "/new_search" +
+      (cas_user != nil ? cas_proxy_params(cas_user, cas_pgt) + "&" : "?") +
+      URI.encode_www_form(params)
+    return HTTParty.get(search_url)
+  end
+
   def self.get( resource_uri, cas_user, cas_pgt, body = nil )
     Rails.logger.debug(
       "Muninn GET: resource_uri = #{resource_uri}, cas_user = #{cas_user.to_s}, cas_pgt = #{cas_pgt.to_s}, body = #{body.to_s}"
@@ -77,7 +85,7 @@ class Muninn::Adapter
       :body => (body == nil) ? nil : body,
       :headers => {'Content-Type' => 'application/json'} )
 
-    Rails.logger.debug("Muninn GET output: #{response}")
+    # Rails.logger.debug("Muninn GET output: #{response}")
     return response
   end
 

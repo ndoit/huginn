@@ -1,0 +1,83 @@
+
+/ :javascript
+/   role_reports  = #{@user_roles_json.to_s.html_safe}
+/   security_roles_json = #{@security_roles_json.to_s.html_safe}
+/   console.log('default admin roles' + '#{current_user.default_admin_roles.to_s}')
+
+.row
+  .large-12.columns
+    %h3.page-title My User Name
+
+    %h5= current_user.user_name
+
+- unless Rails.env == "production"
+  // Currently, @my_access does not send back `admin_emeritus` field
+  // Once it does, should be no problem to turn this feature back on
+  / .row
+  /   .large-12.columns
+  /     %h3.page-title Admin Emeritus?
+  / .row
+  /   .large-12.columns.explanation
+  /     This section will not be displayed in production environment. The current environment is
+  /     %span{ :style => "font-style: italic;"}= Rails.env
+  / .row
+  /   .large-12.columns
+  /     %p 
+  /       Do you have Admin Emeritus rights? Check to the right:
+  /       = current_user.admin_emeritus?
+  / - if current_user.admin_emeritus?
+  /   .row
+  /     .large-12.columns
+  /       %h3.page-title Update My Security Roles
+  /     .large-12.columns.explanation
+  /       This section will not be displayed in production environment AND only if you have Admin Emeritus Rights.
+  /   .row
+  /     .large-12.columns
+  /       %table.raci
+  /         %tbody.tbody
+  /           %tr.security_row
+  /             %td
+  /               %input#role_input.role_input{"data-init" => @user_roles_json.to_s, :type => "hidden"}
+  //
+  //
+
+  
+.row
+  .large-12.columns
+    %h3.page-title My Security Roles
+.row
+- current_user.my_roles.each do |myrole|
+
+
+  .row
+    .large-12.columns
+      %h5= myrole
+      / .large-2.columns
+      /   %h6 Read Access
+      /   %p= if sr["read_access_to"] then "Granted" else "Denied" end
+      / .large-2.columns
+      /   %h6 Create Access
+      /   %p= if sr["create_access_to"] then "Granted" else "Denied" end
+      / .large-2.columns
+      /   %h6 Update Access
+      /   %p= if sr["update_access_to"] then "Granted" else "Denied" end
+      / .large-2.columns.end
+      /   %h6 Delete Access
+      /   %p= if sr["update_access_to"] then "Granted" else "Denied" end
+      / %br
+      / %br
+      / .large-8.columns
+      /   .page-title
+      / %br
+.row
+  .large-12.columns
+    %h3.page-title Create Ability
+    - current_user.list_create_access.each do |createaccess|
+      %h5= createaccess
+.row
+  .large-12.columns
+    %h3.page-title Read Ability
+    - current_user.list_read_access.each do |readaccess|
+      %h5= readaccess
+
+

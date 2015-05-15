@@ -5,8 +5,6 @@ class ApplicationController < ActionController::Base
 
   # before_filter CASClient::Frameworks::Rails::Filter
   
-
-
   def authenticate!
     CASClient::Frameworks::Rails::Filter.client.proxy_callback_url =
       "https://data-test.cc.nd.edu:8443/cas_proxy_callback/receive_pgt"
@@ -23,8 +21,9 @@ class ApplicationController < ActionController::Base
   end
 
   def cas_user
+    
     if ( session.has_key?(:cas_user) )
-      User.new( session[:cas_user ] )
+      User.new( session[:cas_user ], session[:cas_user ], session[:cas_pgt])
     else
       nil
     end
