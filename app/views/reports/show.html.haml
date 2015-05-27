@@ -128,7 +128,7 @@
         %h5.page-title Sample Image
         .medium-2.columns
           / %p= @report_photo.image_url(:small)
-          = image_tag @report_photo.image_url, :onerror => "this.src = '/assets/chart-icon-07.svg';this.removeAttribute('onerror');"
+          = image_tag @report_photo.image_url, :onerror => "this.src = '#{image_url("chart-icon-07.svg")}';this.removeAttribute('onerror');"
         %br
     .row.edit
       .large-12.large-centered.columns
