@@ -931,8 +931,8 @@ $official-gold:#dcb439;
 // $include-html-top-bar-classes: $include-html-classes;
 
 // // Background color for the top bar
-// $topbar-bg-color: #333;
-// $topbar-bg: $topbar-bg-color;
+$topbar-bg-color: #333;
+$topbar-bg: $topbar-bg-color;
 
 // Height and margin
 // $topbar-height: 45px;
@@ -1057,7 +1057,7 @@ h6 {font-size:1em;}
   .vcard {margin:0 auto; padding:0; border:none;
     .fn {font-weight:normal;}
   }
-  // .top-bar-wrap {background:$topbar-bg-color;}
+  .top-bar-wrap {background:$topbar-bg-color;}
   .top-bar h1,
   .top-bar h2,
   .top-bar h3,
@@ -1069,16 +1069,16 @@ h6 {font-size:1em;}
   /* HEADER
      ----------------------------------------------------*/
   .dddm-header{
-	color: white;
-	font-size: 1.75em;
-	padding-left: 15px;
-	line-height: 1;
-	top: 5px;
-	position: relative;	
+  color: white;
+  font-size: 1.75em;
+  padding-left: 15px;
+  line-height: 1;
+  top: 5px;
+  position: relative; 
   }
   .dddm-header:hover{
-  	cursor:pointer;
-  	color:lightGray;
+    cursor:pointer;
+    color:lightGray;
   }
 
   .site-header {margin:0; text-align:center;}
@@ -1095,11 +1095,11 @@ h6 {font-size:1em;}
 /* 1120px
    ----------------------------------------------------*/
 @media only screen and (max-width:70em) {
-	.beta_banner{
-		img{
-			/*height: 75px;*/
-		}
-	}
+  .beta_banner{
+    img{
+      /*height: 75px;*/
+    }
+  }
 }
 /* -----------------------------------------------------*/
 
@@ -1108,11 +1108,11 @@ h6 {font-size:1em;}
 /* 700px
    ----------------------------------------------------*/
 @media only screen and (max-width:45em) {
-	.beta_banner{
-		img{
-			/*height: 50px;*/
-		}
-	}
+  .beta_banner{
+    img{
+      /*height: 50px;*/
+    }
+  }
 }
 /* -----------------------------------------------------*/
 
@@ -1789,22 +1789,22 @@ h6 {font-size:1em;}
 /* 700px
    ----------------------------------------------------*/
 @media only screen and (max-width:45em) {
-	.result_row{
+  .result_row{
 
-	  .result_header{
+    .result_header{
 
-	    .result_title{
-	    }
-	    .result_type{
-	      width:20%;
+      .result_title{
+      }
+      .result_type{
+        width:20%;
         background-color: #8DA2BA;
-	    }
-	  }
-	  .result_body{
+      }
+    }
+    .result_body{
 
-	  }
+    }
 
-	}
+  }
 }
 /* -----------------------------------------------------*/
 
@@ -1823,10 +1823,10 @@ h6 {font-size:1em;}
 
 
 .toggle_on {
-	left: 10px;
-	position: relative;
-	width: 10px;
-	height: 10px;
+  left: 10px;
+  position: relative;
+  width: 10px;
+  height: 10px;
 }
 .toggle_off {
   /*background-color: gray;*/
