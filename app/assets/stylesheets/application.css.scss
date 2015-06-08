@@ -21,13 +21,116 @@ $department: ooit;
 
 @import 'nd_foundation';
 
-.content-hightlight-bar {
-	background: #f0f0f0
+$light-blue: rgb(63,141,217);
+$gold:			 rgb(181,132,46);
+$blue:			 rgb(2,43,91);
+$green:			 rgb(57,167,74);
+
+
+
+//=========================================================//
+//======================Doc==============================//
+//=======================================================//
+
+
+html, body {
+	font-family: 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;
+	width: 96% !important;
+	padding: 0 2% !important;
 }
 
-body {
-	font-family: 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;
+//=========================================================//
+//======================Theme Bar==============================//
+//=======================================================//
+
+.dept-ooit a{
+	width: 500px;
 }
+
+//=========================================================//
+//======================D3M Bar==============================//
+//=======================================================//
+
+
+.top-bar {
+	background-color: transparent !important;
+	color: black;
+	width: 100%;
+
+	li {
+		background-color: transparent !important;
+
+		a {
+			background-color: transparent !important;
+		}
+
+		a:hover {
+			background-color: black !important;
+			color: white !important;
+		}
+	}
+}
+
+.dropdown > li {
+	background-color: white !important;
+}
+
+.top-bar-section .has-dropdown > a:after {
+	border-color: black transparent transparent !important;
+}
+
+.top-bar-section .has-dropdown:hover > a:after {
+	border-color: white transparent transparent !important;
+}
+
+
+
+
+
+
+//=========================================================//
+//======================links & buttons==============================//
+//=======================================================//
+
+
+a {
+	color: black !important;
+}
+
+a:hover {
+	color: $gold !important;
+	text-decoration: none !important;
+}
+
+.close-reveal-modal:hover {
+	color: red !important;
+}
+
+
+
+
+
+.button {
+	background-color: transparent !important;
+	border: 2px solid black !important;
+	color: black !important;
+}
+
+.button:hover {
+	background-color: black !important;
+	color: white !important;
+}
+//=========================================================//
+
+
+
+
+
+
+
+
+
+
 .splash {
 	text-align: center;
 }
@@ -38,15 +141,8 @@ body {
 	position: relative;
 	top: 11px;
 	font-size: .9em;
-
-	a{
-		color:white;
-		font-style: italic;
-	}
-	a:hover{
-		color: lightGray;
-	}
 }
+
 
 .free-text {
 	border-right: 3px solid slategray;
@@ -61,6 +157,15 @@ body {
 	// display: none;
 }
 
-.explanation{ 
+.explanation{
 	font-weight: lighter;
+}
+
+
+//=========================================================//
+//=====================footer==============================//
+//=======================================================//
+
+.vcard {
+	border: none !important;
 }
