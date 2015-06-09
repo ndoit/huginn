@@ -2,7 +2,7 @@
 #'/usr/local/openresty/nginx/conf/sites-enabled' and modify the default NGINX config
 # file to include this line 'include /usr/local/openresty/nginx/conf/sites-enabled/*;'
 upstream huginn_unicorn {
-	#server localhost:3001;
+
 	server unix:/tmp/unicorn-huginn.sock;
 }
 
