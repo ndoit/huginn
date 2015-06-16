@@ -84,5 +84,5 @@ Huginn::Application.configure do
   # CAS proxy settings
   config.cas_base_url = "https://login.nd.edu/cas/"
   config.cas_proxy_callback_url = "https://data.nd.edu/cas_proxy_callback/receive_pgt"
-  config.cas_proxy_callback_url = "https://data.nd.edu/login"
+  config.service_url = "https://data.nd.edu/login"
 end
