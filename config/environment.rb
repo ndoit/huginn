@@ -7,5 +7,6 @@ Huginn::Application.initialize!
 
 CASClient::Frameworks::Rails::Filter.configure(
 :cas_base_url => Huginn::Application.config.cas_base_url,
-:proxy_callback_url => Huginn::Application.config.cas_proxy_callback_url
+:proxy_callback_url => Huginn::Application.config.cas_proxy_callback_url,
+:service_url =>Huginn::Application.config.service_url
 )
