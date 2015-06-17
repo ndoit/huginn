@@ -17,7 +17,9 @@
 //= require jquery.inview.min
 //= require jquery.joyride
 //= require jquery.cookie
+//= require jquery.catslider
 //= require select2
+//= require modernizr.custom.63321
 //= require_tree .
 
 $(function(){ $(document).foundation(); });

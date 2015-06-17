@@ -1,0 +1,45 @@
+.fullWidth.questions
+
+  %h2 ABOUT THE PORTAL...
+
+  .sliderContainer
+    #mi-slider.mi-slider
+      %ul
+        %li
+          %h4 Who can access the BI Portal?
+        %li
+          %p You can!
+        %li
+          %a{:href => "#"}
+            %h4 Register Here...
+      %ul
+        %li
+          %h4 What is the BI Portal?
+        %li
+          %p A magical place where data science occurs!
+        %li.venn
+      %ul
+        %li
+          %h4 Why should you use the BI Portal?
+        %li
+          %p Just do it....okay?
+        %li
+          %p The BI Team was tasked to make all this awesome stuff for you that is secure, governed, and is just an all around great thing.
+      %ul
+        %li
+          %h4 How do you you use the BI Portal?
+        %li
+          %p Get access. Do work.
+        %li
+          %p Other content here.
+      %nav
+        %a{:href => "#"} Who?
+        %a{:href => "#"} What?
+        %a{:href => "#"} Why?
+        %a{:href => "#"} How?
+    :javascript
+      $(function() {
+
+      	$( '#mi-slider' ).catslider();
+
+      });

@@ -21,10 +21,14 @@ $department: ooit;
 
 @import 'nd_foundation';
 
-$light-blue: rgb(63,141,217);
-$gold:			 rgb(181,132,46);
-$blue:			 rgb(2,43,91);
-$green:			 rgb(57,167,74);
+$light-blue: 	rgb(63,141,217);
+$gold:			 	rgb(181,132,46);
+$blue:			 	rgb(2,43,91);
+$green:			 	rgb(57,167,74);
+$black:			 	black;
+$white:			 	white;
+$transparent:	transparent;
+$lightGray: 	rgb(182,182,182);
 
 
 
@@ -34,57 +38,24 @@ $green:			 rgb(57,167,74);
 
 
 html, body {
-	font-family: 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;
-	width: 96% !important;
-	padding: 0 2% !important;
+	width: 98% !important;
+	padding: 0 1% 0 1% !important;
+	margin: 0 !important;
+	text-align: center;
 }
 
-//=========================================================//
-//======================Theme Bar==============================//
-//=======================================================//
-
-.dept-ooit a{
-	width: 500px;
+h1,h2,h3,h4,h5,h6,p {
+	font-family: Georgia, serif !important;
 }
 
-//=========================================================//
-//======================D3M Bar==============================//
-//=======================================================//
+.row {
+	margin: 0 !important;
+}
 
-
-.top-bar {
-	background-color: transparent !important;
-	color: black;
+.fullWidth {
 	width: 100%;
-
-	li {
-		background-color: transparent !important;
-
-		a {
-			background-color: transparent !important;
-		}
-
-		a:hover {
-			background-color: black !important;
-			color: white !important;
-		}
-	}
+	margin: 0 !important;
 }
-
-.dropdown > li {
-	background-color: white !important;
-}
-
-.top-bar-section .has-dropdown > a:after {
-	border-color: black transparent transparent !important;
-}
-
-.top-bar-section .has-dropdown:hover > a:after {
-	border-color: white transparent transparent !important;
-}
-
-
-
 
 
 
@@ -94,12 +65,15 @@ html, body {
 
 
 a {
-	color: black !important;
+	color: $black !important;
 }
 
 a:hover {
-	color: $gold !important;
 	text-decoration: none !important;
+}
+
+.noDec:hover {
+	border-bottom: none !important;
 }
 
 .close-reveal-modal:hover {
@@ -111,55 +85,114 @@ a:hover {
 
 
 .button {
-	background-color: transparent !important;
-	border: 2px solid black !important;
-	color: black !important;
+	background-color: $black !important;
+	color: $white !important;
 }
 
 .button:hover {
-	background-color: black !important;
-	color: white !important;
+	background-color: $gold !important;
+	color: $white !important;
 }
+
+.button:active {
+	background-color: $transparent !important;
+	color: $black !important;
+}
+
+
+
+
 //=========================================================//
+//======================Theme Bar==============================//
+//=======================================================//
 
-
-
-
-
-
-
-
-
-
-.splash {
-	text-align: center;
+.dept-ooit a{
+	width: 500px;
+	opacity: 0.5;
 }
 
-.welcome{
-	float: left;
-	color: white;
-	position: relative;
-	top: 11px;
-	font-size: .9em;
+.dept-nd {
+	opacity: 0.5;
+}
+
+//=========================================================//
+//======================D3M Bar==============================//
+//=======================================================//
+
+.brandbar {
+	z-index: 1;
+}
+
+.top-bar {
+	background-color: $transparent !important;
+	color: $black;
+	width: 100%;
+	z-index: 1;
+
+	li {
+		background-color: $transparent !important;
+
+		a {
+			background-color: $transparent !important;
+		}
+
+		a:hover {
+			border-bottom: 2px solid $black !important;
+		}
+
+		.noBorderBottom:hover {
+			border-bottom: none !important;
+		}
+
+		.listHighlight:hover {
+			background-color: $black !important;
+			color: $white !important;
+		}
+
+	}
+}
+
+.top-bar-section .has-dropdown > a:after {
+	border-color: $black $transparent $transparent !important;
 }
 
 
-.free-text {
-	border-right: 3px solid slategray;
-	border-left: 3px solid slategray;
-	padding: 4px;
+.dropdown {
+	background-color: $white !important;
+	text-align: right !important;
+	border: 2px solid $black;
 }
+
+.mainDropdown:hover {
+	text-decoration: none !important;
+	color: $white !important;
+	background-color: $black !important;
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+//=========================================================//
 
 .edit{
 	display: none;
 }
+
 .view {
 	// display: none;
 }
 
-.explanation{
-	font-weight: lighter;
-}
 
 
 //=========================================================//

@@ -3,7 +3,7 @@
   %ul.title-area
     %li.name
       %h3
-        %a{:href => "#"} Data Driven Decision Making
+        %a.noBorderBottom{:href => "/"} Data Driven Decision Making
 
   %ul.top-bar-section
     %ul.right
@@ -19,13 +19,13 @@
 
       %li.has-dropdown
         - if current_user
-          %a{:href => "#"}= current_user.name
+          %a.noBorderBottom{:href => "#"}= current_user.name
           %ul.dropdown
-            %li= link_to 'My Security Roles', "/users/myprofile"
+            %li= link_to 'My Security Roles', "/users/myprofile", :class => "noBorderBottom listHighlight"
 
             - if current_user && current_user.can( :publish_report )
               %li
-                %a{"data-reveal-id" => "reporttiny", :href => "#"}
+                %a.noBorderBottom.listHighlight{"data-reveal-id" => "reporttiny", :href => "#"}
                   Register New Report
 
                 #reporttiny.reveal-modal.tiny{"data-reveal" => ""}
@@ -41,7 +41,7 @@
             - if current_user && current_user.can(:edit_term)
               %li.title.back.js-generated
               %li
-                %a{"data-reveal-id" => "mytiny", :href => "#"}
+                %a.noBorderBottom.listHighlight{"data-reveal-id" => "mytiny", :href => "#"}
                   Add New Term
                 #mytiny.reveal-modal.tiny{"data-reveal" => ""}
                   %h2 Add a New Term
@@ -53,7 +53,7 @@
                       %input#createTermButton.expand.button{:type => "button", :value => "Save Term"}
                   %a.close-reveal-modal ×
               %li
-                %a{"data-reveal-id" => "officetiny", :href => "#"}
+                %a.noBorderBottom.listHighlight{"data-reveal-id" => "officetiny", :href => "#"}
                   Add New Office
                 #officetiny.reveal-modal.tiny{"data-reveal" => ""}
                   %h2 Add New Office
@@ -65,7 +65,7 @@
                       %input#addOfficeButton.expand.button{:type => "button", :value => "Save Office"}
                     %a.close-reveal-modal ×
               %li
-                %a{"data-reveal-id" => "permissiongrouptiny", :href => "#"}
+                %a.noBorderBottom.listHighlight{"data-reveal-id" => "permissiongrouptiny", :href => "#"}
                   Add New Permission Group
                 #permissiongrouptiny.reveal-modal.tiny{"data-reveal" => ""}
                   %h2 Add New Permission Group
@@ -77,7 +77,7 @@
                       %input#addPermissionGroupButton.expand.button{:type => "button", :value => "Save Permission Group"}
                     %a.close-reveal-modal ×
             %li
-              %a{:href => "#"}= link_to "Log Out", logout_path
+              %a{:href => "#"}= link_to "Log Out", logout_path, :class => "noBorderBottom listHighlight"
 
         - else
           %li

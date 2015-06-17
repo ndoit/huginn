@@ -37,16 +37,38 @@
 
   %main.site-content{:role => "main"}
     - if request.path == "/"
-      .row
-        .small-4.columns
-          %h1 Welcome to the BI PORTAL
-        .small-8.columns
-          
-        - unless current_user
-          .row
-            .large-5.medium-7.medium-centered.columns
-              = link_to "LOG IN", login_path, class: "button expand"
+
+      - unless current_user
+        .fullWidth.frontPage.frontPageImage.mainImage
+          .small-12.small-centered.columns
+            %h1.titleHeader UNIVERSITY <i>of</i> NOTRE DAME
+            %h2.titleHeader Business Intelligence Portal
+          .fullWidth
+            .large-4.medium-8.medium-centered.columns
+              = link_to "LOG IN", login_path, class: "button large round"
+          .fullWidth.downArrow.blink_me
+
+
+      #whatAreYouLookingFor.fullWidth
+        %h2 WHAT ARE YOU LOOKING FOR?
+        .waylfContainer
+          %h3.mainPageSearchHeader Glossary
+          .glossary
+            %a.waylfLink{:href => "/browse/term"}
+        .waylfContainer
+          %h3.mainPageSearchHeader Reports
+          .reports
+            %a.waylfLink{:href => "/browse/report"}
+        .waylfContainer
+          %h3.mainPageSearchHeader Datasets
+          .datasets
+            %a.waylfLink{:href => "/browse/datasets"}
+
+      = render "layouts/about"
+
     = yield
+
+
 
 
 

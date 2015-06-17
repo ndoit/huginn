@@ -1,0 +1,146 @@
+$light-blue: 	rgb(63,141,217);
+$gold:			 	rgb(181,132,46);
+$blue:			 	rgb(2,43,91);
+$green:			 	rgb(57,167,74);
+$black:			 	black;
+$white:			 	white;
+$transparent:	transparent;
+$lightGray: 	rgb(182,182,182);
+
+
+
+//=========================================================//
+//=====================Main Page Content==================//
+//=======================================================//
+.site-content {
+	position: relative;
+	top: -10%;
+}
+
+.frontPage {
+	//laptop screen
+	//height: 685px;
+	//big screen
+	height: 885px;
+
+
+	h1.titleHeader {
+		//laptop screen
+		//font-size: 5em;
+		//big screen
+		font-size: 7em;
+		color: $gold;
+		padding-top: 12%;
+	}
+
+	h2.titleHeader {
+		font-size: 4em;
+		margin-bottom: 30px;
+	}
+}
+
+.frontPageImage {
+	//laptop screen
+	//background-size: 35%;
+	//big screen
+	background-size: 40%;
+
+	background-repeat: no-repeat;
+	background-position: center center;
+	border-bottom: 2px solid $lightGray;
+}
+
+.mainImage {
+	background-image: url('./images/globe-gray.svg');
+}
+
+//========================================================//
+
+.downArrow {
+	height: 30px;
+	margin-bottom: 50px !important;
+	background: url('./images/down-arrow.svg') no-repeat center;
+	background-size: contain;
+	text-align: center;
+}
+
+//========================================================//
+
+#whatAreYouLookingFor {
+	position: relative;
+	height: 400px;
+	background-color: transparent;
+	margin: 20px 0 50px 0 !important;
+	padding: 20px 0 30px 0 !important;
+	border-bottom: 2px solid $lightGray;
+
+	h2 {
+		color: $gold !important;
+		margin-bottom: 2%;
+	}
+}
+
+.glossary {
+	background-image: url('./images/glossary-icon-white.svg');
+}
+.glossary:hover {
+	background-image: url('./images/glossary-icon-black.svg');
+}
+.reports {
+	background-image: url('./images/reports-icon-white.svg');
+}
+.reports:hover {
+	background-image: url('./images/reports-icon-black.svg');
+}
+.datasets {
+	background-image: url('./images/datasets-icon-white.svg');
+}
+.datasets:hover {
+	background-image: url('./images/datasets-icon-black.svg');
+}
+
+.waylfContainer {
+	display: inline-block;
+	position: relative;
+	width: 30%;
+	height: 60%;
+}
+
+.glossary,
+.reports,
+.datasets {
+	height: 100%;
+	width: 100%;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+
+	a.waylfLink {
+		width: 100%;
+		height: 100%;
+		display: block;
+		outline: 0;
+	}
+}
+
+
+
+//=========================================================//
+
+.edit{
+	display: none;
+}
+
+.view {
+	// display: none;
+}
+
+
+
+//=========================================================//
+//=====================footer==============================//
+//=======================================================//
+
+.vcard {
+	border: none !important;
+}
