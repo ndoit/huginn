@@ -3,12 +3,13 @@
 
   $(document).ready(init);
 
+  setInterval(blinker, 1700); //Runs every second
+
+
   function init(){
     blinker;
     $('.downArrow').click(scroll);
   }
-
-  setInterval(blinker, 1700); //Runs every second
 
   function blinker() {
     $('.blink_me').fadeOut(500).fadeIn(500);

@@ -14,20 +14,13 @@ $lightGray: 	rgb(182,182,182);
 //=======================================================//
 .site-content {
 	position: relative;
-	top: -10%;
 }
 
 .frontPage {
-	//laptop screen
-	//height: 685px;
-	//big screen
-	height: 885px;
+	height: 910px;
 
 
 	h1.titleHeader {
-		//laptop screen
-		//font-size: 5em;
-		//big screen
 		font-size: 7em;
 		color: $gold;
 		padding-top: 12%;
@@ -40,19 +33,17 @@ $lightGray: 	rgb(182,182,182);
 }
 
 .frontPageImage {
-	//laptop screen
-	//background-size: 35%;
-	//big screen
 	background-size: 40%;
-
 	background-repeat: no-repeat;
-	background-position: center center;
+	background-position: top center;
 	border-bottom: 2px solid $lightGray;
 }
 
 .mainImage {
 	background-image: url('./images/globe-gray.svg');
 }
+
+
 
 //========================================================//
 

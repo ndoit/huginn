@@ -1,0 +1,188 @@
+
+//=========================================================//
+//=====================Media Queries=======================//
+//=======================================================//
+
+
+
+
+
+//==============================
+//========================Laptop
+//==============================
+
+
+@media only screen and (max-width: 1600px) {
+
+	.frontPage {
+		height: 720px;
+
+		h1.titleHeader {
+			font-size: 5em;
+		}
+
+		h2.titleHeader {
+			font-size: 3em;
+		}
+	}
+
+	.frontPageImage {
+		background-size: 42%;
+	}
+}
+
+
+
+
+
+
+//==============================
+//========================Tablet
+//==============================
+
+
+@media only screen and (max-width: 1200px) {
+  .brandbar {
+		height: 40px;
+	}
+
+	.top-bar {
+		h3 {
+			font-size: 1.3em;
+		}
+	}
+
+  .top-bar-section {
+		display: none;
+	}
+
+  //--------------------Tablet
+
+	.frontPage {
+		height: 420px;
+
+		h1.titleHeader {
+			font-size: 2.5em;
+			padding-top: 110px;
+		}
+
+		h2.titleHeader {
+			font-size: 1.5em;
+			margin-bottom: 15px;
+		}
+	}
+
+	.downArrow {
+		display: none !important;
+	}
+
+	//--------------------Tablet
+
+	#whatAreYouLookingFor {
+		height: 300px;
+		margin: 20px 0 40px 0 !important;
+		padding: 20px 0 20px 0 !important;
+
+		h2 {
+			font-size: 1.8em;
+		}
+
+		h3 {
+			font-size: 1.2em;
+		}
+	}
+
+	.waylfContainer {
+		width: 25%;
+		height: 50%;
+	}
+
+  //--------------------Tablet
+
+  .questions {
+		height: 600px;
+		margin: 35px 0 0 0 !important;
+
+		h2 {
+			font-size: 1.8em;
+		}
+	}
+
+	.sliderContainer {
+		padding-bottom: 40px;
+	}
+
+
+}
+
+
+
+
+
+
+//==============================
+//==========================Phone
+//==============================
+
+
+@media only screen and (max-width: 450px) {
+
+	.frontPage {
+		height: 650px;
+
+		h1.titleHeader {
+			font-size: 2.5em;
+			padding-top: 210px;
+		}
+
+		h2.titleHeader {
+			font-size: 1.5em;
+		}
+	}
+
+
+	.frontPageImage {
+		background-size: 100%;
+	}
+
+  //-------------------------------phone
+
+	#whatAreYouLookingFor {
+		height: 700px;
+		margin: 20px 0 10px 0 !important;
+		padding: 10px 0 10px 0 !important;
+		border-bottom: none;
+
+		h2 {
+			margin-bottom: 1.7%;
+		}
+	}
+
+	.waylfContainer {
+		display: block;
+		width: 100%;
+		height: 30%;
+		margin-top: 10px;
+		font-size: 1.2em;
+	}
+
+	.glossary,
+	.reports,
+	.datasets {
+		height: 75%;
+		width: 100%;
+	}
+
+  //--------------------------------phone
+
+  .questions {
+		display: none !important;
+	}
+
+
+  //--------------------------------phone
+
+  .footer-inner {
+    border-top: none !important;
+  }
+}
