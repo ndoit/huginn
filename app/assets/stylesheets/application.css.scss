@@ -57,8 +57,8 @@ h1,h2,h3,h4,h5,h6,p {
 	margin: 0 !important;
 }
 
-.header {
-
+.row {
+	margin: 0 auto !important;
 }
 
 
@@ -70,6 +70,7 @@ h1,h2,h3,h4,h5,h6,p {
 
 a {
 	color: $black !important;
+	outline: 0;
 }
 
 a:hover {
@@ -91,6 +92,7 @@ a:hover {
 .button {
 	background-color: $black !important;
 	color: $white !important;
+	outline: 0;
 }
 
 .button:hover {

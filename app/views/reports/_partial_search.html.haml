@@ -1,22 +1,34 @@
-.row{:id => "#{result["id"]}"}
-  .result_row
-    %a{:href => "../#{result["&type"].pluralize}/#{result["name"]}"}
-      .medium-3.columns
-        = image_tag(result["photo"].image_url, :onerror => "this.src = '/assets/report-icon-white.svg';this.removeAttribute('onerror');")
-    .medium-3.columns
-      / = result
-    .medium-9.columns
-      .result_header
-        .result_title
-          %h4
-            %a.do_highlight{:href => "../#{result["&type"].pluralize}/#{result["name"]}"}
-              = result["name"]
-      .do_highlight.result_body
-        - if result["description"]  then
-          - @description = result["description"].truncate(300, separator: ' ')
-          = @description.html_safe
-      %span.role_header
-      - if result.has_key?("security_roles")
-        %ul
-          - result["security_roles"].each do |role|
-            %li= role["name"]
+-# .row{:id => "#{result["id"]}"}
+-#   .result_row
+-#     %a{:href => "../#{result["&type"].pluralize}/#{result["name"]}"}
+-#       .medium-3.columns
+-#         = image_tag(result["photo"].image_url, :onerror => "this.src = '/assets/reports-icon-white.svg';this.removeAttribute('onerror');")
+-#     .medium-3.columns
+-#       / = result
+-#     .medium-9.columns
+-#       .result_header
+-#         .result_title
+-#           %h4
+-#             %a.do_highlight{:href => "../#{result["&type"].pluralize}/#{result["name"]}"}
+-#               = result["name"]
+-#       .do_highlight.result_body
+-#         - if result["description"]  then
+-#           - @description = result["description"].truncate(300, separator: ' ')
+-#           = @description.html_safe
+-#       %span.role_header
+-#       - if result.has_key?("security_roles")
+-#         %ul
+-#           - result["security_roles"].each do |role|
+-#             %li= role["name"]
+
+.reportSearchResult{:id => "#{result["id"]}"}
+  %a{:href => "../#{result["&type"].pluralize}/#{result["name"]}"}
+    .result_header
+      .result_title
+        %h4
+          %a.do_highlight{:href => "../#{result["&type"].pluralize}/#{result["name"]}"}
+            = result["name"]
+    .do_highlight.result_body
+      - if result["description"]  then
+        - @description = result["description"].truncate(300, separator: ' ')
+        = @description.html_safe  

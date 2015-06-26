@@ -1,29 +1,9 @@
-.row
-  .medium-9.medium-centered.columns
-    = text_field_tag "search1"
-/ .row
-/   .medium-9.medium-centered.columns
-/     .medium-3.columns.under_searchbar_types
-/       - url = request.path.pluralize
-      
-/       %div{:class => (url == '/browse/reports' ? "active_searchbar_type" : 'inactive_searchbar_type')}
-/         // = link_to 'Reports', "/browse/reports"
-/         Reports
-/     .medium-3.columns.under_searchbar_types.end
-/       %div{:class => (url == '/browse/datasets' ? "active_searchbar_type" : 'inactive_searchbar_type')}
-/         Datasets
-/     .medium-3.columns.under_searchbar_types
-/       %div{:class => (url == '/browse/terms' ? "active_searchbar_type" : 'inactive_searchbar_type')}
-/         Glossary
-/     .medium-3.columns.under_searchbar_types.end
-/       %div{:class => (url == '/browse/offices' ? "active_searchbar_type" : 'inactive_searchbar_type')}
-/         Offices
-%br
+#searchBar.fullWidth
+  = text_field_tag "search1"
 
-.row
-  .medium-11.medium-centered.columns
-    - unless params.has_key?(:q)
-      %input#initial_selected_resources{:type => "hidden", :value => params['selected_resources']}
-    #search_results
-      .loading_bar        
-        = image_tag "ajax-loader.gif"
+.fullWidth
+  - unless params.has_key?(:q)
+    %input#initial_selected_resources{:type => "hidden", :value => params['selected_resources']}
+  #search_results
+    .loading_bar
+      = image_tag "ajax-loader.gif"

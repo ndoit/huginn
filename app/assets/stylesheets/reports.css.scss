@@ -1,3 +1,26 @@
-// Place all the styles related to the reports controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+$light-blue: 	rgb(63,141,217);
+$gold:			 	rgb(181,132,46);
+$blue:			 	rgb(2,43,91);
+$green:			 	rgb(57,167,74);
+$black:			 	black;
+$white:			 	white;
+$transparent:	transparent;
+$lightGray: 	rgb(182,182,182);
+
+
+.reportSearchResult {
+  width: 200px;
+  height: 200px;
+  position: relative;
+  display: inline-block;
+  margin: 0 auto;
+  overflow: auto;
+  background-color: $gold;
+  -webkit-transition: width 0.5s; /* Safari */
+    transition: width 0.5s;
+
+  .result_body {
+    display: none;
+    overflow: hidden;
+  }
+}
