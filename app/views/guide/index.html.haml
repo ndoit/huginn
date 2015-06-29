@@ -1,0 +1,9 @@
+#searchBar.fullWidth
+  = text_field_tag "search1"
+
+.fullWidth
+  - unless params.has_key?(:q)
+    %input#initial_selected_resources{:type => "hidden", :value => params['selected_resources']}
+  #search_results
+    .loading_bar
+      = image_tag "ajax-loader.gif"
