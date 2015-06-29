@@ -43,6 +43,20 @@ $lightGray: 	rgb(182,182,182);
 	background-image: url('./images/globe-gray.svg');
 }
 
+.noImage {
+	height: 300px;
+
+	h1.titleHeaderNoImage {
+		font-size: 5em;
+		color: $gold;
+	}
+
+	h2.titleHeaderNoImage {
+		font-size: 2em;
+		margin-bottom: 30px;
+	}
+
+}
 
 
 //========================================================//

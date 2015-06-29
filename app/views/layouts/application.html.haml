@@ -20,23 +20,22 @@
 %body
 
   %header
-    %nav.brandbar.theme-bb-transparent
-      %ul.title-area
-        %li.dept-nd
-          %a{:href => "http://www.nd.edu"}
-            University
-            %i of
-            Notre Dame
-        %li.dept.dept-ooit
-          %a{:href => "http://oit.nd.edu"}
-            Office
-            %i of
-            Information Technologies
+    .brandbar
+      %a.und{:href => "http://www.nd.edu"}
+      %a.oit{:href => "http://oit.nd.edu"}
+
     = render "shared/top_bar"
 
 
   %main.site-content{:role => "main"}
     - if request.path == "/"
+
+      .fullWidth.frontPage.noImage
+        .small-12.small-centered.columns
+          %h1.titleHeaderNoImage UNIVERSITY <i>of</i> NOTRE DAME
+          %h2.titleHeaderNoImage Business Intelligence Portal
+
+      
 
       - unless current_user
         .fullWidth.frontPage.frontPageImage.mainImage
