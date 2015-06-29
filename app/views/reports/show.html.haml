@@ -11,9 +11,7 @@
   .row
     .large-8.columns
       %ul#error_list{:style => "display:none"}
-      / .alert-box.alert.radius{"data-alert" => "", :style => "display:none"}
-      /   %ul.error_list
-      /   %a.close{:href => "#"} ×
+
       .alert-box.warning.radius{"data-alert" => "", :style => "display:none"}
         %ul.error_list
         %a.close{:href => "#"} ×
@@ -29,7 +27,7 @@
         %br
         %br
         %input#deleteConfirm.tiny.button{:type => "button", :value => "Yes"}
-        %input#deleteCancel.tiny.button{:type => "button", :value => "No"}
+        %input#deleteCancel.tiny.button.alert{:type => "button", :value => "No"}
         %a.close-reveal-modal ×
   - if current_user.is_admin?
     .row
@@ -41,7 +39,7 @@
   -else
     - if @report["report"]["report_type"] != "Aggregation"
       - if @report["report"]["report_type"] != "External"
-      
+
         - if current_user && current_user.can( :publish_report )
           .row
             .large-1.large-offset-11.columns
@@ -56,13 +54,13 @@
       .edit
         .row
           .large-12.columns
-            %h3.page-title Name    
-        .row  
+            %h3.page-title Name
+        .row
           .large-6.columns
             %input#name-edit{:value => "#{@report["report"]["name"]}", :type => "text"}
-          
-    .row.view  
-      / $('#name-view').text().trim();    
+
+    .row.view
+      / $('#name-view').text().trim();
       .large-12.columns
         %h2#name-view.page-title
           = @report["report"]["name"].html_safe
@@ -149,7 +147,7 @@
     .row
       .large-12.large-centered.columns
         %h5.page-title Data Governance Terms
-        
+
         .view
           - if !@report["terms"].empty? then
             - @report["terms"].each do |result|
@@ -161,7 +159,7 @@
                     %br
           - else
             Data Governance Terms have not been yet registered with this report
-        
+
         - if current_user && current_user.can( :publish_report )
           .edit
             .row
@@ -172,7 +170,7 @@
                       %input#term_input.term_input{"data-init" => @term_reports.to_s, :type => "hidden"}
 
     / security roles
-    
+
   .row
     .large-12.large-centered.columns
       %h5.page-title Security Roles Associated with this Report
@@ -195,27 +193,7 @@
 
 
 
-  / .row
-  /   .large-12.columns
-  /     %h5.page-title Additional Information
 
-  /     - if current_user && current_user.can( :publish_report )
-  /       // Add in when we are ready to add report type
-  /       %dt Report Type
-  /       %dd
-  /          %input#reporttype{:value => "#{@report["report"]["report_type"]}", :type => "text"}
-  /       %dt Data Source
-  /       %dd
-  /         %input#datasource{:value => "#{@report["report"]["datasource"]}", :type => "text"}
-  /     - else
-  /       %dt Report Type
-  /       %dd
-  /         = @report["report"]["report_type"].html_safe
-  /       %dt Data Source
-  /       %dd
-  /         = @report["report"]["datasource"]
-        
-        
 
 
   - if @report["report"]["report_type"] ==  "Tableau"
@@ -240,14 +218,7 @@
         .large-12.columns
           %p= "#{@report_office_owner_name}"
 
-  / Add this back in when ready to edit report type
-  / .row.edit
-  /   .large-12.large-centered.columns
-  /     %h5.page-title Report Type
-  / .row.edit    
-  /   .large-6.columns
 
-  /     = select_tag 'type', options_for_select(["Tableau"], @report["report"]["report_type"]), { :include_blank => true, :prompt => "Please Choose Type"}
   .row.edit
     .medium-2.medium-offset-4.columns
       %input#updateReportButton.small.button.expand{:type => "button", :value => "Update Report"}
@@ -256,21 +227,21 @@
 
   %br
   %br
-  .row 
+  .row
     .large-12.columns
       .page-title
       / = @report
   .row
     .large-4.columns
-      Created By 
+      Created By
       = @report["report"]["created_by"]
       %br
-      On 
+      On
       - c_date = DateTime.iso8601(@report["report"]["created_date"])
       = c_date.strftime("%B %d at %I:%M %p")
 
     .large-4.columns
-      Last Modified By  
+      Last Modified By
       = @report["report"]["modified_by"]
       %br
       On
@@ -297,12 +268,12 @@
       %p The description area is a powerful editing suite enabling bullet lists, indentation, alignment, headings, and even tables.
     %li{"data-prev-text" => "Prev", "data-id" => "description", "data-text" => "Next"}
       %p
-        To start editing the text, click in the text area indicated by the 2 grey lines. 
+        To start editing the text, click in the text area indicated by the 2 grey lines.
       %p
         To stop editing the text, just click outside of the text area.
     %li{"data-button" => "Next", "data-id" => "tableauiframe", "data-options" => "tip_location:top", "data-prev-text" => "Prev"}
       %h4 Tableau Window
-      %p 
+      %p
         Here the Tableau report is pulled directly from Tableau
     %li{"data-button" => "Next", "data-id" => "tableauiframe", "data-options" => "tip_location:top", "data-prev-text" => "Prev"}
       %p
@@ -322,33 +293,7 @@
       %h4 Stop #3
       %p It works as a modal too!
 
-  // I'm keeping this function as inline script(which is not the rails way, I know)
-  // The reason is I only want thi script to run on this specific page for now
-  // Eventually I'm going to have this joyride function on all the node pages
-  / :javascript
-  /   $(window).load(function() {
 
-  /   if ( determine_if_new_report("#{@report["report"]["created_date"]}", 3000000) ) {
-  /     alert("hey you have a new report");
-  /   }
-  /   else {
-  /     alert("not a new report");
-  /   };
-
-  /   function determine_if_new_report( node_created_date, time_threshold_in_ms ) {
-  /     created_date_js = new Date(node_created_date);
-  /     var current_timeInMs = Date.now();
-  /     var time_difference = current_timeInMs - created_date_js;
-      
-  /     if ( time_difference < time_threshold_in_ms ) {
-  /       return true;
-  /     }
-  /     else {
-  /       return false;
-  /     }
-  /   };
-  /     $(document).foundation('joyride', 'start');
-  /   });
 - else
   .row
     .medium-12.large-12.columns

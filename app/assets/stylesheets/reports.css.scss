@@ -9,6 +9,12 @@ $lightGray: 	rgb(182,182,182);
 $transBlack:  rgba(0, 0, 0, 0.7);
 
 
+
+//=========================================================//
+//=====================Report Search=======================//
+//=======================================================//
+
+
 .reportSearchResult {
   width: 40%;
   height: 300px;
@@ -66,14 +72,16 @@ $transBlack:  rgba(0, 0, 0, 0.7);
     position: relative;
     display: inline-block;
     float: left;
+    padding: 2% 2%;
     color: $white;
+    text-align: left;
   }
 
 }
 .reportSearchResult:hover {
-  -webkit-box-shadow: -4px 2px 20px 1px rgba(0,0,0,0.20);
-  -moz-box-shadow: -4px 2px 20px 1px rgba(0,0,0,0.20);
-  box-shadow: -4px 2px 20px 1px rgba(0,0,0,0.20);
+  -webkit-box-shadow: -4px 2px 20px 1px rgba(0,0,0,0.30);
+  -moz-box-shadow: -4px 2px 20px 1px rgba(0,0,0,0.30);
+  box-shadow: -4px 2px 20px 1px rgba(0,0,0,0.30);
   background-size: 110%;
 
   .result_header {
@@ -87,6 +95,11 @@ $transBlack:  rgba(0, 0, 0, 0.7);
     color: transparent;
   }
 
-
-
+  a.do_highlight.res_title:hover {
+    color: $white !important;
+  }
 }
+
+//=========================================================//
+//=====================Report Page=======================//
+//=======================================================//
