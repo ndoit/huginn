@@ -2,7 +2,7 @@
   results_size = #{@results.size}
 - if results.size == 0
   - if params[:page] == 1
-    .search_results_msg No results match your current criteria
+    -# .search_results_msg No results match your current criteria
 - else
   - results.each do |result|
     = render partial: "#{result['&type'].pluralize}/partial_search", locals: { result: result }, layout: false
