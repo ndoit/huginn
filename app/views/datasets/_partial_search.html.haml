@@ -1,22 +1,10 @@
-.row{:id => "#{result["id"]}"}      
-  .medium-9.columns
-    .result_header
-      .result_title
-        %h4
-          %a.do_highlight{:href => "../#{result["&type"].pluralize}/#{result["name"]}"}
-            = result["name"]
-      %p.created_line 
-        Created By: Registrar
 
-    .do_highlight.result_body
-      - if result["description"]  then
-        - @description = result["description"].truncate(300, separator: ' ')
-        = @description.html_safe        
-    %span.role_header 
-    - if result.has_key?("security_roles")
-      %ul
-        - result["security_roles"].each do |role|
-          %li= role["name"]
-    / .shape
-    /   %p= result["type"]
-%hr
+.searchResult.datasetSearchResult{:id => "#{result["id"]}"}
+  .result_header
+    .result_icon.result_icon_report
+    %h1.result_title
+      %a.do_highlight.res_title{:href => "../#{result["&type"].pluralize}/#{result["name"]}"}
+        = result["name"]
+  .do_highlight.result_body
+    - @description = result["description"].truncate(300, separator: ' ')
+    = @description.html_safe

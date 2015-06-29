@@ -1,4 +1,4 @@
-$light-blue: 	rgb(63,141,217);
+$lightBlue: 	rgb(63,141,217);
 $gold:			 	rgb(181,132,46);
 $blue:			 	rgb(2,43,91);
 $green:			 	rgb(57,167,74);
@@ -8,97 +8,6 @@ $transparent:	transparent;
 $lightGray: 	rgb(182,182,182);
 $transBlack:  rgba(0, 0, 0, 0.7);
 
-
-
-//=========================================================//
-//=====================Report Search=======================//
-//=======================================================//
-
-
-.reportSearchResult {
-  width: 40%;
-  height: 300px;
-  position: relative;
-  display: inline-block;
-  margin: 2%;
-  border-radius: 10px;
-  background: $black url("./images/reports-icon-black.svg") no-repeat center;
-  background-size: 100%;
-  -webkit-transition: all 0.6s ease-in-out;
-  transition: all 0.6s ease-in-out;
-
-  .result_header {
-    width: 100%;
-    height: 20%;
-    margin: 15% 0 0 0;
-    text-align: left;
-    background-color: $transBlack;
-    border-top-left-radius:10px;
-    border-top-right-radius:10px;
-    position: relative;
-    float: left;
-    -webkit-transition: all 0.4s ease-in-out;
-    transition: all 0.4s ease-in-out;
-
-
-    .result_icon_report {
-      width: 10%;
-      height: 100%;
-      margin: 0 auto;
-      background: $transparent url("./images/reports-icon-gold.svg") no-repeat bottom center;
-      background-size: contain;
-      position: relative;
-      float: left;
-    }
-
-    .result_title {
-      width: 75%;
-      height: 100%;
-      margin: 0 auto;
-      padding: 0 auto;
-    }
-
-    a.do_highlight.res_title {
-      color: $gold !important;
-    }
-  }
-
-  .result_body {
-    background-color: $transBlack;
-    height: 45%;
-    width: 100%;
-    border-bottom-left-radius:10px;
-    border-bottom-right-radius:10px;
-    position: relative;
-    display: inline-block;
-    float: left;
-    padding: 2% 2%;
-    color: $white;
-    text-align: left;
-  }
-
-}
-.reportSearchResult:hover {
-  -webkit-box-shadow: -4px 2px 20px 1px rgba(0,0,0,0.30);
-  -moz-box-shadow: -4px 2px 20px 1px rgba(0,0,0,0.30);
-  box-shadow: -4px 2px 20px 1px rgba(0,0,0,0.30);
-  background-size: 110%;
-
-  .result_header {
-    border-radius: 10px;
-    margin: 0 auto;
-    height: 20%;
-  }
-
-  .result_body {
-    background-color: transparent;
-    color: transparent;
-  }
-
-  a.do_highlight.res_title:hover {
-    color: $white !important;
-  }
-}
 
 //=========================================================//
 //=====================Report Page=======================//

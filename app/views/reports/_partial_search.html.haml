@@ -1,6 +1,6 @@
-.reportSearchResult{:id => "#{result["id"]}"}
+.searchResult.reportSearchResult{:id => "#{result["id"]}"}
   .result_header
-    .result_icon_report
+    .result_icon.result_icon_report
     %h1.result_title
       %a.do_highlight.res_title{:href => "../#{result["&type"].pluralize}/#{result["name"]}"}
         = result["name"]

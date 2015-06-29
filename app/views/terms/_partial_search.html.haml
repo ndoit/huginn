@@ -1,13 +1,8 @@
-.row
-  .result_row
-    .result_header
-      .result_title
-        %h4
-          %a.do_highlight{:href => "../#{result["&type"].pluralize}/#{result["name"]}"}
-            = result["name"]
-    / .shape
-    /   %p= result["type"]
-    .do_highlight.result_body
-      - if result["definition"]  then
-        = result["definition"].html_safe
-%hr
+.searchResult.termSearchResult
+  .result_header
+    .result_icon.result_icon_term
+    %h1.result_title
+      %a.do_highlight.res_title{:href => "../#{result["&type"].pluralize}/#{result["name"]}"}
+        = result["name"]
+  .do_highlight.result_body
+    = result["definition"].html_safe
