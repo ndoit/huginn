@@ -7,17 +7,17 @@
     // office_gov_json =  #{@office_gov_json.to_s.html_safe}
     role_reports  =       #{@role_reports.to_s.html_safe}
     security_roles_json = #{@security_roles_json.to_s.html_safe}
-
-  .row
-    .large-8.columns
-      %ul#error_list{:style => "display:none"}
-
-      .alert-box.warning.radius{"data-alert" => "", :style => "display:none"}
-        %ul.error_list
-        %a.close{:href => "#"} ×
-      .alert-box.success.radius{"data-alert" => "", :style => "display:none"}
-        %span.success_msg
-        %a.close{:href => "#"} ×
+.row
+  .large-8.columns
+    .alert-box.alert.radius{"data-alert" => "", :style => "display:none"}
+      %ul.error_list
+      %a.close{:href => "#"} ×
+    .alert-box.warning.radius{"data-alert" => "", :style => "display:none"}
+      %ul.error_list
+      %a.close{:href => "#"} ×
+    .alert-box.success.radius{"data-alert" => "", :style => "display:none"}
+      %span.success_msg
+      %a.close{:href => "#"} ×
   .row
     .large-12.columns
       #mytinyDelete.reveal-modal.tiny{"data-reveal" => ""}
@@ -26,165 +26,109 @@
         %b Are you sure?
         %br
         %br
-        %input#deleteConfirm.tiny.button{:type => "button", :value => "Yes"}
-        %input#deleteCancel.tiny.button.alert{:type => "button", :value => "No"}
+        %input#deleteConfirm.tiny.button{:type => "button", :value => "Yes"}/
+        %input#deleteCancel.tiny.button{:type => "button", :value => "No"}/
         %a.close-reveal-modal ×
-  - if current_user.is_admin?
-    .row
-      .large-1.large-offset-11.columns
-        #currentmode Preview Mode
-        #edittoggle.switch.radius
-          %input#editmode{:type => "checkbox"}
-          %label{:for => "editmode"}
-  -else
-    - if @report["report"]["report_type"] != "Aggregation"
-      - if @report["report"]["report_type"] != "External"
+
+
+
+.off-canvas-wrap{"data-offcanvas" => ""}
+  .inner-wrap
+    %nav.tab-bar
+      %section.small-left
+        %a.left-off-canvas-toggle.menu-icon{:href => "#"}
+          %span
+
+        .middle.tab-bar-section
+          %h2.middle-report-title.small-2
+            = @report["report"]["name"].html_safe
+
+          -# %h2.middle-report-terms.small-3 Governance Terms
+
+
+
+        %section.right-small
+          %a.right-off-canvas-toggle.menu-icon{:href => "#"}
+            %span
+
+
+
+
+    %aside.left-off-canvas-menu
+      %ul.off-canvas-list.report-left-menu
 
         - if current_user && current_user.can( :publish_report )
-          .row
-            .large-1.large-offset-11.columns
-              #currentmode Preview Mode
-              #edittoggle.switch.radius
-                %input#editmode{:type => "checkbox"}
-                %label{:for => "editmode"}
-
-  #report_detail
-
-    - if current_user && current_user.can( :publish_report )
-      .edit
-        .row
-          .large-12.columns
-            %h3.page-title Name
-        .row
-          .large-6.columns
-            %input#name-edit{:value => "#{@report["report"]["name"]}", :type => "text"}
-
-    .row.view
-      / $('#name-view').text().trim();
-      .large-12.columns
-        %h2#name-view.page-title
-          = @report["report"]["name"].html_safe
-
-
-
-    .edit
-      .row
-        .large-12.columns
-          %h4.page-title Description:
-    .row
-      .large-12.columns
-        #description
-          - if @report["report"]["description"].present?
-            = @report["report"].fetch("description", "NA").html_safe
-
-  - if @report["report"]["report_type"] == "External"
-    / External report
-    - if @report_embed.present?
-      .row
-        .large-12.large-centered.columns
-          %iframe#reportframe{:frameborder => "0", :height => @report_embed["height"], :scrolling => "no", :src => @report_embed["external_uri"], :width => @report_embed["width"]}
-    - else
-      .row
-        .large-12.large-centered.columns
-          %p There is currently no embedded reports for this report
-  - elsif @report["report"]["report_type"] == "Aggregation"
-    - if @report_embed.present?
-      .row
-        .large-12.columns
-          %ul{:class => "small-block-grid-1 medium-block-grid-2 large-block-grid-#{@report_embed["gridsize"].to_s}"}
-            - @subreports.each do |subreport|
-              %li
-                .row
-                  .small-12.medium-12.large-12.columns
-                    %a{:href => subreport["name"]}
-                      %h5= subreport["name"]
-                .row
-                  .small-12.medium-12.large-12.columns
-                    %a{:href => subreport["name"]}
-                      %img{:src => subreport["thumbnail_uri"]}
-
-  - if @report["report"]["report_type"] == "Tableau"
-
-    %br
-    .row
-      #tableauiframe.large-12.columns
-        - if @tableau_parse["width"].present? then
-          %script{:src => "https://tableau.nd.edu/javascripts/api/viz_v1.js", :type => "text/javascript"}
-          #tableauPlaceholderId.tableauPlaceholder{:style => "width:#{@tableau_parse["width"]}; height:#{@tableau_parse["height"]};"}
-            %object.tableauViz{:height => @tableau_parse["height"], :style => "display:none;", :width => @tableau_parse["width"]}
-              %param{:name => "host_url", :value => "https%3A%2F%2Ftableau.nd.edu%2F"}
-              %param{:name => "site_root", :value => ""}
-              %param{:name => "name", :value => (@tableau_parse["name"].html_safe) }
-              %param{:name => "tabs", :value => (@tableau_parse["tabs"].html_safe) }
-              %param{:name => "linktarget", :value => "_self"}
-              %param{:name => "toolbar", :value => "yes"}
-
-  %br
-  - if current_user && current_user.can( :publish_report )
-    .row.edit
-      .large-12.large-centered.columns
-        %h5.page-title Sample Image
-        .medium-2.columns
-          / %p= @report_photo.image_url(:small)
-          = image_tag @report_photo.image_url, :onerror => "this.src = '/assets/chart-icon-07.svg';this.removeAttribute('onerror');"
-        %br
-    .row.edit
-      .large-12.large-centered.columns
-        .medium-3.columns
-          %span{:style => "font-weight:normal;font-size:.7em;font-style:italic"} Recently uploaded images may take a few moments to appear.
-          %br
-          = form_tag report_image_upload_path, :method => "post", :id => 'report_image_upload', :multipart => true do
-            = hidden_field_tag "id", @report["report"]["id"]
-            = hidden_field_tag "name", @report["report"]["name"]
-            = hidden_field_tag "timestamp", @report["report"]["timestamp"]
-            Upload/replace sample image:
-            = file_field_tag "image"
-
-  - if @report["report"]["report_type"] !=  "External"  &&  @report["report"]["report_type"] != "Aggregation"
-
-    / governance terms
-
-    .row
-      .large-12.large-centered.columns
-        %h5.page-title Data Governance Terms
-
-        .view
-          - if !@report["terms"].empty? then
-            - @report["terms"].each do |result|
-              - if result["name"]  then
-                %a.do_highlight{:href => "../terms/#{result["name"]}"}
-                  .large-12.columns
-                    = result["name"]
-                    %br
-                    %br
-          - else
-            Data Governance Terms have not been yet registered with this report
+          %li.edit-mode.left-menu-item
+            #currentmode Preview Mode
+            #edittoggle.switch
+              %input#editmode{:type => "checkbox"}
+              %label{:for => "editmode"}
+              //%p Edit Mode
 
         - if current_user && current_user.can( :publish_report )
           .edit
-            .row
-              %table.raci
-                %tbody.tbody
-                  %tr.term_row
-                    %td
-                      %input#term_input.term_input{"data-init" => @term_reports.to_s, :type => "hidden"}
+            %li.left-menu-item
+              %h3.page-title.report-list-headers Name:
+            %li.left-menu-item
+              %input#name-edit{:value => "#{@report["report"]["name"]}", :type => "text"}
 
-    / security roles
 
-  .row
-    .large-12.large-centered.columns
-      %h5.page-title Security Roles Associated with this Report
 
-      .view
-        - if @report_roles.present?
-          - @report_roles.each do |result|
-            .large-12.columns
-              = result[:text]
-              %br
-              %br
-      .edit
-        - if current_user && current_user.can( :publish_report )
-          .row
+        .edit
+          %li.left-menu-item
+            %h4.page-title.report-list-headers Description:
+            #description
+              = @report["report"].fetch("description", "NA").html_safe
+
+        .view
+          %li.left-menu-item
+            %h4.page-title.report-list-headers Description:
+          #description
+            = @report["report"].fetch("description", "NA").html_safe
+
+
+        %li.create-date.left-menu-item
+          Created By:
+          = @report["report"]["created_by"]
+          %br
+          On
+          = @report["report"]["created_date"]
+
+          Last Modified By:
+          = @report["report"]["modified_by"]
+          %br
+          On
+          = @report["report"]["modified_date"]
+
+
+        .view
+          %li.left-menu-item
+            %h5.report-list-headers Sample Image:
+            -# = image_tag @report_photo.image_url(:small), :onerror => "this.src = '/assets/chart-icon-07.svg';this.removeAttribute('onerror');"
+
+        .edit
+          %li.left-menu-item
+            %h5.report-list-headers Sample Image:
+            -# = image_tag @report_photo.image_url(:small), :onerror => "this.src = '/assets/chart-icon-07.svg';this.removeAttribute('onerror');"
+
+          %li.left-menu-item
+            %span{:style => "font-weight:normal;font-size:.7em;font-style:italic"} Recently uploaded images may take a few moments to appear.
+            = form_tag report_image_upload_path, :method => "post", :id => 'report_image_upload', :multipart => true do
+              = hidden_field_tag "id", @report["report"]["id"]
+              Upload/replace sample image:
+              = file_field_tag "image"
+
+
+        .view
+          %li.left-menu-item
+            %h6.page-title.report-list-headers Security Roles:
+            - if @report_roles.present?
+              - @report_roles.each do |result|
+                %strong
+                  = result[:text]
+        .edit
+          %li.left-menu-item
+            %h6.page-title.report-list-headers Security Roles:
             %table.raci
               %tbody.tbody
                 %tr.security_row
@@ -192,110 +136,73 @@
                     %input#role_input.role_input{"data-init" => @report_roles_json.to_s, :type => "hidden"}
 
 
-
-
-
-
-  - if @report["report"]["report_type"] ==  "Tableau"
-    - if current_user && current_user.can( :publish_report )
-      .row.edit
-        .large-12.large-centered.columns
-          %h5#tableauparameters.page-title Report Parameters for Tableau
-      .row.edit
-        .large-8.columns
-          %input#tableaulink{:value => "#{@report["report"]["tableau_link"]}", :placeholder => "Tableau Embed", :type => "text"}
-
-
-  .row
-    .large-12.large-centered.columns
-      %h5.page-title Office Owner
-  .row
-    .large-6.columns
-      - if current_user.can(:publish_report)
         .edit
-          = select_tag 'office_id', options_for_select(@offices.collect{ |o| o[:text] }, @report_office_owner_name), {:id => 'office_owner', :include_blank => true, :prompt => "Please Choose Office"}
-      .view
-        .large-12.columns
-          %p= "#{@report_office_owner_name}"
+          %li.left-menu-item
+            %h6#tableauparameters.page-title.report-list-headers Report Parameters:
+            %input#tableaulink{:value => "#{@report["report"]["tableau_link"]}", :placeholder => "Tableau Embed", :type => "text"}
 
 
-  .row.edit
-    .medium-2.medium-offset-4.columns
-      %input#updateReportButton.small.button.expand{:type => "button", :value => "Update Report"}
-    .medium-2.columns.end
-      %input#deleteReportButton.small.button.expand{"data-reveal-id" => "mytinyDelete", :type => "button", :value => "Delete Report"}
 
-  %br
-  %br
-  .row
-    .large-12.columns
-      .page-title
-      / = @report
-  .row
-    .large-4.columns
-      Created By
-      = @report["report"]["created_by"]
-      %br
-      On
-      - c_date = DateTime.iso8601(@report["report"]["created_date"])
-      = c_date.strftime("%B %d at %I:%M %p")
+        .edit
+          %li.left-menu-item
+            %h6.page-title.report-list-headers Office Owner:
+            = select_tag 'office_id', options_for_select(@offices.collect{ |o| o[:text] }, @report_office_owner_name), :id => 'office_owner'
+            %p= "#{@report_office_owner_name} - #{@report_office_owner_stake}"
 
-    .large-4.columns
-      Last Modified By
-      = @report["report"]["modified_by"]
-      %br
-      On
-      - m_date = DateTime.iso8601(@report["report"]["modified_date"])
-      = m_date.strftime("%B %d at %I:%M %p")
-  %ol.joyride-list{"data-joyride" => ""}
-    %li{"data-text" => "Next"}
-      %p
-        This is the Report View page. We've added some new features so take a look!
-    %li{"data-prev-text" => "Prev", "data-id" => "edittoggle", "data-options" => "tip_location:left;", "data-text" => "Next"}
-      %h4 Edit/View Toggle
-      %p The thing we're most excited about is the Mode Toggle. With it you can toggle between the View mode(which is default) and the Edit mode!
-      %p Click "Next" on me then click the Mode Toggle to continue the tour!
-    %li{"data-prev-text" => "Prev", "data-id" => "edittoggle", "data-options" => "tip_location:left;", "data-text" => "Next"}
-      %p
-        Click it, and input text boxes, grey guide lines, and other things for editing will appear!
-      %p
-        Keep in mind that any changes made in edit mode will not reflect in View mode until after you update the report.
-    %li{"data-id" => "name-view", "data-prev-text" => "Prev", "data-text" => "Next"}
-      %h4 Name of the report
-      %p When people search for the report, this is what is desplayed along with the first line of the description.
-    %li{"data-button" => "Next", "data-id" => "description", "data-options" => "tip_location:top;tip_animation:fade", "data-prev-text"=> "Prev"}
-      %h4 Description
-      %p The description area is a powerful editing suite enabling bullet lists, indentation, alignment, headings, and even tables.
-    %li{"data-prev-text" => "Prev", "data-id" => "description", "data-text" => "Next"}
-      %p
-        To start editing the text, click in the text area indicated by the 2 grey lines.
-      %p
-        To stop editing the text, just click outside of the text area.
-    %li{"data-button" => "Next", "data-id" => "tableauiframe", "data-options" => "tip_location:top", "data-prev-text" => "Prev"}
-      %h4 Tableau Window
-      %p
-        Here the Tableau report is pulled directly from Tableau
-    %li{"data-button" => "Next", "data-id" => "tableauiframe", "data-options" => "tip_location:top", "data-prev-text" => "Prev"}
-      %p
-        There are 2 requirements to make the Tableau report show:
-      %ol
-        %li
-          You must be logged into
-          = link_to 'tableau.nd.edu', 'http://tableau.nd.edu', :target => "_blank"
-        %li
-          You must define the parameters for the Tableau report. We'll go over this next
-    %li{"data-id" => "tableauparameters", "data-prev-text" => "Prev", "data-text" => "Next"}
-      %h4 Tableau Parameters
-      %p This is the trickiest part of the Report creation process.
-      %p On the show page of your report at tableau.nd.edu is a share link in the top left
-      = image_tag("share_link.png")
-    %li{"data-button" => "End", "data-prev-text" => "Prev"}
-      %h4 Stop #3
-      %p It works as a modal too!
+        .view
+          %li.left-menu-item
+            %h6.page-title.report-list-headers Office Owner:
+            %p= "#{@report_office_owner_name}"
 
 
-- else
-  .row
-    .medium-12.large-12.columns
-      %h1 Unregistered Report
-      This report is unregistered or the meta-data about the report has been lost.  Please send us feedback and we will get back to you within 1 business day.
+        .edit
+          %li.left-menu-item
+            %input#updateReportButton.small.button.secondary.round.expand{:type => "button", :value => "Update Report"}
+            %input#deleteReportButton.small.button.alert.round.expand{"data-reveal-id" => "mytinyDelete", :type => "button", :value => "Delete Report"}
+
+
+    %aside.right-off-canvas-menu.report-right-menu
+      %ul.off-canvas-list
+
+        - if current_user && current_user.can( :publish_report )
+          %li.edit-mode.right-menu-item
+            #currentmode Preview Mode
+            #edittoggle.switch
+              %input#editmode{:type => "checkbox"}
+              %label{:for => "editmode"}
+              //%p Edit Mode
+
+          .view
+            %li.right-menu-item
+              %h6.page-title.report-list-headers Data Governance Terms:
+              - if !@report["terms"].empty? then
+                - @report["terms"].each do |result|
+                  - if result["name"]  then
+                    %a.do_highlight{:href => "../terms/#{result["name"]}"}
+                      %strong= result["name"]
+              - else
+                %p Data Governance Terms have not been yet registered with this report
+          .edit
+            %li
+              %h6.page-title.report-list-headers Data Governance Terms:
+              %table.raci
+                %tbody.tbody
+                  %tr.term_row
+                    %td
+                      %input#term_input.term_input{"data-init" => @term_reports.to_s, :type => "hidden"}
+
+
+
+
+
+    %section.main-section.report_display
+
+      #tableauiframe.large-12.columns
+        / %input#tableaulink{:value => "#{@report["report"]["tableau_link"]}", :placeholder => "Tableau Embed", :type => "text"}
+        %iframe{:src => "#{@report["report"]["tableau_link"]}", :width => "100%", :height => "600px"}
+
+
+
+
+      / content goes here
+    %a.exit-off-canvas

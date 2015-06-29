@@ -103,3 +103,69 @@ $transBlack:  rgba(0, 0, 0, 0.7);
 //=========================================================//
 //=====================Report Page=======================//
 //=======================================================//
+
+
+.page-title {
+	color: white;
+	text-decoration: none !important;
+	text-shadow: none !important;
+}
+
+.report-left-menu {
+	padding: 5% !important;
+}
+
+.left-menu-item {
+	margin-bottom: 10% !important;
+}
+
+.right-menu-item {
+	margin-bottom: 10% !important;
+}
+
+.report-right-menu {
+	padding: 1% !important;
+}
+
+.report_display {
+	height: 600px;
+}
+
+.edit-mode {
+	display: inline-block;
+
+	p {
+		display: inline-block;
+	}
+
+	.switch {
+		display: inline-block;
+	}
+}
+
+.editable {
+	background-color: white;
+}
+
+.report-list-headers {
+	color: rgba(181,132,46,1) !important;
+	text-decoration: none !important;
+	text-shadow: none !important;
+}
+
+.middle-report-title {
+	text-align: left;
+}
+
+.middle-report-terms {
+	text-align: right;
+}
+
+.middle {
+	padding: 0 !important;
+	margin: 0 !important;
+}
+
+.create-date {
+	color: rgba(142,142,142,1);
+}
