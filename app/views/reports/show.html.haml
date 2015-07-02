@@ -7,6 +7,8 @@
     // office_gov_json =  #{@office_gov_json.to_s.html_safe}
     role_reports  =       #{@role_reports.to_s.html_safe}
     security_roles_json = #{@security_roles_json.to_s.html_safe}
+
+    
 .row
   .large-8.columns
     .alert-box.alert.radius{"data-alert" => "", :style => "display:none"}
@@ -59,11 +61,11 @@
 
         - if current_user && current_user.can( :publish_report )
           %li.edit-mode.left-menu-item
-            #currentmode Preview Mode
+            #currentmode Preview
             #edittoggle.switch
               %input#editmode{:type => "checkbox"}
               %label{:for => "editmode"}
-              //%p Edit Mode
+              //%p Edit
 
         - if current_user && current_user.can( :publish_report )
           .edit

@@ -3,7 +3,7 @@ $(document).ready(function(){
   // if (new_report == true) {
   //   alert('new report');
   // };
-    
+
 
   $('#editmode').change(function(){
     if ( this.checked ) {
@@ -82,7 +82,7 @@ $(document).ready(function(){
 
 
   if(typeof report_object != 'undefined')  {
-    
+
     $('#updateReportButton').click( function() {
       error_exist = false;
       clearValidationErrors();
@@ -108,7 +108,7 @@ $(document).ready(function(){
       //   addValidationError( "alert", "You Must Select the Report Type");
       // }
       if( error_exist ) {
-        
+
         showValidationErrors();
         return false;
       }
@@ -217,7 +217,7 @@ $(document).ready(function(){
       ]
 
     };
-    $('a.close-reveal-modal').trigger('click'); 
+    $('a.close-reveal-modal').trigger('click');
     createReport(report_new);
     // new_report = true
   });
@@ -232,9 +232,9 @@ function changetoeditmode() {
     // "style": "position: relative;"
   });
   $("#description").addClass("editable free-text");
-  // $("#description").addClass("free-text");
+  //$("#description").addClass("free-text");
   initializetinymce(".editable");
-  $("#currentmode").text('Edit Mode');
+  $("#currentmode").text('Edit');
 }
 
 function changetoviewmode() {
@@ -243,7 +243,7 @@ function changetoviewmode() {
   $( "#description" ).attr( "contenteditable", "false" );
   $("#description").removeClass("editable");
   $("#description").removeClass("free-text");
-  $("#currentmode").text('Preview Mode');
+  $("#currentmode").text('Preview');
 }
 
 function clearValidationErrors() {
@@ -367,7 +367,7 @@ function updateTermObject(term_object ) {
     console.log( term_object );
 
   if ( showValidationErrors()  == true ) {
-    
+
     return false;
   }
 
@@ -438,7 +438,7 @@ function updateReportObject(report_object ) {
 
       // }
 
-      
+
     }
   })
   // report_object["embedJSON"] = "{\"width\": \""+w+"\", \"height\" : \"" + h+"\",\"name\":\""+ n+"\",\"tabs\":\""+t+"\"}"
@@ -555,14 +555,14 @@ function updateReport( report_object ) {
     })
     /*.done(function(data) {
       console.log("done block")
-      //$('form#report_image_upload').submit()  // silently submit the image upload.  how to validate??    
+      //$('form#report_image_upload').submit()  // silently submit the image upload.  how to validate??
       var url = escape(report_object.name)
       window.location.href = url
     });
   */
 
 
-  
+
 
 }
 
