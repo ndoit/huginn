@@ -30,6 +30,11 @@ $transparent:	transparent;
 $lightGray: 	rgb(182,182,182);
 $transBlack:  rgba(0, 0, 0, 0.7);
 
+/* $topbar-menu-link-color: 					$black !important;
+$topbar-menu-icon-color:					$black !important;
+$topbar-menu-link-color-toggled: 	$black !important;
+$topbar-menu-icon-color-toggled:	$black !important; */
+
 
 
 //=========================================================//
@@ -87,8 +92,6 @@ a:hover {
 
 
 
-
-
 .button {
 	background-color: $black !important;
 	color: $white !important;
@@ -104,6 +107,7 @@ a:hover {
 	background-color: $transparent !important;
 	color: $black !important;
 }
+
 
 
 
@@ -191,10 +195,12 @@ a.oit {
 	text-decoration: none !important;
 	color: $white !important;
 	background-color: $black !important;
-
-
 }
 
+top-bar .toggle-topbar.menu-icon a::after {
+-webkit-box-shadow: 1px 10px 1px 1px #666, 1px 16px 1px 1px #666, 1px 22px 1px 1px #666 !important;
+box-shadow: 0 10px 0 1px #666, 0 16px 0 1px #666, 0 22px 0 1px #666 !important;
+}
 
 
 //=========================================================//

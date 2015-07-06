@@ -30,7 +30,7 @@
   %main.site-content{:role => "main"}
     - if request.path == "/"
 
-      .fullWidth.frontPage.noImage
+      .fullWidth.noImage
         .small-12.small-centered.columns
           %h1.titleHeaderNoImage UNIVERSITY <i>of</i> NOTRE DAME
           %h2.titleHeaderNoImage Business Intelligence Portal
@@ -66,15 +66,6 @@
       = render "layouts/about"
 
     = yield
-
-
-
-
-
-
-
-
-
 
 
   %footer.site-footer{:role => "contentinfo"}
