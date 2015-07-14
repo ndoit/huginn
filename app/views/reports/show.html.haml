@@ -8,7 +8,7 @@
     role_reports  =       #{@role_reports.to_s.html_safe}
     security_roles_json = #{@security_roles_json.to_s.html_safe}
 
-    
+
 .row
   .large-8.columns
     .alert-box.alert.radius{"data-alert" => "", :style => "display:none"}
@@ -85,8 +85,8 @@
         .view
           %li.left-menu-item
             %h4.page-title.report-list-headers Description:
-          #description
-            = @report["report"].fetch("description", "NA").html_safe
+            #description
+              = @report["report"].fetch("description", "NA").html_safe
 
 
         %li.create-date.left-menu-item

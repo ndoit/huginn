@@ -17,10 +17,7 @@
   .large-12.columns
     #mytinyDelete.reveal-modal.tiny{"data-reveal" => ""}
       %h2 Deleting Term
-      %br
       %b Are you sure?
-      %br
-      %br
       %input#deleteConfirm.tiny.button{:type => "button", :value => "Yes"}/
       %input#deleteCancel.tiny.button{:type => "button", :value => "No"}/
       %a.close-reveal-modal ×
@@ -28,23 +25,148 @@
 
 
 
-#term_detail
-  .fullWidth
-    -if current_user && current_user.can( :edit_term )
-      .edit-mode
-        #currentmode Preview Mode
-        #edittoggle.switch
-          %input#editmode{:type => "checkbox"}
-          %label{:for => "editmode"}
-          //%p Edit
+#term_detail.fullWidth
+  -if current_user && current_user.can( :edit_term )
+
+    .edit-mode
+      #currentmode Edit
+      %input#editmode{:type => "checkbox"}
+
+    #name.canEdit
+      %h1.term-title= @term["term"]["name"].html_safe
+
+    #definition.canEdit
+      - if @term["term"]["definition"] then
+        = @term["term"]["definition"].html_safe
+      - else
+        NA
+
+    %dfn
+      Last Updated: #{@term["term"]["modified_date"].to_datetime.strftime("%a, %d %b %Y %I:%M %p")}
+
+
+    %h3.generalInfo General Information
+
+    %h5 Data Availability
+    #data_availability.canEdit
+      - if @term["term"]["data_availability"] then
+        = @term["term"]["data_availability"].html_safe
+      - else
+        %p NA
+
+    %h5 Possible Values
+    #possible_values.canEdit
+      - if @term["term"]["possible_values"] then
+        = @term["term"]["possible_values"].html_safe
+      - else
+        %p NA
+
+    %h5 Notes
+    #notes.canEdit
+      - if @term["term"]["notes"] then
+        = @term["term"]["notes"].html_safe
+      - else
+        %p NA
+
+    %h5 Campus Stakeholders
+    .raci.raciMatrix
+      - @stakeholder_hash.keys.each_with_index do |key, index|
+        .raci_row{"data-raci-stake" => key}
+          .stake= key[0].upcase
+          %input.raci_input{"data-init" => @stakeholder_hash[key].to_json, :id => "raci#{index}", :type => "hidden"}
 
 
 
-    .edit
-      #name
-        %h2.term-title.editable
-          = @term["term"]["name"].html_safe
 
-    .view
-      %h2.term-title
-        = @term["term"]["name"].html_safe
+
+
+
+  -#
+  -# .edit
+  -#   %h5.page-title Campus Stakeholders
+  -#   %table.raci{:class => ('editable' if current_user && current_user.can( :edit_term ))}
+  -#     %tbody.tbody
+  -#       - @stakeholder_hash.keys.each_with_index do |key, index|
+  -#         %tr.raci_row{"data-raci-stake" => key}
+  -#           %td= key[0].upcase
+  -#           %td
+  -#             %input.raci_input{"data-init" => @stakeholder_hash[key].to_json, :id => "raci#{index}", :type => "hidden"}
+  -#
+  -# .view
+  -#   %table.raci
+  -#     - @stakeholder_hash.keys.each_with_index do |key, index|
+  -#       %tr.raci_row
+  -#         %td
+  -#           %h5
+  -#             = key
+  -#         %td
+  -#           - @stakeholder_hash[key].each do |stake|
+  -#             = stake[:text].to_s
+  -#
+  -#
+  .associatedReports
+    %h5.page-title Reports Associated with this Term
+    - if current_user
+      - unless @term["reports"].empty? then
+        - @term["reports"].each do |result|
+          - if result["name"]  then
+            %a.do_highlight{:href => "../reports/#{result["name"].html_safe}"}
+              %strong
+                = result["name"]
+
+      - else
+        Reports are not registered with this data governance term
+
+    - else
+      You must be logged in to see any reports associated with this term
+
+  -# .sensitivityClassification
+  -#   %h5.page-title Sensitivity Classification
+  -#
+  -#   .edit
+  -#     %dl
+  -#       %dt Permission Group
+  -#       %dd
+  -#         - if current_user && current_user.can(:edit_term)
+  -#           = select_tag 'permission-group', options_for_select(@permission_groups.collect{ |o| o[:text]}, @term_group ), {:prompt => "Please Choose Permission Group"}
+  -#       %dt Sensitivity Classification
+  -#       %dd
+  -#         - if current_user && current_user.can(:edit_term)
+  -#           = select_tag 'sensitivity_classification', options_for_select(["Highly Sensitive", "Sensitive", "Internal", "Public"], @term["term"]["sensitivity_classification"]), {:prompt => "Please Choose Classification"}
+  -#       %dt Access Designation
+  -#       %dd
+  -#         - if current_user && current_user.can(:edit_term)
+  -#           = select_tag 'access_designation', options_for_select(["Limited", "Unlimited"], @term["term"]["access_designation"]), {:prompt => "Please Choose access designation"}
+  -#       %dt Sensitivity and Access Notes
+  -#       %dd
+  -#         #sensitivity_access_notes{:class => ('editable' if current_user && current_user.can( :edit_term ))}
+  -#           - if @term["term"]["sensitivity_access_notes"].present?  then
+  -#             = @term["term"]["sensitivity_access_notes"].html_safe
+  -#
+  -#   .view
+  -#     %dl
+  -#       %dt Permission Group
+  -#       %dd
+  -#         = @term_group
+  -#       %dt Sensitivity Classification
+  -#       %dd
+  -#         = @term["term"]["sensitivity_classification"]
+  -#       %dt Access Designation
+  -#       %dd
+  -#         = @term["term"]["access_designation"]
+  -#       %dt Sensitivity and Access Notes
+  -#       %dd
+  -#         #sensitivity_access_notes
+  -#           - if @term["term"]["sensitivity_access_notes"].present?  then
+  -#             = @term["term"]["sensitivity_access_notes"].html_safe
+  -#
+  -#
+  -#   .edit
+  -#     .row
+  -#       .medium-2.medium-offset-4.columns
+  -#         %input#updateTermButton.small.button.expand{:type => "button", :value => "Update Term"}/
+  -#       .medium-2.columns.end
+  -#         %input#deleteTermButton.small.button.expand{"data-reveal-id" => "mytinyDelete", :type => "button", :value => "Delete Term"}
+  -#
+    %dfn
+      Last Updated: #{@term["term"]["modified_date"].to_datetime.strftime("%a, %d %b %Y %I:%M %p")}

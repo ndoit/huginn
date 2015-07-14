@@ -14,11 +14,27 @@ $transBlack:  rgba(0, 0, 0, 0.7);
 //=====================Term Page=======================//
 //=======================================================//
 
+
+
+#term_detail {
+	text-align: left;
+	padding: 50px;
+	h1 {
+		font-size: 4em;
+	}
+	p {
+		font-size: 1.3em;
+	}
+}
+
+
 .term-title {
 	color: $gold !important;
 }
 
-
+.generalInfo {
+	color: $gold !important;
+}
 
 
 

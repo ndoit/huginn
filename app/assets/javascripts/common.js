@@ -5,14 +5,14 @@ $(document).ready(function(){
   // };
 
 
-  $('#editmode').change(function(){
-    if ( this.checked ) {
-      changetoeditmode();
-    }
-    else {
-      changetoviewmode();
-    }
-  });
+  // $('#editmode').change(function(){
+  //   if ( this.checked ) {
+  //     changetoeditmode();
+  //   }
+  //   else {
+  //     changetoviewmode();
+  //   }
+  // });
 
   $('#image').change( function() {
     $('form#report_image_upload').submit();
@@ -223,28 +223,25 @@ $(document).ready(function(){
   });
 });
 
-function changetoeditmode() {
-  $( '.view' ).css( "display", "none" );
-  $( '.edit' ).css( "display", "inherit" );
-  $( "#description" ).attr({
-    "contenteditable": "true"
-    // "spellcheck": "false",
-    // "style": "position: relative;"
-  });
-  $("#description").addClass("editable free-text");
-  //$("#description").addClass("free-text");
-  initializetinymce(".editable");
-  $("#currentmode").text('Edit');
-}
-
-function changetoviewmode() {
-  $( '.edit' ).css( "display", "none" );
-  $( '.view' ).css( "display", "inherit" );
-  $( "#description" ).attr( "contenteditable", "false" );
-  $("#description").removeClass("editable");
-  $("#description").removeClass("free-text");
-  $("#currentmode").text('Preview');
-}
+// function changetoeditmode() {
+//   $( '.view' ).css( "display", "none" );
+//   $( '.edit' ).css( "display", "inherit" );
+//   $( "#description" ).attr({
+//     "contenteditable": "true"
+//   });
+//   $("#description").addClass("editable free-text");
+//   initializetinymce(".editable");
+//   $("#currentmode").text('Edit');
+// }
+//
+// function changetoviewmode() {
+//   // $( '.edit' ).css( "display", "none" );
+//   // $( '.view' ).css( "display", "inherit" );
+//   $( "#description" ).attr( "contenteditable", "false" );
+//   $("#description").removeClass("editable");
+//   $("#description").removeClass("free-text");
+//   $("#currentmode").text('Preview');
+// }
 
 function clearValidationErrors() {
   error_list_children = $('#error_list > li')
@@ -828,21 +825,21 @@ function deletePermissionGroup( permissiongroupid ) {
       }
   });
 }
-
-initializetinymce(".editable");
-
-function initializetinymce(the_textarea_div_class) {
-  tinymce.init({
-    selector: "div" + the_textarea_div_class,
-    relative_urls: false,
-    inline: true,
-    menubar: true,
-    relative_urls: false,
-    plugins: [
-        "advlist autolink lists link image charmap print preview anchor",
-        "searchreplace visualblocks code fullscreen",
-        "insertdatetime media table contextmenu paste "
-    ],
-    toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image|anchor"
-  });
-}
+// 
+// initializetinymce(".editable");
+//
+// function initializetinymce(the_textarea_div_class) {
+//   tinymce.init({
+//     selector: "div" + the_textarea_div_class,
+//     relative_urls: false,
+//     inline: true,
+//     menubar: true,
+//     relative_urls: false,
+//     plugins: [
+//         "advlist autolink lists link image charmap print preview anchor",
+//         "searchreplace visualblocks code fullscreen",
+//         "insertdatetime media table contextmenu paste "
+//     ],
+//     toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image|anchor"
+//   });
+// }
